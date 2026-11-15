@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DECØY DEVICES — Světlo · Zvuk · Video</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- =========================================================
+       1. ÚVODNÍ STRANA: 3-BAREVNÝ SPLIT (ZVUK / SVĚTLO / VIDEO)
+       ========================================================= -->
+  <div id="landingView" class="landing-view">
+    <header class="landing-topbar">
+      <div class="landing-brand">
+        <span class="brand-name">DECØY DEVICES</span>
+      </div>
+      <div class="landing-top-right">
+        <button id="langToggleLanding" class="btn-hud btn-sm" type="button">
+          <span class="lang-active">CZ</span> / <span>EN</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="tri-split" aria-label="Výběr divize">
+      <!-- ZVUK (ČERNÁ) -->
+      <button type="button" class="split-panel panel-aud" data-open-division="AUD">
+        <span class="split-reg tl">+</span>
+        <span class="split-reg bl">+</span>
+        <div class="split-watermark" aria-hidden="true">
+          <svg viewBox="0 0 120 120" width="140" height="140">
+            <polygon points="34,8 86,8 112,34 112,86 86,112 34,112 8,86 8,34" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="30" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M30 60 Q45 34 60 60 T90 60" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="split-reveal">
+          <span class="split-code">AUD // 01</span>
+          <h2 class="split-title" data-i18n="div_sound">ZVUK</h2>
+          <span class="split-enter" data-i18n="enter_section">VSTOUPIT &gt;&gt;&gt;</span>
+        </div>
+      </button>
+
+      <!-- SVĚTLO (TLUMENÁ ŠEDOBÍLÁ) -->
+      <button type="button" class="split-panel panel-lux" data-open-division="LUX">
+        <span class="split-reg tl">+</span>
+        <span class="split-reg br">+</span>
+        <div class="split-watermark" aria-hidden="true">
+          <svg viewBox="0 0 120 120" width="140" height="140">
+            <polygon points="34,8 86,8 112,34 112,86 86,112 34,112 8,86 8,34" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="46" cy="60" r="16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="68" y1="60" x2="98" y2="60" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="65" y1="45" x2="94" y2="32" stroke="currentColor" stroke-width="1.8"/>
+            <line x1="65" y1="75" x2="94" y2="88" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="split-reveal">
+          <span class="split-code">LUX // 02</span>
+          <h2 class="split-title" data-i18n="div_light">SVĚTLO</h2>
+          <span class="split-enter" data-i18n="enter_section">VSTOUPIT &gt;&gt;&gt;</span>
+        </div>
+      </button>
+
+      <!-- VIDEO (CYBER FIALOVÁ) -->
+      <button type="button" class="split-panel panel-vid" data-open-division="VID">
+        <span class="split-reg tr">+</span>
+        <span class="split-reg br">+</span>
+        <div class="split-watermark" aria-hidden="true">
+          <svg viewBox="0 0 120 120" width="140" height="140">
+            <polygon points="34,8 86,8 112,34 112,86 86,112 34,112 8,86 8,34" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M32 42 H46 M32 42 V56 M88 42 H74 M88 42 V56 M32 78 H46 M32 78 V64 M88 78 H74 M88 78 V64" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <polyline points="38,60 50,60 56,44 64,76 70,60 82,60" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="split-reveal">
+          <span class="split-code">VID // 03</span>
+          <h2 class="split-title" data-i18n="div_video">VIDEO</h2>
+          <span class="split-enter" data-i18n="enter_section">VSTOUPIT &gt;&gt;&gt;</span>
+        </div>
+      </button>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       2. DETAIL DIVIZE (PO ROZKLIKNUTÍ BARVY)
+       ========================================================= -->
+  <div id="divisionView" class="division-view" hidden>
+    <header class="hud-nav">
+      <div class="container hud-nav-inner">
+        <div class="nav-left">
+          <button id="backToSplit" class="btn-back" type="button">
+            <span>←</span>
+            <span>DECØY DEVICES</span>
+          </button>
+          <div class="div-switcher" role="tablist" aria-label="Přepnout divizi">
+            <button type="button" class="div-tab" data-switch-div="AUD" data-i18n="div_sound">ZVUK</button>
+            <button type="button" class="div-tab" data-switch-div="LUX" data-i18n="div_light">SVĚTLO</button>
+            <button type="button" class="div-tab" data-switch-div="VID" data-i18n="div_video">VIDEO</button>
+          </div>
+        </div>
+
+        <nav class="sub-nav" role="tablist" aria-label="Záložky divize">
+          <button type="button" class="sub-tab active" data-tab="eurorack">EURORACK</button>
+          <button type="button" class="sub-tab" data-tab="pedals" data-i18n="sec_pedals">PEDÁLY</button>
+          <button type="button" class="sub-tab" data-tab="blog" data-i18n="sec_blog">BLOK</button>
+          <button type="button" class="sub-tab" data-tab="teatro">TEATRO\\\SVJÖTLO</button>
+          <button type="button" class="sub-tab" data-tab="merch" data-i18n="sec_merch">TRIČKA &amp; MERCH</button>
+        </nav>
+
+        <button id="langToggleDiv" class="btn-hud btn-sm" type="button">
+          <span class="lang-active">CZ</span> / <span>EN</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="divisionContent">
+      <!-- Populated dynamically by app.js based on selected division (AUD / LUX / VID) -->
+    </main>
+
+    <footer class="pcb-footer">
+      <div class="container">
+        <div class="footer-hazard-row">
+          <div class="hazard-stripes" aria-hidden="true"></div>
+          <div class="silver-bar" aria-hidden="true"></div>
+          <div class="emblem-diamond" aria-hidden="true">◆</div>
+          <div class="silver-bar" aria-hidden="true"></div>
+          <div class="hazard-stripes" aria-hidden="true"></div>
+        </div>
+        <div class="footer-main">
+          <span class="serial-code">
+            FOUNDERS: <a href="https://www.instagram.com/divokyvojta/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">VOJTĚCH DIVOKÝ</a> &amp; LADISLAV MAREŠ
+          </span>
+          <span class="footer-brand">DECØY DEVICES</span>
+          <span class="serial-code">
+            <a href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@TEATRO_SVJOTLO</a> // <span id="footerDivCode">AUD · LUX · VID</span>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MODAL PRO DETAIL MODULU / PRODUKTU -->
+  <div id="itemModal" class="modal" hidden aria-modal="true" role="dialog">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog">
+      <button class="modal-close" type="button" data-close-modal aria-label="Zavřít">✕</button>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
