@@ -1,0 +1,360 @@
+/* DECØY DEVICES — product.html (samostatná detailní stránka modulu) */
+
+let currentLang = getLang();
+let currentProdId = null;
+let currentDivCtx = null;
+let currentGalleryIdx = 0;
+
+const DIV_NAMES = {
+  AUD: { cs: "ZVUK", en: "SOUND" },
+  LUX: { cs: "SVĚTLO", en: "LIGHT" },
+  VID: { cs: "VIDEO", en: "VIDEO" },
+};
+
+function triggerProductFx() {
+  const overlay = document.getElementById("fxOverlay");
+  if (!overlay) return;
+  overlay.className = "fx-overlay";
+  void overlay.offsetWidth;
+  overlay.classList.add("fx-mod");
+}
+
+function updateLangButton() {
+  const btn = document.getElementById("langToggleProd");
+  if (!btn) return;
+  btn.innerHTML =
+    currentLang === "cs"
+      ? '<span class="lang-active">CZ</span> / <span>EN</span>'
+      : '<span>CZ</span> / <span class="lang-active">EN</span>';
+}
+
+function renderGalleryStage(p) {
+  const items = p.gallery || [{ src: p.image, cap: { cs: p.name, en: p.name } }];
+  if (currentGalleryIdx >= items.length) currentGalleryIdx = 0;
+  const active = items[currentGalleryIdx];
+  const stageEl = document.getElementById("galleryStage");
+  const capEl = document.getElementById("galleryCaption");
+  if (!stageEl || !capEl) return;
+
+  stageEl.className = `prod-gallery-stage ${active.layer ? "is-layer" : ""}`;
+  stageEl.innerHTML = `<img src="${active.src}" alt="${active.cap[currentLang]}" />`;
+  capEl.innerHTML = `
+    <span>${active.cap[currentLang]}</span>
+    <span>${currentGalleryIdx + 1} / ${items.length}</span>
+  `;
+
+  document.querySelectorAll("[data-gal-idx]").forEach((thumb) => {
+    thumb.classList.toggle("active", parseInt(thumb.getAttribute("data-gal-idx"), 10) === currentGalleryIdx);
+  });
+}
+
+function renderProductPage(id, { fx = false, divKey = null } = {}) {
+  const p = PRODUCTS[id];
+  const dict = I18N[currentLang];
+  const bodyEl = document.getElementById("productBody");
+  const mainEl = document.getElementById("productMain");
+  const topPagerEl = document.getElementById("topProductPager");
+  const backLink = document.getElementById("backToDivLink");
+  const backLabel = document.getElementById("backToDivLabel");
+
+  if (!p) {
+    mainEl.innerHTML = `<div class="container" style="padding:80px 24px;"><h2>${dict.not_found}</h2></div>`;
+    return;
+  }
+
+  const activeDiv = divKey || currentDivCtx || p.division;
+  currentDivCtx = activeDiv;
+  currentProdId = id;
+  currentGalleryIdx = id === "cue-frames" && activeDiv === "AUD" ? 1 : 0;
+  if (fx) triggerProductFx();
+
+  document.documentElement.lang = currentLang;
+  document.title = `${p.name} — DECØY DEVICES`;
+  bodyEl.className = `product-page mod-${id}`;
+
+  const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
+  backLink.href = `index.html#${activeDiv}/eurorack`;
+  backLabel.textContent = `${dict.back_to} ${divTitle}`;
+
+  const nav = getSectionProductNav(id, activeDiv);
+  topPagerEl.innerHTML = `
+    <span class="pager-status">
+      <strong>${nav.index + 1} / ${nav.total}</strong> · ${p.name}
+    </span>
+  `;
+
+  const prevArrow = document.getElementById("pagePrevArrow");
+  const nextArrow = document.getElementById("pageNextArrow");
+  const prevLabel = document.getElementById("pagePrevLabel");
+  const nextLabel = document.getElementById("pageNextLabel");
+  if (prevArrow && nextArrow && nav) {
+    prevLabel.textContent = nav.prev.name;
+    nextLabel.textContent = nav.next.name;
+    prevArrow.onclick = () => {
+      history.pushState(null, "", `product.html?id=${nav.prevId}&div=${activeDiv}`);
+      renderProductPage(nav.prevId, { fx: true, divKey: activeDiv });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    nextArrow.onclick = () => {
+      history.pushState(null, "", `product.html?id=${nav.nextId}&div=${activeDiv}`);
+      renderProductPage(nav.nextId, { fx: true, divKey: activeDiv });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  }
+
+  const siteFooter = document.getElementById("siteFooter");
+  if (siteFooter) {
+    siteFooter.innerHTML = renderModuleFooterHTML(
+      activeDiv,
+      `${activeDiv} // ${p.hp}`,
+      "TEATRO\\\\\\SVJÖTLO"
+    );
+  }
+
+  const gallery = p.gallery || [{ src: p.image, cap: { cs: p.name, en: p.name } }];
+  const related = (p.related || []).filter((rid) => PRODUCTS[rid]);
+
+  mainEl.innerHTML = `
+    <!-- HERO + GALERIE -->
+    <section class="prod-hero">
+      <div class="container">
+        <div class="prod-hero-grid">
+          <!-- Levý sloupec: Vícefotková galerie -->
+          <div class="prod-gallery">
+            <div class="prod-gallery-wrap">
+              ${
+                gallery.length > 1
+                  ? `<button type="button" class="gal-arrow gal-prev" id="galPrevBtn" aria-label="${dict.prev_img}">‹</button>`
+                  : ""
+              }
+              <div id="galleryStage" class="prod-gallery-stage"></div>
+              ${
+                gallery.length > 1
+                  ? `<button type="button" class="gal-arrow gal-next" id="galNextBtn" aria-label="${dict.next_img}">›</button>`
+                  : ""
+              }
+            </div>
+            <div id="galleryCaption" class="prod-gallery-cap"></div>
+            ${
+              gallery.length > 1
+                ? `<div class="prod-thumbs">
+                    ${gallery
+                      .map(
+                        (g, idx) => `
+                      <button type="button" class="prod-thumb ${idx === 0 ? "active" : ""} ${g.layer ? "is-layer" : ""}" data-gal-idx="${idx}">
+                        <img src="${g.src}" alt="${g.cap[currentLang]}" loading="lazy" />
+                        <span>${g.cap[currentLang]}</span>
+                      </button>`
+                      )
+                      .join("")}
+                  </div>`
+                : ""
+            }
+          </div>
+
+          <!-- Pravý sloupec: Popis O MODULU -->
+          <div class="prod-summary">
+            <div class="modal-serial">${p.serial}</div>
+            <h1>${p.name}</h1>
+            <p class="prod-tagline">${p.tagline[currentLang]}</p>
+
+            <div class="modal-meta-row">
+              <span class="modal-chip">${activeDiv} // ${divTitle}</span>
+              <span class="modal-chip">${p.hp}</span>
+            </div>
+
+            <div class="prod-block">
+              <div class="prod-block-label">// ${dict.about}</div>
+              ${p.long[currentLang].map((para) => `<p class="prod-para">${para}</p>`).join("")}
+              ${p.credit ? `<p class="prod-credit">${p.credit[currentLang]}</p>` : ""}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- K ČEMU HO POUŽÍT (USE CASES) -->
+    <section class="prod-section">
+      <div class="container">
+        <div class="sec-head">
+          <div>
+            <div class="sec-num">${dict.app_num_use}</div>
+            <h2>${dict.use_cases}</h2>
+          </div>
+        </div>
+        <div class="usecase-grid">
+          ${p.useCases
+            .map(
+              (u, i) => `
+            <article class="usecase-card">
+              <div class="usecase-num">0${i + 1}</div>
+              <h3>${u.t[currentLang]}</h3>
+              <p>${u.d[currentLang]}</p>
+            </article>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <!-- OVLÁDÁNÍ & KONEKTORY + VŠECHNY TECHNICKÉ PARAMETRY -->
+    <section class="prod-section">
+      <div class="container">
+        <div class="prod-two-col">
+          <!-- Ovládání & konektory -->
+          <div class="prod-panel-box">
+            <div class="sec-num">${dict.app_num_io}</div>
+            <h2>${dict.controls}</h2>
+            <ul class="prod-controls-list">
+              ${p.controls[currentLang].map((c) => `<li>${c}</li>`).join("")}
+            </ul>
+          </div>
+
+          <!-- Technické parametry (bez seznamu čipů) -->
+          <div class="prod-panel-box">
+            <div class="sec-num">${dict.app_num_elec}</div>
+            <h2>${dict.all_specs}</h2>
+            <table class="spec-table" style="margin-top:16px;">
+              <thead>
+                <tr>
+                  <th>${dict.param}</th>
+                  <th>${dict.value}</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${p.specs
+                  .map(
+                    (s) => `
+                  <tr>
+                    <th>${s.p[currentLang]}</th>
+                    <td>${specVal(s.v, currentLang)}</td>
+                  </tr>`
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUNGUJE S (SOUVISEJÍCÍ MODULY) -->
+    ${
+      related.length
+        ? `<section class="prod-section">
+            <div class="container">
+              <div class="sec-head">
+                <div>
+                  <div class="sec-num">${dict.app_num_eco}</div>
+                  <h2>${dict.works_with}</h2>
+                </div>
+              </div>
+              <div class="cards-grid-2">
+                ${related
+                  .map((rid) => {
+                    const rp = PRODUCTS[rid];
+                    return `
+                      <article class="prod-rel-card" data-prod-go="${rid}">
+                        <img src="${rp.image}" alt="${rp.name}" loading="lazy" />
+                        <div>
+                          <div class="modal-serial">${rp.serial} · ${rp.hp}</div>
+                          <h3>${rp.name}</h3>
+                          <p>${rp.short[currentLang]}</p>
+                          <span class="btn-outline">${dict.detail_btn}</span>
+                        </div>
+                      </article>
+                    `;
+                  })
+                  .join("")}
+              </div>
+            </div>
+          </section>`
+        : ""
+    }
+
+    <!-- SPODNÍ ŠIPKY PRO LISTOVÁNÍ V SEKCI -->
+    <section class="prod-section prod-bottom-nav">
+      <div class="container">
+        <div class="modal-nav-bar">
+          <button type="button" class="pager-btn" data-prod-go="${nav.prevId}">
+            <span class="pager-icon">←</span>
+            <span class="pager-meta">
+              <small>${dict.prev_prod}</small>
+              <strong>${nav.prev.name}</strong>
+            </span>
+          </button>
+          <span class="modal-nav-count">${nav.index + 1} / ${nav.total}</span>
+          <button type="button" class="pager-btn pager-btn-next" data-prod-go="${nav.nextId}">
+            <span class="pager-meta">
+              <small>${dict.next_prod}</small>
+              <strong>${nav.next.name}</strong>
+            </span>
+            <span class="pager-icon">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  `;
+
+  renderGalleryStage(p);
+
+  // Gallery events
+  document.getElementById("galPrevBtn")?.addEventListener("click", () => {
+    currentGalleryIdx = (currentGalleryIdx - 1 + gallery.length) % gallery.length;
+    renderGalleryStage(p);
+  });
+  document.getElementById("galNextBtn")?.addEventListener("click", () => {
+    currentGalleryIdx = (currentGalleryIdx + 1) % gallery.length;
+    renderGalleryStage(p);
+  });
+  document.querySelectorAll("[data-gal-idx]").forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      currentGalleryIdx = parseInt(thumb.getAttribute("data-gal-idx"), 10) || 0;
+      renderGalleryStage(p);
+    });
+  });
+
+  // Product Prev / Next / Related clicks
+  document.querySelectorAll("[data-prod-go]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const targetId = el.getAttribute("data-prod-go");
+      history.pushState(null, "", `product.html?id=${targetId}`);
+      renderProductPage(targetId, { fx: true });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateLangButton();
+
+  const params = new URLSearchParams(location.search);
+  const initialId = params.get("id") || "the-in";
+  const initialDiv = params.get("div") || null;
+  renderProductPage(initialId, { divKey: initialDiv });
+
+  document.getElementById("langToggleProd")?.addEventListener("click", () => {
+    currentLang = currentLang === "cs" ? "en" : "cs";
+    setLang(currentLang);
+    updateLangButton();
+    if (currentProdId) renderProductPage(currentProdId, { divKey: currentDivCtx });
+  });
+
+  window.addEventListener("popstate", () => {
+    const p = new URLSearchParams(location.search);
+    renderProductPage(p.get("id") || "the-in", { divKey: p.get("div") || null });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!currentProdId) return;
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      const nav = getSectionProductNav(currentProdId, currentDivCtx);
+      if (nav) {
+        const targetId = e.key === "ArrowLeft" ? nav.prevId : nav.nextId;
+        history.pushState(null, "", `product.html?id=${targetId}${currentDivCtx ? `&div=${currentDivCtx}` : ""}`);
+        renderProductPage(targetId, { fx: true, divKey: currentDivCtx });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  });
+});

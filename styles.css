@@ -725,17 +725,307 @@ a {
   backdrop-filter: blur(6px);
 }
 
+/* =========================================================
+   FX OVERLAY (Divize + Produktové efekty)
+   ========================================================= */
+.fx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.fx-overlay.fx-lux {
+  background: radial-gradient(circle at 50% 35%, rgba(255, 252, 235, 0.92) 0%, rgba(181, 182, 176, 0.45) 42%, transparent 75%);
+  animation: fxLuxFlash 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.fx-overlay.fx-aud {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 18px,
+      rgba(56, 226, 197, 0.12) 19px,
+      transparent 20px
+    ),
+    radial-gradient(circle at 50% 50%, rgba(56, 226, 197, 0.25) 0%, transparent 65%);
+  animation: fxAudPulse 0.55s ease-out forwards;
+}
+
+.fx-overlay.fx-vid {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 0, 128, 0.14) 0px,
+      rgba(0, 255, 255, 0.14) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    linear-gradient(90deg, rgba(140, 92, 230, 0.35), transparent 30%, rgba(56, 226, 197, 0.25) 70%, rgba(255, 40, 140, 0.3));
+  animation: fxVidGlitch 0.55s steps(4, end) forwards;
+}
+
+.fx-overlay.fx-mod {
+  border: 3px solid var(--silk-white);
+  box-shadow: inset 0 0 90px rgba(185, 190, 199, 0.45);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.16) 0%, transparent 60%);
+  animation: fxModLock 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fxLuxFlash {
+  0% { opacity: 0; transform: scale(0.75); }
+  20% { opacity: 1; transform: scale(1.05); }
+  45% { opacity: 0.35; }
+  65% { opacity: 0.85; }
+  100% { opacity: 0; transform: scale(1.25); }
+}
+
+@keyframes fxAudPulse {
+  0% { opacity: 0.95; transform: scaleY(0.15); }
+  40% { opacity: 0.75; transform: scaleY(1.05); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+
+@keyframes fxVidGlitch {
+  0% { opacity: 1; transform: translateX(-8px) skewX(3deg); }
+  30% { opacity: 0.85; transform: translateX(10px) skewX(-4deg); }
+  60% { opacity: 0.65; transform: translateX(-4px) scaleY(1.03); }
+  100% { opacity: 0; transform: translateX(0); }
+}
+
+@keyframes fxModLock {
+  0% { opacity: 0.95; transform: scale(1.06); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* =========================================================
+   UNIKÁTNÍ POZADÍ & SPECIFIKACE PRO KAŽDÝ PRODUKT V MODALU
+   ========================================================= */
 .modal-dialog {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 820px;
+  max-width: 960px;
   max-height: 90vh;
   overflow-y: auto;
-  background: var(--pcb-black-2);
+  background: var(--prod-panel, var(--pcb-black-2));
   color: var(--silk-white);
-  border: 1px solid var(--silver-hasl);
-  padding: 24px;
+  border: 1px solid var(--prod-accent, var(--silver-hasl));
+  padding: 28px;
+  transition: background 0.3s ease;
+}
+
+/* Barevné téma každého produktu — sdílí modal i stránka produktu */
+.mod-the-in {
+  --prod-bg: radial-gradient(circle at 28% 40%, rgba(28, 62, 84, 0.88), rgba(6, 8, 12, 0.96));
+  --prod-bg-solid: #0a1015;
+  --prod-panel: linear-gradient(145deg, #0b1117 0%, #11161d 100%);
+  --prod-accent: #6ea8c7;
+}
+.mod-the-out {
+  --prod-bg: radial-gradient(circle at 70% 35%, rgba(72, 26, 36, 0.88), rgba(8, 6, 8, 0.96));
+  --prod-bg-solid: #120b0d;
+  --prod-panel: linear-gradient(145deg, #150d10 0%, #1b1316 100%);
+  --prod-accent: #c77b86;
+}
+.mod-dmx-out {
+  --prod-bg: radial-gradient(circle at 30% 30%, rgba(130, 136, 140, 0.82), rgba(24, 26, 28, 0.96));
+  --prod-bg-solid: #1c1f22;
+  --prod-panel: linear-gradient(145deg, #1d2125 0%, #272c31 100%);
+  --prod-accent: #cfd5dc;
+}
+.mod-lux-core {
+  --prod-bg: radial-gradient(circle at 65% 50%, rgba(22, 82, 86, 0.85), rgba(10, 14, 16, 0.96));
+  --prod-bg-solid: #0d1719;
+  --prod-panel: linear-gradient(145deg, #101b1e 0%, #172529 100%);
+  --prod-accent: #54c7cc;
+}
+.mod-cue-frames {
+  --prod-bg: radial-gradient(circle at 40% 60%, rgba(92, 74, 42, 0.85), rgba(16, 14, 10, 0.96));
+  --prod-bg-solid: #17140f;
+  --prod-panel: linear-gradient(145deg, #1b1711 0%, #241f16 100%);
+  --prod-accent: #d1b379;
+}
+.mod-raster-vid {
+  --prod-bg: radial-gradient(circle at 50% 40%, rgba(72, 28, 128, 0.88), rgba(10, 5, 20, 0.97));
+  --prod-bg-solid: #120924;
+  --prod-panel: linear-gradient(145deg, #150a28 0%, #1f103b 100%);
+  --prod-accent: #a97cf0;
+}
+
+.modal[class*="mod-"] .modal-backdrop {
+  background: var(--prod-bg);
+}
+
+.modal-serial {
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: var(--silver-hasl);
+  margin-bottom: 6px;
+}
+
+.modal-tagline {
+  font-size: 0.9rem;
+  color: var(--prod-accent, var(--silver-hasl));
+}
+
+.modal-spec-box {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(185, 190, 199, 0.25);
+}
+
+.modal-spec-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  color: var(--silk-white);
+  margin-bottom: 10px;
+}
+
+/* Tabulka parametrů (modal i stránka produktu) */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.spec-table th,
+.spec-table td {
+  text-align: left;
+  padding: 7px 6px;
+  border-bottom: 1px solid rgba(185, 190, 199, 0.16);
+  vertical-align: top;
+}
+
+.spec-table th {
+  font-weight: 500;
+  color: var(--silver-hasl);
+  width: 44%;
+}
+
+.spec-table td {
+  text-align: left;
+}
+
+.spec-table thead th {
+  font-family: var(--font-display);
+  letter-spacing: 0.14em;
+  font-size: 0.82rem;
+  color: var(--silk-white);
+  border-bottom: 1px solid var(--prod-accent, var(--silver-hasl));
+}
+
+.src-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  border: 1px solid rgba(185, 190, 199, 0.35);
+  color: var(--silver-hasl);
+}
+
+.src-tag.src-ds {
+  border-color: var(--prod-accent, var(--silver-hasl));
+  color: var(--prod-accent, var(--silver-hasl));
+}
+
+.src-tag.src-tbd {
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.btn-detail {
+  display: inline-flex;
+  margin-top: 20px;
+  padding: 11px 22px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  background: var(--prod-accent, var(--silk-white));
+  color: #0c0c0e;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  transition: transform 0.12s ease, filter 0.15s ease;
+}
+
+.btn-detail:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.modal-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 14px;
+}
+
+.modal-chip {
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  border: 1px solid rgba(185, 190, 199, 0.38);
+  color: var(--silk-white);
+}
+
+/* Karty modulů, lidé, odkazy */
+.hud-card-click {
+  cursor: pointer;
+}
+
+.card-actions,
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.btn-outline.btn-solid {
+  background: var(--fg-main);
+  color: var(--bg-main);
+}
+
+.btn-outline.btn-solid:hover {
+  opacity: 0.85;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.person-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-col);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.person-card p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  flex: 1;
+}
+
+.person-initials {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--fg-main);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  margin-bottom: 4px;
 }
 
 .modal-close {
@@ -766,8 +1056,591 @@ a {
   max-height: 460px;
 }
 
+/* =========================================================
+   ŠIPKY PRO LISTOVÁNÍ MEZI PRODUKTY (SEKCE / MODAL / DETAIL)
+   ========================================================= */
+.sec-pager,
+.prod-top-pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pager-arrow {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+
+.pager-arrow:hover {
+  background: var(--fg-main, var(--silk-white));
+  color: var(--bg-main, var(--pcb-black));
+  transform: translateY(-1px);
+}
+
+.pager-status {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  padding: 0 6px;
+}
+
+.hud-card-selected {
+  border-color: var(--fg-main) !important;
+  box-shadow: 0 0 0 1px var(--fg-main);
+}
+
+.modal-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(185, 190, 199, 0.22);
+}
+
+.pager-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(12, 12, 14, 0.55);
+  color: var(--silk-white);
+  border: 1px solid rgba(185, 190, 199, 0.38);
+  padding: 8px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.pager-btn:hover {
+  border-color: var(--prod-accent, var(--silk-white));
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pager-btn-next {
+  text-align: right;
+}
+
+.pager-icon {
+  font-size: 1.2rem;
+  color: var(--prod-accent, var(--silk-white));
+}
+
+.pager-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.pager-meta small {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--silver-hasl);
+}
+
+.pager-meta strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+}
+
+.modal-nav-count {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--silver-hasl);
+}
+
+/* =========================================================
+   SAMOSTATNÁ STRÁNKA PRODUKTU (product.html)
+   ========================================================= */
+.product-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--prod-bg-solid, var(--pcb-black));
+  background-image: var(--prod-bg);
+  background-attachment: fixed;
+  color: var(--silk-white);
+  --fg-main: var(--silk-white);
+  --bg-main: var(--pcb-black);
+  --fg-muted: var(--silver-hasl);
+  --border-col: rgba(185, 190, 199, 0.24);
+}
+
+.product-nav {
+  background: rgba(10, 12, 16, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--prod-accent, rgba(185, 190, 199, 0.3));
+}
+
+.prod-hero {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--border-col);
+}
+
+.prod-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.prod-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prod-gallery-wrap {
+  position: relative;
+  border: 1px solid var(--prod-accent, var(--silver-hasl));
+  background: #08090c;
+}
+
+.prod-gallery-stage {
+  min-height: 440px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Výrobní vrstvy SVG a schéma mají černou kresbu -> světlý podklad */
+.prod-gallery-stage.is-layer,
+.prod-thumb.is-layer img {
+  background: #e9e9e3;
+}
+
+.prod-gallery-stage img {
+  max-width: 100%;
+  max-height: 410px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.gal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  background: rgba(12, 12, 14, 0.82);
+  color: var(--silk-white);
+  border: 1px solid var(--prod-accent, var(--silver-hasl));
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.gal-prev { left: 10px; }
+.gal-next { right: 10px; }
+
+.prod-gallery-cap {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: var(--silver-hasl);
+}
+
+.prod-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.prod-thumb {
+  background: rgba(12, 12, 14, 0.75);
+  border: 1px solid var(--border-col);
+  color: var(--silver-hasl);
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+.prod-thumb img {
+  width: 100%;
+  height: 64px;
+  object-fit: contain;
+}
+
+.prod-thumb.active {
+  border-color: var(--prod-accent, var(--silk-white));
+  color: var(--silk-white);
+}
+
+.prod-summary h1 {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  margin-bottom: 6px;
+}
+
+.prod-tagline {
+  margin: 0 0 14px;
+  font-size: 1.02rem;
+  color: var(--prod-accent, var(--silver-hasl));
+}
+
+.prod-block {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-col);
+}
+
+.prod-block-label {
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  color: var(--prod-accent, var(--silver-hasl));
+  margin-bottom: 10px;
+}
+
+.prod-para {
+  margin: 0 0 12px;
+  color: var(--silk-white);
+  opacity: 0.9;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.prod-credit {
+  margin: 12px 0 0;
+  font-size: 0.76rem;
+  color: var(--silver-hasl);
+  font-style: italic;
+}
+
+.prod-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border-col);
+}
+
+.usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.usecase-card {
+  background: var(--prod-panel, rgba(16, 18, 24, 0.85));
+  border: 1px solid var(--border-col);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.usecase-num {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--prod-accent, var(--silver-hasl));
+}
+
+.usecase-card p {
+  margin: 0;
+  font-size: 0.83rem;
+  color: var(--silver-hasl);
+}
+
+.prod-two-col {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.prod-panel-box {
+  background: var(--prod-panel, rgba(16, 18, 24, 0.85));
+  border: 1px solid var(--border-col);
+  padding: 24px;
+}
+
+.prod-controls-list {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--silk-white);
+  font-size: 0.85rem;
+}
+
+.spec-legend {
+  margin: 14px 0 0;
+  font-size: 0.72rem;
+  color: var(--silver-hasl);
+  opacity: 0.8;
+}
+
+.prod-rel-card {
+  background: var(--prod-panel, rgba(16, 18, 24, 0.85));
+  border: 1px solid var(--border-col);
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 18px;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.prod-rel-card:hover {
+  border-color: var(--prod-accent, var(--silk-white));
+  transform: translateY(-2px);
+}
+
+.prod-rel-card img {
+  width: 100%;
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.prod-rel-card p {
+  margin: 6px 0 12px;
+  font-size: 0.82rem;
+  color: var(--silver-hasl);
+}
+
+.prod-bottom-nav .modal-nav-bar {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* =========================================================
+   ŠIPKY V GRADIENT POZADÍ PRODUKTU (MODAL I STRÁNKA DETAILU)
+   ========================================================= */
+.bg-nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 72px;
+  padding: 18px 12px;
+  background: rgba(8, 10, 14, 0.38);
+  backdrop-filter: blur(6px);
+  color: var(--silk-white);
+  border: 1px solid rgba(234, 234, 228, 0.28);
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.bg-nav-prev {
+  left: 18px;
+}
+
+.bg-nav-next {
+  right: 18px;
+}
+
+.bg-nav-arrow:hover {
+  border-color: var(--prod-accent, var(--silk-white));
+  background: rgba(12, 14, 20, 0.72);
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.55);
+}
+
+.bg-nav-prev:hover {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+.bg-nav-next:hover {
+  transform: translateY(-50%) translateX(3px);
+}
+
+.bg-arrow-glyph {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  line-height: 0.9;
+  color: var(--prod-accent, var(--silk-white));
+}
+
+.bg-arrow-label {
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--silk-white);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PATA STRÁNKY VOLNĚ INSPIROVANÁ SPODKEM MODULU
+   ========================================================= */
+.pcb-footer {
+  margin-top: auto;
+  padding: 20px 0 24px;
+  border-top: 1px solid var(--border-col);
+}
+
+.mod-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  user-select: none;
+}
+
+/* Tenká dekorativní linka s jemným motivem kategorie uprostřed */
+.mf-accent-strip {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 14px;
+  opacity: 0.45;
+}
+
+.mf-accent-line {
+  height: 3px;
+  width: 100%;
+}
+
+.mf-motif-aud .mf-accent-line {
+  background: repeating-linear-gradient(
+    -45deg,
+    currentColor 0px,
+    currentColor 3px,
+    transparent 3px,
+    transparent 8px
+  );
+}
+
+.mf-motif-lux .mf-accent-line {
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0px,
+    currentColor 8px,
+    transparent 8px,
+    transparent 14px
+  );
+}
+
+.mf-motif-vid .mf-accent-line {
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0px,
+    currentColor 4px,
+    transparent 4px,
+    transparent 7px
+  );
+}
+
+.mf-accent-core {
+  width: 8px;
+  height: 8px;
+  border: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.mf-motif-aud .mf-accent-core {
+  background: currentColor;
+}
+
+.mf-motif-vid .mf-accent-core {
+  transform: none;
+  width: 10px;
+  height: 6px;
+}
+
+.mf-meta-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.mf-left-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mf-reg {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-muted, var(--silver-hasl));
+  opacity: 0.55;
+}
+
+.mf-serial-left,
+.mf-serial-right {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--fg-muted, var(--silver-hasl));
+  opacity: 0.85;
+}
+
+.mf-brand-group {
+  text-align: center;
+}
+
+.mf-brand-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--fg-main, var(--silk-white));
+}
+
+.mf-right-group {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.mf-barcode-svg {
+  width: 68px;
+  height: 10px;
+  color: var(--fg-muted, var(--silver-hasl));
+  opacity: 0.7;
+}
+
 /* Responsive */
 @media (max-width: 960px) {
+  .bg-nav-arrow {
+    top: auto;
+    bottom: 14px;
+    transform: none;
+    padding: 10px 12px;
+  }
+
+  .bg-nav-prev:hover,
+  .bg-nav-next:hover {
+    transform: none;
+  }
+
+  .mf-meta-row {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .mf-right-group {
+    justify-content: center;
+  }
   .tri-split {
     flex-direction: column;
   }
@@ -787,7 +1660,11 @@ a {
   .cards-grid-2,
   .blog-list,
   .teatro-banner,
-  .modal-grid {
+  .modal-grid,
+  .people-grid,
+  .prod-hero-grid,
+  .usecase-grid,
+  .prod-two-col {
     grid-template-columns: 1fr;
   }
 

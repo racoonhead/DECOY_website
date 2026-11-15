@@ -120,37 +120,32 @@
       <!-- Populated dynamically by app.js based on selected division (AUD / LUX / VID) -->
     </main>
 
-    <footer class="pcb-footer">
-      <div class="container">
-        <div class="footer-hazard-row">
-          <div class="hazard-stripes" aria-hidden="true"></div>
-          <div class="silver-bar" aria-hidden="true"></div>
-          <div class="emblem-diamond" aria-hidden="true">◆</div>
-          <div class="silver-bar" aria-hidden="true"></div>
-          <div class="hazard-stripes" aria-hidden="true"></div>
-        </div>
-        <div class="footer-main">
-          <span class="serial-code">
-            FOUNDERS: <a href="https://www.instagram.com/divokyvojta/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">VOJTĚCH DIVOKÝ</a> &amp; LADISLAV MAREŠ
-          </span>
-          <span class="footer-brand">DECØY DEVICES</span>
-          <span class="serial-code">
-            <a href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@TEATRO_SVJOTLO</a> // <span id="footerDivCode">AUD · LUX · VID</span>
-          </span>
-        </div>
-      </div>
+    <footer id="siteFooter" class="pcb-footer">
+      <!-- Populated by renderModuleFooterHTML() according to GRAPHIC_MANUAL.md -->
     </footer>
   </div>
 
-  <!-- MODAL PRO DETAIL MODULU / PRODUKTU -->
+  <!-- FX OVERLAY (Světlo / Zvuk / Video / Modul efekty) -->
+  <div id="fxOverlay" class="fx-overlay" aria-hidden="true"></div>
+
+  <!-- MODAL PRO DETAIL MODULU / PRODUKTU (šipky přímo v gradient pozadí produktu) -->
   <div id="itemModal" class="modal" hidden aria-modal="true" role="dialog">
     <div class="modal-backdrop" data-close-modal></div>
+    <button id="modalPrevArrow" class="bg-nav-arrow bg-nav-prev" type="button" aria-label="Předchozí produkt">
+      <span class="bg-arrow-glyph">‹</span>
+      <span id="modalPrevLabel" class="bg-arrow-label"></span>
+    </button>
     <div class="modal-dialog">
       <button class="modal-close" type="button" data-close-modal aria-label="Zavřít">✕</button>
       <div id="modalBody" class="modal-body"></div>
     </div>
+    <button id="modalNextArrow" class="bg-nav-arrow bg-nav-next" type="button" aria-label="Další produkt">
+      <span id="modalNextLabel" class="bg-arrow-label"></span>
+      <span class="bg-arrow-glyph">›</span>
+    </button>
   </div>
 
+  <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

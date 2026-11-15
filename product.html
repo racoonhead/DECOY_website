@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DECØY DEVICES — Detail modulu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="productBody" class="product-page">
+  <div id="fxOverlay" class="fx-overlay" aria-hidden="true"></div>
+
+  <!-- Šipky v gradient pozadí produktu po stranách obrazovky -->
+  <button id="pagePrevArrow" class="bg-nav-arrow bg-nav-prev page-bg-arrow" type="button" aria-label="Předchozí produkt">
+    <span class="bg-arrow-glyph">‹</span>
+    <span id="pagePrevLabel" class="bg-arrow-label"></span>
+  </button>
+  <button id="pageNextArrow" class="bg-nav-arrow bg-nav-next page-bg-arrow" type="button" aria-label="Další produkt">
+    <span id="pageNextLabel" class="bg-arrow-label"></span>
+    <span class="bg-arrow-glyph">›</span>
+  </button>
+
+  <header class="hud-nav product-nav">
+    <div class="container hud-nav-inner">
+      <div class="nav-left">
+        <a id="backToDivLink" href="index.html" class="btn-back">
+          <span>←</span>
+          <span id="backToDivLabel">DECØY DEVICES</span>
+        </a>
+      </div>
+
+      <div id="topProductPager" class="prod-top-pager" aria-label="Listování mezi produkty">
+        <!-- Populated by product.js -->
+      </div>
+
+      <button id="langToggleProd" class="btn-hud btn-sm" type="button">
+        <span class="lang-active">CZ</span> / <span>EN</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="productMain">
+    <!-- Populated by product.js -->
+  </main>
+
+  <footer id="siteFooter" class="pcb-footer">
+    <!-- Populated by renderModuleFooterHTML() according to GRAPHIC_MANUAL.md -->
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>
