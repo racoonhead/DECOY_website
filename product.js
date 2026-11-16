@@ -28,8 +28,14 @@ function updateLangButton() {
       : '<span>CZ</span> / <span class="lang-active">EN</span>';
 }
 
+function getProductGallery(p, divKey) {
+  if (!p) return [];
+  const ctx = divKey || currentDivCtx || p.division;
+  return (p.galleryByDiv && p.galleryByDiv[ctx]) || p.gallery || [{ src: p.image, cap: { cs: p.name, en: p.name } }];
+}
+
 function renderGalleryStage(p) {
-  const items = p.gallery || [{ src: p.image, cap: { cs: p.name, en: p.name } }];
+  const items = getProductGallery(p);
   if (currentGalleryIdx >= items.length) currentGalleryIdx = 0;
   const active = items[currentGalleryIdx];
   const stageEl = document.getElementById("galleryStage");
@@ -37,7 +43,10 @@ function renderGalleryStage(p) {
   if (!stageEl || !capEl) return;
 
   stageEl.className = `prod-gallery-stage ${active.layer ? "is-layer" : ""}`;
-  stageEl.innerHTML = `<img src="${active.src}" alt="${active.cap[currentLang]}" />`;
+  stageEl.innerHTML = `
+    <img src="${active.src}" alt="${active.cap[currentLang]}" />
+    <button type="button" class="gal-zoom-btn" id="galZoomBtn" title="Zvětšit / Zoom">⤢</button>
+  `;
   capEl.innerHTML = `
     <span>${active.cap[currentLang]}</span>
     <span>${currentGalleryIdx + 1} / ${items.length}</span>
@@ -46,6 +55,32 @@ function renderGalleryStage(p) {
   document.querySelectorAll("[data-gal-idx]").forEach((thumb) => {
     thumb.classList.toggle("active", parseInt(thumb.getAttribute("data-gal-idx"), 10) === currentGalleryIdx);
   });
+
+  const lb = document.getElementById("imgLightbox");
+  if (lb && !lb.hidden) {
+    document.getElementById("lightboxImg").src = active.src;
+    document.getElementById("lightboxImg").alt = active.cap[currentLang];
+    document.getElementById("lightboxCap").textContent = `${active.cap[currentLang]}  (${currentGalleryIdx + 1} / ${items.length})`;
+  }
+}
+
+function openLightbox() {
+  const p = PRODUCTS[currentProdId];
+  const lb = document.getElementById("imgLightbox");
+  if (!p || !lb) return;
+  const items = getProductGallery(p);
+  const active = items[currentGalleryIdx] || items[0];
+  document.getElementById("lightboxImg").src = active.src;
+  document.getElementById("lightboxImg").alt = active.cap[currentLang];
+  document.getElementById("lightboxCap").textContent = `${active.cap[currentLang]}  (${currentGalleryIdx + 1} / ${items.length})`;
+  document.getElementById("lightboxPrev").hidden = items.length <= 1;
+  document.getElementById("lightboxNext").hidden = items.length <= 1;
+  lb.hidden = false;
+}
+
+function closeLightbox() {
+  const lb = document.getElementById("imgLightbox");
+  if (lb) lb.hidden = true;
 }
 
 function renderProductPage(id, { fx = false, divKey = null } = {}) {
@@ -65,7 +100,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   const activeDiv = divKey || currentDivCtx || p.division;
   currentDivCtx = activeDiv;
   currentProdId = id;
-  currentGalleryIdx = id === "cue-frames" && activeDiv === "AUD" ? 1 : 0;
+  currentGalleryIdx = 0;
   if (fx) triggerProductFx();
 
   document.documentElement.lang = currentLang;
@@ -111,7 +146,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
     );
   }
 
-  const gallery = p.gallery || [{ src: p.image, cap: { cs: p.name, en: p.name } }];
+  const gallery = getProductGallery(p, activeDiv);
   const related = (p.related || []).filter((rid) => PRODUCTS[rid]);
 
   mainEl.innerHTML = `
@@ -196,6 +231,48 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
         </div>
       </div>
     </section>
+
+    ${
+      p.comparison && p.comparison.length
+        ? `<section class="prod-section">
+            <div class="container">
+              <div class="sec-head">
+                <div>
+                  <div class="sec-num">${dict.diff_num}</div>
+                  <h2>${dict.diff_heading}</h2>
+                </div>
+              </div>
+              <div class="prod-panel-box">
+                <div class="diff-table-wrap">
+                  <table class="spec-table diff-table">
+                    <thead>
+                      <tr>
+                        <th>${dict.diff_feature}</th>
+                        <th>${dict.diff_orig}</th>
+                        <th class="diff-v04-col">${dict.diff_v04}</th>
+                        <th>${dict.diff_impact}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${p.comparison
+                        .map(
+                          (row) => `
+                        <tr>
+                          <th>${row.f[currentLang]}</th>
+                          <td class="diff-orig-cell">${row.orig[currentLang]}</td>
+                          <td class="diff-v04-col">${row.v04[currentLang]}</td>
+                          <td>${row.imp[currentLang]}</td>
+                        </tr>`
+                        )
+                        .join("")}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>`
+        : ""
+    }
 
     <!-- OVLÁDÁNÍ & KONEKTORY + VŠECHNY TECHNICKÉ PARAMETRY -->
     <section class="prod-section">
@@ -299,11 +376,14 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   renderGalleryStage(p);
 
   // Gallery events
-  document.getElementById("galPrevBtn")?.addEventListener("click", () => {
+  document.getElementById("galleryStage")?.addEventListener("click", openLightbox);
+  document.getElementById("galPrevBtn")?.addEventListener("click", (e) => {
+    e.stopPropagation();
     currentGalleryIdx = (currentGalleryIdx - 1 + gallery.length) % gallery.length;
     renderGalleryStage(p);
   });
-  document.getElementById("galNextBtn")?.addEventListener("click", () => {
+  document.getElementById("galNextBtn")?.addEventListener("click", (e) => {
+    e.stopPropagation();
     currentGalleryIdx = (currentGalleryIdx + 1) % gallery.length;
     renderGalleryStage(p);
   });
@@ -345,7 +425,41 @@ document.addEventListener("DOMContentLoaded", () => {
     renderProductPage(p.get("id") || "the-in", { divKey: p.get("div") || null });
   });
 
+  document.getElementById("lightboxClose")?.addEventListener("click", closeLightbox);
+  document.getElementById("lightboxBackdrop")?.addEventListener("click", closeLightbox);
+  document.getElementById("lightboxPrev")?.addEventListener("click", () => {
+    const p = PRODUCTS[currentProdId];
+    if (!p) return;
+    const items = getProductGallery(p);
+    currentGalleryIdx = (currentGalleryIdx - 1 + items.length) % items.length;
+    renderGalleryStage(p);
+  });
+  document.getElementById("lightboxNext")?.addEventListener("click", () => {
+    const p = PRODUCTS[currentProdId];
+    if (!p) return;
+    const items = getProductGallery(p);
+    currentGalleryIdx = (currentGalleryIdx + 1) % items.length;
+    renderGalleryStage(p);
+  });
+
   document.addEventListener("keydown", (e) => {
+    const lb = document.getElementById("imgLightbox");
+    if (lb && !lb.hidden) {
+      if (e.key === "Escape") {
+        closeLightbox();
+        return;
+      }
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        const p = PRODUCTS[currentProdId];
+        if (!p) return;
+        const items = getProductGallery(p);
+        const step = e.key === "ArrowLeft" ? -1 : 1;
+        currentGalleryIdx = (currentGalleryIdx + step + items.length) % items.length;
+        renderGalleryStage(p);
+        return;
+      }
+    }
+
     if (!currentProdId) return;
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       const nav = getSectionProductNav(currentProdId, currentDivCtx);

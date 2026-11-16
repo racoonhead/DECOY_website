@@ -10,7 +10,7 @@ const DIVISIONS = {
       cs: "Nástroje pro signálovou cestu do moduláru i ven, kytarové a experimentální pedály, zvukové poznámky a živá vystoupení.",
       en: "Instruments for getting sound in and out of the rack, experimental stompboxes, audio notes, and live performances.",
     },
-    eurorack: ["the-in", "the-out", "cue-frames"],
+    eurorack: ["the-in", "the-out", "elements-v04", "cue-frames"],
     pedals: [
       {
         name: "DECØY // FUZZ-01",
@@ -82,7 +82,7 @@ const DIVISIONS = {
       cs: "Analogová a digitální video syntéza, CRT experimenty, synchronizace obrazu se zvukem a světlem v kyber-fialové estetice.",
       en: "Analog and digital video synthesis, CRT experiments, and syncing visuals with sound and stage light in cyber-purple.",
     },
-    eurorack: ["cue-frames"],
+    eurorack: [],
     eurorackSoon: [
       {
         name: "RASTER // VID.RGB.1V",

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620">
+  <defs>
+    <style>
+      .bg { fill: #0a0e10; }
+      .card { fill: #111619; stroke: rgba(185, 190, 199, 0.22); stroke-width: 1; }
+      .card-hi { fill: #111619; stroke: rgba(199, 123, 134, 0.48); stroke-width: 1; }
+      .title { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 500; fill: #eaeae4; letter-spacing: 0.08em; }
+      .block-name { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; font-size: 18px; fill: #eaeae4; letter-spacing: 0.08em; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #b9bec7; font-size: 10px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #8b949e; font-size: 9px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 500; fill: #c77b86; font-size: 9.5px; }
+      .mono-mod { font-family: 'JetBrains Mono', monospace; font-weight: 500; fill: #d1b379; font-size: 9.5px; }
+      .sig-solid { fill: none; stroke: #c77b86; stroke-width: 1.5; }
+      .sig-dashed { fill: none; stroke: #d1b379; stroke-width: 1.3; stroke-dasharray: 4 3; }
+      .reg { font-family: 'JetBrains Mono', monospace; fill: #b9bec7; font-size: 12px; opacity: 0.45; }
+    </style>
+    <marker id="arrow-acc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#c77b86"/>
+    </marker>
+    <marker id="arrow-mod" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d1b379"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1100" height="620"/>
+  <rect x="16" y="16" width="1068" height="588" fill="none" stroke="rgba(185, 190, 199, 0.2)" stroke-width="1"/>
+  <text class="reg" x="24" y="34">+</text><text class="reg" x="1068" y="34">+</text>
+  <text class="reg" x="24" y="596">+</text><text class="reg" x="1068" y="596">+</text>
+
+  <text class="mono-acc" x="48" y="44">DD-AU02 // THE OUT</text>
+  <text class="title" x="48" y="70" font-size="22">4-CHANNEL MIXER, CLICK ROUTING &amp; BALANCED PA OUTPUT</text>
+  <text class="mono-sm" x="1052" y="44" text-anchor="end">20 HP · +4 DBU BALANCED</text>
+  <line x1="48" y1="84" x2="1052" y2="84" stroke="rgba(185, 190, 199, 0.24)" stroke-width="1"/>
+
+  <!-- Left: Mix & Sources -->
+  <g transform="translate(48, 108)">
+    <rect class="card" x="0" y="0" width="290" height="120"/>
+    <text class="mono-acc" x="14" y="20">MIX 1-2 &amp; MIX 3-4</text>
+    <text class="block-name" x="14" y="42">4-CH RACK MIXER</text>
+    <text class="mono-sm" x="14" y="64">• IN 1R/2L &amp; IN 3R/4L · CH 1–4 level</text>
+    <text class="mono-sm" x="14" y="80">• MONO / ST switch per stereo pair</text>
+    <text class="mono-sm" x="14" y="96">• 4× CV IN (±10.24 V, 16-bit) + MUTE</text>
+
+    <rect class="card" x="0" y="138" width="290" height="114"/>
+    <text class="mono-acc" x="14" y="158">USB-C &amp; MICROSD</text>
+    <text class="block-name" x="14" y="180">BACKING &amp; RECORD</text>
+    <text class="mono-sm" x="14" y="202">• USB LVL from DAW · WAV/MIDI playback</text>
+    <text class="mono-sm" x="14" y="218">• Stereo mix recording to microSD</text>
+    <text class="mono-sm" x="14" y="234">• MIDI OUT (3.5 mm TRS)</text>
+
+    <rect class="card-hi" x="0" y="270" width="290" height="194"/>
+    <text class="mono-mod" x="14" y="290">INTERNAL METRONOME</text>
+    <text class="block-name" x="14" y="312">CLICK SYNTH</text>
+    <text class="mono-sm" x="14" y="334">• 5 selectable click timbres</text>
+    <text class="mono-sm" x="14" y="350">• Syncs to CLICK IN, GATE IN, or USB</text>
+    <text class="mono-sm" x="14" y="366">• Independent routing matrix:</text>
+    <text class="mono-acc" x="22" y="388">PHONES ONLY  |  MAIN  |  USB  |  ALL</text>
+    <text class="mono-sm" x="14" y="410">Band hears click; audience hears mix only</text>
+  </g>
+
+  <line class="sig-solid" x1="338" y1="168" x2="412" y2="264" marker-end="url(#arrow-acc)"/>
+  <line class="sig-solid" x1="338" y1="302" x2="412" y2="302" marker-end="url(#arrow-acc)"/>
+  <line class="sig-dashed" x1="338" y1="470" x2="412" y2="380" marker-end="url(#arrow-mod)"/>
+
+  <!-- Center: Routing Matrix -->
+  <g transform="translate(416, 178)">
+    <rect class="card-hi" x="0" y="0" width="268" height="296"/>
+    <text class="mono-acc" x="16" y="24">ROUTING &amp; D/A</text>
+    <text class="block-name" x="16" y="48">BUS MATRIX</text>
+
+    <rect x="16" y="68" width="236" height="72" fill="#090c0e" stroke="rgba(185,190,199,0.2)"/>
+    <text class="mono-acc" x="28" y="88">OLED 1.54" + ROUTE/CLK</text>
+    <text class="mono-sm" x="28" y="106">MUTE &amp; LOCK stage safety</text>
+    <text class="mono-sm" x="28" y="122">Separate Main / Phones / USB mix</text>
+
+    <rect x="16" y="156" width="236" height="120" fill="#090c0e" stroke="rgba(185,190,199,0.18)"/>
+    <text class="mono" x="28" y="178">Converter specs:</text>
+    <text class="mono-sm" x="28" y="198">• D/A: 24-bit / 48 kHz (~113 dB)</text>
+    <text class="mono-sm" x="28" y="216">• Headphone amp: ~120 dB dynamic</text>
+    <text class="mono-sm" x="28" y="234">• Click isolated from PA bus</text>
+    <text class="mono-sm" x="28" y="252">• Peak CLIP LED monitoring</text>
+  </g>
+
+  <line class="sig-solid" x1="684" y1="248" x2="758" y2="188" marker-end="url(#arrow-acc)"/>
+  <line class="sig-solid" x1="684" y1="350" x2="758" y2="350" marker-end="url(#arrow-acc)"/>
+  <line class="sig-dashed" x1="684" y1="420" x2="758" y2="480" marker-end="url(#arrow-mod)"/>
+
+  <!-- Right: Outputs -->
+  <g transform="translate(762, 108)">
+    <rect class="card" x="0" y="0" width="290" height="148"/>
+    <text class="mono-acc" x="14" y="20">MAIN OUT L / R</text>
+    <text class="block-name" x="14" y="42">BALANCED XLR / TS</text>
+    <text class="mono-sm" x="14" y="64">• +4 dBu nominal balanced line level</text>
+    <text class="mono-sm" x="14" y="80">• Direct to stage PA or interface</text>
+    <text class="mono-sm" x="14" y="96">• Dedicated MAIN LVL + CLIP LED</text>
+
+    <rect class="card" x="0" y="168" width="290" height="148"/>
+    <text class="mono-acc" x="14" y="188">DUAL MONITORING</text>
+    <text class="block-name" x="14" y="210">2× HEADPHONES</text>
+    <text class="mono-sm" x="14" y="232">• 3.5 mm + 6.3 mm active simultaneously</text>
+    <text class="mono-sm" x="14" y="248">• Independent HP VOL knob</text>
+    <text class="mono-sm" x="14" y="264">• Cue click + backing for 2 performers</text>
+
+    <rect class="card" x="0" y="336" width="290" height="128"/>
+    <text class="mono-mod" x="14" y="356">DAW RETURN</text>
+    <text class="block-name" x="14" y="378">USB-C STREAM</text>
+    <text class="mono-sm" x="14" y="400">• Full stereo mix to computer</text>
+    <text class="mono-sm" x="14" y="416">• Optional click track sync out</text>
+  </g>
+</svg>

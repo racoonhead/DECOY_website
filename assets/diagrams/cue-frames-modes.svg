@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620">
+  <defs>
+    <style>
+      .bg { fill: #0a0e10; }
+      .card { fill: #111619; stroke: rgba(185, 190, 199, 0.22); stroke-width: 1; }
+      .card-hi { fill: #111619; stroke: rgba(209, 179, 121, 0.45); stroke-width: 1; }
+      .title { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 500; fill: #eaeae4; letter-spacing: 0.08em; }
+      .mod-name { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; font-size: 16px; fill: #eaeae4; letter-spacing: 0.08em; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #b9bec7; font-size: 9.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #8b949e; font-size: 8.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 500; fill: #d1b379; font-size: 9.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 500; fill: #7ec7b8; font-size: 9.5px; }
+      .sig-solid { fill: none; stroke: #d1b379; stroke-width: 1.4; }
+      .reg { font-family: 'JetBrains Mono', monospace; fill: #b9bec7; font-size: 12px; opacity: 0.45; }
+    </style>
+    <marker id="arrow-acc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d1b379"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1100" height="620"/>
+  <rect x="16" y="16" width="1068" height="588" fill="none" stroke="rgba(185, 190, 199, 0.2)" stroke-width="1"/>
+  <text class="reg" x="24" y="34">+</text><text class="reg" x="1068" y="34">+</text>
+  <text class="reg" x="24" y="596">+</text><text class="reg" x="1068" y="596">+</text>
+
+  <text class="mono-acc" x="48" y="44">DD-CF01 // CUE_FRAMES</text>
+  <text class="title" x="48" y="70" font-size="22">8 MODES (MODE BTN → LED 1–8) &amp; 8 SETTINGS (OPT BTN → LED 1–8)</text>
+  <text class="mono-sm" x="1052" y="44" text-anchor="end">20 HP · V/OCT + MODE + OPT</text>
+  <line x1="48" y1="84" x2="1052" y2="84" stroke="rgba(185, 190, 199, 0.24)" stroke-width="1"/>
+
+  <!-- 8 Mode Cards: 4x2 Grid -->
+  <!-- Row 1 -->
+  <g transform="translate(48, 102)">
+    <rect class="card-hi" x="0" y="0" width="238" height="162"/>
+    <circle cx="218" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 1 // MODE 01</text>
+    <text class="mod-name" x="12" y="42">FRAMES (64 SCENES)</text>
+    <text class="mono-sm" x="12" y="64">FRAME: smooth morph across 64 scenes</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: scene address / CV offset</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 curves):</text>
+    <text class="mono-sm" x="12" y="118">Linear · S-Curve · Exp · Step/Hold</text>
+    <text class="mono-sm" x="12" y="134">Asym · Bounce · Quant · Random</text>
+  </g>
+
+  <g transform="translate(304, 102)">
+    <rect class="card-hi" x="0" y="0" width="238" height="162"/>
+    <circle cx="218" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 2 // MODE 02</text>
+    <text class="mod-name" x="12" y="42">8× OSCILLATOR (VCO)</text>
+    <text class="mono-sm" x="12" y="64">FRAME: detune / chord spread amount</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: 1 V/Oct pitch across 8 voices</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 waveforms):</text>
+    <text class="mono-sm" x="12" y="118">Sine · Tri · Saw · Pulse · Fold</text>
+    <text class="mono-sm" x="12" y="134">Formant · Noise-FM · Sub-Stack</text>
+  </g>
+
+  <g transform="translate(560, 102)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+    <circle cx="218" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 3 // MODE 03</text>
+    <text class="mod-name" x="12" y="42">8× FREE POLY-LFO</text>
+    <text class="mono-sm" x="12" y="64">FRAME: phase spread CH 1–8</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: global LFO rate scaling</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 shapes):</text>
+    <text class="mono-sm" x="12" y="118">Sine · Tri · Ramp↑ · Ramp↓ · Sqr</text>
+    <text class="mono-sm" x="12" y="134">S&amp;H · Smooth Chaos · Pendulum</text>
+  </g>
+
+  <g transform="translate(816, 102)">
+    <rect class="card" x="0" y="0" width="236" height="162"/>
+    <circle cx="216" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 4 // MODE 04</text>
+    <text class="mod-name" x="12" y="42">8-CH SEQUENCER</text>
+    <text class="mono-sm" x="12" y="64">FRAME: slew / glide &amp; row morph</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: pitch transpose / root</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 directions):</text>
+    <text class="mono-sm" x="12" y="118">Fwd · Rev · Pendulum · Ping-Pong</text>
+    <text class="mono-sm" x="12" y="134">Walk · Brown · Euclidean · Hold</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(48, 280)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+    <circle cx="218" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 5 // MODE 05</text>
+    <text class="mod-name" x="12" y="42">CLOCKED LFO</text>
+    <text class="mono-sm" x="12" y="64">FRAME: swing &amp; phase offset</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: clock multiplier / div shift</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 ratio sets):</text>
+    <text class="mono-sm" x="12" y="118">Unison · Binary · Triplet · 3:4:5:7</text>
+    <text class="mono-sm" x="12" y="134">Primes · Fibonacci · Dotted · Phi</text>
+  </g>
+
+  <g transform="translate(304, 280)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+    <circle cx="218" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 6 // MODE 06 (TIDES 2)</text>
+    <text class="mod-name" x="12" y="42">TIDES 2 (8-CH SLOPE)</text>
+    <text class="mono-sm" x="12" y="64">FRAME: shift / spread CH 1–8</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: master LFO / audio rate</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 tidal modes):</text>
+    <text class="mono-sm" x="12" y="118">Phase · Freq Ratio · Tilt · Shape</text>
+    <text class="mono-sm" x="12" y="134">Slope · Wavefold · Sub · Chord</text>
+  </g>
+
+  <g transform="translate(560, 280)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+    <circle cx="218" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 7 // MODE 07</text>
+    <text class="mod-name" x="12" y="42">CHAOS / TURING</text>
+    <text class="mono-sm" x="12" y="64">FRAME: lock loop &lt;12h&gt; chaos</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: attractor / shift rate</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 generators):</text>
+    <text class="mono-sm" x="12" y="118">Turing · Lorenz · Logistic · Tent</text>
+    <text class="mono-sm" x="12" y="134">S&amp;H · Brown · Rossler · Pendulum</text>
+  </g>
+
+  <g transform="translate(816, 280)">
+    <rect class="card" x="0" y="0" width="236" height="162"/>
+    <circle cx="216" cy="18" r="4" fill="#d1b379"/>
+    <text class="mono-acc" x="12" y="21">LED 8 // MODE 08 (PEAKS)</text>
+    <text class="mod-name" x="12" y="42">BOUNCING BALL</text>
+    <text class="mono-sm" x="12" y="64">FRAME: gravity &amp; elasticity</text>
+    <text class="mono-sm" x="12" y="80">V/OCT: initial drop velocity</text>
+    <text class="mono-cy" x="12" y="102">OPT (8 physics / burst):</text>
+    <text class="mono-sm" x="12" y="118">Gravity · Rev-Accel · Ratchet</text>
+    <text class="mono-sm" x="12" y="134">Cascade · Scatter · ByteBeat</text>
+  </g>
+
+  <!-- Bottom Hardware Control Pipeline -->
+  <g transform="translate(48, 462)">
+    <rect class="card" x="0" y="0" width="1004" height="122"/>
+    <text class="mono-acc" x="16" y="22">HARDWARE CONTROLS &amp; SIGNAL FLOW</text>
+
+    <rect x="20" y="40" width="180" height="58" fill="#0a0e10" stroke="#d1b379" stroke-width="1"/>
+    <text class="mod-name" x="110" y="64" text-anchor="middle">MODE + OPT</text>
+    <text class="mono-sm" x="110" y="82" text-anchor="middle">8×8 matrix shown on LED 1–8</text>
+
+    <line class="sig-solid" x1="200" y1="69" x2="250" y2="69" marker-end="url(#arrow-acc)"/>
+
+    <rect x="254" y="40" width="230" height="58" fill="#0a0e10" stroke="rgba(185,190,199,0.3)"/>
+    <text class="mod-name" x="369" y="64" text-anchor="middle">CH 1–8 + FRAME + V/OCT</text>
+    <text class="mono-sm" x="369" y="82" text-anchor="middle">detune · morph · 1V/Oct pitch/rate</text>
+
+    <line class="sig-solid" x1="484" y1="69" x2="534" y2="69" marker-end="url(#arrow-acc)"/>
+
+    <rect x="538" y="40" width="186" height="58" fill="#0a0e10" stroke="#d1b379" stroke-width="1"/>
+    <text class="mod-name" x="631" y="64" text-anchor="middle" fill="#d1b379">8× 12-BIT DAC</text>
+    <text class="mono-sm" x="631" y="82" text-anchor="middle">0–10 V / 0–5 V · 1 kΩ</text>
+
+    <line class="sig-solid" x1="724" y1="69" x2="774" y2="69" marker-end="url(#arrow-acc)"/>
+
+    <rect x="778" y="40" width="206" height="58" fill="#141b1f" stroke="rgba(185,190,199,0.35)"/>
+    <text class="mod-name" x="881" y="64" text-anchor="middle">OUT 1–8 + RJ45</text>
+    <text class="mono-sm" x="881" y="82" text-anchor="middle">CV / Audio / DMX_OUT</text>
+  </g>
+</svg>

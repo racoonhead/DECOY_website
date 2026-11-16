@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261116h" />
 </head>
 <body id="productBody" class="product-page">
   <div id="fxOverlay" class="fx-overlay" aria-hidden="true"></div>
@@ -49,7 +49,19 @@
     <!-- Populated by renderModuleFooterHTML() according to GRAPHIC_MANUAL.md -->
   </footer>
 
-  <script src="data.js"></script>
-  <script src="product.js"></script>
+  <!-- LIGHTBOX PRO ZVĚTŠENÍ OBRÁZKU / DIAGRAMU -->
+  <div id="imgLightbox" class="img-lightbox" hidden aria-modal="true" role="dialog">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Zavřít">✕</button>
+    <button type="button" class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Předchozí obrázek">‹</button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImg" src="" alt="" />
+      <figcaption id="lightboxCap" class="lightbox-cap"></figcaption>
+    </figure>
+    <button type="button" class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Další obrázek">›</button>
+  </div>
+
+  <script src="data.js?v=20261116u"></script>
+  <script src="product.js?v=20261116u"></script>
 </body>
 </html>

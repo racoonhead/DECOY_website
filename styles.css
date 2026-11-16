@@ -848,6 +848,12 @@ a {
   --prod-panel: linear-gradient(145deg, #1b1711 0%, #241f16 100%);
   --prod-accent: #d1b379;
 }
+.mod-elements-v04 {
+  --prod-bg: radial-gradient(circle at 55% 40%, rgba(44, 78, 72, 0.88), rgba(8, 10, 11, 0.97));
+  --prod-bg-solid: #0a1010;
+  --prod-panel: linear-gradient(145deg, #0d1414 0%, #141e1d 100%);
+  --prod-accent: #7ec7b8;
+}
 .mod-raster-vid {
   --prod-bg: radial-gradient(circle at 50% 40%, rgba(72, 28, 128, 0.88), rgba(10, 5, 20, 0.97));
   --prod-bg-solid: #120924;
@@ -916,6 +922,72 @@ a {
   font-size: 0.82rem;
   color: var(--silk-white);
   border-bottom: 1px solid var(--prod-accent, var(--silver-hasl));
+}
+
+.diff-table-wrap {
+  overflow-x: auto;
+}
+
+.diff-table th {
+  width: 18%;
+}
+
+.diff-table td {
+  width: 27%;
+  line-height: 1.45;
+}
+
+.diff-orig-cell {
+  color: var(--silver-hasl);
+  opacity: 0.78;
+}
+
+.diff-v04-col {
+  color: var(--prod-accent, var(--silk-white)) !important;
+  font-weight: 600;
+}
+
+/* =========================================================
+   VIZUÁLNÍ MANUÁL & DIAGRAMY NA STRÁNCE PRODUKTU
+   ========================================================= */
+.diagrams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.diagram-card {
+  margin: 0;
+  background: var(--prod-panel, rgba(16, 18, 24, 0.85));
+  border: 1px solid var(--border-col);
+  padding: 22px;
+}
+
+.diagram-head h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  color: var(--prod-accent, var(--silk-white));
+}
+
+.diagram-head p {
+  margin: 0 0 16px;
+  font-size: 0.85rem;
+  color: var(--silver-hasl);
+  line-height: 1.55;
+}
+
+.diagram-frame {
+  border: 1px solid rgba(185, 190, 199, 0.2);
+  background: #0a0e10;
+  overflow: hidden;
+}
+
+.diagram-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .src-tag {
@@ -1208,12 +1280,119 @@ a {
 }
 
 .prod-gallery-stage {
+  position: relative;
   min-height: 440px;
   padding: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: zoom-in;
 }
+
+.gal-zoom-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  background: rgba(12, 12, 14, 0.82);
+  color: var(--silk-white);
+  border: 1px solid rgba(185, 190, 199, 0.4);
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: border-color 0.15s ease;
+}
+
+.gal-zoom-btn:hover {
+  border-color: var(--prod-accent, var(--silk-white));
+}
+
+/* Lightbox pro zvětšení obrázku / diagramu */
+.img-lightbox[hidden] {
+  display: none;
+}
+
+.img-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 8, 10, 0.92);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox-figure {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.lightbox-figure img {
+  max-width: 92vw;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--prod-accent, rgba(185, 190, 199, 0.35));
+  background: #0a0e10;
+}
+
+.lightbox-cap {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--silver-hasl);
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  background: rgba(12, 12, 14, 0.85);
+  color: var(--silk-white);
+  border: 1px solid var(--prod-accent, var(--silver-hasl));
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.lightbox-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 54px;
+  background: rgba(12, 12, 14, 0.8);
+  color: var(--silk-white);
+  border: 1px solid rgba(185, 190, 199, 0.4);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.lightbox-arrow:hover {
+  border-color: var(--prod-accent, var(--silk-white));
+}
+
+.lightbox-prev { left: 18px; }
+.lightbox-next { right: 18px; }
 
 /* Výrobní vrstvy SVG a schéma mají černou kresbu -> světlý podklad */
 .prod-gallery-stage.is-layer,
