@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" width="1100" height="640">
+  <defs>
+    <style>
+      .bg { fill: #f2f2ee; }
+      .card { fill: #ffffff; stroke: rgba(17, 18, 21, 0.16); stroke-width: 1; }
+      .card-hi { fill: #ffffff; stroke: rgba(184, 116, 20, 0.55); stroke-width: 1.2; }
+      .kcard { fill: #ffffff; stroke: rgba(17, 18, 21, 0.16); stroke-width: 1; }
+      .plot { fill: #e7e7e2; stroke: rgba(17, 18, 21, 0.14); stroke-width: 1; }
+      .title { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #111215; letter-spacing: 0.08em; font-size: 21px; }
+      .kname { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #111215; letter-spacing: 0.08em; font-size: 15px; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #2c3038; font-size: 9.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #5c6470; font-size: 8.5px; }
+      .mono-xs { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #5c6470; font-size: 7.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #b87414; font-size: 9.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #0e7a6d; font-size: 9.5px; }
+      .grid { stroke: rgba(17, 18, 21, 0.09); stroke-width: 1; }
+      .axis { stroke: rgba(17, 18, 21, 0.26); stroke-width: 1; }
+      .w-acc { fill: none; stroke: #b87414; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .w-cy { fill: none; stroke: #0e7a6d; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .w-dim { fill: none; stroke: rgba(17, 18, 21, 0.35); stroke-width: 1.1; stroke-dasharray: 3 2; }
+      .reg { font-family: 'JetBrains Mono', monospace; fill: #5c6470; font-size: 12px; opacity: 0.55; }
+    </style>
+    <marker id="arr-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#b87414"/>
+    </marker>
+    <marker id="arr-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0e7a6d"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1100" height="640"/>
+  <rect x="16" y="16" width="1068" height="608" fill="none" stroke="rgba(17, 18, 21, 0.16)" stroke-width="1"/>
+  <text class="reg" x="24" y="34">+</text><text class="reg" x="1068" y="34">+</text>
+  <text class="reg" x="24" y="616">+</text><text class="reg" x="1068" y="616">+</text>
+  <text class="mono-acc" x="48" y="42">DD-CF01 // CUE_FRAMES</text>
+  <text class="title" x="48" y="66">8 MODES (MOD BTN) · UNIFIED 1:SHAPE–8:RANGE (OPT BTN)</text>
+  <text class="mono-sm" x="1052" y="42" text-anchor="end">LUX // WHITE PANEL · DMX &amp; STAGE CV · 22 HP</text>
+  <line x1="48" y1="78" x2="1052" y2="78" stroke="rgba(17, 18, 21, 0.26)" stroke-width="1"/>
+  <g transform="translate(48, 100)">
+    <rect class="card-hi" x="0" y="0" width="238" height="162"/>
+<polyline points="204.4,25.8 211.5,17.7 219.6,23.9" fill="none" stroke="#0e7a6d" stroke-width="1.6"/>
+<polygon points="204.4,23.3 206.9,25.8 204.4,28.3 201.9,25.8" fill="#b87414"/>
+<polygon points="211.5,15.3 214.0,17.7 211.5,20.2 209.1,17.7" fill="#b87414"/>
+<polygon points="219.6,21.4 222.1,23.9 219.6,26.4 217.1,23.9" fill="#b87414"/>
+    <text class="mono-acc" x="12" y="22">MODE 01</text>
+    <text class="kname" x="12" y="44">1: KEYFRAMER (CUES)</text>
+    <text class="mono-sm" x="12" y="68">FRAME: morph across 64 cues</text>
+    <text class="mono-sm" x="12" y="86">V/OCT: cue scan / DMX offset</text>
+    <text class="mono-cy" x="12" y="110">OPT: per-CH curve (Step/Lin/Ease)</text>
+    <text class="mono-sm" x="12" y="132">HW SUM: Σ(OUT 1–4) &amp; Σ(OUT 1–8)</text>
+  </g>
+  <g transform="translate(304, 100)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+<line x1="203.4" y1="27.7" x2="221.5" y2="27.7" stroke="rgba(17, 18, 21, 0.35)" stroke-width="1.1"/>
+<polyline points="203.4,25.8 207.2,25.8 207.2,21.1 211.1,21.1 211.1,17.2 214.8,17.2 214.8,23.9 218.7,23.9 218.7,19.1 221.5,19.1" fill="none" stroke="#b87414" stroke-width="1.8"/>
+    <text class="mono-acc" x="12" y="22">MODE 02</text>
+    <text class="kname" x="12" y="44">2: STEP SEQUENCER</text>
+    <text class="mono-sm" x="12" y="68">CH 1–8: step CV levels (1–8)</text>
+    <text class="mono-sm" x="12" y="86">OUT 1–8: active step CV / Gate</text>
+    <text class="mono-cy" x="12" y="110">FRAME: gate length &amp; pattern morph</text>
+    <text class="mono-sm" x="12" y="132">HW SUM: active step CV sum</text>
+  </g>
+  <g transform="translate(560, 100)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+<path d="M 206.3 25.8 A 6.6 6.6 0 1 1 217.7 25.8" fill="none" stroke="#0e7a6d" stroke-width="1.6"/>
+<circle cx="209.6" cy="20.6" r="1.5" fill="#b87414"/>
+<circle cx="214.4" cy="20.1" r="1.5" fill="#b87414"/>
+<circle cx="212.3" cy="24.4" r="1.5" fill="#b87414"/>
+    <text class="mono-acc" x="12" y="22">MODE 03</text>
+    <text class="kname" x="12" y="44">3: RANDOM SAMPLER</text>
+    <text class="mono-sm" x="12" y="68">TRIG IN: clock random stream</text>
+    <text class="mono-sm" x="12" y="86">FRAME: lock loop (12h) / mutate</text>
+    <text class="mono-cy" x="12" y="110">OPT: rate, spread, bias, steps, loop</text>
+    <text class="mono-sm" x="12" y="132">HW SUM: combined random CV</text>
+  </g>
+  <g transform="translate(816, 100)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+<polyline points="203.4,18.0 204.5,17.3 205.6,16.7 206.7,16.3 207.7,16.1 208.8,16.3 209.9,16.7 210.9,17.3 212.0,18.0 213.1,18.7 214.1,19.4 215.2,19.8 216.3,19.9 217.3,19.8 218.4,19.4 219.5,18.7 220.5,18.0" fill="none" stroke="#b87414" stroke-width="1.4"/>
+<polyline points="203.4,20.4 204.5,20.1 205.6,20.1 206.7,20.4 207.7,21.0 208.8,21.7 209.9,22.4 210.9,23.1 212.0,23.6 213.1,23.9 214.1,23.9 215.2,23.6 216.3,23.0 217.3,22.3 218.4,21.6 219.5,20.9 220.5,20.4" fill="none" stroke="#0e7a6d" stroke-width="1.4"/>
+<polyline points="203.4,24.3 204.5,24.7 205.6,25.3 206.7,26.1 207.7,26.8 208.8,27.4 209.9,27.8 210.9,27.9 212.0,27.7 213.1,27.3 214.1,26.7 215.2,25.9 216.3,25.2 217.3,24.6 218.4,24.2 219.5,24.1 220.5,24.3" fill="none" stroke="#b87414" stroke-width="1.4"/>
+    <text class="mono-acc" x="12" y="22">MODE 04</text>
+    <text class="kname" x="12" y="44">4: TIDAL MODULATOR</text>
+    <text class="mono-sm" x="12" y="68">8 coupled tidal slope waves</text>
+    <text class="mono-sm" x="12" y="86">FRAME: phase / frequency shift</text>
+    <text class="mono-cy" x="12" y="110">OPT: shape, slope, spread, ratio</text>
+    <text class="mono-sm" x="12" y="132">HW SUM: analog additive waves</text>
+  </g>
+  <g transform="translate(48, 278)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+<line x1="203.4" y1="22.0" x2="220.6" y2="22.0" stroke="rgba(17, 18, 21, 0.35)" stroke-width="1"/>
+<polyline points="203.4,22.0 204.3,20.5 205.2,19.1 206.0,18.0 206.9,17.3 207.7,17.1 208.6,17.3 209.4,18.0 210.3,19.1 211.1,20.5 212.0,22.0 212.9,23.5 213.7,24.9 214.6,26.0 215.4,26.7 216.3,26.9 217.1,26.7 218.0,26.0 218.8,24.9 219.7,23.5 220.5,22.0" fill="none" stroke="#b87414" stroke-width="1.7"/>
+    <text class="mono-acc" x="12" y="22">MODE 05</text>
+    <text class="kname" x="12" y="44">5: POLY LFO</text>
+    <text class="mono-sm" x="12" y="68">Free-run or TRIG IN auto-sync</text>
+    <text class="mono-sm" x="12" y="86">FRAME: phase spread CH 1–8</text>
+    <text class="mono-cy" x="12" y="110">OPT: wave, div/rate, skew, depth</text>
+    <text class="mono-sm" x="12" y="132">HW SUM: analog multi-LFO sum</text>
+  </g>
+  <g transform="translate(304, 278)">
+    <rect class="card" x="0" y="0" width="238" height="162"/>
+<circle cx="212.0" cy="22.0" r="6.8" fill="none" stroke="#0e7a6d" stroke-width="1.3"/>
+<circle cx="216.8" cy="17.2" r="0.9" fill="#5c6470"/>
+<circle cx="218.8" cy="22.0" r="0.9" fill="#5c6470"/>
+<circle cx="212.0" cy="28.8" r="0.9" fill="#5c6470"/>
+<circle cx="207.2" cy="26.8" r="0.9" fill="#5c6470"/>
+<circle cx="207.2" cy="17.2" r="0.9" fill="#5c6470"/>
+<polygon points="212.0,15.2 216.8,26.8 205.2,22.0" fill="none" stroke="#b87414" stroke-width="1.6"/>
+<circle cx="212.0" cy="15.2" r="1.6" fill="#b87414"/>
+<circle cx="216.8" cy="26.8" r="1.6" fill="#b87414"/>
+<circle cx="205.2" cy="22.0" r="1.6" fill="#b87414"/>
+    <text class="mono-acc" x="12" y="22">MODE 06</text>
+    <text class="kname" x="12" y="44">6: EUCLIDEAN</text>
+    <text class="mono-sm" x="12" y="68">CH 1–8: Euclidean hits per channel</text>
+    <text class="mono-sm" x="12" y="86">FRAME: pattern rotation across 1–8</text>
+    <text class="mono-cy" x="12" y="110">OUT 1–8: 8 rhythmic strobe/drum trigs</text>
+    <text class="mono-sm" x="12" y="132">HW SUM: summed gate density CV</text>
+  </g>
+  <g transform="translate(560, 278)">
+    <rect class="card-hi" x="0" y="0" width="238" height="162"/>
+<line x1="203.0" y1="22.0" x2="221.0" y2="22.0" stroke="rgba(17, 18, 21, 0.35)" stroke-width="1"/>
+<polyline points="203.0,22.0 203.7,21.4 204.5,20.7 205.2,20.1 206.0,19.5 206.7,19.0 207.5,18.5 208.2,18.1 209.0,17.7 209.7,17.4 210.5,17.2 211.2,17.1 212.0,17.1 212.8,17.1 213.5,17.2 214.3,17.4 215.0,17.7 215.8,18.1 216.5,18.5 217.3,19.0 218.0,19.5 218.8,20.1 219.5,20.7 220.3,21.4 221.0,22.0" fill="none" stroke="#0e7a6d" stroke-width="1.2"/>
+<polyline points="203.0,22.0 203.7,21.6 204.5,20.8 205.2,20.7 206.0,22.0 206.7,24.0 207.5,25.4 208.2,24.7 209.0,22.0 209.7,18.9 210.5,17.4 211.2,18.7 212.0,22.0 212.8,25.3 213.5,26.6 214.3,25.1 215.0,22.0 215.8,19.3 216.5,18.6 217.3,20.0 218.0,22.0 218.8,23.3 219.5,23.2 220.3,22.4 221.0,22.0" fill="none" stroke="#b87414" stroke-width="1.6"/>
+    <text class="mono-acc" x="12" y="22">MODE 07</text>
+    <text class="kname" x="12" y="44">7: MACRO OSCILLATOR</text>
+    <text class="mono-sm" x="12" y="68">1:SHAPE: FM / WT / Modal / Perc</text>
+    <text class="mono-sm" x="12" y="86">TRIG IN: internal LPG ping / exciter</text>
+    <text class="mono-cy" x="12" y="110">FRAME: timbre / morph spread CH 1–8</text>
+    <text class="mono-sm" x="12" y="132">HW SUM: 4-ch &amp; 8-ch analog mix</text>
+  </g>
+  <g transform="translate(816, 278)">
+    <rect class="card-hi" x="0" y="0" width="238" height="162"/>
+<polyline points="203.4,26.3 211.5,17.2 211.5,26.3 219.6,17.2 219.6,26.3" fill="none" stroke="#b87414" stroke-width="1.7"/>
+    <text class="mono-acc" x="12" y="22">MODE 08</text>
+    <text class="kname" x="12" y="44">8: POLY VCO</text>
+    <text class="mono-sm" x="12" y="68">V/OCT: 1 V/Oct calibrated pitch</text>
+    <text class="mono-sm" x="12" y="86">FRAME: detune / chord spread</text>
+    <text class="mono-cy" x="12" y="110">OUT 1–8: 8 individual oscillators</text>
+    <text class="mono-sm" x="12" y="132">HW SUM 1-4: 4-voice · ALL: 8-osc</text>
+  </g>
+  <g transform="translate(48, 468)">
+    <rect class="card" x="0" y="0" width="1004" height="132"/>
+    <text class="mono-acc" x="16" y="24">8× 14-BIT DAC &amp; FIXED HARDWARE ANALOG SUMMING BUS</text>
+    <rect class="plot" x="20" y="44" width="190" height="64" stroke="#b87414" stroke-opacity="0.55"/>
+    <text class="kname" x="115.0" y="70" text-anchor="middle">MOD + OPT</text>
+    <text class="mono-sm" x="115.0" y="90" text-anchor="middle">8 HUD Icons · CUE LED</text>
+    <line x1="210" y1="76" x2="244" y2="76" stroke="#b87414" stroke-width="1.5" marker-end="url(#arr-a)"/>
+    <rect class="plot" x="246" y="44" width="240" height="64" stroke="#0e7a6d" stroke-opacity="0.55"/>
+    <text class="kname" x="366.0" y="70" text-anchor="middle">CH 1–8 + FRAME</text>
+    <text class="mono-sm" x="366.0" y="90" text-anchor="middle">1:SHAPE..8:RANGE + V/OCT</text>
+    <line x1="486" y1="76" x2="520" y2="76" stroke="#b87414" stroke-width="1.5" marker-end="url(#arr-a)"/>
+    <rect class="plot" x="522" y="44" width="190" height="64" stroke="#b87414" stroke-opacity="0.55"/>
+    <text class="kname" x="617.0" y="70" text-anchor="middle">2× DAC8164</text>
+    <text class="mono-sm" x="617.0" y="90" text-anchor="middle">8× 14-bit Precision DAC</text>
+    <line x1="712" y1="76" x2="746" y2="76" stroke="#b87414" stroke-width="1.5" marker-end="url(#arr-a)"/>
+    <rect class="plot" x="748" y="44" width="240" height="64" stroke="#0e7a6d" stroke-opacity="0.55"/>
+    <text class="kname" x="868.0" y="70" text-anchor="middle">OUT 1–8 + HW SUM 1-4 / ALL</text>
+    <text class="mono-sm" x="868.0" y="90" text-anchor="middle">Analog Σ + DMX_OUT RJ45</text>
+  </g>
+</svg>
