@@ -10,7 +10,8 @@ const DIVISIONS = {
       cs: "Nástroje pro signálovou cestu do moduláru i ven, kytarové a experimentální pedály, zvukové poznámky a živá vystoupení.",
       en: "Instruments for getting sound in and out of the rack, experimental stompboxes, audio notes, and live performances.",
     },
-    eurorack: ["the-in", "the-out", "elements-v04", "cue-frames", "cube-seq", "monobox", "fvck-boy"],
+    eurorack: ["the-in", "the-out", "elements-v04", "cue-frames", "cube-seq", "monobox"],
+    desktop: [],
     pedals: [
       {
         name: "DECØY // FUZZ-01",
@@ -46,25 +47,8 @@ const DIVISIONS = {
       cs: "Řízení divadelních a koncertních světel přímo z modulárního syntezátoru. CV-to-DMX převodníky, světelné loopery a scénické ovladače.",
       en: "Controlling theatrical and concert lighting directly from a modular synthesizer. CV-to-DMX bridges, light loopers, and scene controllers.",
     },
-    eurorack: ["dmx-out", "patchbay-8ch", "patchbay-16ch", "lux-core", "cue-frames", "fvck-boy"],
-    pedals: [
-      {
-        name: "LUX // FOOT-DMX",
-        tag: { cs: "NOŽNÍ KONTROLÉR", en: "FOOT CONTROLLER" },
-        desc: {
-          cs: "Robustní pódiový pedál pro přepínání světelných scén, tap-tempo a blackout přímo nohou během hraní.",
-          en: "Rugged stage pedal for cue switching, tap-tempo, and instant blackout while playing.",
-        },
-      },
-      {
-        name: "LUX // STROBE-GATE",
-        tag: { cs: "OPTICKÝ TRIGGER", en: "OPTICAL TRIGGER" },
-        desc: {
-          cs: "Pedál převádějící dynamiku kytary nebo bicích na bleskové DMX záblesky a změny barev.",
-          en: "Stompbox translating guitar or drum dynamics into reactive DMX strobe bursts and color shifts.",
-        },
-      },
-    ],
+    eurorack: ["dmx-out", "patchbay-8ch", "patchbay-16ch", "lux-core", "cue-frames"],
+    desktop: [],
     teatro: {
       title: { cs: `${TS} — SVĚTELNÁ SCÉNA`, en: `${TS} — LIGHTING STAGE` },
       desc: {
@@ -82,25 +66,8 @@ const DIVISIONS = {
       cs: "Analogová a digitální video syntéza, CRT experimenty, synchronizace obrazu se zvukem a světlem v kyber-fialové estetice.",
       en: "Analog and digital video synthesis, CRT experiments, and syncing visuals with sound and stage light in cyber-purple.",
     },
-    eurorack: ["fvck-boy", "fvck-girl", "raster-vid", "sync-matrix"],
-    pedals: [
-      {
-        name: "VID // GLITCH-BOX",
-        tag: { cs: "ANALOG VIDEO FX", en: "ANALOG VIDEO FX" },
-        desc: {
-          cs: "Kompozitní video pedál pro ohýbání synchronizace, barevné posuny a hmatové rušení CRT obrazu.",
-          en: "Composite video stompbox for sync bending, color shifting, and tactile CRT glitching.",
-        },
-      },
-      {
-        name: "VID // SYNC-SPLIT",
-        tag: { cs: "DISTRIBUCE OBRAZU", en: "VIDEO UTILITY" },
-        desc: {
-          cs: "Kompaktní pódiový box pro rozbočení a převod video signálu mezi projektory a starými televizory.",
-          en: "Compact stage utility for splitting and routing video signals between projectors and vintage CRTs.",
-        },
-      },
-    ],
+    eurorack: [],
+    desktop: ["fvck-boy", "fvck-girl"],
     teatro: {
       title: { cs: `${TS} — VIZUÁLNÍ PROJEKCE`, en: `${TS} — VISUAL PROJECTION` },
       desc: {
@@ -227,7 +194,21 @@ const DEFAULT_POSTS = {
   ],
 };
 
-const TABS = ["eurorack", "pedals", "blog", "teatro", "merch"];
+const TABS = ["eurorack", "desktop", "pedals", "blog", "teatro", "merch"];
+
+function getDivisionTabs(divKey) {
+  const div = DIVISIONS[divKey];
+  if (!div) return TABS;
+  return TABS.filter((tab) => tab !== "pedals" || Boolean(div.pedals));
+}
+
+function getDefaultDivisionTab(divKey) {
+  const div = DIVISIONS[divKey];
+  if (!div) return "eurorack";
+  if (div.eurorack && div.eurorack.length) return "eurorack";
+  if (div.desktop && div.desktop.length) return "desktop";
+  return "eurorack";
+}
 
 let currentLang = getLang();
 let currentDivision = null;
@@ -291,9 +272,9 @@ function triggerDivisionFx(divKey) {
 }
 
 /* ---------------------------------------------------- tab renderers */
-function renderEurorack(div, dict) {
-  const list = div.eurorack || [];
-  const soonItems = div.eurorackSoon || [];
+function renderProductCollection(div, dict, { key, soonKey, secNum, heading }) {
+  const list = div[key] || [];
+  const soonItems = (soonKey && div[soonKey]) || [];
   if (currentSecIdx >= list.length) currentSecIdx = 0;
   const activeId = list[currentSecIdx];
   const activeProd = activeId ? PRODUCTS[activeId] : null;
@@ -304,8 +285,8 @@ function renderEurorack(div, dict) {
       <div class="container">
         <div class="sec-head">
           <div>
-            <div class="sec-num">${dict.sec_num_modular}</div>
-            <h2>EURORACK</h2>
+            <div class="sec-num">${secNum}</div>
+            <h2>${heading}</h2>
           </div>
           ${
             activeProd
@@ -377,6 +358,24 @@ function renderEurorack(div, dict) {
       </div>
     </section>
   `;
+}
+
+function renderEurorack(div, dict) {
+  return renderProductCollection(div, dict, {
+    key: "eurorack",
+    soonKey: "eurorackSoon",
+    secNum: dict.sec_num_modular,
+    heading: "EURORACK",
+  });
+}
+
+function renderDesktop(div, dict) {
+  return renderProductCollection(div, dict, {
+    key: "desktop",
+    soonKey: "desktopSoon",
+    secNum: dict.sec_num_desktop,
+    heading: dict.sec_desktop,
+  });
 }
 
 function renderPedals(div, dict) {
@@ -547,8 +546,9 @@ function renderMerch(dict) {
 function renderDivision(divKey, tabKey = currentTab, { fx = false } = {}) {
   const div = DIVISIONS[divKey];
   if (!div) return;
+  const allowedTabs = getDivisionTabs(divKey);
   currentDivision = divKey;
-  currentTab = TABS.includes(tabKey) ? tabKey : "eurorack";
+  currentTab = tabKey && allowedTabs.includes(tabKey) ? tabKey : getDefaultDivisionTab(divKey);
 
   if (fx) triggerDivisionFx(divKey);
 
@@ -561,7 +561,9 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false } = {}) {
     btn.classList.toggle("active", btn.getAttribute("data-switch-div") === divKey);
   });
   document.querySelectorAll("[data-tab]").forEach((btn) => {
-    btn.classList.toggle("active", btn.getAttribute("data-tab") === currentTab);
+    const t = btn.getAttribute("data-tab");
+    btn.hidden = !allowedTabs.includes(t);
+    btn.classList.toggle("active", t === currentTab);
   });
 
   const siteFooter = document.getElementById("siteFooter");
@@ -572,6 +574,7 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false } = {}) {
   const dict = I18N[currentLang];
   const body = {
     eurorack: () => renderEurorack(div, dict),
+    desktop: () => renderDesktop(div, dict),
     pedals: () => renderPedals(div, dict),
     blog: () => renderBlog(divKey, dict),
     teatro: () => renderTeatro(div, dict),
@@ -697,10 +700,11 @@ function bindDivisionEvents() {
   document.querySelectorAll("[data-sec-step]").forEach((btn) => {
     btn.addEventListener("click", () => {
       if (!currentDivision) return;
-      const list = DIVISIONS[currentDivision].eurorack;
+      const list = DIVISIONS[currentDivision][currentTab];
+      if (!Array.isArray(list) || !list.length) return;
       const step = parseInt(btn.getAttribute("data-sec-step"), 10) || 1;
       currentSecIdx = (currentSecIdx + step + list.length) % list.length;
-      renderDivision(currentDivision, "eurorack");
+      renderDivision(currentDivision, currentTab);
     });
   });
 
@@ -710,7 +714,8 @@ function bindDivisionEvents() {
       e.stopPropagation();
       const id = el.getAttribute("data-open-mod");
       if (currentDivision) {
-        const idx = DIVISIONS[currentDivision].eurorack.indexOf(id);
+        const list = DIVISIONS[currentDivision][currentTab];
+        const idx = Array.isArray(list) ? list.indexOf(id) : -1;
         if (idx >= 0) currentSecIdx = idx;
       }
       openProductModal(id);
@@ -720,24 +725,33 @@ function bindDivisionEvents() {
 
 function routeFromHash() {
   const [divKey, tab] = location.hash.replace("#", "").split("/");
-  if (DIVISIONS[divKey]) renderDivision(divKey, tab || "eurorack");
+  if (DIVISIONS[divKey]) renderDivision(divKey, tab || null);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   applyTranslations();
 
   document.querySelectorAll("[data-open-division]").forEach((btn) => {
-    btn.addEventListener("click", () => renderDivision(btn.getAttribute("data-open-division"), "eurorack", { fx: true }));
+    btn.addEventListener("click", () => {
+      currentSecIdx = 0;
+      renderDivision(btn.getAttribute("data-open-division"), null, { fx: true });
+    });
   });
 
   document.querySelectorAll("[data-switch-div]").forEach((btn) => {
-    btn.addEventListener("click", () => renderDivision(btn.getAttribute("data-switch-div"), currentTab, { fx: true }));
+    btn.addEventListener("click", () => {
+      currentSecIdx = 0;
+      const targetDiv = btn.getAttribute("data-switch-div");
+      const targetTab = (currentTab === "eurorack" || currentTab === "desktop") ? null : currentTab;
+      renderDivision(targetDiv, targetTab, { fx: true });
+    });
   });
 
-  document.querySelectorAll("[data-tab]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (currentDivision) renderDivision(currentDivision, btn.getAttribute("data-tab"));
-    });
+  document.getElementById("divisionView")?.addEventListener("click", (e) => {
+    const tabBtn = e.target.closest("[data-tab]");
+    if (!tabBtn || !currentDivision) return;
+    currentSecIdx = 0;
+    renderDivision(currentDivision, tabBtn.getAttribute("data-tab"));
   });
 
   document.getElementById("backToSplit")?.addEventListener("click", goHome);

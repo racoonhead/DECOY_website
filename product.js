@@ -120,7 +120,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   bodyEl.className = `product-page theme-${activeDiv} mod-${id}`;
 
   const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
-  backLink.href = `index.html#${activeDiv}/eurorack`;
+  backLink.href = `index.html#${activeDiv}/${p.tab || "eurorack"}`;
   backLabel.textContent = `${dict.back_to} ${divTitle}`;
 
   const nav = getSectionProductNav(id, activeDiv);
@@ -365,9 +365,10 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
                 ${related
                   .map((rid) => {
                     const rp = PRODUCTS[rid];
+                    const rImg = (rp.imageByDiv && rp.imageByDiv[activeDiv]) || rp.image;
                     return `
                       <article class="prod-rel-card" data-prod-go="${rid}">
-                        <img src="${rp.image}" alt="${rp.name}" loading="lazy" />
+                        <img src="${rImg}" alt="${rp.name}" loading="lazy" />
                         <div>
                           <div class="modal-serial">${rp.serial} · ${rp.hp}</div>
                           <h3>${rp.name}</h3>
@@ -447,8 +448,9 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   document.querySelectorAll("[data-prod-go]").forEach((el) => {
     el.addEventListener("click", () => {
       const targetId = el.getAttribute("data-prod-go");
-      history.pushState(null, "", `product.html?id=${targetId}`);
-      renderProductPage(targetId, { fx: true });
+      const divQuery = currentDivCtx ? `&div=${currentDivCtx}` : "";
+      history.pushState(null, "", `product.html?id=${targetId}${divQuery}`);
+      renderProductPage(targetId, { fx: true, divKey: currentDivCtx });
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
@@ -479,14 +481,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("lightboxPrev")?.addEventListener("click", () => {
     const p = PRODUCTS[currentProdId];
     if (!p) return;
-    const items = getProductGallery(p);
+    const items = getProductGallery(p, currentDivCtx);
     currentGalleryIdx = (currentGalleryIdx - 1 + items.length) % items.length;
     renderGalleryStage(p);
   });
   document.getElementById("lightboxNext")?.addEventListener("click", () => {
     const p = PRODUCTS[currentProdId];
     if (!p) return;
-    const items = getProductGallery(p);
+    const items = getProductGallery(p, currentDivCtx);
     currentGalleryIdx = (currentGalleryIdx + 1) % items.length;
     renderGalleryStage(p);
   });

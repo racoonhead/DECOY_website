@@ -15,6 +15,7 @@ const I18N = {
     div_light: "SVĚTLO",
     div_video: "VIDEO",
     enter_section: "VSTOUPIT >>>",
+    sec_desktop: "DESKTOP",
     sec_pedals: "PEDÁLY",
     sec_blog: "BLOK",
     sec_merch: "TRIČKA & MERCH",
@@ -51,10 +52,11 @@ const I18N = {
       "NÁVRH = hodnota z dokumentace návrhu · DATASHEET = typická hodnota použitého obvodu · MĚŘÍ SE = doplníme po měření prototypu",
     page_title_home: "DECØY DEVICES — Světlo · Zvuk · Video",
     sec_num_modular: "01 // MODULÁR",
-    sec_num_pedals: "02 // PEDÁLY",
-    sec_num_blog: "03 // POZNÁMKY & DENÍK",
-    sec_num_teatro: "04 // KOLEKTIV & SCÉNA",
-    sec_num_merch: "05 // OBLEČENÍ & OBJEKTY",
+    sec_num_desktop: "02 // DESKTOP",
+    sec_num_pedals: "03 // PEDÁLY",
+    sec_num_blog: "04 // POZNÁMKY & DENÍK",
+    sec_num_teatro: "05 // KOLEKTIV & SCÉNA",
+    sec_num_merch: "06 // OBLEČENÍ & OBJEKTY",
     sec_num_crew: "// TÝM",
     pcb_faceplate: "PCB ČELNÍ PANEL",
     founders_credit: "ZAKLADATELÉ DECØY: VOJTĚCH DIVOKÝ & LADISLAV MAREŠ",
@@ -77,6 +79,7 @@ const I18N = {
     div_light: "LIGHT",
     div_video: "VIDEO",
     enter_section: "ENTER >>>",
+    sec_desktop: "DESKTOP",
     sec_pedals: "PEDALS",
     sec_blog: "JOURNAL",
     sec_merch: "TEES & MERCH",
@@ -113,10 +116,11 @@ const I18N = {
       "DESIGN = value from design documentation · DATASHEET = typical value of the IC used · TBD = to be filled in after prototype measurement",
     page_title_home: "DECØY DEVICES — Light · Sound · Video",
     sec_num_modular: "01 // MODULAR",
-    sec_num_pedals: "02 // STOMPBOXES",
-    sec_num_blog: "03 // NOTES & JOURNAL",
-    sec_num_teatro: "04 // COLLECTIVE & STAGE",
-    sec_num_merch: "05 // APPAREL & OBJECTS",
+    sec_num_desktop: "02 // DESKTOP",
+    sec_num_pedals: "03 // STOMPBOXES",
+    sec_num_blog: "04 // NOTES & JOURNAL",
+    sec_num_teatro: "05 // COLLECTIVE & STAGE",
+    sec_num_merch: "06 // APPAREL & OBJECTS",
     sec_num_crew: "// CREW",
     pcb_faceplate: "PCB FACEPLATE",
     founders_credit: "DECØY FOUNDERS: VOJTĚCH DIVOKÝ & LADISLAV MAREŠ",
@@ -1111,186 +1115,6 @@ const PRODUCTS = {
   },
 
   /* ------------------------------------------------------- VIDEO */
-  "raster-vid": {
-    division: "VID",
-    name: "RASTER",
-    hp: "16 HP",
-    serial: "DD-VD01 // VID.RGB.1V",
-    status: { cs: "Koncept + kyber-fialový panel + schéma", en: "Concept + cyber-purple panel + diagrams" },
-    image: "assets/products/raster-vid/preview.png?v=20261117i",
-    tagline: {
-      cs: "Širokopásmový video oscilátor, wavefolder a 3pásmový RGB colorizer ve standardu 0–1 V.",
-      en: "Wideband 0–1 V video oscillator, wavefolder, and 3-band RGB colorizer for analog visuals.",
-    },
-    short: {
-      cs: "16 HP video syntezátor: H/V rastrové jádro, 5 geometrických průběhů (Ramp, Triangle, Bars, Checker, Noise), audio-rate modulace a 3pásmový RGB/Composite výstup 75 Ω.",
-      en: "16 HP video synthesizer: H/V raster core, 5 geometric pattern shapes (Ramp, Triangle, Bars, Checker, Noise), audio-rate deflection, and 75 Ω RGB/Composite outputs.",
-    },
-    long: {
-      cs: [
-        "RASTER je 16 HP analogový/hybridní video syntezátor navržený ve standardu 0–1 V (75 Ω) pro přímé propojení Eurorackového moduláru s CRT monitory, videoprojektory a LED stěnami. Kyber-fialová čelní deska odděluje v horní části generátory horizontálního/vertikálního rastru a barevnou matici, zatímco spodní patchbay jasně rozlišuje 0–1 V video vstupy/výstupy od ±5 V modulací.",
-        "H/V RASTROVACÍ JÁDRO & 5 TVARŮ VLN (přepínač SHAPE): dva synchronizovatelné video oscilátory pracují na řádkové frekvenci 15,625 kHz (H FREQ) a snímkové frekvenci 50/60 Hz (V FREQ). Přepínač SHAPE volí mezi pěti základními geometrickými průběhy: RAMP (plynulé diagonální a řádkové přechody pro moiré interference), TRIANGLE (zrcadlený symetrický wavefolder a tunely), VIDEO BARS (tvrdé PWM pruhy a horizontální brány), CHECKER (logický XOR H×V rastr a SMPTE šachovnice) a CHROMA SNOW (vysokorychlostní video-rate šumová textura). Knoby WARP a PHASE pak plynule ohýbají symetrii a fázový posun obrazu.",
-        "3PÁSMOVÝ RGB COLORIZER & AUDIO DEFLECTION (přepínač COLOR): vstupní jasový signál (interní rastr nebo externí kamera přes LUMA IN) prochází třemi překrývajícími se okénkovými komparátory pro červené stíny, zelené středy a modrá světla. Knoby COLORIZE, HUE ROT a GAMMA ovládají mapování spektra, plynulou rotaci fáze barvonosného signálu (Chroma) a nelineární kontrast, zatímco přepínač COLOR volí režimy RGB, YUV, Composite s plnou synchronizací nebo tvrdou inverzi jasu. Přivedením hudebního signálu do AUDIO IN se řádkové vychylování deformuje přímo v rytmu a tónině hudby.",
-        "SYNC & 75 Ω VÝSTUPY: interní krystalový generátor lze přes H SYNC IN a V SYNC IN okamžitě podřídit externí synchronizaci (např. ze SYNC_MATRIX), což zaručí naprosto stabilní obraz bez rolujících pruhů při natáčení na kameru. Čtveřice bufferovaných 75 Ω výstupů (R OUT, G OUT, B OUT a COMP OUT) disponuje šířkou pásma přes 15 MHz a utáhne i dlouhé koaxiální rozvody přímo do Sony PVM/BVM monitorů.",
-      ],
-      en: [
-        "RASTER is a 16 HP 0–1 V (75 Ω) analog/hybrid video synthesizer that turns Eurorack audio and control voltages straight into live CRT rasters, moiré patterns, and saturated color fields. Its cyber-purple front panel separates H/V raster synthesis and RGB matrix controls above from a clearly color-coded ±5 V CV / 75 Ω video patchbay below.",
-        "H/V RASTER CORES & 5 PATTERN SHAPES (SHAPE switch): twin syncable oscillators operate at horizontal line rates (15.625 kHz on H FREQ) and vertical field rates (50/60 Hz on V FREQ). The SHAPE selector switches across five primary visual waveforms: RAMP (smooth sawtooth gradients for moiré interference), TRIANGLE (symmetric wavefolder tunnels), VIDEO BARS (sharp PWM gates), CHECKER (XOR H×V checkerboards and SMPTE tile grids), and CHROMA SNOW (high-speed video-rate noise). WARP and PHASE sweep fold symmetry and horizontal phase in real time.",
-        "3-BAND RGB COLORIZER & AUDIO DEFLECTION (COLOR switch): internal ramps or an external LUMA IN signal drive three overlapping window comparators for Red shadows, Green midtones, and Blue highlights. COLORIZE, HUE ROT, and GAMMA sculpt palette mapping, chroma rotation, and contrast curves, while the COLOR toggle switches between RGB, YUV, Composite encode, and luminance invert. Patching drums, bass, or voices into AUDIO IN directly bends CRT scanlines in sync with the audio.",
-        "SYNC & 75 Ω OUTPUT STAGE: switch between free crystal timing or hard external lock via H SYNC IN and V SYNC IN (paired with SYNC_MATRIX) for rock-solid capture free of rolling bars. Four 75 Ω buffered outputs (R OUT, G OUT, B OUT, COMP OUT) deliver >15 MHz bandwidth directly into broadcast PVM CRTs, capture cards, and stage projectors.",
-      ],
-    },
-    useCases: [
-      {
-        t: { cs: "Živá CRT projekce ze zvuku", en: "Audio-reactive CRT visuals" },
-        d: {
-          cs: "Zapoj kick, basu nebo výstup z ELEMENTS do AUDIO IN a WARP CV — obraz reálně vibruje a štěpí se s hudbou bez latence.",
-          en: "Patch drums or ELEMENTS into AUDIO IN and WARP CV — CRT scanlines bend and fracture with zero latency.",
-        },
-      },
-      {
-        t: { cs: "Generování RGB palet pro keyer", en: "RGB texture source for keyers" },
-        d: {
-          cs: "Vytvářej moiré mřížky a barevné gradienty a klíčuj je přes SYNC_MATRIX proti živé kameře na pódiu.",
-          en: "Build moiré grids and gradient backdrops and key them through SYNC_MATRIX over live stage camera feeds.",
-        },
-      },
-      {
-        t: { cs: "Synchronní projekce bez blikání", en: "Flicker-free frame-locked visuals" },
-        d: {
-          cs: "Přes H SYNC IN / V SYNC IN drží stabilní řádkování i pro záznam na digitální kameru nebo LED stěnu.",
-          en: "Lock to H SYNC IN / V SYNC IN for clean scanlines compatible with broadcast capture and LED walls.",
-        },
-      },
-      {
-        t: { cs: "Hybridní LFO ze Světla i Videa", en: "Cross-division modulation" },
-        d: {
-          cs: "Ovládej WARP, HUE ROT a COLORIZE přímo z CUE_FRAMES (Poly-LFO / Euclidean) pro jednotnou choreografii světla a videa.",
-          en: "Drive WARP, HUE ROT, and COLORIZE from CUE_FRAMES for unified lighting and video choreography.",
-        },
-      },
-    ],
-    controls: {
-      cs: [
-        "H FREQ, V FREQ, WARP, PHASE — řízení rastrových oscilátorů a wavefolderu",
-        "COLORIZE, HUE ROT, GAMMA, MIX — 3pásmová RGB matice a jasový kontrast",
-        "Přepínače SHAPE (Ramp/Tri / Bar/Chk), COLOR (RGB / YUV/Inv), SYNC (Ext H+V / Int Xtal)",
-        "Vstupy: H SYNC IN, V SYNC IN, H CV, V CV, WARP CV, COL CV, AUDIO IN, LUMA IN (±5 V / 0–1 V)",
-        "Výstupy (0–1 V / 75 Ω): R OUT, G OUT, B OUT, COMP OUT",
-      ],
-      en: [
-        "H FREQ, V FREQ, WARP, PHASE — H/V raster core timing & wavefolder symmetry",
-        "COLORIZE, HUE ROT, GAMMA, MIX — 3-band RGB window colorizer & contrast",
-        "Switches: SHAPE (Ramp/Tri / Bar/Chk), COLOR (RGB / YUV/Inv), SYNC (Ext H+V / Int Xtal)",
-        "Inputs: H SYNC IN, V SYNC IN, H CV, V CV, WARP CV, COL CV, AUDIO IN, LUMA IN (±5 V / 0–1 V)",
-        "Outputs (0–1 V / 75 Ω): R OUT, G OUT, B OUT, COMP OUT",
-      ],
-    },
-    specs: [
-      S("Šířka / výška", "Width / height", "16 HP (81,28 mm × 128,5 mm) / 3U"),
-      S("Video standard", "Video standard", "0–1 Vpp, 75 Ω (PAL 50 Hz / NTSC 60 Hz)", "doc", true),
-      S("Šířka pásma videa", "Video bandwidth", "> 15 MHz (−3 dB)", "doc", true),
-      S("Geometrické tvary", "Pattern shapes", "Ramp, Triangle Fold, Video Bars, XOR Checker, Chroma Snow", "doc", true),
-      S("Colorizer", "Colorizer", "3-band RGB window comparator + Hue rotation", "doc"),
-      S("CV & Audio vstupy", "CV & Audio inputs", "±5 V (100 kΩ), Audio-to-Scan deflection", "doc", true),
-      S("Synchronizace", "Sync lock", "Ext H/V Sync lock nebo interní krystal", "doc"),
-      S("Výstupy", "Outputs", "R OUT, G OUT, B OUT, COMP OUT (buffer 75 Ω)", "doc", true),
-      S("Napájení", "Power", "±12 V Eurorack (odhad ~140 mA / 110 mA)", "tbd", true),
-    ],
-    gallery: [
-      { src: "assets/products/raster-vid/preview.png?v=20261117i", cap: { cs: "Čelní panel 16 HP — Cyber-Purple PCB", en: "16 HP Front Panel — Cyber-Purple PCB" } },
-    ],
-    related: ["sync-matrix", "cue-frames", "elements-v04"],
-  },
-
-  "sync-matrix": {
-    division: "VID",
-    name: "SYNC_MATRIX",
-    hp: "10 HP",
-    serial: "DD-VD02 // GENLOCK.KEY",
-    status: { cs: "Koncept + kyber-fialový panel + schéma", en: "Concept + cyber-purple panel + diagrams" },
-    image: "assets/products/sync-matrix/preview.png?v=20261117i",
-    tagline: {
-      cs: "Genlock separátor synchronizace (PAL/NTSC → Eurorack clock) a rychlý analogový luma/XOR keyer.",
-      en: "Genlock sync separator (PAL/NTSC → Eurorack clocks) and <18 ns analog luma/XOR keyer.",
-    },
-    short: {
-      cs: "10 HP genlock a klíčovací modul: extrahuje H-Sync, V-Sync, půlsnímky (Field) i Frame Clock do moduláru a klíčuje dva video signály přes prahový/soft/XOR komparátor (< 18 ns).",
-      en: "10 HP genlock and luma keyer: strips H-Sync, V-Sync, Field & Frame Clocks for Eurorack and keys two 0–1 V video streams via hard/soft/XOR comparator (<18 ns).",
-    },
-    long: {
-      cs: [
-        "SYNC_MATRIX je centrální mozek synchronizace a klíčování pro video i modulární rack v kompaktním 10 HP formátu. Zatímco běžná LFO běží nezávisle na obnovovací frekvenci televize (a způsobují v obraze pomalé putující pruhy), SYNC_MATRIX extrahuje přesné řádkové a snímkové pulzy z kompozitního videa nebo z interního krystalu a převádí je na +5 V spouštěcí signály pro zbytek racku.",
-        "GENLOCK & SYNCHRONNÍ HODINY PRO EURORACK (přepínače SRC & STD): ze vstupu COMP IN (PAL 50 Hz nebo NTSC 60 Hz) separátor oddělí čistý H-SYNC (15,625 kHz) a V-SYNC (50/60 Hz) pro řízení RASTERu, ale zároveň generuje dělený FRM CLK (Frame Clock ÷1/÷2/÷4) a sudý/lichý půlsnímek FLD OUT. Napojením FRM CLK do CUE_FRAMES, LUX_CORE nebo sekvencerů začnou světelné přechody i obálky tikat přesně na hranici snímků.",
-        "RYCHLÝ LUMA KEYER, SOFT DISSOLVE & SOLARIZACE (přepínač KEY POL): druhá polovina modulu funguje jako vysokorychlostní analogový videopult se dvěma vstupy VID A IN a VID B IN (0–1 V / 75 Ω). Knob THRESHOLD určuje jasovou hladinu řezu, SOFTNESS přechází od břitkého tvrdého klíčování (< 18 ns komparátor) až po jemné prolínání, a SOLARIZE ohýbá jasovou křivku inverzí nad prahem. Všechny parametry jsou napěťově řiditelné přes THRS CV a KEY CV a výstupní spínač KEY POL volí mezi přímým (NORM), invertovaným (INV) a analogovým XOR klíčováním s čistým klíčovacím pulzem na KEY OUT i invertovanou maskou na INV OUT.",
-      ],
-      en: [
-        "SYNC_MATRIX is the central genlock hub and analog luma keyer in a compact 10 HP footprint. Standard Eurorack LFOs free-run against CRT refresh rates, producing drifting hum bars on camera; SYNC_MATRIX strips exact line and frame timing from composite video or an internal crystal master and translates them into +5 V rack clocks.",
-        "GENLOCK & EURORACK CLOCK TRANSLATOR (SRC & STD switches): feeding composite video into COMP IN (PAL 50 Hz or NTSC 60 Hz) outputs rock-solid H-SYNC (15.625 kHz) and V-SYNC (50/60 Hz) triggers for RASTER alongside FLD OUT (25/30 Hz odd/even field gate) and divided FRM CLK pulses for CUE_FRAMES, LUX_CORE, or audio sequencers.",
-        "ANALOG LUMA / XOR KEYER & SOLARIZER (KEY POL switch): the lower keyer core mixes VID A IN and VID B IN (0–1 V / 75 Ω) across THRESHOLD, SOFTNESS (morphing from <18 ns hard comparator silhouettes to smooth crossfades), and SOLARIZE fold bias. Both threshold and key mixing accept audio-rate modulation (THRS CV, KEY CV), while KEY POL selects NORM, INVERT, or analog XOR with buffered KEY OUT, INV OUT, and composite MIX OUT.",
-      ],
-    },
-    useCases: [
-      {
-        t: { cs: "Klíčování kamery přes modulární obálky", en: "Keying live cameras with modular envelopes" },
-        d: {
-          cs: "Pošli signál z kamery do VID A IN a grafiku z RASTER do VID B IN — práh THRESHOLD ovládej z obálky nebo kopáku.",
-          en: "Patch live camera to VID A IN and RASTER to VID B IN — sweep key threshold directly from kick envelopes.",
-        },
-      },
-      {
-        t: { cs: "Synchronizace světla a videa", en: "Locking lighting & video stages" },
-        d: {
-          cs: "Výstup FRM CLK synchronizuje kroky na CUE_FRAMES a smyčky v LUX_CORE přesně na 50 Hz PAL snímky.",
-          en: "Patch FRM CLK into CUE_FRAMES or LUX_CORE so DMX strobes and moves lock to 50 Hz video frames.",
-        },
-      },
-      {
-        t: { cs: "Analogová solarizace & XOR glitche", en: "Analog solarization & XOR glitches" },
-        d: {
-          cs: "Přepni KEY POL na XOR a otoč knob SOLARIZE pro okamžité kontrastní překlopy hran a psychedelické obrysy.",
-          en: "Flip KEY POL to XOR and dial SOLARIZE for crisp edge inversions and folded silhouettes.",
-        },
-      },
-      {
-        t: { cs: "Master clock z VHS / CRT přehrávače", en: "Clocking the rack from tape / VHS" },
-        d: {
-          cs: "Zapoj kompozitní výstup ze starého VHS přehrávače do COMP IN — výpadky kazety začnou přímo mutovat tempo moduláru.",
-          en: "Feed a glitching VHS deck into COMP IN — tape dropouts natively bend modular clock stability.",
-        },
-      },
-    ],
-    controls: {
-      cs: [
-        "THRESHOLD (Key Cut), SOFTNESS (Hard Clip → Smooth Mix), SOLARIZE (Fold Bias)",
-        "Přepínače: SRC (Comp / Int Xtal), STD (PAL 50 Hz / NTSC 60 Hz), KEY POL (Norm / Inv / XOR)",
-        "4× stavová LED: LOCK, 50Hz, FIELD, KEY",
-        "Sync výstupy (+5 V): H-SYNC, V-SYNC, FRM CLK, FLD OUT",
-        "Video & Key I/O (0–1 V / 75 Ω & ±5 V CV): COMP IN, VID A IN, VID B IN, THRS CV, KEY CV, KEY OUT, INV OUT, MIX OUT",
-      ],
-      en: [
-        "THRESHOLD (Key Cut), SOFTNESS (Hard Clip → Smooth Mix), SOLARIZE (Fold Bias)",
-        "Switches: SRC (Comp / Int Xtal), STD (PAL 50 Hz / NTSC 60 Hz), KEY POL (Norm / Inv / XOR)",
-        "4× status LEDs: LOCK, 50Hz, FIELD, KEY",
-        "Sync outputs (+5 V): H-SYNC, V-SYNC, FRM CLK, FLD OUT",
-        "Video & Key I/O (0–1 V / 75 Ω & ±5 V CV): COMP IN, VID A IN, VID B IN, THRS CV, KEY CV, KEY OUT, INV OUT, MIX OUT",
-      ],
-    },
-    specs: [
-      S("Šířka / výška", "Width / height", "10 HP (50,8 mm × 128,5 mm) / 3U"),
-      S("Normy videa", "Video standards", "PAL 50 Hz (15,625 kHz) / NTSC 60 Hz (15,734 kHz)", "doc", true),
-      S("Šířka pásma keyeru", "Keyer bandwidth", "> 15 MHz (−3 dB), přeběh < 18 ns", "doc", true),
-      S("Režimy klíčování", "Keying modes", "Hard Comparator, Soft Dissolve, Invert, Analog XOR, Solarize", "doc", true),
-      S("Sync výstupy", "Sync outputs", "+5 V TTL/CMOS: H-SYNC, V-SYNC, FRM CLK, FLD OUT", "doc", true),
-      S("Video I/O", "Video I/O", "0–1 Vpp, 75 Ω (COMP IN, VID A/B, MIX/KEY/INV OUT)", "doc"),
-      S("Napájení", "Power", "±12 V Eurorack (odhad ~95 mA / 70 mA)", "tbd", true),
-    ],
-    gallery: [
-      { src: "assets/products/sync-matrix/preview.png?v=20261117i", cap: { cs: "Čelní panel 10 HP — Cyber-Purple PCB", en: "10 HP Front Panel — Cyber-Purple PCB" } },
-    ],
-    related: ["raster-vid", "cue-frames", "lux-core"],
-  },
-
   "cube-seq": {
     division: "AUD",
     name: "CUBE_SEQ",
@@ -1476,6 +1300,7 @@ const PRODUCTS = {
 
   "fvck-girl": {
     division: "VID",
+    tab: "desktop",
     name: "FVCK_GIRL",
     hp: "DESKTOP · 112,5×233 mm",
     serial: "DD-FG01 // VID.SYN.AB",
@@ -1622,12 +1447,12 @@ const PRODUCTS = {
       { src: "assets/products/fvck-girl/preview.svg?v=20261119b", cap: { cs: "FVCK_GIRL — přesný layout čelního panelu 1:1 dle PCB (112,5 × 233,05 mm)", en: "FVCK_GIRL — exact 1:1 front panel layout from PCB (112.5 × 233.05 mm)" } },
       { src: "assets/products/fvck-girl/pcb_render.png?v=20261119a", cap: { cs: "3D render univerzální hlavní PCB (AREA A: J_RPI vlevo, AREA B: J_FPGA vpravo)", en: "3D render of universal main PCB (AREA A: J_RPI left, AREA B: J_FPGA right)" } },
     ],
-    related: ["raster-vid", "sync-matrix", "cue-frames"],
+    related: ["fvck-boy", "cue-frames"],
   },
 
   "fvck-boy": {
     division: "VID",
-    divisions: ["VID", "LUX", "AUD"],
+    tab: "desktop",
     name: "FVCK_BOY",
     hp: "CONSOLE · 367×241 mm",
     serial: "DD-FB01 // ARENA.CTRL",
@@ -1636,11 +1461,6 @@ const PRODUCTS = {
       en: "STM32H562 revision + complete firmware & PCB overlays",
     },
     image: "assets/products/fvck-boy/01_ARENA_Resolume.png?v=20261120a",
-    imageByDiv: {
-      VID: "assets/products/fvck-boy/01_ARENA_Resolume.png?v=20261120a",
-      LUX: "assets/products/fvck-boy/01_ARENA_Resolume.png?v=20261120a",
-      AUD: "assets/products/fvck-boy/04_SYNTH_Drums.png?v=20261120a",
-    },
     tagline: {
       cs: "Hardwarová konzole pro Resolume Arena na STM32H562VIT6 s obousměrnou RGB LED maticí (10×5), 87 spínači, 45 analogy a 4 vestavěnými režimy přes jediný enkodér.",
       en: "Hardware Resolume Arena controller built on STM32H562VIT6 with a bidirectional 10×5 RGB LED grid, 87 switches, 45 analog controls, and 4 onboard modes via a single encoder.",
