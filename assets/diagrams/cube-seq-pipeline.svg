@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620">
+  <defs>
+    <style>
+      .bg { fill: #0a0e10; }
+      .card { fill: #111619; stroke: rgba(185, 190, 199, 0.22); stroke-width: 1; }
+      .card-hi { fill: #111619; stroke: rgba(126, 199, 184, 0.48); stroke-width: 1.2; }
+      .plot { fill: #080b0d; stroke: rgba(185, 190, 199, 0.22); stroke-width: 0.9; }
+      .title { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #eaeae4; letter-spacing: 0.08em; }
+      .hd { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #eaeae4; font-size: 13px; letter-spacing: 0.07em; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; fill: #b9bec7; font-size: 9.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #8b949e; font-size: 8.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #d1b379; font-size: 9.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #7ec7b8; font-size: 9.5px; }
+      .reg { font-family: 'JetBrains Mono', monospace; fill: #8b949e; font-size: 11px; opacity: 0.55; }
+    </style>
+    <marker id="arr-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7ec7b8"/>
+    </marker>
+    <marker id="arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d1b379"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1100" height="620"/>
+  <rect x="8" y="8" width="1084" height="604" fill="none" stroke="rgba(185, 190, 199, 0.22)" stroke-width="1"/>
+  <text class="reg" x="12" y="21">+</text><text class="reg" x="1082" y="21">+</text>
+  <text class="reg" x="12" y="609">+</text><text class="reg" x="1082" y="609">+</text>
+  <text class="mono-cy" x="26" y="23">DD-CB01 // CUBE_SEQ REV 1.0 ARCHITECTURE</text>
+  <text class="mono-sm" x="1074" y="23" text-anchor="end">22 HP · 67 RGB LEDS · 9 POTS · 15 I/O</text>
+  <line x1="26" y1="29" x2="1074" y2="29" stroke="rgba(185, 190, 199, 0.22)" stroke-width="0.9"/>
+  <text class="title" x="34" y="62" font-size="22">2D RUBIK'S CUBE MUSICAL ENGINE · 54-LED SCALE PICKER &amp; 4× CV + 3× GATES</text>
+  <line x1="34" y1="74" x2="1066" y2="74" stroke="rgba(185,190,199,0.22)" stroke-width="1"/>
+  <rect class="card" x="34" y="96" width="290" height="478"/>
+  <text class="mono-cy" x="50" y="118">01 // UI, SCALE ENCODER &amp; INPUTS</text>
+  <text class="title" x="50" y="142" font-size="18">4× EC11 + 9× POTS + 4× BTN</text>
+  <text class="mono-sm" x="50" y="164">AXIS X/Y/Z: push layer 1·2·3, spin 90°</text>
+  <text class="mono-sm" x="50" y="180">SCALE (push): 54-LED scale select mode</text>
+  <rect class="plot" x="50" y="196" width="258" height="202"/>
+  <circle cx="78" cy="220" r="12" fill="#111619" stroke="#7ec7b8" stroke-width="1.3"/>
+  <text class="mono-cy" x="78" y="241" text-anchor="middle">AXIS X</text>
+  <circle cx="136" cy="217" r="5.5" fill="#d1b379" stroke="#d1b379"/>
+  <text class="mono-sm" x="136" y="233" text-anchor="middle">1</text>
+  <circle cx="188" cy="217" r="5.5" fill="#161d22" stroke="#8b949e"/>
+  <text class="mono-sm" x="188" y="233" text-anchor="middle">2</text>
+  <circle cx="240" cy="217" r="5.5" fill="#161d22" stroke="#8b949e"/>
+  <text class="mono-sm" x="240" y="233" text-anchor="middle">3</text>
+  <circle cx="78" cy="268" r="12" fill="#111619" stroke="#7ec7b8" stroke-width="1.3"/>
+  <text class="mono-cy" x="78" y="289" text-anchor="middle">AXIS Y</text>
+  <circle cx="136" cy="265" r="5.5" fill="#d1b379" stroke="#d1b379"/>
+  <text class="mono-sm" x="136" y="281" text-anchor="middle">1</text>
+  <circle cx="188" cy="265" r="5.5" fill="#161d22" stroke="#8b949e"/>
+  <text class="mono-sm" x="188" y="281" text-anchor="middle">2</text>
+  <circle cx="240" cy="265" r="5.5" fill="#161d22" stroke="#8b949e"/>
+  <text class="mono-sm" x="240" y="281" text-anchor="middle">3</text>
+  <circle cx="78" cy="316" r="12" fill="#111619" stroke="#7ec7b8" stroke-width="1.3"/>
+  <text class="mono-cy" x="78" y="337" text-anchor="middle">AXIS Z</text>
+  <circle cx="136" cy="313" r="5.5" fill="#d1b379" stroke="#d1b379"/>
+  <text class="mono-sm" x="136" y="329" text-anchor="middle">1</text>
+  <circle cx="188" cy="313" r="5.5" fill="#161d22" stroke="#8b949e"/>
+  <text class="mono-sm" x="188" y="329" text-anchor="middle">2</text>
+  <circle cx="240" cy="313" r="5.5" fill="#161d22" stroke="#8b949e"/>
+  <text class="mono-sm" x="240" y="329" text-anchor="middle">3</text>
+  <circle cx="78" cy="368" r="12" fill="#111619" stroke="#d1b379" stroke-width="1.3"/>
+  <text class="mono-acc" x="78" y="390" text-anchor="middle">SCALE</text>
+  <text class="mono-sm" x="106" y="365">Turn: pick 1..54 scale</text>
+  <text class="mono-sm" x="106" y="380">Push: confirm &amp; return</text>
+  <rect class="plot" x="50" y="410" width="258" height="146"/>
+  <text class="mono-acc" x="62" y="432">9× POTS, BUTTONS &amp; 8× IN:</text>
+  <text class="mono" x="62" y="452">• RATE/DIV · TRAV · STEPS · KEY · OCT</text>
+  <text class="mono" x="62" y="471">• RHYTHM: DEJA VU · PROB · RATCHET · DENS</text>
+  <text class="mono" x="62" y="490">• PLAY · SOLVE · SCRMB · LAYER (O/I/C/U)</text>
+  <text class="mono-sm" x="62" y="512">• TRNSP IN (1V/Oct) + TRAV CV</text>
+  <text class="mono-sm" x="62" y="531">• CLK · RST · CW TR · AXIS · SCRMB · SOLVE</text>
+  <line x1="324" y1="335" x2="366" y2="335" stroke="#7ec7b8" stroke-width="1.7" marker-end="url(#arr-c)"/>
+  <rect class="card-hi" x="370" y="96" width="380" height="478"/>
+  <text class="mono-acc" x="388" y="118">02 // CUBE STATE, SCALE &amp; TRAVERSAL</text>
+  <text class="title" x="388" y="142" font-size="18">54× RGB LED MATRIX (PERF / SCALE)</text>
+  <rect class="plot" x="388" y="158" width="344" height="270"/>
+  <circle cx="560.0" cy="264.0" r="35" fill="none" stroke="#8b949e" stroke-opacity="0.42" stroke-width="1.2"/>
+  <circle cx="560.0" cy="264.0" r="45" fill="none" stroke="#8b949e" stroke-opacity="0.42" stroke-width="1.2"/>
+  <circle cx="560.0" cy="264.0" r="55" fill="none" stroke="#7ec7b8" stroke-opacity="0.78" stroke-width="1.2"/>
+  <circle cx="540.9" cy="297.0" r="35" fill="none" stroke="#8b949e" stroke-opacity="0.42" stroke-width="1.2"/>
+  <circle cx="540.9" cy="297.0" r="45" fill="none" stroke="#8b949e" stroke-opacity="0.42" stroke-width="1.2"/>
+  <circle cx="540.9" cy="297.0" r="55" fill="none" stroke="#7ec7b8" stroke-opacity="0.78" stroke-width="1.2"/>
+  <circle cx="579.1" cy="297.0" r="35" fill="none" stroke="#8b949e" stroke-opacity="0.42" stroke-width="1.2"/>
+  <circle cx="579.1" cy="297.0" r="45" fill="none" stroke="#8b949e" stroke-opacity="0.42" stroke-width="1.2"/>
+  <circle cx="579.1" cy="297.0" r="55" fill="none" stroke="#7ec7b8" stroke-opacity="0.78" stroke-width="1.2"/>
+  <circle cx="560.0" cy="267.6" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="549.5" cy="263.1" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="536.4" cy="262.3" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="570.5" cy="263.1" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="560.0" cy="256.2" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="546.9" cy="252.4" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="583.6" cy="262.3" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="573.1" cy="252.4" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="560.0" cy="245.4" r="2.6" fill="#f4f4f0" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="544.1" cy="295.2" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="534.9" cy="288.4" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="527.7" cy="277.4" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="545.4" cy="306.6" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="534.2" cy="300.9" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="524.3" cy="291.4" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="551.3" cy="318.3" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="537.5" cy="314.2" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="524.8" cy="306.3" r="2.6" fill="#ef4444" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="575.9" cy="295.2" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="585.1" cy="288.4" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="592.3" cy="277.4" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="574.6" cy="306.6" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="585.8" cy="300.9" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="595.7" cy="291.4" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="568.7" cy="318.3" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="582.5" cy="314.2" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="595.2" cy="306.3" r="2.6" fill="#3b82f6" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="560.0" cy="326.4" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="549.5" cy="330.9" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="536.4" cy="331.7" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="570.5" cy="330.9" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="560.0" cy="337.8" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="546.9" cy="341.6" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="583.6" cy="331.7" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="573.1" cy="341.6" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="560.0" cy="348.6" r="2.6" fill="#facc15" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="525.0" cy="265.8" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="526.3" cy="254.4" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="532.2" cy="242.7" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="515.8" cy="272.6" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="515.2" cy="260.1" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="518.4" cy="246.8" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="508.6" cy="283.6" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="505.3" cy="269.6" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="505.8" cy="254.7" r="2.6" fill="#22c55e" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="595.0" cy="265.8" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="593.7" cy="254.4" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="587.8" cy="242.7" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="604.2" cy="272.6" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="604.8" cy="260.1" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="601.6" cy="246.8" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="611.4" cy="283.6" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="614.7" cy="269.6" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <circle cx="614.2" cy="254.7" r="2.6" fill="#f97316" stroke="#080b0d" stroke-width="0.6"/>
+  <text class="mono-sm" x="560" y="403" text-anchor="middle">Color = pitch identity · Rings 1/2/3 = Low/Mid/High register</text>
+  <text class="mono-acc" x="560" y="419" text-anchor="middle">Opposite fifths: W↔Y (C–G) · R↔O (D–A) · B↔G (E–B)</text>
+  <rect class="plot" x="388" y="440" width="344" height="116"/>
+  <text class="mono-cy" x="402" y="460">DUAL LED &amp; 9× TRAV + RHYTHM MEMORY:</text>
+  <text class="mono-sm" x="402" y="479">• Pitch: 54 colors + KEY (C–B) + OCT (−3..+3)</text>
+  <text class="mono-sm" x="402" y="497">• Scale Select: 54 LEDs = 54 preset scales</text>
+  <text class="mono-sm" x="402" y="515">• TRAV (9): Faces U/D/F/B/L/R (1–9) · PND/SNK/RND (1–54)</text>
+  <text class="mono-sm" x="402" y="533">• Rhythm: separate RHYTHM MEMORY (Deja Vu/Prob/Ratchet)</text>
+  <line x1="750" y1="335" x2="792" y2="335" stroke="#d1b379" stroke-width="1.7" marker-end="url(#arr-g)"/>
+  <rect class="card-hi" x="796" y="130" width="270" height="410"/>
+  <text class="mono-cy" x="814" y="154">03 // OUTPUTS (22 HP · 7 OUT)</text>
+  <text class="title" x="814" y="178" font-size="18">4× DAC CV + 3× TRIG</text>
+  <rect class="plot" x="814" y="196" width="234" height="156"/>
+  <text class="mono-acc" x="826" y="216">14-BIT DAC8164 → OPA4172</text>
+  <text class="mono" x="826" y="242">CV 1   → 1V/Oct melodic voice 1</text>
+  <text class="mono" x="826" y="264">CV 2   → 1V/Oct melodic voice 2</text>
+  <text class="mono" x="826" y="286">CV 3   → 1V/Oct melodic voice 3</text>
+  <text class="mono" x="826" y="308">MOD CV → Modulation CV output</text>
+  <text class="mono-sm" x="826" y="334">KEY + OCT + TRNSP CV + Scale Quant</text>
+  <rect class="plot" x="814" y="366" width="234" height="156"/>
+  <text class="mono-cy" x="826" y="388">+5 V TRIGGER &amp; RHYTHM GATES</text>
+  <text class="mono" x="826" y="416">TRG 1  → Main rhythm (Dens/Prob/Rtch)</text>
+  <text class="mono" x="826" y="442">TRG 2  → Secondary trigger output</text>
+  <text class="mono" x="826" y="468">ACC    → Synced accent trigger</text>
+  <text class="mono-acc" x="826" y="498">8 IN + 7 OUT (15× PJ398SM)</text>
+</svg>

@@ -35,7 +35,7 @@ function getProductGallery(p, divKey) {
 }
 
 function renderGalleryStage(p) {
-  const items = getProductGallery(p);
+  const items = getProductGallery(p, currentDivCtx);
   if (currentGalleryIdx >= items.length) currentGalleryIdx = 0;
   const active = items[currentGalleryIdx];
   const stageEl = document.getElementById("galleryStage");
@@ -64,11 +64,23 @@ function renderGalleryStage(p) {
   }
 }
 
-function openLightbox() {
-  const p = PRODUCTS[currentProdId];
+function openLightbox(customItem = null) {
   const lb = document.getElementById("imgLightbox");
-  if (!p || !lb) return;
-  const items = getProductGallery(p);
+  if (!lb) return;
+  if (customItem && customItem.src) {
+    lb.dataset.mode = "inline";
+    document.getElementById("lightboxImg").src = customItem.src;
+    document.getElementById("lightboxImg").alt = customItem.cap || "";
+    document.getElementById("lightboxCap").textContent = customItem.cap || "";
+    document.getElementById("lightboxPrev").hidden = true;
+    document.getElementById("lightboxNext").hidden = true;
+    lb.hidden = false;
+    return;
+  }
+  const p = PRODUCTS[currentProdId];
+  if (!p) return;
+  lb.dataset.mode = "gallery";
+  const items = getProductGallery(p, currentDivCtx);
   const active = items[currentGalleryIdx] || items[0];
   document.getElementById("lightboxImg").src = active.src;
   document.getElementById("lightboxImg").alt = active.cap[currentLang];
@@ -105,7 +117,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
 
   document.documentElement.lang = currentLang;
   document.title = `${p.name} — DECØY DEVICES`;
-  bodyEl.className = `product-page mod-${id}`;
+  bodyEl.className = `product-page theme-${activeDiv} mod-${id}`;
 
   const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
   backLink.href = `index.html#${activeDiv}/eurorack`;
@@ -200,7 +212,21 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
 
             <div class="prod-block">
               <div class="prod-block-label">// ${dict.about}</div>
-              ${p.long[currentLang].map((para) => `<p class="prod-para">${para}</p>`).join("")}
+              ${p.long[currentLang]
+                .map((para, idx) => {
+                  const media = p.longMedia?.[idx];
+                  const mediaSrc = media ? media.srcByDiv?.[activeDiv] || media.src : null;
+                  const mediaCap = media?.cap?.[currentLang] || "";
+                  const escCap = mediaCap.replace(/"/g, "&quot;");
+                  const figHtml = mediaSrc
+                    ? `<figure class="prod-inline-fig" data-inline-src="${mediaSrc}" data-inline-cap="${escCap}" role="button" tabindex="0">
+                        <img src="${mediaSrc}" alt="${escCap}" loading="lazy" />
+                        ${mediaCap ? `<figcaption class="prod-inline-cap">${mediaCap}</figcaption>` : ""}
+                      </figure>`
+                    : "";
+                  return `<p class="prod-para">${para}</p>${figHtml}`;
+                })
+                .join("")}
               ${p.credit ? `<p class="prod-credit">${p.credit[currentLang]}</p>` : ""}
             </div>
           </div>
@@ -234,12 +260,20 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
 
     ${
       p.comparison && p.comparison.length
-        ? `<section class="prod-section">
+        ? (() => {
+            const cm = p.comparisonMeta || {};
+            const cNum = cm.num ? cm.num[currentLang] : dict.diff_num;
+            const cHead = cm.heading ? cm.heading[currentLang] : dict.diff_heading;
+            const c0 = cm.col0 ? cm.col0[currentLang] : dict.diff_feature;
+            const c1 = cm.col1 ? cm.col1[currentLang] : dict.diff_orig;
+            const c2 = cm.col2 ? cm.col2[currentLang] : dict.diff_v04;
+            const c3 = cm.col3 ? cm.col3[currentLang] : dict.diff_impact;
+            return `<section class="prod-section">
             <div class="container">
               <div class="sec-head">
                 <div>
-                  <div class="sec-num">${dict.diff_num}</div>
-                  <h2>${dict.diff_heading}</h2>
+                  <div class="sec-num">${cNum}</div>
+                  <h2>${cHead}</h2>
                 </div>
               </div>
               <div class="prod-panel-box">
@@ -247,10 +281,10 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
                   <table class="spec-table diff-table">
                     <thead>
                       <tr>
-                        <th>${dict.diff_feature}</th>
-                        <th>${dict.diff_orig}</th>
-                        <th class="diff-v04-col">${dict.diff_v04}</th>
-                        <th>${dict.diff_impact}</th>
+                        <th>${c0}</th>
+                        <th>${c1}</th>
+                        <th class="diff-v04-col">${c2}</th>
+                        <th>${c3}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -270,7 +304,8 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
                 </div>
               </div>
             </div>
-          </section>`
+          </section>`;
+          })()
         : ""
     }
 
@@ -376,7 +411,21 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   renderGalleryStage(p);
 
   // Gallery events
-  document.getElementById("galleryStage")?.addEventListener("click", openLightbox);
+  document.getElementById("galleryStage")?.addEventListener("click", () => openLightbox());
+  document.querySelectorAll("[data-inline-src]").forEach((fig) => {
+    const trigger = () =>
+      openLightbox({
+        src: fig.getAttribute("data-inline-src"),
+        cap: fig.getAttribute("data-inline-cap") || "",
+      });
+    fig.addEventListener("click", trigger);
+    fig.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        trigger();
+      }
+    });
+  });
   document.getElementById("galPrevBtn")?.addEventListener("click", (e) => {
     e.stopPropagation();
     currentGalleryIdx = (currentGalleryIdx - 1 + gallery.length) % gallery.length;
@@ -450,9 +499,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        if (lb.dataset.mode === "inline") return;
         const p = PRODUCTS[currentProdId];
         if (!p) return;
-        const items = getProductGallery(p);
+        const items = getProductGallery(p, currentDivCtx);
         const step = e.key === "ArrowLeft" ? -1 : 1;
         currentGalleryIdx = (currentGalleryIdx + step + items.length) % items.length;
         renderGalleryStage(p);

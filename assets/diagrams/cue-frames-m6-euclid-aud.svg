@@ -36,7 +36,7 @@
   <text class="mono-sm" x="1052" y="42" text-anchor="end">AUD // BLACK PANEL · SYNTH &amp; CV · 22 HP</text>
   <line x1="48" y1="78" x2="1052" y2="78" stroke="rgba(185, 190, 199, 0.26)" stroke-width="1"/>
   <rect class="card" x="48" y="94" width="740" height="274"/>
-  <text class="mono-acc" x="64" y="114">TRIG IN ADVANCES 8 EUCLIDEAN RINGS  ·  CH 1–8 = HITS PER CHANNEL  ·  FRAME = ROTATION</text>
+  <text class="mono-acc" x="64" y="114">CLOCK / TRIG ADVANCES 8 EUCLIDEAN RINGS  ·  RESET = STEP 1  ·  FRAME = ROTATION</text>
   <rect class="plot" x="64" y="124" width="708" height="230"/>
   <circle cx="158" cy="195" r="50" fill="none" stroke="rgba(185, 190, 199, 0.26)"/>
   <circle cx="177.1" cy="148.8" r="2" fill="#8b949e"/>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 210" width="760" height="210">
+  <defs>
+    <style>
+      .bg { fill: #0b0f12; }
+      .card { fill: #11161a; stroke: rgba(185, 190, 199, 0.22); stroke-width: 1; }
+      .card-hi { fill: #11161a; stroke: rgba(209, 179, 121, 0.50); stroke-width: 1.1; }
+      .plot { fill: #080b0d; stroke: rgba(185, 190, 199, 0.22); stroke-width: 0.9; }
+      .hd { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #eaeae4; letter-spacing: 0.08em; font-size: 13px; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #b9bec7; font-size: 8.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #8b949e; font-size: 7.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #d1b379; font-size: 8.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #7ec7b8; font-size: 8.5px; }
+      .axis { stroke: rgba(185, 190, 199, 0.24); stroke-width: 0.9; }
+      .w-acc { fill: none; stroke: #d1b379; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .w-cy { fill: none; stroke: #7ec7b8; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+      .w-dim { fill: none; stroke: rgba(234, 234, 228, 0.32); stroke-width: 1.0; stroke-dasharray: 2.5 2; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="210"/>
+  <rect x="6" y="6" width="748" height="198" fill="none" stroke="rgba(185, 190, 199, 0.22)" stroke-width="1"/>
+  <text class="mono-acc" x="16" y="21">MODE 7 // FUNCTION GENERATOR</text>
+  <text class="mono-sm" x="744" y="21" text-anchor="end">8× ENVELOPE &amp; CV ENGINE · ZERO-JUMP MORPH</text>
+  <line x1="16" y1="27" x2="744" y2="27" stroke="rgba(185, 190, 199, 0.24)" stroke-width="1"/>
+  <text class="mono-acc" x="16" y="42">6 CHANNEL MODES (INDEPENDENT PER CH 1–8 · 1 ms–30 s)</text>
+  <rect class="card" x="16" y="48" width="114" height="72"/>
+  <rect class="plot" x="22" y="54" width="102" height="44"/>
+  <polyline class="w-acc" points="26.0,92.0 28.4,84.5 30.7,80.6 33.0,77.5 35.4,74.7 37.8,72.3 40.1,70.0 42.5,67.9 44.8,65.8 47.2,63.9 49.5,62.1 51.9,60.3 54.2,61.9 56.5,64.2 58.9,66.4 61.2,68.6 63.6,70.6 65.9,72.5 68.3,74.3 70.7,76.0 73.0,77.7 75.3,79.2 77.7,80.6 80.0,82.0 82.4,83.2 84.8,84.4 87.1,85.5 89.5,86.4 91.8,87.3 94.1,88.1 96.5,88.9 98.9,89.5 101.2,90.1 103.5,90.6 105.9,91.0 108.2,91.3 110.6,91.6 113.0,91.8 115.3,91.9 117.6,92.0 120.0,92.0"/>
+  <text class="mono-sm" x="73" y="112" text-anchor="middle">AD</text>
+  <rect class="card" x="138" y="48" width="114" height="72"/>
+  <rect class="plot" x="144" y="54" width="102" height="44"/>
+  <polyline class="w-cy" points="148.0,92.0 150.3,88.8 152.7,85.6 155.1,82.4 157.4,79.2 159.8,76.0 162.1,72.8 164.4,69.6 166.8,66.4 169.2,63.2 171.5,60.0 173.8,60.0 176.2,60.0 178.6,60.0 180.9,60.0 183.2,60.0 185.6,60.0 187.9,60.0 190.3,60.0 192.7,60.0 195.0,60.0 197.3,60.0 199.7,60.0 202.1,60.0 204.4,60.0 206.8,60.4 209.1,62.5 211.4,64.6 213.8,66.7 216.1,68.8 218.5,70.9 220.9,73.1 223.2,75.2 225.6,77.3 227.9,79.4 230.2,81.5 232.6,83.6 234.9,85.7 237.3,87.8 239.6,89.9 242.0,92.0"/>
+  <text class="mono-sm" x="195" y="112" text-anchor="middle">AR</text>
+  <rect class="card" x="260" y="48" width="114" height="72"/>
+  <rect class="plot" x="266" y="54" width="102" height="44"/>
+  <polyline class="w-acc" points="270.0,92.0 272.4,85.0 274.7,80.7 277.1,76.9 279.4,73.6 281.8,70.5 284.1,67.5 286.4,64.7 288.8,62.1 291.1,60.0 293.5,60.0 295.9,60.0 298.2,60.0 300.6,60.0 302.9,60.0 305.2,60.0 307.6,60.0 309.9,60.0 312.3,60.0 314.6,60.0 317.0,60.0 319.4,60.0 321.7,60.0 324.1,60.0 326.4,60.0 328.8,60.0 331.1,60.0 333.4,60.0 335.8,63.5 338.1,67.6 340.5,71.5 342.9,75.0 345.2,78.3 347.6,81.2 349.9,83.8 352.2,86.1 354.6,88.1 356.9,89.7 359.3,90.9 361.6,91.7 364.0,92.0"/>
+  <text class="mono-sm" x="317" y="112" text-anchor="middle">ASR</text>
+  <rect class="card" x="382" y="48" width="114" height="72"/>
+  <rect class="plot" x="388" y="54" width="102" height="44"/>
+  <polyline class="w-cy" points="392.0,92.0 394.4,88.0 396.7,84.0 399.1,80.0 401.4,76.0 403.8,72.0 406.1,68.0 408.4,64.0 410.8,60.0 413.1,64.0 415.5,68.0 417.9,72.0 420.2,76.0 422.6,80.0 424.9,84.0 427.2,88.0 429.6,92.0 431.9,88.0 434.3,84.0 436.6,80.0 439.0,76.0 441.4,72.0 443.7,68.0 446.1,64.0 448.4,60.0 450.8,64.0 453.1,68.0 455.4,72.0 457.8,76.0 460.1,80.0 462.5,84.0 464.9,88.0 467.2,92.0 469.6,88.0 471.9,84.0 474.2,80.0 476.6,76.0 478.9,72.0 481.3,68.0 483.6,64.0 486.0,60.0"/>
+  <text class="mono-sm" x="439" y="112" text-anchor="middle">LOOP</text>
+  <rect class="card" x="504" y="48" width="114" height="72"/>
+  <rect class="plot" x="510" y="54" width="102" height="44"/>
+  <polyline class="w-acc" points="514.0,92.0 516.4,87.0 518.7,83.8 521.0,81.1 523.4,78.7 525.8,76.4 528.1,74.3 530.5,72.3 532.8,70.4 535.1,68.5 537.5,66.7 539.9,65.0 542.2,63.3 544.5,61.6 546.9,60.0 549.2,61.5 551.6,62.9 554.0,64.4 556.3,65.9 558.6,67.3 561.0,68.8 563.4,70.3 565.7,71.7 568.0,73.2 570.4,74.7 572.8,76.1 575.1,77.6 577.5,77.6 579.8,77.6 582.1,77.6 584.5,77.6 586.9,77.6 589.2,77.6 591.5,77.6 593.9,77.6 596.2,77.6 598.6,77.6 601.0,77.6 603.3,77.6 605.6,77.6 608.0,77.6"/>
+  <text class="mono-sm" x="561" y="112" text-anchor="middle">ONE-SHOT</text>
+  <rect class="card" x="626" y="48" width="114" height="72"/>
+  <rect class="plot" x="632" y="54" width="102" height="44"/>
+  <polyline class="w-cy" points="636.0,92.0 638.4,92.0 640.7,92.0 643.0,92.0 645.4,92.0 647.8,90.9 650.1,85.1 652.5,79.4 654.8,73.7 657.1,68.0 659.5,62.3 661.9,60.0 664.2,60.0 666.5,60.0 668.9,60.0 671.2,60.0 673.6,60.0 676.0,60.0 678.3,60.0 680.6,60.0 683.0,60.0 685.4,60.0 687.7,60.0 690.0,60.0 692.4,60.0 694.8,60.0 697.1,60.0 699.5,64.0 701.8,68.0 704.1,72.0 706.5,76.0 708.9,80.0 711.2,84.0 713.5,88.0 715.9,92.0 718.2,92.0 720.6,92.0 723.0,92.0 725.3,92.0 727.6,92.0 730.0,92.0"/>
+  <text class="mono-sm" x="683" y="112" text-anchor="middle">GATE</text>
+  <rect class="card-hi" x="16" y="128" width="460" height="68"/>
+  <text class="mono-cy" x="28" y="144">CONTINUOUS CURVE MORPH (ZERO JUMPS): LOG · EXP · LIN · S-CURVE · CUSTOM</text>
+  <rect class="plot" x="28" y="150" width="82" height="38"/>
+  <polyline class="w-cy" points="34.0,180.0 37.5,175.2 41.0,172.1 44.5,169.8 48.0,168.0 51.5,166.5 55.0,165.2 58.5,164.1 62.0,163.2 65.5,162.3 69.0,161.5 72.5,160.7 76.0,160.1 79.5,159.4 83.0,158.9 86.5,158.3 90.0,157.8 93.5,157.3 97.0,156.9 100.5,156.4 104.0,156.0"/>
+  <text class="mono-xs" x="69" y="185" text-anchor="middle">LOG</text>
+  <rect class="plot" x="116" y="150" width="82" height="38"/>
+  <polyline class="w-acc" points="122.0,180.0 125.5,179.9 129.0,179.8 132.5,179.6 136.0,179.5 139.5,179.2 143.0,179.0 146.5,178.6 150.0,178.2 153.5,177.7 157.0,177.1 160.5,176.4 164.0,175.5 167.5,174.4 171.0,173.1 174.5,171.5 178.0,169.5 181.5,167.0 185.0,164.1 188.5,160.4 192.0,156.0"/>
+  <text class="mono-xs" x="157" y="185" text-anchor="middle">EXP</text>
+  <rect class="plot" x="204" y="150" width="82" height="38"/>
+  <polyline class="w-cy" points="210.0,180.0 213.5,178.8 217.0,177.6 220.5,176.4 224.0,175.2 227.5,174.0 231.0,172.8 234.5,171.6 238.0,170.4 241.5,169.2 245.0,168.0 248.5,166.8 252.0,165.6 255.5,164.4 259.0,163.2 262.5,162.0 266.0,160.8 269.5,159.6 273.0,158.4 276.5,157.2 280.0,156.0"/>
+  <text class="mono-xs" x="245" y="185" text-anchor="middle">LIN</text>
+  <rect class="plot" x="292" y="150" width="82" height="38"/>
+  <polyline class="w-acc" points="298.0,180.0 301.5,179.8 305.0,179.3 308.5,178.5 312.0,177.5 315.5,176.2 319.0,174.8 322.5,173.2 326.0,171.6 329.5,169.8 333.0,168.0 336.5,166.2 340.0,164.4 343.5,162.8 347.0,161.2 350.5,159.8 354.0,158.5 357.5,157.5 361.0,156.7 364.5,156.2 368.0,156.0"/>
+  <text class="mono-xs" x="333" y="185" text-anchor="middle">S-CRV</text>
+  <rect class="plot" x="380" y="150" width="82" height="38"/>
+  <polyline class="w-cy" points="386.0,180.0 389.5,176.1 393.0,172.7 396.5,170.5 400.0,169.5 403.5,169.8 407.0,170.9 410.5,172.5 414.0,173.9 417.5,174.5 421.0,174.0 424.5,172.1 428.0,169.1 431.5,165.3 435.0,161.3 438.5,157.8 442.0,156.0 445.5,156.0 449.0,156.0 452.5,156.0 456.0,156.0"/>
+  <text class="mono-xs" x="421" y="185" text-anchor="middle">CUST</text>
+  <rect class="card" x="488" y="128" width="256" height="68"/>
+  <text class="mono-acc" x="500" y="146">CHAINING &amp; DAG GUARD</text>
+  <text class="mono-sm" x="500" y="164">EOR / EOF → Next CH · Delay 0–5 s</text>
+  <text class="mono-sm" x="500" y="180">Cross-Mod + Cycle-Free Check</text>
+</svg>

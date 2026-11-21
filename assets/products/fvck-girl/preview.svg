@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1125.0 2330.5" width="1125.0" height="2330.5">
+  <defs>
+    <linearGradient id="pcbPurple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#190d2e"/>
+      <stop offset="100%" stop-color="#0f071d"/>
+    </linearGradient>
+    <linearGradient id="faderSlotGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e879f9" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.4"/>
+    </linearGradient>
+    <g id="m3">
+      <circle cx="0" cy="0" r="32" fill="#08040f" stroke="#d1b379" stroke-width="4.5"/>
+      <circle cx="0" cy="0" r="16" fill="#030206"/>
+    </g>
+    <g id="m25">
+      <circle cx="0" cy="0" r="24" fill="#08040f" stroke="#d1b379" stroke-width="3.5"/>
+      <circle cx="0" cy="0" r="13" fill="#030206"/>
+    </g>
+    <g id="potAlpha">
+      <rect x="-50" y="-42" width="100" height="84" rx="4" fill="none" stroke="#b9bec7" stroke-width="1.6" stroke-opacity="0.45"/>
+      <circle cx="0" cy="0" r="46" fill="#090512" stroke="#eaeae4" stroke-width="2.6"/>
+      <circle cx="0" cy="0" r="32" fill="#140b24" stroke="#b9bec7" stroke-width="1.8"/>
+      <path d="M -38 38 A 54 54 0 1 1 38 38" fill="none" stroke="#eaeae4" stroke-width="2.2" opacity="0.85"/>
+      <line x1="0" y1="-32" x2="0" y2="-13" stroke="#e879f9" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="-38" y1="38" x2="-46" y2="46" stroke="#eaeae4" stroke-width="2.4"/>
+      <line x1="38" y1="38" x2="46" y2="46" stroke="#eaeae4" stroke-width="2.4"/>
+      <line x1="0" y1="-54" x2="0" y2="-63" stroke="#eaeae4" stroke-width="2.4"/>
+    </g>
+    <g id="ptl45">
+      <!-- Real Bourns PTL45 60mm x 9mm footprint body oriented vertical -->
+      <rect x="-45" y="-300" width="90" height="600" rx="4" fill="#090512" stroke="#eaeae4" stroke-width="2.4"/>
+      <!-- Scale ticks matching 45mm travel (+/- 225 px) -->
+      <line x1="-32" y1="-225" x2="-18" y2="-225" stroke="#b9bec7" stroke-width="2"/>
+      <line x1="-32" y1="-112" x2="-18" y2="-112" stroke="#b9bec7" stroke-width="1.6"/>
+      <line x1="-34" y1="0" x2="-14" y2="0" stroke="#e879f9" stroke-width="2.8"/>
+      <line x1="-32" y1="112" x2="-18" y2="112" stroke="#b9bec7" stroke-width="1.6"/>
+      <line x1="-32" y1="225" x2="-18" y2="225" stroke="#b9bec7" stroke-width="2"/>
+      <line x1="32" y1="-225" x2="18" y2="-225" stroke="#b9bec7" stroke-width="2"/>
+      <line x1="32" y1="-112" x2="18" y2="-112" stroke="#b9bec7" stroke-width="1.6"/>
+      <line x1="34" y1="0" x2="14" y2="0" stroke="#e879f9" stroke-width="2.8"/>
+      <line x1="32" y1="112" x2="18" y2="112" stroke="#b9bec7" stroke-width="1.6"/>
+      <line x1="32" y1="225" x2="18" y2="225" stroke="#b9bec7" stroke-width="2"/>
+      <!-- Illuminated slot -->
+      <rect x="-9" y="-232" width="18" height="464" rx="8" fill="#030207" stroke="#581c87" stroke-width="2"/>
+      <rect x="-4" y="-225" width="8" height="450" rx="4" fill="url(#faderSlotGlow)" opacity="0.4"/>
+      <!-- Fader knob -->
+      <rect x="-32" y="-26" width="64" height="52" rx="4" fill="#1c1033" stroke="#eaeae4" stroke-width="2.6"/>
+      <rect x="-24" y="-5" width="48" height="10" rx="2" fill="#e879f9"/>
+    </g>
+    <g id="cherryMX">
+      <!-- Real 14mm x 14mm Cherry MX footprint -->
+      <rect x="-70" y="-70" width="140" height="140" rx="6" fill="#090512" stroke="#eaeae4" stroke-width="2.4"/>
+      <rect x="-54" y="-54" width="108" height="108" rx="5" fill="#170c2b" stroke="#b9bec7" stroke-width="1.8"/>
+      <circle cx="0" cy="0" r="20" fill="#0c0618" stroke="#6b21a8" stroke-width="2"/>
+      <line x1="-13" y1="0" x2="13" y2="0" stroke="#e879f9" stroke-width="4.5"/>
+      <line x1="0" y1="-13" x2="0" y2="13" stroke="#e879f9" stroke-width="4.5"/>
+    </g>
+  </defs>
+  <rect x="0" y="0" width="1125.0" height="2330.5" fill="url(#pcbPurple)"/>
+  <rect x="4" y="4" width="1117.0" height="2322.5" fill="none" stroke="#6b21a8" stroke-width="2.5"/>
+  <use href="#m3" x="50.0" y="408.0"/>
+  <text x="50.0" y="368.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18">H1</text>
+  <use href="#m3" x="1075.0" y="608.0"/>
+  <text x="1075.0" y="568.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18">H2</text>
+  <use href="#m3" x="50.0" y="2280.5"/>
+  <text x="50.0" y="2240.5" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18">H3</text>
+  <use href="#m3" x="1075.0" y="2280.5"/>
+  <text x="1075.0" y="2240.5" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18">H4</text>
+  <use href="#m3" x="555.0" y="1340.0"/>
+  <text x="555.0" y="1300.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18">H9</text>
+  <use href="#m3" x="580.4" y="1959.2"/>
+  <text x="580.4" y="1919.2" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18">H10</text>
+  <use href="#m25" x="35.0" y="35.0"/>
+  <use href="#m25" x="615.0" y="35.0"/>
+  <use href="#m25" x="35.0" y="265.0"/>
+  <use href="#m25" x="615.0" y="265.0"/>
+  <rect x="8.0" y="6.0" width="634" height="294" rx="6" fill="#0d0618" fill-opacity="0.72" stroke="#e879f9" stroke-width="2.2" stroke-dasharray="10 7"/>
+  <text x="325.0" y="25.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18">mini-HDMI / PWR IN</text>
+  <text x="325.0" y="120.0" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="25" font-weight="600" letter-spacing="1.5">AREA A: J_RPI (RPi Zero 2 W)</text>
+  <rect x="71.29999999999995" y="227.6" width="508" height="50" rx="3" fill="#07040d" stroke="#eaeae4" stroke-width="2"/>
+  <circle cx="566.3" cy="239.6" r="7.5" fill="none" stroke="#e879f9" stroke-width="2.8"/>
+  <circle cx="566.3" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="540.9" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="540.9" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="515.5" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="515.5" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="490.1" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="490.1" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="464.7" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="464.7" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="439.3" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="439.3" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="413.9" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="413.9" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="388.5" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="388.5" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="363.1" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="363.1" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="337.7" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="337.7" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="312.3" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="312.3" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="286.9" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="286.9" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="261.5" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="261.5" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="236.1" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="236.1" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="210.7" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="210.7" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="185.3" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="185.3" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="159.9" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="159.9" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="134.5" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="134.5" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="109.1" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="109.1" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="83.7" cy="239.6" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <circle cx="83.7" cy="265.0" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.8"/>
+  <rect x="731.5" y="0" width="90" height="72" rx="4" fill="#181224" stroke="#eaeae4" stroke-width="2.5"/>
+  <text x="776.5" y="94" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">5V USB-C IN</text>
+  <rect x="197.5" y="394.0" width="104" height="104" rx="4" fill="#090512" stroke="#b9bec7" stroke-width="2" stroke-opacity="0.7"/>
+  <text x="249.5" y="452.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">STM32C092</text>
+  <rect x="388.5" y="367.0" width="48" height="52" rx="2" fill="#090512" stroke="#b9bec7" stroke-width="1.6" stroke-opacity="0.65"/>
+  <text x="412.5" y="435.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="13">UART ISO</text>
+  <rect x="228.35" y="318.0" width="32" height="32" rx="3" fill="#090512" stroke="#eaeae4" stroke-width="2"/>
+  <circle cx="244.35" cy="334.0" r="8" fill="#e879f9"/>
+  <text x="244.35" y="368.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="13">D1 RGB</text>
+  <rect x="859.0" y="2.0" width="230" height="536" rx="5" fill="#0d0618" fill-opacity="0.78" stroke="#22d3ee" stroke-width="2.2" stroke-dasharray="10 7"/>
+  <circle cx="885.1" cy="28.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="28.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="54.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="54.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="79.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="79.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="104.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="104.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="130.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="130.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="155.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="155.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="181.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="181.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="206.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="206.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="231.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="231.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="257.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="257.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="282.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="282.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="308.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="308.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="333.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="333.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="358.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="358.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="384.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="384.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="409.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="409.7" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="435.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="435.1" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="460.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="460.5" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="485.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="485.9" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="885.1" cy="511.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <circle cx="1062.9" cy="511.3" r="7.5" fill="none" stroke="#d1b379" stroke-width="2.6"/>
+  <text x="974.0" y="35.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">HDMI OUT</text>
+  <text x="974.0" y="276.0" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="19" font-weight="600" letter-spacing="1">AREA B: J_FPGA</text>
+  <text x="974.0" y="515.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">USB-C</text>
+  <rect x="722.5" y="454.5" width="32" height="56" rx="3" fill="#090512" stroke="#d1b379" stroke-width="2"/>
+  <text x="738.5" y="444.5" text-anchor="middle" fill="#d1b379" font-family="JetBrains Mono, monospace" font-size="14">SJ_FPGA_5V</text>
+  <rect x="473.0" y="428.5" width="130" height="124" rx="6" fill="#090512" stroke="#e879f9" stroke-width="2.4"/>
+  <circle cx="538.0" cy="490.5" r="42" fill="#180d2c" stroke="#eaeae4" stroke-width="2.6"/>
+  <circle cx="538.0" cy="490.5" r="18" fill="#090512" stroke="#e879f9" stroke-width="2"/>
+  <text x="557.5" y="375.0" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20">mode / param</text>
+  <text x="462.0" y="496.5" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">ENC1</text>
+  <line x1="20" y1="533.0" x2="1105.0" y2="533.0" stroke="#eaeae4" stroke-width="2" opacity="0.45"/>
+  <text x="520.0" y="570.0" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="22" font-weight="700" letter-spacing="1.5">VIDEO SYNTH // UNIVERSAL RPi &amp; TANG NANO 20K</text>
+  <line x1="20" y1="586.0" x2="1105.0" y2="586.0" stroke="#eaeae4" stroke-width="2" opacity="0.45"/>
+  <use href="#potAlpha" x="142.0" y="715.75"/>
+  <text x="142.0" y="643.75" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">oscilátor X frekvence</text>
+  <text x="82.0" y="721.75" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV3</text>
+  <use href="#potAlpha" x="402.5" y="714.5"/>
+  <text x="402.5" y="642.5" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">oscilátor Y frekvence</text>
+  <text x="342.5" y="720.5" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV4</text>
+  <use href="#potAlpha" x="660.5" y="716.25"/>
+  <text x="660.5" y="644.25" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">LFO rychlost</text>
+  <text x="600.5" y="722.25" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV1</text>
+  <use href="#potAlpha" x="921.0" y="713.25"/>
+  <text x="921.0" y="641.25" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">LFO hloubka</text>
+  <text x="861.0" y="719.25" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV2</text>
+  <use href="#potAlpha" x="142.0" y="955.75"/>
+  <text x="142.0" y="883.75" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">feedback intensity</text>
+  <text x="82.0" y="961.75" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV6</text>
+  <use href="#potAlpha" x="402.5" y="954.5"/>
+  <text x="402.5" y="882.5" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">blur amount</text>
+  <text x="342.5" y="960.5" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV5</text>
+  <use href="#potAlpha" x="660.5" y="956.25"/>
+  <text x="660.5" y="884.25" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">effect mix</text>
+  <text x="600.5" y="962.25" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV7</text>
+  <use href="#potAlpha" x="921.0" y="953.25"/>
+  <text x="921.0" y="881.25" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="18" font-weight="600" letter-spacing="0.5">brightness / contrast</text>
+  <text x="861.0" y="959.25" text-anchor="end" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="15">RV8</text>
+  <use href="#ptl45" x="165.0" y="1340.0"/>
+  <text x="91.0" y="1340.0" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="25" font-weight="600" letter-spacing="1.2" transform="rotate(-90 91.0 1340.0)">mix vrstva 1</text>
+  <text x="223.0" y="1340.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16" transform="rotate(-90 223.0 1340.0)">RV9</text>
+  <use href="#ptl45" x="425.0" y="1340.0"/>
+  <text x="351.0" y="1340.0" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="25" font-weight="600" letter-spacing="1.2" transform="rotate(-90 351.0 1340.0)">mix vrstva 2</text>
+  <text x="483.0" y="1340.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16" transform="rotate(-90 483.0 1340.0)">RV10</text>
+  <use href="#ptl45" x="685.0" y="1340.0"/>
+  <text x="611.0" y="1340.0" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="25" font-weight="600" letter-spacing="1.2" transform="rotate(-90 611.0 1340.0)">color hue</text>
+  <text x="743.0" y="1340.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16" transform="rotate(-90 743.0 1340.0)">RV11</text>
+  <use href="#ptl45" x="945.0" y="1340.0"/>
+  <text x="871.0" y="1340.0" text-anchor="middle" fill="#eaeae4" font-family="Barlow Condensed, sans-serif" font-size="25" font-weight="600" letter-spacing="1.2" transform="rotate(-90 871.0 1340.0)">color saturation</text>
+  <text x="1003.0" y="1340.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16" transform="rotate(-90 1003.0 1340.0)">RV12</text>
+  <use href="#cherryMX" x="190.4" y="1834.2"/>
+  <text x="190.4" y="1746.2" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">shader switch</text>
+  <text x="190.4" y="1720.2" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW1</text>
+  <use href="#cherryMX" x="450.4" y="1834.2"/>
+  <text x="450.4" y="1746.2" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">randomize</text>
+  <text x="450.4" y="1720.2" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW2</text>
+  <use href="#cherryMX" x="710.4" y="1834.2"/>
+  <text x="710.4" y="1746.2" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">invert</text>
+  <text x="710.4" y="1720.2" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW3</text>
+  <use href="#cherryMX" x="970.4" y="1834.2"/>
+  <text x="970.4" y="1746.2" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">freeze frame</text>
+  <text x="970.4" y="1720.2" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW4</text>
+  <use href="#cherryMX" x="190.4" y="2084.2"/>
+  <text x="190.4" y="1996.1999999999998" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">fx hold</text>
+  <text x="190.4" y="1970.1999999999998" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW5</text>
+  <use href="#cherryMX" x="450.4" y="2084.2"/>
+  <text x="450.4" y="1996.1999999999998" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">lfo sync</text>
+  <text x="450.4" y="1970.1999999999998" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW6</text>
+  <use href="#cherryMX" x="710.4" y="2084.2"/>
+  <text x="710.4" y="1996.1999999999998" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">mirror</text>
+  <text x="710.4" y="1970.1999999999998" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW7</text>
+  <use href="#cherryMX" x="970.4" y="2084.2"/>
+  <text x="970.4" y="1996.1999999999998" text-anchor="middle" fill="#eaeae4" font-family="JetBrains Mono, monospace" font-size="20" font-weight="600">hud / bypass</text>
+  <text x="970.4" y="1970.1999999999998" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="16">SW8</text>
+  <text x="560.0" y="2274.0" text-anchor="middle" fill="#e879f9" font-family="Barlow Condensed, sans-serif" font-size="38" font-weight="700" letter-spacing="4">FVCK_GIRL</text>
+  <text x="560.0" y="2306.0" text-anchor="middle" fill="#b9bec7" font-family="JetBrains Mono, monospace" font-size="18" letter-spacing="2">DECØY DEVICES · 112.5 × 233.05 MM</text>
+</svg>

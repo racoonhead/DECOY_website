@@ -10,7 +10,7 @@ const DIVISIONS = {
       cs: "Nástroje pro signálovou cestu do moduláru i ven, kytarové a experimentální pedály, zvukové poznámky a živá vystoupení.",
       en: "Instruments for getting sound in and out of the rack, experimental stompboxes, audio notes, and live performances.",
     },
-    eurorack: ["the-in", "the-out", "elements-v04", "cue-frames"],
+    eurorack: ["the-in", "the-out", "elements-v04", "cue-frames", "cube-seq", "monobox", "fvck-boy"],
     pedals: [
       {
         name: "DECØY // FUZZ-01",
@@ -46,7 +46,7 @@ const DIVISIONS = {
       cs: "Řízení divadelních a koncertních světel přímo z modulárního syntezátoru. CV-to-DMX převodníky, světelné loopery a scénické ovladače.",
       en: "Controlling theatrical and concert lighting directly from a modular synthesizer. CV-to-DMX bridges, light loopers, and scene controllers.",
     },
-    eurorack: ["dmx-out", "lux-core", "cue-frames"],
+    eurorack: ["dmx-out", "patchbay-8ch", "patchbay-16ch", "lux-core", "cue-frames", "fvck-boy"],
     pedals: [
       {
         name: "LUX // FOOT-DMX",
@@ -82,27 +82,7 @@ const DIVISIONS = {
       cs: "Analogová a digitální video syntéza, CRT experimenty, synchronizace obrazu se zvukem a světlem v kyber-fialové estetice.",
       en: "Analog and digital video synthesis, CRT experiments, and syncing visuals with sound and stage light in cyber-purple.",
     },
-    eurorack: [],
-    eurorackSoon: [
-      {
-        name: "RASTER // VID.RGB.1V",
-        hp: "16 HP",
-        tag: { cs: "VIDEO SYNTEZÁTOR", en: "VIDEO SYNTHESIZER" },
-        desc: {
-          cs: "Širokopásmový video generátor a procesor ve standardu 0–1 V (75 Ω) pro živou modulaci obrazu z audio a CV signálů. Vizuální identita v kyber-fialové masce se SMPTE šachovnicí.",
-          en: "Wideband 0–1 V (75 Ω) video generator and processor for live image modulation from audio and CV signals in cyber-purple solder mask.",
-        },
-      },
-      {
-        name: "VID // SYNC-MATRIX",
-        hp: "10 HP",
-        tag: { cs: "GENLOCK & KEYER", en: "GENLOCK & KEYER" },
-        desc: {
-          cs: "Modul pro synchronizaci analogového videa (H/V sync), tvrdé klíčování obrazu (luma key) a přímé propojení s rytmikou v Euroracku.",
-          en: "Analog video sync (H/V sync), hard luma keyer, and direct rhythmic triggering from Eurorack.",
-        },
-      },
-    ],
+    eurorack: ["fvck-boy", "fvck-girl", "raster-vid", "sync-matrix"],
     pedals: [
       {
         name: "VID // GLITCH-BOX",
@@ -220,12 +200,12 @@ const DEFAULT_POSTS = {
       id: "lux-1",
       date: "2026-11-12",
       title: {
-        cs: "Propojení CUE_FRAMES a DMX_out jedním kabelem",
-        en: "Linking CUE_FRAMES and DMX_out with a single cable",
+        cs: "Propojení Patchbay a DMX_out jedním kabelem",
+        en: "Linking Patchbay and DMX_out with a single cable",
       },
       body: {
-        cs: "Světla na rampě reagují na LFO z moduláru okamžitě. Žádné zamotané svazky kabelů, jen jeden stíněný RJ45 do hlavního DMX_out.",
-        en: "Truss fixtures react to modular LFOs immediately. No tangled cable looms—just one shielded RJ45 into the main DMX_out.",
+        cs: "Světla na rampě reagují na LFO a CUE_FRAMES z moduláru okamžitě. Žádné zamotané svazky kabelů, jen jeden stíněný RJ45 z Patchbay do hlavního DMX_out.",
+        en: "Truss fixtures react to LFOs and CUE_FRAMES from the modular immediately. No tangled cable looms—just one shielded RJ45 from Patchbay into the main DMX_out.",
       },
     },
   ],
@@ -632,7 +612,7 @@ function openProductModal(id) {
   triggerOverlayFx("fx-mod");
 
   const modal = document.getElementById("itemModal");
-  modal.className = `modal mod-${id}`;
+  modal.className = `modal theme-${currentDivision || p.division} mod-${id}`;
   const keySpecs = p.specs.filter((s) => s.key);
   const imgSrc = (p.imageByDiv && p.imageByDiv[currentDivision]) || p.image;
   const divParam = currentDivision ? `&div=${currentDivision}` : "";

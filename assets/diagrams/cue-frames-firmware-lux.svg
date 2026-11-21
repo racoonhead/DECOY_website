@@ -32,42 +32,42 @@
   <text class="reg" x="24" y="34">+</text><text class="reg" x="1068" y="34">+</text>
   <text class="reg" x="24" y="676">+</text><text class="reg" x="1068" y="676">+</text>
   <text class="mono-acc" x="48" y="42">DD-CF01 // CUE_FRAMES ARCHITECTURE</text>
-  <text class="title" x="48" y="66">SHARED 8-MODE FIRMWARE &amp; 22 HP SIGNAL FLOW</text>
+  <text class="title" x="48" y="66">SHARED 8-MODE STM32F765 FIRMWARE &amp; 22 HP SIGNAL FLOW</text>
   <text class="mono-sm" x="1052" y="42" text-anchor="end">LUX // WHITE PANEL · DMX &amp; STAGE CV · 22 HP</text>
   <line x1="48" y1="78" x2="1052" y2="78" stroke="rgba(17, 18, 21, 0.26)" stroke-width="1"/>
   <rect class="card-hi" x="48" y="94" width="1004" height="116"/>
-  <text class="mono-acc" x="66" y="116">HARDWARE INTERFACE (22 HP FRONT PANEL)</text>
+  <text class="mono-acc" x="66" y="116">HARDWARE INTERFACE (22 HP · 16 JACKS + USB-C SERVICE)</text>
   <rect class="plot" x="66" y="128" width="176" height="66"/>
   <text class="kname" x="154" y="155" text-anchor="middle">MOD + FRAME</text>
-  <text class="mono-sm" x="154" y="176" text-anchor="middle">Select Mode 1–8 (LED 1–8)</text>
+  <text class="mono-sm" x="154" y="176" text-anchor="middle">Select Mode 1–8 (Icons/LEDs)</text>
   <line x1="154" y1="210" x2="154" y2="246" stroke="#b87414" stroke-width="1.4" marker-end="url(#arr-a)"/>
   <rect class="plot" x="264" y="128" width="176" height="66"/>
   <text class="kname" x="352" y="155" text-anchor="middle">OPT + CH 1–8</text>
-  <text class="mono-sm" x="352" y="176" text-anchor="middle">1:SHAPE .. 8:RANGE</text>
+  <text class="mono-sm" x="352" y="176" text-anchor="middle">Pickup + 1:SHAPE..8:RANGE</text>
   <line x1="352" y1="210" x2="352" y2="246" stroke="#b87414" stroke-width="1.4" marker-end="url(#arr-a)"/>
   <rect class="plot" x="462" y="128" width="176" height="66"/>
-  <text class="kname" x="550" y="155" text-anchor="middle">FRAME + CV IN</text>
-  <text class="mono-sm" x="550" y="176" text-anchor="middle">Morph / Déjà Vu / Timbre</text>
+  <text class="kname" x="550" y="155" text-anchor="middle">FRAME + V/OCT</text>
+  <text class="mono-sm" x="550" y="176" text-anchor="middle">Morph / 1V/Oct + Slew/Cal</text>
   <line x1="550" y1="210" x2="550" y2="246" stroke="#b87414" stroke-width="1.4" marker-end="url(#arr-a)"/>
   <rect class="plot" x="660" y="128" width="176" height="66"/>
-  <text class="kname" x="748" y="155" text-anchor="middle">V/OCT &amp; TRIG IN</text>
-  <text class="mono-sm" x="748" y="176" text-anchor="middle">1 V/Oct Pitch / LPG / Clock</text>
+  <text class="kname" x="748" y="155" text-anchor="middle">CLK / RST / TRIG</text>
+  <text class="mono-sm" x="748" y="176" text-anchor="middle">HW Capture + Schmitt Sync</text>
   <line x1="748" y1="210" x2="748" y2="246" stroke="#b87414" stroke-width="1.4" marker-end="url(#arr-a)"/>
   <rect class="plot" x="858" y="128" width="176" height="66"/>
-  <text class="kname" x="946" y="155" text-anchor="middle">ADD / DEL + CUE</text>
-  <text class="mono-sm" x="946" y="176" text-anchor="middle">Store / Delete / Cue LED</text>
+  <text class="kname" x="946" y="155" text-anchor="middle">ADD / DEL + USB-C</text>
+  <text class="mono-sm" x="946" y="176" text-anchor="middle">32 Presets + Calibration</text>
   <line x1="946" y1="210" x2="946" y2="246" stroke="#b87414" stroke-width="1.4" marker-end="url(#arr-a)"/>
   <rect class="card" x="48" y="250" width="1004" height="260"/>
-  <text class="mono-cy" x="66" y="272">8-MODE DSP ENGINE (SAME HARDWARE &amp; FIRMWARE FOR LIGHT &amp; AUDIO)</text>
+  <text class="mono-cy" x="66" y="272">8-MODE DSP &amp; SHARED OUTPUT ENGINE (ROUTING → MOD → RANGE → SLEW → CAL → LDAC)</text>
   <rect class="plot" x="66" y="288" width="230" height="90" stroke="#b87414" stroke-opacity="0.55"/>
   <text class="kname" x="78" y="310">1: KEYFRAMER</text>
-  <text class="mono-sm" x="284" y="310" text-anchor="end">64 Light Cues</text>
+  <text class="mono-sm" x="284" y="310" text-anchor="end">32 Light Cues</text>
   <rect x="78" y="320" width="206" height="46" fill="#ffffff" stroke="rgba(17, 18, 21, 0.16)"/>
 <polyline points="98.4,348.8 109.3,336.5 121.6,345.9" fill="none" stroke="#0e7a6d" stroke-width="1.6"/>
 <polygon points="98.4,345.0 102.2,348.8 98.4,352.6 94.6,348.8" fill="#b87414"/>
 <polygon points="109.3,332.7 113.0,336.5 109.3,340.2 105.5,336.5" fill="#b87414"/>
 <polygon points="121.6,342.1 125.4,345.9 121.6,349.7 117.8,345.9" fill="#b87414"/>
-  <text class="mono-xs" x="144" y="346">OPT: Curve · Analog SUM Mix</text>
+  <text class="mono-xs" x="144" y="346">32 Cues · Lin/Exp/Log/Step</text>
   <rect class="plot" x="312" y="288" width="230" height="90" stroke="#0e7a6d" stroke-opacity="0.55"/>
   <text class="kname" x="324" y="310">2: STEP SEQ</text>
   <text class="mono-sm" x="530" y="310" text-anchor="end">8-Step Chase</text>
@@ -98,7 +98,7 @@
   <rect x="78" y="424" width="206" height="46" fill="#ffffff" stroke="rgba(17, 18, 21, 0.16)"/>
 <line x1="97.0" y1="447.0" x2="123.0" y2="447.0" stroke="rgba(17, 18, 21, 0.35)" stroke-width="1"/>
 <polyline points="97.0,447.0 98.3,444.7 99.6,442.6 100.9,440.9 102.2,439.8 103.5,439.5 104.8,439.8 106.1,440.9 107.4,442.6 108.7,444.7 110.0,447.0 111.3,449.3 112.6,451.4 113.9,453.1 115.2,454.2 116.5,454.5 117.8,454.2 119.1,453.1 120.4,451.4 121.7,449.3 123.0,447.0" fill="none" stroke="#b87414" stroke-width="1.7"/>
-  <text class="mono-xs" x="144" y="450">Free or TRIG IN Auto-Clock</text>
+  <text class="mono-xs" x="144" y="450">Clock Engine 1/16..8× Sync</text>
   <rect class="plot" x="312" y="392" width="230" height="90" stroke="#0e7a6d" stroke-opacity="0.55"/>
   <text class="kname" x="324" y="414">6: EUCLIDEAN</text>
   <text class="mono-sm" x="530" y="414" text-anchor="end">8× Polyrhythm</text>
@@ -115,36 +115,36 @@
 <circle cx="345.6" cy="447.0" r="2.5" fill="#b87414"/>
   <text class="mono-xs" x="390" y="450">CH 1–8 Hits · FRAME Rotate</text>
   <rect class="plot" x="558" y="392" width="230" height="90" stroke="#0e7a6d" stroke-opacity="0.55"/>
-  <text class="kname" x="570" y="414">7: MACRO OSC</text>
-  <text class="mono-sm" x="776" y="414" text-anchor="end">Macro Osc + LPG</text>
+  <text class="kname" x="570" y="414">7: FUNC GEN</text>
+  <text class="mono-sm" x="776" y="414" text-anchor="end">8× AD/AR/ASR/LOOP</text>
   <rect x="570" y="424" width="206" height="46" fill="#ffffff" stroke="rgba(17, 18, 21, 0.16)"/>
-<line x1="588.2" y1="447.0" x2="615.8" y2="447.0" stroke="rgba(17, 18, 21, 0.35)" stroke-width="1"/>
-<polyline points="588.2,447.0 589.4,446.0 590.5,445.0 591.7,444.1 592.8,443.2 594.0,442.4 595.1,441.7 596.3,441.0 597.4,440.5 598.6,440.0 599.7,439.7 600.9,439.5 602.0,439.5 603.1,439.5 604.3,439.7 605.4,440.0 606.6,440.5 607.7,441.0 608.9,441.7 610.0,442.4 611.2,443.2 612.3,444.1 613.5,445.0 614.6,446.0 615.8,447.0" fill="none" stroke="#0e7a6d" stroke-width="1.2"/>
-<polyline points="588.2,447.0 589.4,446.3 590.5,445.1 591.7,445.0 592.8,447.0 594.0,450.1 595.1,452.1 596.3,451.1 597.4,447.0 598.6,442.3 599.7,440.0 600.9,441.9 602.0,447.0 603.1,452.1 604.3,454.0 605.4,451.7 606.6,447.0 607.7,442.9 608.9,441.9 610.0,443.9 611.2,447.0 612.3,449.0 613.5,448.9 614.6,447.7 615.8,447.0" fill="none" stroke="#b87414" stroke-width="1.6"/>
-  <text class="mono-xs" x="636" y="450">FM / Wavetable / Modal / Perc</text>
+<line x1="588.2" y1="453.5" x2="615.8" y2="453.5" stroke="rgba(17, 18, 21, 0.35)" stroke-width="1"/>
+<polyline points="589.0,453.5 590.2,449.1 591.4,447.1 592.6,445.5 593.9,444.1 595.1,442.9 596.3,441.8 597.6,440.7 598.8,439.8 604.0,439.8 605.4,443.3 606.8,446.2 608.2,448.6 609.5,450.5 610.9,451.9 612.3,452.9 613.7,453.4 615.0,453.5" fill="none" stroke="#b87414" stroke-width="1.6"/>
+<circle cx="598.8" cy="439.8" r="2.0" fill="#0e7a6d"/>
+  <text class="mono-xs" x="636" y="450">EOR/EOF Chain · DAG Mod</text>
   <rect class="plot" x="804" y="392" width="230" height="90" stroke="#0e7a6d" stroke-opacity="0.55"/>
   <text class="kname" x="816" y="414">8: POLY VCO</text>
-  <text class="mono-sm" x="1022" y="414" text-anchor="end">8-Ch Audio/Harm</text>
+  <text class="mono-sm" x="1022" y="414" text-anchor="end">16-Osc Ensemble</text>
   <rect x="816" y="424" width="206" height="46" fill="#ffffff" stroke="rgba(17, 18, 21, 0.16)"/>
 <polyline points="835.0,453.5 847.3,439.8 847.3,453.5 859.6,439.8 859.6,453.5" fill="none" stroke="#b87414" stroke-width="1.7"/>
-  <text class="mono-xs" x="882" y="450">8-Osc Detune · Analog Chord</text>
+  <text class="mono-xs" x="882" y="450">16-Osc Additive/FM/Fold + DAC</text>
   <line x1="550" y1="510" x2="550" y2="546" stroke="#0e7a6d" stroke-width="1.6" marker-end="url(#arr-c)"/>
   <rect class="card-hi" x="48" y="550" width="1004" height="114"/>
-  <text class="mono-acc" x="66" y="572">22 HP OUTPUT STAGE (8× DAC + FIXED HARDWARE ANALOG SUMMERS)</text>
+  <text class="mono-acc" x="66" y="572">22 HP OUTPUT STAGE (2× DAC8164 + AUTO-SWITCHED ANALOG SUMMERS + AUDIO DAC)</text>
   <rect class="plot" x="66" y="586" width="176" height="60" stroke="#b87414" stroke-opacity="0.55"/>
   <text class="kname" x="154" y="612" text-anchor="middle">OUT 1–4</text>
-  <text class="mono-sm" x="154" y="632" text-anchor="middle">DAC8164 #1 (14-bit)</text>
+  <text class="mono-sm" x="154" y="632" text-anchor="middle">DAC8164 #1 (14-bit LDAC)</text>
   <rect class="plot" x="264" y="586" width="176" height="60" stroke="#b87414" stroke-opacity="0.55"/>
   <text class="kname" x="352" y="612" text-anchor="middle">OUT 5–8</text>
-  <text class="mono-sm" x="352" y="632" text-anchor="middle">DAC8164 #2 (14-bit)</text>
+  <text class="mono-sm" x="352" y="632" text-anchor="middle">DAC8164 #2 (14-bit LDAC)</text>
   <rect class="plot" x="462" y="586" width="176" height="60" stroke="#0e7a6d" stroke-opacity="0.55"/>
   <text class="kname" x="550" y="612" text-anchor="middle">SUM 1-4</text>
-  <text class="mono-sm" x="550" y="632" text-anchor="middle">HW Analog Σ(OUT 1–4)</text>
+  <text class="mono-sm" x="550" y="632" text-anchor="middle">HW Analog Σ(CH 1–4)</text>
   <rect class="plot" x="660" y="586" width="176" height="60" stroke="#0e7a6d" stroke-opacity="0.55"/>
   <text class="kname" x="748" y="612" text-anchor="middle">SUM ALL</text>
-  <text class="mono-sm" x="748" y="632" text-anchor="middle">HW Analog Σ(OUT 1–8)</text>
+  <text class="mono-sm" x="748" y="632" text-anchor="middle">Σ(1–8) / Σ(5–8) Auto-SW</text>
   <rect class="plot" x="858" y="586" width="176" height="60" stroke="#b87414" stroke-opacity="0.55"/>
-  <text class="kname" x="946" y="612" text-anchor="middle">STEP + RJ45</text>
-  <text class="mono-sm" x="946" y="632" text-anchor="middle">DMX_OUT Link + Trig</text>
-  <text class="mono-sm" x="550" y="676" text-anchor="middle">OUT 1–8 (DAC) · SUM 1-4 = Analog Σ(OUT 1–4) · SUM ALL = Analog Σ(OUT 1–8) · RJ45 → DMX_OUT</text>
+  <text class="kname" x="946" y="612" text-anchor="middle">AUDIO + STEP</text>
+  <text class="mono-sm" x="946" y="632" text-anchor="middle">PCM5102A 24b + Step Out</text>
+  <text class="mono-sm" x="550" y="676" text-anchor="middle">STM32F765VIT6 (216 MHz M7) · 2× DAC8164 (OUT 1–8) · PCM5102A Audio · Auto-Switched SUM ALL (1–8 / 5–8) · USB-C</text>
 </svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 165" width="760" height="165">
+  <defs>
+    <style>
+      .bg { fill: #0b0f12; }
+      .card { fill: #11161a; stroke: rgba(185, 190, 199, 0.22); stroke-width: 1; }
+      .card-hi { fill: #11161a; stroke: rgba(209, 179, 121, 0.50); stroke-width: 1.1; }
+      .plot { fill: #080b0d; stroke: rgba(185, 190, 199, 0.22); stroke-width: 0.9; }
+      .hd { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #eaeae4; letter-spacing: 0.08em; font-size: 13px; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #b9bec7; font-size: 8.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #8b949e; font-size: 7.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #d1b379; font-size: 8.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #7ec7b8; font-size: 8.5px; }
+      .axis { stroke: rgba(185, 190, 199, 0.24); stroke-width: 0.9; }
+      .w-acc { fill: none; stroke: #d1b379; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .w-cy { fill: none; stroke: #7ec7b8; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+      .w-dim { fill: none; stroke: rgba(234, 234, 228, 0.32); stroke-width: 1.0; stroke-dasharray: 2.5 2; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="165"/>
+  <rect x="6" y="6" width="748" height="153" fill="none" stroke="rgba(185, 190, 199, 0.22)" stroke-width="1"/>
+  <text class="mono-acc" x="16" y="21">MODE 8 // POLY VCO — 16-OSC ENSEMBLE</text>
+  <text class="mono-sm" x="744" y="21" text-anchor="end">24-BIT AUDIO DAC + PRESERVED 8× CV</text>
+  <line x1="16" y1="27" x2="744" y2="27" stroke="rgba(185, 190, 199, 0.24)" stroke-width="1"/>
+  <rect class="card" x="16" y="36" width="446" height="114"/>
+  <text class="hd" x="28" y="54">8: POLY VCO — 16-OSC ADDITIVE · CROSS FM · TWIST · WARP</text>
+  <rect class="plot" x="28" y="64" width="206" height="76"/>
+  <rect x="36" y="78.0" width="7" height="48.0" fill="#d1b379" opacity="0.85"/>
+  <rect x="48" y="81.1" width="7" height="44.9" fill="#7ec7b8" opacity="0.85"/>
+  <rect x="60" y="89.8" width="7" height="36.2" fill="#d1b379" opacity="0.85"/>
+  <rect x="72" y="102.4" width="7" height="23.6" fill="#7ec7b8" opacity="0.85"/>
+  <rect x="84" y="102.1" width="7" height="23.9" fill="#d1b379" opacity="0.85"/>
+  <rect x="96" y="89.6" width="7" height="36.4" fill="#7ec7b8" opacity="0.85"/>
+  <rect x="108" y="81.0" width="7" height="45.0" fill="#d1b379" opacity="0.85"/>
+  <rect x="120" y="78.0" width="7" height="48.0" fill="#7ec7b8" opacity="0.85"/>
+  <rect x="132" y="81.2" width="7" height="44.8" fill="#d1b379" opacity="0.85"/>
+  <rect x="144" y="90.0" width="7" height="36.0" fill="#7ec7b8" opacity="0.85"/>
+  <rect x="156" y="102.6" width="7" height="23.4" fill="#d1b379" opacity="0.85"/>
+  <rect x="168" y="101.9" width="7" height="24.1" fill="#7ec7b8" opacity="0.85"/>
+  <rect x="180" y="89.4" width="7" height="36.6" fill="#d1b379" opacity="0.85"/>
+  <rect x="192" y="80.9" width="7" height="45.1" fill="#7ec7b8" opacity="0.85"/>
+  <rect x="204" y="78.0" width="7" height="48.0" fill="#d1b379" opacity="0.85"/>
+  <rect x="216" y="81.3" width="7" height="44.7" fill="#7ec7b8" opacity="0.85"/>
+  <text class="mono-xs" x="131" y="136" text-anchor="middle">16× SINE LUT (96 kHz)</text>
+  <rect class="plot" x="246" y="64" width="204" height="76"/>
+  <polyline class="w-cy" points="254.0,102.0 257.9,84.9 261.8,76.7 265.8,76.7 269.7,78.6 273.6,78.5 277.5,76.6 281.4,76.4 285.3,81.3 289.2,91.0 293.2,101.8 297.1,110.2 301.0,115.2 304.9,117.3 308.8,117.8 312.8,117.6 316.7,117.7 320.6,118.8 324.5,120.8 328.4,123.2 332.3,125.2 336.2,126.3 340.2,126.3 344.1,124.7 348.0,119.7 351.9,109.3 355.8,94.5 359.8,81.4 363.7,76.1 367.6,77.8 371.5,80.9 375.4,80.9 379.3,77.8 383.2,76.1 387.2,82.5 391.1,98.2 395.0,115.2 398.9,125.2 402.8,127.9 406.8,127.8 410.7,127.9 414.6,127.9 418.5,126.4 422.4,122.1 426.3,116.1 430.2,110.3 434.2,106.0 438.1,103.5 442.0,102.0"/>
+  <text class="mono-xs" x="348" y="136" text-anchor="middle">TWIST (PD) + ADAA WARP</text>
+  <rect class="card-hi" x="474" y="36" width="270" height="114"/>
+  <text class="hd" x="486" y="54">SCALE · FREEZE · PCM5102A DAC</text>
+  <rect class="plot" x="486" y="64" width="56" height="20"/>
+  <text class="mono-xs" x="514" y="77" text-anchor="middle">HARM</text>
+  <rect class="plot" x="548" y="64" width="56" height="20"/>
+  <text class="mono-xs" x="576" y="77" text-anchor="middle">ODD</text>
+  <rect class="plot" x="610" y="64" width="56" height="20"/>
+  <text class="mono-xs" x="638" y="77" text-anchor="middle">5THS</text>
+  <rect class="plot" x="672" y="64" width="56" height="20"/>
+  <text class="mono-xs" x="700" y="77" text-anchor="middle">CHORD</text>
+  <rect class="plot" x="486" y="90" width="56" height="20"/>
+  <text class="mono-xs" x="514" y="103" text-anchor="middle">BELL</text>
+  <rect class="plot" x="548" y="90" width="56" height="20"/>
+  <text class="mono-xs" x="576" y="103" text-anchor="middle">MARIMB</text>
+  <rect class="plot" x="610" y="90" width="56" height="20"/>
+  <text class="mono-xs" x="638" y="103" text-anchor="middle">PHI φ</text>
+  <rect class="plot" x="672" y="90" width="56" height="20"/>
+  <text class="mono-xs" x="700" y="103" text-anchor="middle">CUSTOM</text>
+  <text class="mono-acc" x="486" y="130">24-bit Audio (±5 V) · 8× CV OUT 1–8 Kept</text>
+</svg>

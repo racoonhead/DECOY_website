@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 165" width="760" height="165">
+  <defs>
+    <style>
+      .bg { fill: #0b0f12; }
+      .card { fill: #11161a; stroke: rgba(185, 190, 199, 0.22); stroke-width: 1; }
+      .card-hi { fill: #11161a; stroke: rgba(209, 179, 121, 0.50); stroke-width: 1.1; }
+      .plot { fill: #080b0d; stroke: rgba(185, 190, 199, 0.22); stroke-width: 0.9; }
+      .hd { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #eaeae4; letter-spacing: 0.08em; font-size: 13px; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #b9bec7; font-size: 8.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #8b949e; font-size: 7.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #d1b379; font-size: 8.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #7ec7b8; font-size: 8.5px; }
+      .axis { stroke: rgba(185, 190, 199, 0.24); stroke-width: 0.9; }
+      .w-acc { fill: none; stroke: #d1b379; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .w-cy { fill: none; stroke: #7ec7b8; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+      .w-dim { fill: none; stroke: rgba(234, 234, 228, 0.32); stroke-width: 1.0; stroke-dasharray: 2.5 2; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="165"/>
+  <rect x="6" y="6" width="748" height="153" fill="none" stroke="rgba(185, 190, 199, 0.22)" stroke-width="1"/>
+  <text class="mono-acc" x="16" y="21">CUE_FRAMES // STM32F765 + SUM LOGIC</text>
+  <text class="mono-sm" x="744" y="21" text-anchor="end">22 HP · 16 JACKS · USB-C · HW SUM</text>
+  <line x1="16" y1="27" x2="744" y2="27" stroke="rgba(185, 190, 199, 0.24)" stroke-width="1"/>
+  <rect class="card" x="16" y="36" width="320" height="114"/>
+  <text class="hd" x="28" y="54">UNIFIED KNOB LAYER (OPT)</text>
+  <rect class="plot" x="28" y="66" width="68" height="30" stroke="#d1b379" stroke-opacity="0.5"/>
+  <text class="mono" x="62" y="84" text-anchor="middle">1:SHAPE</text>
+  <rect class="plot" x="104" y="66" width="68" height="30" stroke="#d1b379" stroke-opacity="0.5"/>
+  <text class="mono" x="138" y="84" text-anchor="middle">2:RATE</text>
+  <rect class="plot" x="180" y="66" width="68" height="30" stroke="#d1b379" stroke-opacity="0.5"/>
+  <text class="mono" x="214" y="84" text-anchor="middle">3:SPREAD</text>
+  <rect class="plot" x="256" y="66" width="68" height="30" stroke="#d1b379" stroke-opacity="0.5"/>
+  <text class="mono" x="290" y="84" text-anchor="middle">4:SHIFT</text>
+  <rect class="plot" x="28" y="106" width="68" height="30" stroke="#7ec7b8" stroke-opacity="0.5"/>
+  <text class="mono" x="62" y="124" text-anchor="middle">5:STEPS</text>
+  <rect class="plot" x="104" y="106" width="68" height="30" stroke="#7ec7b8" stroke-opacity="0.5"/>
+  <text class="mono" x="138" y="124" text-anchor="middle">6:GLIDE</text>
+  <rect class="plot" x="180" y="106" width="68" height="30" stroke="#7ec7b8" stroke-opacity="0.5"/>
+  <text class="mono" x="214" y="124" text-anchor="middle">7:LOOP</text>
+  <rect class="plot" x="256" y="106" width="68" height="30" stroke="#7ec7b8" stroke-opacity="0.5"/>
+  <text class="mono" x="290" y="124" text-anchor="middle">8:RANGE</text>
+  <line x1="342" y1="93" x2="368" y2="93" stroke="#d1b379" stroke-width="1.6"/>
+  <polygon points="368,89 376,93 368,97" fill="#d1b379"/>
+  <rect class="card-hi" x="380" y="36" width="364" height="114"/>
+  <text class="hd" x="392" y="54">2× DAC8164 (LDAC) → AUTO-SWITCHED ANALOG SUM</text>
+  <rect class="plot" x="392" y="64" width="136" height="34"/>
+  <text class="mono-acc" x="460" y="79" text-anchor="middle">OUT 1–4</text>
+  <text class="mono-sm" x="460" y="92" text-anchor="middle">DAC8164 #1 (CH 1–4)</text>
+  <rect class="plot" x="392" y="106" width="136" height="34"/>
+  <text class="mono-cy" x="460" y="121" text-anchor="middle">OUT 5–8</text>
+  <text class="mono-sm" x="460" y="134" text-anchor="middle">DAC8164 #2 (CH 5–8)</text>
+  <line x1="528" y1="81" x2="562" y2="81" stroke="#d1b379" stroke-width="1.4"/>
+  <line x1="546" y1="81" x2="546" y2="123" stroke="#7ec7b8" stroke-width="1.3"/>
+  <line x1="528" y1="123" x2="562" y2="123" stroke="#7ec7b8" stroke-width="1.4"/>
+  <rect class="plot" x="564" y="64" width="168" height="34" stroke="#d1b379"/>
+  <text class="mono-acc" x="648" y="79" text-anchor="middle">SUM 1-4 = Σ(CH 1–4)</text>
+  <text class="mono-sm" x="648" y="92" text-anchor="middle">Isolated Det. Switch Jack</text>
+  <rect class="plot" x="564" y="106" width="168" height="34" stroke="#7ec7b8"/>
+  <text class="mono-cy" x="648" y="121" text-anchor="middle">SUM ALL = 1–8 / 5–8</text>
+  <text class="mono-sm" x="648" y="134" text-anchor="middle">Auto-Excludes 1–4 if Patched</text>
+</svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 175" width="760" height="175">
+  <defs>
+    <style>
+      .bg { fill: #f5f5f0; }
+      .card { fill: #ffffff; stroke: rgba(18, 18, 21, 0.22); stroke-width: 1; }
+      .card-hi { fill: #ffffff; stroke: rgba(154, 96, 14, 0.55); stroke-width: 1.1; }
+      .plot { fill: #eaeae4; stroke: rgba(18, 18, 21, 0.22); stroke-width: 0.9; }
+      .hd { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #111215; letter-spacing: 0.08em; font-size: 13px; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #2c3038; font-size: 8.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #555c66; font-size: 7.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #b87414; font-size: 8.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #0e7a6d; font-size: 8.5px; }
+      .axis { stroke: rgba(17, 18, 21, 0.22); stroke-width: 0.9; }
+      .w-acc { fill: none; stroke: #b87414; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .w-cy { fill: none; stroke: #0e7a6d; stroke-width: 1.45; stroke-linecap: round; stroke-linejoin: round; }
+      .w-dim { fill: none; stroke: rgba(17, 18, 21, 0.34); stroke-width: 1.0; stroke-dasharray: 2.5 2; }
+    </style>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="175"/>
+  <rect x="6" y="6" width="748" height="163" fill="none" stroke="rgba(18, 18, 21, 0.22)" stroke-width="1"/>
+  <text class="mono-acc" x="16" y="21">MODES 3–6 // RANDOM · TIDAL · POLY-LFO · EUCLIDEAN</text>
+  <text class="mono-sm" x="744" y="21" text-anchor="end">MODULATION &amp; RHYTHM ENGINES</text>
+  <line x1="16" y1="27" x2="744" y2="27" stroke="rgba(17, 18, 21, 0.22)" stroke-width="1"/>
+  <rect class="card" x="16" y="36" width="176" height="124"/>
+  <text class="hd" x="26" y="53">3: RANDOM SAMPLER</text>
+  <text class="mono-sm" x="26" y="66">Déjà Vu Loop + Quant</text>
+  <rect class="plot" x="26" y="74" width="156" height="76"/>
+  <polyline class="w-acc" points="34,127.0 48,127.0 48,98.4 62,98.4 62,114.0 76,114.0 76,93.2 90,93.2 90,121.8 104,121.8 104,103.6 118,103.6 118,127.0 132,127.0 132,98.4 146,98.4 146,114.0 160,114.0 160,93.2 174,93.2"/>
+  <line x1="118" y1="80" x2="118" y2="144" stroke="#0e7a6d" stroke-dasharray="3 2"/>
+  <rect class="card" x="200" y="36" width="176" height="124"/>
+  <text class="hd" x="210" y="53">4: TIDAL MODULATOR</text>
+  <text class="mono-sm" x="210" y="66">8× Phase/Slope Ratios</text>
+  <rect class="plot" x="210" y="74" width="156" height="76"/>
+  <polyline class="w-acc" points="218.0,112.0 221.5,104.8 225.0,98.1 228.5,92.7 232.0,88.7 235.5,86.6 239.0,86.2 242.5,87.5 246.0,90.0 249.5,93.4 253.0,97.1 256.5,100.8 260.0,104.1 263.5,106.9 267.0,109.0 270.5,110.7 274.0,112.0 277.5,113.3 281.0,115.0 284.5,117.1 288.0,119.9 291.5,123.2 295.0,126.9 298.5,130.6 302.0,134.0 305.5,136.5 309.0,137.8 312.5,137.4 316.0,135.3 319.5,131.3 323.0,125.9 326.5,119.2 330.0,112.0 333.5,104.8 337.0,98.1 340.5,92.7 344.0,88.7 347.5,86.6 351.0,86.2 354.5,87.5 358.0,90.0"/>
+  <polyline class="w-cy" points="218.0,90.2 221.5,87.3 225.0,86.2 228.5,86.8 232.0,88.8 235.5,91.8 239.0,95.5 242.5,99.2 246.0,102.8 249.5,105.8 253.0,108.2 256.5,110.0 260.0,111.4 263.5,112.7 267.0,114.2 270.5,116.1 274.0,118.6 277.5,121.7 281.0,125.2 284.5,129.0 288.0,132.6 291.5,135.6 295.0,137.4 298.5,137.8 302.0,136.4 305.5,133.2 309.0,128.4 312.5,122.2 316.0,115.2 319.5,107.9 323.0,100.9 326.5,94.9 330.0,90.2 333.5,87.3 337.0,86.2 340.5,86.8 344.0,88.8 347.5,91.8 351.0,95.5 354.5,99.2 358.0,102.8"/>
+  <polyline class="w-acc" points="218.0,87.7 221.5,90.4 225.0,93.8 228.5,97.6 232.0,101.3 235.5,104.5 239.0,107.2 242.5,109.3 246.0,110.8 249.5,112.2 253.0,113.5 256.5,115.2 260.0,117.4 263.5,120.3 267.0,123.6 270.5,127.4 274.0,131.1 277.5,134.4 281.0,136.8 284.5,137.8 288.0,137.2 291.5,134.8 295.0,130.7 298.5,125.1 302.0,118.3 305.5,111.0 309.0,103.9 312.5,97.3 316.0,92.1 319.5,88.4 323.0,86.4 326.5,86.3 330.0,87.7 333.5,90.4 337.0,93.8 340.5,97.6 344.0,101.3 347.5,104.5 351.0,107.2 354.5,109.3 358.0,110.8"/>
+  <polyline class="w-cy" points="218.0,99.7 221.5,103.2 225.0,106.1 228.5,108.4 232.0,110.2 235.5,111.6 239.0,112.9 242.5,114.4 246.0,116.4 249.5,119.0 253.0,122.1 256.5,125.7 260.0,129.5 263.5,133.0 267.0,135.9 270.5,137.5 274.0,137.7 277.5,136.1 281.0,132.7 284.5,127.7 288.0,121.3 291.5,114.2 295.0,106.9 298.5,100.1 302.0,94.2 305.5,89.8 309.0,87.1 312.5,86.2 316.0,86.9 319.5,89.1 323.0,92.3 326.5,96.0 330.0,99.7 333.5,103.2 337.0,106.1 340.5,108.4 344.0,110.2 347.5,111.6 351.0,112.9 354.5,114.4 358.0,116.4"/>
+  <rect class="card" x="384" y="36" width="176" height="124"/>
+  <text class="hd" x="394" y="53">5: POLY LFO</text>
+  <text class="mono-sm" x="394" y="66">Sin/Tri/Saw/S&amp;H · Auto-Sync</text>
+  <rect class="plot" x="394" y="74" width="156" height="76"/>
+  <polyline class="w-acc" points="402.0,96.0 405.5,92.3 409.0,88.9 412.5,86.3 416.0,84.6 419.5,84.0 423.0,84.6 426.5,86.3 430.0,88.9 433.5,92.3 437.0,96.0 440.5,99.7 444.0,103.1 447.5,105.7 451.0,107.4 454.5,108.0 458.0,107.4 461.5,105.7 465.0,103.1 468.5,99.7 472.0,96.0 475.5,92.3 479.0,88.9 482.5,86.3 486.0,84.6 489.5,84.0 493.0,84.6 496.5,86.3 500.0,88.9 503.5,92.3 507.0,96.0 510.5,99.7 514.0,103.1 517.5,105.7 521.0,107.4 524.5,108.0 528.0,107.4 531.5,105.7 535.0,103.1 538.5,99.7 542.0,96.0"/>
+  <polyline class="w-cy" points="402,136 434,136 434,116 468,116 468,136 504,136 504,116 540,116"/>
+  <rect class="card" x="568" y="36" width="176" height="124"/>
+  <text class="hd" x="578" y="53">6: EUCLIDEAN</text>
+  <text class="mono-sm" x="578" y="66">8× Polyrhythm Rings</text>
+  <rect class="plot" x="578" y="74" width="156" height="76"/>
+  <circle cx="656" cy="112" r="28" fill="none" stroke="rgba(17, 18, 21, 0.22)"/>
+  <circle cx="666.7" cy="86.1" r="1.5" fill="#555c66"/>
+  <circle cx="675.8" cy="92.2" r="1.5" fill="#555c66"/>
+  <circle cx="684.0" cy="112.0" r="1.5" fill="#555c66"/>
+  <circle cx="681.9" cy="122.7" r="1.5" fill="#555c66"/>
+  <circle cx="666.7" cy="137.9" r="1.5" fill="#555c66"/>
+  <circle cx="656.0" cy="140.0" r="1.5" fill="#555c66"/>
+  <circle cx="636.2" cy="131.8" r="1.5" fill="#555c66"/>
+  <circle cx="630.1" cy="122.7" r="1.5" fill="#555c66"/>
+  <circle cx="630.1" cy="101.3" r="1.5" fill="#555c66"/>
+  <circle cx="636.2" cy="92.2" r="1.5" fill="#555c66"/>
+  <circle cx="645.3" cy="86.1" r="1.5" fill="#555c66"/>
+  <polygon points="656.0,84.0 681.9,101.3 675.8,131.8 645.3,137.9 628.0,112.0" fill="none" stroke="#b87414" stroke-width="1.4"/>
+  <circle cx="656.0" cy="84.0" r="2.8" fill="#b87414"/>
+  <circle cx="681.9" cy="101.3" r="2.8" fill="#b87414"/>
+  <circle cx="675.8" cy="131.8" r="2.8" fill="#b87414"/>
+  <circle cx="645.3" cy="137.9" r="2.8" fill="#b87414"/>
+  <circle cx="628.0" cy="112.0" r="2.8" fill="#b87414"/>
+</svg>

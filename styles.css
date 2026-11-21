@@ -831,22 +831,22 @@ a {
   --prod-accent: #c77b86;
 }
 .mod-dmx-out {
-  --prod-bg: radial-gradient(circle at 30% 30%, rgba(130, 136, 140, 0.82), rgba(24, 26, 28, 0.96));
-  --prod-bg-solid: #1c1f22;
-  --prod-panel: linear-gradient(145deg, #1d2125 0%, #272c31 100%);
-  --prod-accent: #cfd5dc;
+  --prod-bg: radial-gradient(circle at 28% 30%, rgba(72, 130, 214, 0.44), rgba(18, 26, 40, 0.94) 54%, #0b0f16 100%);
+  --prod-bg-solid: #0f1520;
+  --prod-panel: linear-gradient(145deg, #121823 0%, #192232 100%);
+  --prod-accent: #7db3ff;
 }
 .mod-lux-core {
-  --prod-bg: radial-gradient(circle at 65% 50%, rgba(22, 82, 86, 0.85), rgba(10, 14, 16, 0.96));
-  --prod-bg-solid: #0d1719;
-  --prod-panel: linear-gradient(145deg, #101b1e 0%, #172529 100%);
-  --prod-accent: #54c7cc;
+  --prod-bg: radial-gradient(circle at 66% 42%, rgba(20, 148, 142, 0.45), rgba(11, 24, 28, 0.95) 56%, #070e10 100%);
+  --prod-bg-solid: #0a1417;
+  --prod-panel: linear-gradient(145deg, #0d181b 0%, #142428 100%);
+  --prod-accent: #42ddd5;
 }
 .mod-cue-frames {
-  --prod-bg: radial-gradient(circle at 40% 60%, rgba(92, 74, 42, 0.85), rgba(16, 14, 10, 0.96));
-  --prod-bg-solid: #17140f;
-  --prod-panel: linear-gradient(145deg, #1b1711 0%, #241f16 100%);
-  --prod-accent: #d1b379;
+  --prod-bg: radial-gradient(circle at 38% 52%, rgba(196, 128, 36, 0.44), rgba(28, 20, 10, 0.95) 58%, #0d0a06 100%);
+  --prod-bg-solid: #120e08;
+  --prod-panel: linear-gradient(145deg, #17120b 0%, #221a10 100%);
+  --prod-accent: #eab354;
 }
 .mod-elements-v04 {
   --prod-bg: radial-gradient(circle at 55% 40%, rgba(44, 78, 72, 0.88), rgba(8, 10, 11, 0.97));
@@ -854,11 +854,35 @@ a {
   --prod-panel: linear-gradient(145deg, #0d1414 0%, #141e1d 100%);
   --prod-accent: #7ec7b8;
 }
+.mod-cube-seq {
+  --prod-bg: radial-gradient(circle at 36% 36%, rgba(16, 132, 108, 0.42), rgba(209, 179, 121, 0.20) 42%, rgba(8, 11, 13, 0.97) 100%);
+  --prod-bg-solid: #0a1012;
+  --prod-panel: linear-gradient(145deg, #0d1416 0%, #141d20 100%);
+  --prod-accent: #7ec7b8;
+}
 .mod-raster-vid {
   --prod-bg: radial-gradient(circle at 50% 40%, rgba(72, 28, 128, 0.88), rgba(10, 5, 20, 0.97));
   --prod-bg-solid: #120924;
   --prod-panel: linear-gradient(145deg, #150a28 0%, #1f103b 100%);
-  --prod-accent: #a97cf0;
+  --prod-accent: #c084fc;
+}
+.mod-sync-matrix {
+  --prod-bg: radial-gradient(circle at 38% 36%, rgba(34, 211, 238, 0.24), rgba(88, 28, 135, 0.72) 48%, rgba(10, 5, 20, 0.98) 100%);
+  --prod-bg-solid: #110822;
+  --prod-panel: linear-gradient(145deg, #140926 0%, #1d0e38 100%);
+  --prod-accent: #22d3ee;
+}
+.mod-fvck-girl {
+  --prod-bg: radial-gradient(circle at 46% 32%, rgba(232, 121, 249, 0.26), rgba(88, 28, 135, 0.76) 46%, rgba(10, 5, 20, 0.98) 100%);
+  --prod-bg-solid: #120824;
+  --prod-panel: linear-gradient(145deg, #160a2a 0%, #22103f 100%);
+  --prod-accent: #e879f9;
+}
+.mod-fvck-boy {
+  --prod-bg: radial-gradient(circle at 42% 36%, rgba(255, 25, 145, 0.30), rgba(45, 12, 58, 0.80) 48%, #0a0b10 100%);
+  --prod-bg-solid: #0f0a16;
+  --prod-panel: linear-gradient(145deg, #150e1c 0%, #21122a 100%);
+  --prod-accent: #ff1991;
 }
 
 .modal[class*="mod-"] .modal-backdrop {
@@ -1505,6 +1529,40 @@ a {
   font-style: italic;
 }
 
+.prod-inline-fig {
+  margin: 16px 0 22px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 10, 14, 0.72);
+  border-radius: 4px;
+  cursor: zoom-in;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.prod-inline-fig:hover,
+.prod-inline-fig:focus-visible {
+  border-color: var(--accent, var(--signal-amber));
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  outline: none;
+}
+
+.prod-inline-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.prod-inline-cap {
+  margin-top: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--silver-hasl);
+  opacity: 0.88;
+}
+
 .prod-section {
   padding: 48px 0;
   border-bottom: 1px solid var(--border-col);
@@ -1601,6 +1659,25 @@ a {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
+}
+
+/* =========================================================
+   SVĚTELNÁ DIVIZE V DETAILU & MODALU (tmavé pódiové pozadí se sytými světelnými paletami)
+   Matte White panely i bílé LUX diagramy tak ostře vystupují bez rozbití kontrastu
+   ========================================================= */
+.theme-LUX .prod-inline-fig {
+  background: rgba(12, 16, 22, 0.78);
+  border-color: var(--prod-accent, rgba(185, 190, 199, 0.35));
+}
+
+.theme-LUX .prod-gallery-wrap,
+.modal.theme-LUX .modal-img-box {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.48);
+}
+
+.theme-LUX .prod-gallery-stage img,
+.modal.theme-LUX .modal-img-box img {
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
 }
 
 /* =========================================================
