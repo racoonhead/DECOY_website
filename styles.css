@@ -89,7 +89,10 @@ a {
   pointer-events: auto;
 }
 
-.landing-brand .brand-name {
+.landing-brand .brand-name,
+.brand-switch-btn {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-display);
   font-size: 1.55rem;
   font-weight: 700;
@@ -99,6 +102,41 @@ a {
   padding: 6px 14px;
   border: 1px solid rgba(185, 190, 199, 0.35);
   backdrop-filter: blur(6px);
+}
+
+.brand-switch-btn {
+  cursor: pointer;
+  border-color: rgba(254, 80, 0, 0.65);
+  transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+}
+
+.brand-switch-btn:hover {
+  border-color: var(--pantone-orange);
+  background: var(--pantone-orange);
+  color: var(--silk-black);
+}
+
+.landing-bottombar {
+  position: fixed;
+  right: 28px;
+  bottom: 20px;
+  z-index: 20;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-teatro-jump {
+  border-color: rgba(254, 80, 0, 0.6);
+}
+
+.btn-teatro-jump:hover {
+  background: var(--pantone-orange);
+  border-color: var(--pantone-orange);
+  color: var(--silk-black);
 }
 
 .btn-hud {
@@ -188,6 +226,7 @@ a {
 .split-reg.tr { top: 72px; right: 20px; }
 .split-reg.bl { bottom: 20px; left: 20px; }
 .split-reg.br { bottom: 20px; right: 20px; }
+.panel-vid .split-reg.br { bottom: 64px; }
 
 .split-watermark {
   opacity: 0.14;
@@ -625,23 +664,78 @@ a {
 }
 
 /* =========================================================
-   TEATRO\\\SVJÖTLO & MERCH
+   TEATRO\\\SVJÖTLO (SEKCE AKCÍ, DESIGNU, RENTÁLU A ZAKÁZKOVÉ VÝROBY)
    ========================================================= */
-.teatro-banner {
-  background: var(--bg-card);
-  border: 1px solid var(--border-col);
-  padding: 28px;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 28px;
-  align-items: center;
+.teatro-view[hidden] {
+  display: none;
 }
 
-.teatro-mark {
+.teatro-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  --bg-main: #0b0b0e;
+  --bg-card: #131318;
+  --fg-main: var(--silk-white);
+  --fg-muted: var(--silver-hasl);
+  --border-col: rgba(185, 190, 199, 0.22);
+  background: var(--bg-main);
+  color: var(--fg-main);
+}
+
+.teatro-nav {
+  border-bottom: 2px solid var(--pantone-orange);
+}
+
+.teatro-nav-badge {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  letter-spacing: 0.14em;
-  margin-bottom: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  padding: 5px 12px;
+  background: var(--pantone-orange);
+  color: var(--silk-black);
+}
+
+.teatro-view .sub-tab.active,
+.teatro-view .btn-outline:hover {
+  background: var(--pantone-orange);
+  border-color: var(--pantone-orange);
+  color: var(--silk-black);
+}
+
+.teatro-view .sec-head {
+  border-left: 4px solid var(--pantone-orange);
+  padding-left: 14px;
+}
+
+.teatro-card:hover {
+  border-color: var(--pantone-orange);
+}
+
+.teatro-crew-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-col);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.teatro-specs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.teatro-view .person-initials {
+  border-color: var(--pantone-orange);
+}
+
+.teatro-view .mf-accent-strip,
+.teatro-view .mf-reg {
+  color: var(--pantone-orange);
+  opacity: 0.9;
 }
 
 .merch-art {
@@ -1947,7 +2041,6 @@ a {
   .cards-grid,
   .cards-grid-2,
   .blog-list,
-  .teatro-banner,
   .modal-grid,
   .people-grid,
   .prod-hero-grid,

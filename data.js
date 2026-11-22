@@ -73,6 +73,10 @@ const I18N = {
     diff_orig: "PŮVODNÍ ELEMENTS (v0.3)",
     diff_v04: "DECØY ELEMENTS v0.4",
     diff_impact: "PŘÍNOS",
+    ts_tab_design: "STAGE · SOUND · LIGHT",
+    ts_tab_rental: "RENTÁL",
+    ts_tab_custom: "ZAKÁZKOVÁ VÝROBA",
+    ts_tab_events: "AKCE & TÝM",
   },
   en: {
     div_sound: "SOUND",
@@ -137,6 +141,10 @@ const I18N = {
     diff_orig: "ORIGINAL ELEMENTS (v0.3)",
     diff_v04: "DECØY ELEMENTS v0.4",
     diff_impact: "IMPACT",
+    ts_tab_design: "STAGE · SOUND · LIGHT",
+    ts_tab_rental: "RENTAL",
+    ts_tab_custom: "CUSTOM FABRICATION",
+    ts_tab_events: "EVENTS & CREW",
   },
 };
 
@@ -1587,6 +1595,154 @@ const PRODUCTS = {
     ],
     related: ["fvck-girl", "dmx-out", "cue-frames"],
   },
+};
+
+const TEATRO_DATA = {
+  code: "T\\\\\\S — PRODUCTION · DESIGN · RENTAL · CUSTOM TECH",
+  title: TS,
+  lead: {
+    cs: "Produkce akcí, stage design, sound design a light design. Vlastní technický rentál, zakázková výroba světel i scénických prvků a tým nejzkušenějších techniků v oboru — v přímém propojení s vývojem DECØY DEVICES.",
+    en: "Live event production, stage design, sound design, and light design. In-house technical rental, custom lighting and hardware fabrication, and top-tier field technicians — backed directly by DECØY DEVICES R&D.",
+  },
+  pillars: [
+    {
+      num: "01 // STAGE DESIGN",
+      title: { cs: "STAGE DESIGN", en: "STAGE DESIGN" },
+      tag: { cs: "SCÉNOGRAFIE & PROSTOR", en: "SCENOGRAPHY & SPACE" },
+      desc: {
+        cs: "Architektura scény pro festivaly, klubové noci, koncerty i divadelní inscenace. Konstrukce, světelné rámy, CRT a video objekty i prostorové řešení na míru konkrétnímu místu.",
+        en: "Stage architecture for festivals, club nights, concerts, and theatrical productions. Truss structures, custom frames, CRT & video objects, and site-specific spatial concepts.",
+      },
+    },
+    {
+      num: "02 // LIGHT DESIGN",
+      title: { cs: "LIGHT DESIGN", en: "LIGHT DESIGN" },
+      tag: { cs: "SVĚTELNÁ REŽIE", en: "LIGHTING DIRECTION" },
+      desc: {
+        cs: "Světlo jako rovnocenný hudební a dramatický nástroj. Živé svícení, timecode show i přímé analogové a DMX propojení s modulárními syntezátory bez zpoždění.",
+        en: "Light treated as a live musical and dramatic instrument. Live busking, timecode shows, and direct analog-to-DMX integration with modular synthesizers at zero latency.",
+      },
+    },
+    {
+      num: "03 // SOUND DESIGN",
+      title: { cs: "SOUND DESIGN", en: "SOUND DESIGN" },
+      tag: { cs: "ZVUK & AKUSTIKA", en: "SOUND & ACOUSTICS" },
+      desc: {
+        cs: "Kompletní zvukový design pro inscenace, kluby a audiovizuální performance. Systémové ladění PA, prostorový zvuk i živá elektroakustika a FOH mix.",
+        en: "End-to-end sound design for stage productions, clubs, and audiovisual performances. PA system engineering, spatial audio, live electroacoustics, and FOH mixing.",
+      },
+    },
+  ],
+  rental: [
+    {
+      code: "RENT // 01",
+      name: { cs: "SVĚTELNÝ PARK & DMX", en: "LIGHTING RIG & DMX" },
+      tag: { cs: "HLAVY · STROBO · BARS", en: "MOVERS · STROBES · BARS" },
+      desc: {
+        cs: "Otočné hlavy, wash i spot reflektory, výkonné stroboskopy, LED lišty a konvenční divadelní svítidla včetně DMX rozbočovačů a řízení.",
+        en: "Moving heads, wash & spot fixtures, high-output strobes, LED bars, and theatrical conventionals with isolated DMX splitting and control.",
+      },
+    },
+    {
+      code: "RENT // 02",
+      name: { cs: "ZVUKOVÉ SYSTÉMY & PA", en: "SOUND SYSTEMS & PA" },
+      tag: { cs: "PA · SUB · MONITORY", en: "PA · SUBS · MONITORS" },
+      desc: {
+        cs: "Klubové i koncertní PA sestavy, odposlechové monitory, digitální i analogové pulty, mikrofony a kompletní pódiová konektivita.",
+        en: "Club and concert PA rigs, stage monitors, digital & analog consoles, microphones, and complete stage cabling.",
+      },
+    },
+    {
+      code: "RENT // 03",
+      name: { cs: "VIDEO, PROJEKCE & CRT", en: "VIDEO, PROJECTION & CRT" },
+      tag: { cs: "PROJEKTORY · CRT · VIZUÁL", en: "PROJECTORS · CRT · VISUALS" },
+      desc: {
+        cs: "Videoprojektory, sbírka historických i broadcast CRT monitorů na scénu, analogové video mixery a hardware konzole pro Resolume.",
+        en: "Stage projectors, curated vintage and broadcast CRT television rigs, analog video mixers, and hardware Resolume controllers.",
+      },
+    },
+    {
+      code: "RENT // 04",
+      name: { cs: "KONSTRUKCE, DISTRIBUCE & RIG", en: "TRUSS, POWER & RIGGING" },
+      tag: { cs: "ALUTRUSS · SILOVKA · KABELÁŽ", en: "TRUSS · POWER · CABLING" },
+      desc: {
+        cs: "Hliníkové konstrukce, stativy, silové rozvody, stíněné datové a DMX rozvody připravené pro rychlou stavbu v klubech i na site-specific lokacích.",
+        en: "Aluminum trussing, lifts, power distribution, and shielded data/DMX looms built for fast rigging in clubs and site-specific venues.",
+      },
+    },
+  ],
+  custom: [
+    {
+      code: "FAB // 01",
+      name: { cs: "ZAKÁZKOVÁ SVÍTIDLA & LED OBJEKTY", en: "CUSTOM FIXTURES & LED OBJECTS" },
+      tag: { cs: "VLASTNÍ VÝROBA", en: "IN-HOUSE BUILD" },
+      desc: {
+        cs: "Navrhujeme a stavíme atypická světla, adresovatelné LED matice, světelné trubice a scénické světelné sochy přímo podle návrhu scény nebo tour.",
+        en: "We design and build bespoke fixtures, addressable LED matrices, light tubes, and scenic light sculptures tailored to a specific show or tour.",
+      },
+    },
+    {
+      code: "FAB // 02",
+      name: { cs: "ATYPICKÉ OVLADAČE & ROZHRANÍ", en: "BESPOKE CONTROLLERS & INTERFACES" },
+      tag: { cs: "HARDWARE NA MÍRU", en: "CUSTOM HARDWARE" },
+      desc: {
+        cs: "Ve spolupráci s vývojovou dílnou DECØY DEVICES vyrábíme specializované pulty, DMX/CV převodníky, senzory pro interaktivní scény a zakázkovou elektroniku.",
+        en: "Together with the DECØY DEVICES engineering lab, we fabricate custom control desks, DMX/CV interfaces, stage sensors, and one-off electronics.",
+      },
+    },
+    {
+      code: "FAB // 03",
+      name: { cs: "SCÉNICKÉ PRVKY & EFEKTY", en: "SCENIC ELEMENTS & FX" },
+      tag: { cs: "MECHANIKA & ATMOSFÉRA", en: "MECHANICS & ATMOSPHERE" },
+      desc: {
+        cs: "Zakázkové držáky, pohyblivé prvky, hazer/atmosférická integrace a technické adaptace pro divadelní inscenace, kluby i výstavy.",
+        en: "Custom mounts, kinetic scenic elements, hazer/atmosphere integration, and technical adaptations for theatre productions, clubs, and exhibitions.",
+      },
+    },
+  ],
+  crewSummary: {
+    cs: "Za každým projektem stojí špičkoví technici v oboru — světelní designéři, zvukaři, video operátoři a stage riggeři s dlouholetou praxí z festivalů, klubů i divadelních scén.",
+    en: "Every production is backed by top technicians in the field — lighting designers, sound engineers, video operators, and stage riggers with deep festival, club, and theatre experience.",
+  },
+  specialties: [
+    { cs: "LIGHT DESIGN & DMX PROGRAMMING", en: "LIGHT DESIGN & DMX PROGRAMMING" },
+    { cs: "FOH / MONITOR SOUND ENGINEERING", en: "FOH / MONITOR SOUND ENGINEERING" },
+    { cs: "STAGE RIGGING & SILOVÉ ROZVODY", en: "STAGE RIGGING & POWER DISTRIBUTION" },
+    { cs: "VJING, VIDEO SYNCHRONIZACE & CRT", en: "VJING, VIDEO SYNC & CRT" },
+    { cs: "PROTOTYPOVÁNÍ & ZAKÁZKOVÁ ELEKTRONIKA", en: "PROTOTYPING & CUSTOM ELECTRONICS" },
+  ],
+  events: [
+    {
+      code: "LIVE // 01",
+      name: { cs: "DHOGH // ŽIŽKÁRNA", en: "DHOGH // ŽIŽKÁRNA" },
+      desc: {
+        cs: "Elektronická klubová série a festival v českobudějovické Žižkárně (od 2019). Kompletní světelný a prostorový koncept, produkce i ostré nasazení techniky.",
+        en: "Electronic club series and festival at Žižkárna in České Budějovice (since 2019). Full lighting and spatial design, production, and live field operation.",
+      },
+      links: [
+        { label: "DHOGH.COM", url: "https://dhogh.com/" },
+        { label: "@DHOGHTEAM", url: "https://www.instagram.com/dhoghteam/" },
+      ],
+    },
+    {
+      code: "LIVE // 02",
+      name: { cs: "SYNTHETIC SEX DRIVE", en: "SYNTHETIC SEX DRIVE" },
+      desc: {
+        cs: "Živá elektronika a modulární sety propojené přímo se světelným parkem a vizuální projekcí v reálném čase.",
+        en: "Live electronics and modular performances wired straight into stage lighting and real-time visuals.",
+      },
+      links: [{ label: "@SYNTHETICSEXDRIVE", url: "https://www.instagram.com/syntheticsexdrive/" }],
+    },
+    {
+      code: "LIVE // 03",
+      name: { cs: "INSCENACE & SITE-SPECIFIC AKCE", en: "STAGE SHOWS & SITE-SPECIFIC" },
+      desc: {
+        cs: "Kompletní technická a vizuální realizace koncertů, klubových nocí, divadelních premiér a industriálních instalací na klíč.",
+        en: "Turnkey technical and visual delivery for concerts, club nights, theatre premieres, and industrial installations.",
+      },
+      links: [{ label: "@TEATRO_SVJOTLO", url: "https://www.instagram.com/teatro_svjotlo/" }],
+    },
+  ],
 };
 
 const PEOPLE = [

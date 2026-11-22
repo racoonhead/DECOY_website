@@ -7,11 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261122e" />
+  <link rel="stylesheet" href="styles.css?v=20261122f" />
 </head>
 <body>
   <!-- =========================================================
-       1. ÚVODNÍ STRANA: 3-BAREVNÝ SPLIT (ZVUK / SVĚTLO / VIDEO)
+       1. ÚVODNÍ STRANA: DECØY DEVICES (3-BAREVNÝ SPLIT) + TEATRO\\\SVJÖTLO
        ========================================================= -->
   <div id="landingView" class="landing-view">
     <header class="landing-topbar">
@@ -19,8 +19,8 @@
         <span class="brand-name">DECØY DEVICES</span>
       </div>
       <div class="landing-top-right">
-        <button id="langToggleLanding" class="btn-hud btn-sm" type="button">
-          <span class="lang-active">CZ</span> / <span>EN</span>
+        <button id="openTeatroLanding" class="brand-switch-btn" type="button">
+          TEATRO\\\SVJÖTLO
         </button>
       </div>
     </header>
@@ -82,6 +82,12 @@
         </div>
       </button>
     </main>
+
+    <div class="landing-bottombar">
+      <button id="langToggleLanding" class="btn-hud btn-sm" type="button">
+        <span class="lang-active">CZ</span> / <span>EN</span>
+      </button>
+    </div>
   </div>
 
   <!-- =========================================================
@@ -107,13 +113,17 @@
           <button type="button" class="sub-tab" data-tab="desktop" data-i18n="sec_desktop">DESKTOP</button>
           <button type="button" class="sub-tab" data-tab="pedals" data-i18n="sec_pedals">PEDÁLY</button>
           <button type="button" class="sub-tab" data-tab="blog" data-i18n="sec_blog">BLOK</button>
-          <button type="button" class="sub-tab" data-tab="teatro">TEATRO\\\SVJÖTLO</button>
           <button type="button" class="sub-tab" data-tab="merch" data-i18n="sec_merch">TRIČKA &amp; MERCH</button>
         </nav>
 
-        <button id="langToggleDiv" class="btn-hud btn-sm" type="button">
-          <span class="lang-active">CZ</span> / <span>EN</span>
-        </button>
+        <div class="nav-right">
+          <button id="openTeatroFromDiv" class="btn-hud btn-sm btn-teatro-jump" type="button">
+            TEATRO\\\SVJÖTLO ↗
+          </button>
+          <button id="langToggleDiv" class="btn-hud btn-sm" type="button">
+            <span class="lang-active">CZ</span> / <span>EN</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -123,6 +133,42 @@
 
     <footer id="siteFooter" class="pcb-footer">
       <!-- Populated by renderModuleFooterHTML() according to GRAPHIC_MANUAL.md -->
+    </footer>
+  </div>
+
+  <!-- =========================================================
+       3. SEKCE TEATRO\\\SVJÖTLO (AKCE, DESIGN, RENTÁL, ZAKÁZKOVÁ VÝROBA)
+       ========================================================= -->
+  <div id="teatroView" class="teatro-view" hidden>
+    <header class="hud-nav teatro-nav">
+      <div class="container hud-nav-inner">
+        <div class="nav-left">
+          <button id="backFromTeatro" class="btn-back" type="button">
+            <span>←</span>
+            <span>DECØY DEVICES</span>
+          </button>
+          <span class="teatro-nav-badge">TEATRO\\\SVJÖTLO</span>
+        </div>
+
+        <nav class="sub-nav" aria-label="Sekce Teatro Svjötlo">
+          <button type="button" class="sub-tab active" data-teatro-jump="ts-design" data-i18n="ts_tab_design">STAGE · SOUND · LIGHT</button>
+          <button type="button" class="sub-tab" data-teatro-jump="ts-rental" data-i18n="ts_tab_rental">RENTÁL</button>
+          <button type="button" class="sub-tab" data-teatro-jump="ts-custom" data-i18n="ts_tab_custom">ZAKÁZKOVÁ VÝROBA</button>
+          <button type="button" class="sub-tab" data-teatro-jump="ts-events" data-i18n="ts_tab_events">AKCE &amp; TÝM</button>
+        </nav>
+
+        <button id="langToggleTeatro" class="btn-hud btn-sm" type="button">
+          <span class="lang-active">CZ</span> / <span>EN</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="teatroContent">
+      <!-- Populated dynamically by app.js -->
+    </main>
+
+    <footer id="teatroFooter" class="pcb-footer">
+      <!-- Populated by renderModuleFooterHTML() -->
     </footer>
   </div>
 
@@ -146,7 +192,7 @@
     </button>
   </div>
 
-  <script src="data.js?v=20261122e"></script>
-  <script src="app.js?v=20261122e"></script>
+  <script src="data.js?v=20261122f"></script>
+  <script src="app.js?v=20261122f"></script>
 </body>
 </html>

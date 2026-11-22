@@ -194,7 +194,7 @@ const DEFAULT_POSTS = {
   ],
 };
 
-const TABS = ["eurorack", "desktop", "pedals", "blog", "teatro", "merch"];
+const TABS = ["eurorack", "desktop", "pedals", "blog", "merch"];
 
 function getDivisionTabs(divKey) {
   const div = DIVISIONS[divKey];
@@ -211,6 +211,7 @@ function getDefaultDivisionTab(divKey) {
 }
 
 let currentLang = getLang();
+let currentSection = "landing"; // "landing" | "decoy" | "teatro"
 let currentDivision = null;
 let currentTab = "eurorack";
 let currentSecIdx = 0;
@@ -252,7 +253,7 @@ function applyTranslations() {
     currentLang === "cs"
       ? '<span class="lang-active">CZ</span> / <span>EN</span>'
       : '<span>CZ</span> / <span class="lang-active">EN</span>';
-  ["langToggleLanding", "langToggleDiv"].forEach((id) => {
+  ["langToggleLanding", "langToggleDiv", "langToggleTeatro"].forEach((id) => {
     const el = document.getElementById(id);
     if (el) el.innerHTML = html;
   });
@@ -460,39 +461,151 @@ function renderBlog(divKey, dict) {
   `;
 }
 
-function renderTeatro(div, dict) {
+function renderTeatroPage(dict) {
+  const td = TEATRO_DATA;
   return `
-    <section class="div-section">
+    <section class="div-hero teatro-hero">
+      <div class="container">
+        <div class="div-hero-code">${td.code}</div>
+        <h1>${td.title}</h1>
+        <p class="div-hero-lead">${td.lead[currentLang]}</p>
+        <div class="link-row" style="margin-top:20px;">
+          <a class="btn-outline" href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer">@TEATRO_SVJOTLO ↗</a>
+          <a class="btn-outline" href="https://dhogh.com/" target="_blank" rel="noopener noreferrer">DHOGH ↗</a>
+          <a class="btn-outline" href="https://www.instagram.com/syntheticsexdrive/" target="_blank" rel="noopener noreferrer">SYNTHETIC SEX DRIVE ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="ts-design" class="div-section">
       <div class="container">
         <div class="sec-head">
           <div>
-            <div class="sec-num">${dict.sec_num_teatro}</div>
-            <h2>${TS}</h2>
+            <div class="sec-num">01 // STAGE · LIGHT · SOUND</div>
+            <h2>${dict.ts_tab_design}</h2>
           </div>
         </div>
-        <div class="teatro-banner">
+        <div class="cards-grid">
+          ${td.pillars
+            .map(
+              (p) => `
+            <article class="hud-card teatro-card">
+              <div class="hud-card-head">
+                <span>${p.num}</span>
+                <span>${p.tag[currentLang]}</span>
+              </div>
+              <div class="hud-card-body">
+                <h3>${p.title[currentLang]}</h3>
+                <p>${p.desc[currentLang]}</p>
+              </div>
+            </article>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section id="ts-rental" class="div-section">
+      <div class="container">
+        <div class="sec-head">
           <div>
-            <div class="teatro-mark">${div.teatro.title[currentLang]}</div>
-            <p style="margin:0 0 18px; color:var(--fg-muted); font-size:0.94rem;">${div.teatro.desc[currentLang]}</p>
-            <div class="link-row">
-              <a class="btn-outline" href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer">@TEATRO_SVJOTLO ↗</a>
-              <a class="btn-outline" href="https://www.instagram.com/syntheticsexdrive/" target="_blank" rel="noopener noreferrer">SYNTHETIC SEX DRIVE ↗</a>
-              <a class="btn-outline" href="https://dhogh.com/" target="_blank" rel="noopener noreferrer">DHOGH ↗</a>
-            </div>
+            <div class="sec-num">02 // TECHNICAL RENTAL</div>
+            <h2>${dict.ts_tab_rental}</h2>
           </div>
-          <div style="border:1px solid var(--border-col); padding:20px; text-align:center;">
-            <div style="font-family:var(--font-display); font-size:2.4rem; letter-spacing:0.16em;">T\\\\\\S</div>
-            <div style="font-size:0.74rem; color:var(--fg-muted); letter-spacing:0.16em; margin-top:6px;">${dict.founders_credit}</div>
+        </div>
+        <div class="cards-grid-2">
+          ${td.rental
+            .map(
+              (r) => `
+            <article class="hud-card teatro-card">
+              <div class="hud-card-head">
+                <span>${r.code}</span>
+                <span>${r.tag[currentLang]}</span>
+              </div>
+              <div class="hud-card-body">
+                <h3>${r.name[currentLang]}</h3>
+                <p>${r.desc[currentLang]}</p>
+              </div>
+            </article>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section id="ts-custom" class="div-section">
+      <div class="container">
+        <div class="sec-head">
+          <div>
+            <div class="sec-num">03 // CUSTOM LIGHTS &amp; HARDWARE</div>
+            <h2>${dict.ts_tab_custom}</h2>
+          </div>
+        </div>
+        <div class="cards-grid">
+          ${td.custom
+            .map(
+              (c) => `
+            <article class="hud-card teatro-card">
+              <div class="hud-card-head">
+                <span>${c.code}</span>
+                <span>${c.tag[currentLang]}</span>
+              </div>
+              <div class="hud-card-body">
+                <h3>${c.name[currentLang]}</h3>
+                <p>${c.desc[currentLang]}</p>
+              </div>
+            </article>`
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+
+    <section id="ts-events" class="div-section">
+      <div class="container">
+        <div class="sec-head">
+          <div>
+            <div class="sec-num">04 // EVENTS &amp; SPECIALISTS</div>
+            <h2>${dict.ts_tab_events}</h2>
+          </div>
+        </div>
+        <div class="cards-grid" style="margin-bottom:40px;">
+          ${td.events
+            .map(
+              (ev) => `
+            <article class="hud-card teatro-card">
+              <div class="hud-card-head">
+                <span>${ev.code}</span>
+                <span>${TS}</span>
+              </div>
+              <div class="hud-card-body">
+                <h3>${ev.name[currentLang]}</h3>
+                <p>${ev.desc[currentLang]}</p>
+                ${
+                  ev.links
+                    ? `<div class="link-row">${ev.links
+                        .map((l) => `<a class="btn-outline" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)
+                        .join("")}</div>`
+                    : ""
+                }
+              </div>
+            </article>`
+            )
+            .join("")}
+        </div>
+
+        <div class="teatro-crew-banner">
+          <div>
+            <div class="sec-num">${dict.sec_num_crew}</div>
+            <h2 style="margin-bottom:10px;">${dict.people}</h2>
+            <p style="margin:0; color:var(--fg-muted); max-width:65ch;">${td.crewSummary[currentLang]}</p>
+          </div>
+          <div class="teatro-specs-tags">
+            ${td.specialties.map((s) => `<span class="modal-chip">${s[currentLang]}</span>`).join("")}
           </div>
         </div>
 
-        <div class="sec-head" style="margin-top:40px;">
-          <div>
-            <div class="sec-num">${dict.sec_num_crew}</div>
-            <h2>${dict.people}</h2>
-          </div>
-        </div>
-        <div class="people-grid">
+        <div class="people-grid" style="margin-top:22px;">
           ${PEOPLE.map(
             (p) => `
             <article class="person-card">
@@ -542,17 +655,20 @@ function renderMerch(dict) {
   `;
 }
 
-/* ---------------------------------------------------- division view */
+/* ---------------------------------------------------- division & teatro views */
 function renderDivision(divKey, tabKey = currentTab, { fx = false } = {}) {
   const div = DIVISIONS[divKey];
   if (!div) return;
   const allowedTabs = getDivisionTabs(divKey);
+  currentSection = "decoy";
   currentDivision = divKey;
   currentTab = tabKey && allowedTabs.includes(tabKey) ? tabKey : getDefaultDivisionTab(divKey);
 
   if (fx) triggerDivisionFx(divKey);
 
   document.getElementById("landingView").hidden = true;
+  const teatroView = document.getElementById("teatroView");
+  if (teatroView) teatroView.hidden = true;
   const divView = document.getElementById("divisionView");
   divView.hidden = false;
   divView.className = `division-view theme-${divKey}`;
@@ -577,7 +693,6 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false } = {}) {
     desktop: () => renderDesktop(div, dict),
     pedals: () => renderPedals(div, dict),
     blog: () => renderBlog(divKey, dict),
-    teatro: () => renderTeatro(div, dict),
     merch: () => renderMerch(dict),
   }[currentTab]();
 
@@ -597,9 +712,44 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false } = {}) {
   bindDivisionEvents();
 }
 
+function openTeatroView({ fx = false, anchorId = null } = {}) {
+  currentSection = "teatro";
+  currentDivision = null;
+  if (fx) triggerOverlayFx("fx-mod");
+
+  document.getElementById("landingView").hidden = true;
+  document.getElementById("divisionView").hidden = true;
+  const teatroView = document.getElementById("teatroView");
+  if (!teatroView) return;
+  teatroView.hidden = false;
+
+  const dict = I18N[currentLang];
+  document.getElementById("teatroContent").innerHTML = renderTeatroPage(dict);
+
+  const teatroFooter = document.getElementById("teatroFooter");
+  if (teatroFooter) {
+    teatroFooter.innerHTML = renderModuleFooterHTML("LUX", "TEATRO\\\\\\SVJÖTLO", "STAGE · SOUND · LIGHT");
+  }
+
+  document.querySelectorAll("[data-teatro-jump]").forEach((btn) => {
+    const target = btn.getAttribute("data-teatro-jump");
+    btn.classList.toggle("active", anchorId ? target === anchorId : target === "ts-design");
+  });
+
+  history.replaceState(null, "", "#TEATRO");
+  if (anchorId) {
+    document.getElementById(anchorId)?.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+}
+
 function goHome() {
+  currentSection = "landing";
   currentDivision = null;
   document.getElementById("divisionView").hidden = true;
+  const teatroView = document.getElementById("teatroView");
+  if (teatroView) teatroView.hidden = true;
   document.getElementById("landingView").hidden = false;
   history.replaceState(null, "", location.pathname);
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -725,6 +875,10 @@ function bindDivisionEvents() {
 
 function routeFromHash() {
   const [divKey, tab] = location.hash.replace("#", "").split("/");
+  if (divKey === "TEATRO" || tab === "teatro") {
+    openTeatroView();
+    return;
+  }
   if (DIVISIONS[divKey]) renderDivision(divKey, tab || null);
 }
 
@@ -735,6 +889,20 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       currentSecIdx = 0;
       renderDivision(btn.getAttribute("data-open-division"), null, { fx: true });
+    });
+  });
+
+  document.getElementById("openTeatroLanding")?.addEventListener("click", () => openTeatroView({ fx: true }));
+  document.getElementById("openTeatroFromDiv")?.addEventListener("click", () => openTeatroView({ fx: true }));
+  document.getElementById("backFromTeatro")?.addEventListener("click", goHome);
+
+  document.querySelectorAll("[data-teatro-jump]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-teatro-jump");
+      document.querySelectorAll("[data-teatro-jump]").forEach((b) => {
+        b.classList.toggle("active", b === btn);
+      });
+      document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
     });
   });
 
@@ -760,10 +928,15 @@ document.addEventListener("DOMContentLoaded", () => {
     currentLang = currentLang === "cs" ? "en" : "cs";
     setLang(currentLang);
     applyTranslations();
-    if (currentDivision) renderDivision(currentDivision, currentTab);
+    if (currentSection === "teatro") {
+      openTeatroView();
+    } else if (currentDivision) {
+      renderDivision(currentDivision, currentTab);
+    }
   };
   document.getElementById("langToggleLanding")?.addEventListener("click", toggleLang);
   document.getElementById("langToggleDiv")?.addEventListener("click", toggleLang);
+  document.getElementById("langToggleTeatro")?.addEventListener("click", toggleLang);
 
   document.querySelectorAll("[data-close-modal]").forEach((el) => el.addEventListener("click", closeModal));
   document.addEventListener("keydown", (e) => {
