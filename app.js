@@ -76,6 +76,10 @@ function applyBrandProfileDOM(brand = currentBrand) {
   document.body?.setAttribute("data-brand", normalized);
   document.getElementById("landingView")?.setAttribute("data-brand", normalized);
   document.getElementById("divisionView")?.setAttribute("data-brand", normalized);
+  document.getElementById("divSubNav")?.setAttribute("data-brand", normalized);
+  if (normalized === "decoy") {
+    document.getElementById("divisionContent")?.classList.remove("teatro-enter");
+  }
 }
 
 function setActiveBrand(brand, { updateUrl = true, replaceHistory = false } = {}) {
@@ -824,9 +828,15 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
   const brandName = isTeatro ? TS : "DECØY DEVICES";
 
   const backBtn = document.getElementById("backToSplit");
-  if (backBtn) backBtn.innerHTML = `<span>←</span><span>${brandName}</span>`;
+  if (backBtn) {
+    const backLabel = currentLang === "cs" ? "Zpět na úvod" : "Back to landing";
+    backBtn.setAttribute("aria-label", backLabel);
+    backBtn.setAttribute("title", backLabel);
+  }
+  const decoyBtn = document.getElementById("selectBrandDecoyDiv");
+  if (decoyBtn) decoyBtn.textContent = "DECØY DEVICES";
   const switchBtn = document.getElementById("openTeatroFromDiv");
-  if (switchBtn) switchBtn.textContent = isTeatro ? dict.brand_switch_to_decoy : dict.brand_switch_to_teatro;
+  if (switchBtn) switchBtn.textContent = TS;
   const cartBtn = document.getElementById("cartToggleDiv");
   if (cartBtn) cartBtn.hidden = isTeatro;
 
@@ -903,6 +913,9 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
 function goHome({ replaceHistory = false } = {}) {
   currentSection = "landing";
   currentDivision = null;
+  document.getElementById("divisionContent")?.classList.remove("teatro-enter");
+  const overlay = document.getElementById("fxOverlay");
+  if (overlay) overlay.className = "fx-overlay";
   document.getElementById("divisionView").hidden = true;
   document.getElementById("landingView").hidden = false;
   applyBrandProfileDOM(currentBrand);
@@ -1186,29 +1199,28 @@ document.addEventListener("DOMContentLoaded", () => {
   applyBrandProfileDOM(getBrandFromUrl());
   applyTranslations();
 
-  /* Výběr aktivní značky na úvodní stránce (DECØY / TEATRO) bez opuštění úvodní stránky */
+  /* Výběr aktivní značky (DECØY vlevo / TEATRO vpravo) — stejné na úvodní stránce i po prokliku */
   document.querySelectorAll("[data-select-brand]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const targetBrand = btn.getAttribute("data-select-brand");
-      setActiveBrand(targetBrand, { updateUrl: true });
+      const targetBrand = normalizeBrand(btn.getAttribute("data-select-brand"));
+      if (currentSection === "division" && currentDivision) {
+        if (targetBrand === currentBrand) return;
+        if (targetBrand === "teatro") closeCartDrawer();
+        setActiveBrand(targetBrand, { updateUrl: false });
+        renderDivision(currentDivision, currentTab, { fx: true, brand: targetBrand });
+      } else {
+        setActiveBrand(targetBrand, { updateUrl: true });
+      }
     });
   });
 
   document.querySelectorAll("[data-open-division]").forEach((btn) => {
     btn.addEventListener("click", () => {
+      const targetDiv = btn.getAttribute("data-open-division");
       currentSecIdx = 0;
-      hudFilter = defaultHudFilter(currentDivision);
-      renderDivision(btn.getAttribute("data-open-division"), null, { fx: true, brand: currentBrand });
+      hudFilter = defaultHudFilter(targetDiv);
+      renderDivision(targetDiv, null, { fx: true, brand: currentBrand });
     });
-  });
-
-  document.getElementById("openTeatroFromDiv")?.addEventListener("click", () => {
-    const nextBrand = currentBrand === "teatro" ? "decoy" : "teatro";
-    if (nextBrand === "teatro") closeCartDrawer();
-    setActiveBrand(nextBrand, { updateUrl: false });
-    if (currentDivision) {
-      renderDivision(currentDivision, currentTab, { fx: true, brand: nextBrand });
-    }
   });
 
   const subNavBtn = document.getElementById("mobileSubNavBtn");
@@ -1251,7 +1263,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("langToggleLanding")?.addEventListener("click", toggleLang);
   document.getElementById("langToggleDiv")?.addEventListener("click", toggleLang);
 
-  document.getElementById("cartToggleLanding")?.addEventListener("click", openCartDrawer);
   document.getElementById("cartToggleDiv")?.addEventListener("click", openCartDrawer);
   document.querySelectorAll("[data-close-cart]").forEach((el) => el.addEventListener("click", closeCartDrawer));
   document.querySelectorAll("[data-close-modal]").forEach((el) => el.addEventListener("click", closeModal));

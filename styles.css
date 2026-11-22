@@ -158,13 +158,56 @@ a {
   position: fixed;
   right: 28px;
   bottom: 20px;
-  z-index: 20;
+  z-index: 45;
 }
 
 .nav-right {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+#divisionView .hud-nav-inner .nav-right {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+#divisionView .hud-nav-inner .sub-nav {
+  order: 3;
+  flex: 1 0 100%;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-col);
+}
+
+.nav-brand-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-back-icon {
+  padding: 6px 10px;
+  line-height: 1;
+}
+
+.btn-hud.btn-brand-toggle {
+  clip-path: none;
+  background: transparent;
+  color: var(--fg-main);
+  border-color: var(--border-col);
+  transition: border-color 0.16s ease, color 0.16s ease;
+}
+
+.btn-hud.btn-brand-toggle:hover,
+.btn-hud.btn-brand-toggle:focus-visible {
+  border-color: var(--fg-main);
+  color: var(--fg-main);
+}
+
+.landing-bottombar .btn-hud {
+  background: rgba(12, 12, 14, 0.86);
+  color: var(--silver-hasl);
+  border-color: rgba(185, 190, 199, 0.45);
 }
 
 .btn-teatro-jump {
@@ -2568,6 +2611,10 @@ button.context-crumb:hover,
     padding: 10px 12px;
   }
 
+  .product-page .bg-nav-arrow {
+    bottom: 60px;
+  }
+
   .bg-nav-prev:hover,
   .bg-nav-next:hover {
     transform: none;
@@ -2698,379 +2745,557 @@ button.context-crumb:hover,
    TEATRO\\\SVJÖTLO — SAMOSTATNÝ BAREVNÝ A ANIMAČNÍ PROFIL
    ---------------------------------------------------------
    Přísně izolovaný pod [data-brand="teatro"] — neovlivňuje DECØY.
-   Inspirace: tmavé divadelní zákulisí, ocelové lávky a teplé
-   wolframové (tungsten 3200K) + studené CTB scénické osvětlení.
+   Barevné světy napříč celou sekcí TEATRO:
+   - AUD (ZVUK): tmavá modrá (#0d1a2d / #132642)
+   - LUX (SVĚTLO): světlá oranžová mírně šedá (#cfb095 / #d8bca3)
+   - VID (VIDEO): červená (#6b1219 / #611117 / #74181f)
+   Úvodní split zůstává totožný s DECØY (jen jiný barevný profil).
+   Přechody sekcí: AUD sinus vlnění, LUX světelný kužel, VID glitch.
+   Optimalizováno pro GPU (opacity + transform, bez clip-path a blur scrollu).
    ========================================================= */
 
 [data-brand="teatro"] {
-  --tt-bg: #0f1115;           /* Stage Velvet Black */
-  --tt-bg-2: #181c22;         /* Rig Charcoal */
-  --tt-bg-card: #1d222a;      /* Stage Slate Panel */
-  --tt-spotlight: #d8a25e;    /* Warm Stage Tungsten (hlavní akcent) */
-  --tt-spotlight-hi: #e7b87a; /* Spotlight Highlight */
-  --tt-backlight: #7a94ad;    /* Cool CTB Backlight (vedlejší akcent) */
-  --tt-text: #eae4dc;         /* Warm Script Ivory */
-  --tt-text-muted: #9ca2ab;   /* Stage Slate Text (kontrast AA+) */
-  --tt-border: rgba(216, 162, 94, 0.24);
-  --tt-border-cool: rgba(122, 148, 173, 0.24);
-  --tt-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --tt-dimmer: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --tt-aud-bg: #0d1a2d;
+  --tt-aud-card: #132642;
+  --tt-aud-fg: #eaeae4;
+  --tt-aud-muted: #9fb8d8;
+  --tt-aud-accent: #79aef0;
+
+  --tt-lux-bg: #cfb095;
+  --tt-lux-card: #d8bca3;
+  --tt-lux-fg: #161310;
+  --tt-lux-muted: #3e3329;
+  --tt-lux-accent: #733108;
+
+  --tt-vid-landing: #6b1219;
+  --tt-vid-bg: #611117;
+  --tt-vid-card: #74181f;
+  --tt-vid-fg: #f2ebe6;
+  --tt-vid-muted: #ecc7c4;
+  --tt-vid-accent: #ffd7d3;
+
+  --tt-ease-stage: cubic-bezier(0.22, 1, 0.36, 1);
+  --tt-dur-ui: 150ms;
+  --tt-dur-light: 220ms;
+  --tt-dur-scene: 340ms;
+  --tt-stagger: 45ms;
 }
 
-/* ----- 1. ÚVODNÍ STRANA TEATRO (AUD / LUX / VID POD SCÉNICKÝM SVĚTLEM) ----- */
-.landing-view[data-brand="teatro"] .split-panel {
-  transition:
-    flex 0.72s var(--tt-dimmer),
-    background-color 0.65s ease,
-    color 0.65s ease;
+/* ----- 1. ÚVODNÍ STRANA TEATRO (IDENTICKÉ S DECØY, POUZE JINÝ BAREVNÝ PROFIL) ----- */
+.landing-view[data-brand="teatro"] .panel-aud {
+  background: var(--tt-aud-bg);
+  color: var(--tt-aud-fg);
+}
+
+.landing-view[data-brand="teatro"] .panel-lux {
+  background: var(--tt-lux-bg);
+  color: var(--tt-lux-fg);
+}
+
+.landing-view[data-brand="teatro"] .panel-vid {
+  background: var(--tt-vid-landing);
+  color: var(--tt-vid-fg);
 }
 
 .landing-view[data-brand="teatro"] .split-panel + .split-panel {
-  border-left-color: var(--tt-border);
+  border-left-color: rgba(234, 234, 228, 0.22);
 }
 
-/* ZVUK (AUD // 01) — FOH režie v setmělém sále + jemné CTB podsvícení */
-.landing-view[data-brand="teatro"] .panel-aud {
-  background-color: #0e1014;
-  background-image: radial-gradient(ellipse at 50% 24%, rgba(122, 148, 173, 0.16), transparent 68%);
-  color: var(--tt-text);
+/* ----- 2. TEMATICKÉ PŘECHODY SEKCE TEATRO (#fxOverlay: SINUS / SVĚTLO / GLITCH) ----- */
+@keyframes teatroAudFade {
+  0% { opacity: 0; }
+  22% { opacity: 0.94; }
+  100% { opacity: 0; }
 }
 
-/* SVĚTLO (LUX // 02) — Jevištní střed pod teplým tungsten reflektorem */
-.landing-view[data-brand="teatro"] .panel-lux {
-  background-color: #211b15;
-  background-image: radial-gradient(circle at 50% 44%, rgba(216, 162, 94, 0.28), rgba(216, 162, 94, 0.06) 56%, transparent 80%);
-  color: var(--tt-text);
-}
-
-/* VIDEO (VID // 03) — Zadní horizont / cyklorama pod studeným CTB filtrem */
-.landing-view[data-brand="teatro"] .panel-vid {
-  background-color: #10141d;
-  background-image: radial-gradient(ellipse at 50% 62%, rgba(122, 148, 173, 0.2), transparent 70%);
-  color: var(--tt-text);
-}
-
-.landing-view[data-brand="teatro"] .panel-aud .split-code,
-.landing-view[data-brand="teatro"] .panel-vid .split-code,
-.landing-view[data-brand="teatro"] .panel-aud .split-reg,
-.landing-view[data-brand="teatro"] .panel-vid .split-reg {
-  color: var(--tt-backlight);
-}
-
-.landing-view[data-brand="teatro"] .panel-lux .split-code,
-.landing-view[data-brand="teatro"] .panel-lux .split-enter,
-.landing-view[data-brand="teatro"] .panel-lux .split-reg {
-  color: var(--tt-spotlight-hi);
-}
-
-.landing-view[data-brand="teatro"] .panel-aud .split-enter,
-.landing-view[data-brand="teatro"] .panel-vid .split-enter {
-  color: var(--tt-spotlight);
-  border-color: var(--tt-spotlight);
-}
-
-/* Kužel reflektoru jen v profilu TEATRO — v klidu přitlumený, při najetí se pomalu rozsvítí */
-.landing-view[data-brand="teatro"] .split-panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  background: radial-gradient(ellipse at 50% 34%, rgba(216, 162, 94, 0.22), transparent 64%);
-  transition: opacity 0.72s var(--tt-dimmer);
-}
-
-.landing-view[data-brand="teatro"] .panel-vid::after {
-  background: radial-gradient(ellipse at 50% 42%, rgba(122, 148, 173, 0.22), transparent 64%);
-}
-
-.landing-view[data-brand="teatro"] .split-panel:hover::after,
-.landing-view[data-brand="teatro"] .split-panel:focus-visible::after {
-  opacity: 0.95;
-}
-
-.landing-view[data-brand="teatro"] .split-watermark,
-.landing-view[data-brand="teatro"] .split-reveal {
-  z-index: 1;
-}
-
-.landing-view[data-brand="teatro"] .split-watermark {
-  position: relative;
-  opacity: 0.16;
-  transition: opacity 0.68s var(--tt-dimmer);
-}
-
-.landing-view[data-brand="teatro"] .split-panel:hover .split-watermark,
-.landing-view[data-brand="teatro"] .split-panel:focus-visible .split-watermark {
-  opacity: 0.08;
-  transform: none;
-}
-
-.landing-view[data-brand="teatro"] .split-reveal {
-  transform: translateY(10px);
-  transition:
-    opacity 0.58s var(--tt-dimmer),
-    transform 0.68s var(--tt-ease);
-}
-
-.landing-view[data-brand="teatro"] .split-panel:hover .split-reveal,
-.landing-view[data-brand="teatro"] .split-panel:focus-visible .split-reveal {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ----- 2. SCÉNICKÝ PŘECHOD (#fxOverlay) PRO TEATRO (DIVADELNÍ OPONA + SVĚTLO) ----- */
-@keyframes teatroCurtainSweep {
+@keyframes teatroAudSine {
   0% {
-    opacity: 0;
-    clip-path: inset(0 46% 0 46%);
+    opacity: 0.15;
+    transform: translate3d(-120px, 0, 0) scaleY(0.45);
   }
   28% {
     opacity: 1;
-    clip-path: inset(0 0% 0 0%);
+    transform: translate3d(-45px, 0, 0) scaleY(1.28);
+  }
+  60% {
+    opacity: 0.82;
+    transform: translate3d(20px, 0, 0) scaleY(0.85);
   }
   100% {
     opacity: 0;
-    clip-path: inset(0 0% 0 0%);
+    transform: translate3d(90px, 0, 0) scaleY(1);
   }
 }
 
-body[data-brand="teatro"] .fx-overlay.fx-lux,
+@keyframes teatroAudHarmonic {
+  0% {
+    opacity: 0;
+    transform: translate3d(110px, 0, 0) scaleY(-0.5);
+  }
+  35% {
+    opacity: 0.85;
+    transform: translate3d(25px, 0, 0) scaleY(-1.12);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-85px, 0, 0) scaleY(-0.7);
+  }
+}
+
 body[data-brand="teatro"] .fx-overlay.fx-aud,
+body[data-brand="teatro"] .fx-overlay.fx-lux,
 body[data-brand="teatro"] .fx-overlay.fx-vid,
 body[data-brand="teatro"] .fx-overlay.fx-mod {
   border: none;
   box-shadow: none;
-  background:
-    radial-gradient(ellipse at 50% 42%, rgba(216, 162, 94, 0.24), rgba(15, 17, 21, 0.72) 72%),
-    linear-gradient(90deg, rgba(15, 17, 21, 0.85), rgba(216, 162, 94, 0.14) 50%, rgba(15, 17, 21, 0.85));
-  animation: teatroCurtainSweep 0.85s var(--tt-ease) forwards;
+  will-change: opacity, transform;
 }
 
 body[data-brand="teatro"] .fx-overlay.fx-aud {
-  background:
-    radial-gradient(ellipse at 50% 42%, rgba(122, 148, 173, 0.22), rgba(15, 17, 21, 0.74) 72%),
-    linear-gradient(90deg, rgba(15, 17, 21, 0.85), rgba(122, 148, 173, 0.14) 50%, rgba(15, 17, 21, 0.85));
+  background: radial-gradient(circle at 50% 50%, rgba(121, 174, 240, 0.24) 0%, rgba(13, 26, 45, 0.78) 76%);
+  animation: teatroAudFade 420ms ease-out forwards;
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-aud::before,
+body[data-brand="teatro"] .fx-overlay.fx-aud::after {
+  content: "";
+  position: absolute;
+  top: 24%;
+  bottom: 24%;
+  left: -12%;
+  right: -12%;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-position: center;
+  background-size: 280px 140px;
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-aud::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Cpath d='M0 60 C30 8 90 8 120 60 C150 112 210 112 240 60' fill='none' stroke='%23a9cdf8' stroke-width='3.2'/%3E%3Cpath d='M0 60 C30 22 90 22 120 60 C150 98 210 98 240 60' fill='none' stroke='%2379aef0' stroke-opacity='0.48' stroke-width='1.5'/%3E%3C/svg%3E");
+  animation: teatroAudSine 420ms var(--tt-ease-stage) forwards;
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-aud::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 120'%3E%3Cpath d='M0 60 C30 16 90 16 120 60 C150 104 210 104 240 60' fill='none' stroke='%23eaeae4' stroke-opacity='0.65' stroke-width='2'/%3E%3C/svg%3E");
+  animation: teatroAudHarmonic 420ms ease-out forwards;
+}
+
+/* LUX (SVĚTLO): sbíhající se scénické kužely + teplý Fresnel blinder záblesk */
+@keyframes teatroLuxBloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  24% {
+    opacity: 0.96;
+    transform: scale(1.03);
+  }
+  52% {
+    opacity: 0.45;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes teatroLuxBeamL {
+  0% {
+    opacity: 0;
+    transform: translate3d(-18%, -8%, 0) rotate(-18deg);
+  }
+  30% {
+    opacity: 0.9;
+    transform: translate3d(-2%, 0, 0) rotate(-11deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(8%, 4%, 0) rotate(-6deg);
+  }
+}
+
+@keyframes teatroLuxBeamR {
+  0% {
+    opacity: 0;
+    transform: translate3d(18%, -8%, 0) rotate(18deg);
+  }
+  30% {
+    opacity: 0.9;
+    transform: translate3d(2%, 0, 0) rotate(11deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-8%, 4%, 0) rotate(6deg);
+  }
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-lux {
+  background: radial-gradient(circle at 50% 24%, rgba(255, 226, 194, 0.9) 0%, rgba(207, 176, 149, 0.52) 44%, transparent 78%);
+  animation: teatroLuxBloom 440ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-lux::before,
+body[data-brand="teatro"] .fx-overlay.fx-lux::after {
+  content: "";
+  position: absolute;
+  top: -8%;
+  bottom: 8%;
+  width: 34%;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 238, 214, 0.56) 0%, rgba(224, 148, 88, 0.24) 56%, transparent 100%);
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-lux::before {
+  left: 12%;
+  animation: teatroLuxBeamL 440ms var(--tt-ease-stage) forwards;
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-lux::after {
+  right: 12%;
+  animation: teatroLuxBeamR 440ms var(--tt-ease-stage) forwards;
+}
+
+/* VID (VIDEO): červený CRT glitch & horizontální trhání sync pruhů */
+@keyframes teatroVidGlitch {
+  0% {
+    opacity: 1;
+    transform: translate3d(-10px, 0, 0) skewX(3deg);
+  }
+  25% {
+    opacity: 0.9;
+    transform: translate3d(12px, 0, 0) skewX(-4deg);
+  }
+  50% {
+    opacity: 0.72;
+    transform: translate3d(-7px, 0, 0) skewX(2deg);
+  }
+  75% {
+    opacity: 0.4;
+    transform: translate3d(5px, 0, 0) skewX(-1deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) skewX(0);
+  }
+}
+
+@keyframes teatroVidTear {
+  0% {
+    opacity: 0.92;
+    transform: translate3d(16px, 0, 0);
+  }
+  35% {
+    opacity: 0.76;
+    transform: translate3d(-16px, 0, 0);
+  }
+  70% {
+    opacity: 0.45;
+    transform: translate3d(8px, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 body[data-brand="teatro"] .fx-overlay.fx-vid {
   background:
-    radial-gradient(ellipse at 50% 45%, rgba(122, 148, 173, 0.26), rgba(16, 20, 29, 0.76) 72%),
-    linear-gradient(90deg, rgba(15, 17, 21, 0.85), rgba(216, 162, 94, 0.1) 50%, rgba(15, 17, 21, 0.85));
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 40, 46, 0.22) 0px,
+      rgba(255, 255, 255, 0.14) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    linear-gradient(90deg, rgba(255, 36, 48, 0.46), transparent 28%, rgba(20, 2, 4, 0.5) 66%, rgba(255, 84, 72, 0.38));
+  animation: teatroVidGlitch 400ms steps(5, end) forwards;
 }
 
-/* ----- 3. OBLASTI & PODSEKCE TEATRO (.division-view[data-brand="teatro"]) ----- */
-.division-view[data-brand="teatro"],
-.division-view[data-brand="teatro"].theme-AUD,
-.division-view[data-brand="teatro"].theme-LUX,
-.division-view[data-brand="teatro"].theme-VID {
-  --bg-main: var(--tt-bg);
-  --bg-card: var(--tt-bg-card);
-  --fg-main: var(--tt-text);
-  --fg-muted: var(--tt-text-muted);
-  --border-col: var(--tt-border-cool);
-  transition: background-color 0.55s ease, color 0.55s ease;
+body[data-brand="teatro"] .fx-overlay.fx-vid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 42px,
+    rgba(255, 58, 58, 0.42) 42px 48px,
+    transparent 48px 118px,
+    rgba(255, 255, 255, 0.26) 118px 121px,
+    transparent 121px 180px
+  );
+  animation: teatroVidTear 400ms steps(4, end) forwards;
 }
 
+@keyframes teatroSceneDim {
+  0% { opacity: 0; }
+  35% { opacity: 0.72; }
+  100% { opacity: 0; }
+}
+
+body[data-brand="teatro"] .fx-overlay.fx-mod {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.18) 0%, transparent 65%);
+  animation: teatroSceneDim var(--tt-dur-scene) var(--tt-ease-stage) forwards;
+}
+
+/* ----- 3. SPOLEČNÁ PALETA TEATRO NAPŘÍČ DIVIZEMI (.division-view[data-brand="teatro"]) ----- */
+.division-view[data-brand="teatro"] {
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+/* ZVUK — tmavá modrá */
+.division-view[data-brand="teatro"].theme-AUD {
+  --bg-main: var(--tt-aud-bg);
+  --bg-card: var(--tt-aud-card);
+  --fg-main: var(--tt-aud-fg);
+  --fg-muted: var(--tt-aud-muted);
+  --border-col: rgba(159, 184, 216, 0.28);
+  --tt-area-accent: var(--tt-aud-accent);
+  --tt-area-accent-ink: var(--tt-aud-bg);
+  --tt-area-hi: #a9cdf8;
+  --tt-area-secondary: var(--tt-aud-muted);
+  --tt-btn-bg: rgba(13, 26, 45, 0.88);
+  --tt-btn-ink: var(--tt-aud-fg);
+  --tt-chip-bg: rgba(13, 26, 45, 0.55);
+  --tt-hero-glow: rgba(121, 174, 240, 0.12);
+}
+
+/* SVĚTLO — světlá oranžová mírně šedá s tmavým písmem pro plnou čitelnost */
 .division-view[data-brand="teatro"].theme-LUX {
-  --bg-main: #121110;
-  --bg-card: #1b1815;
-  --border-col: var(--tt-border);
+  --bg-main: var(--tt-lux-bg);
+  --bg-card: var(--tt-lux-card);
+  --fg-main: var(--tt-lux-fg);
+  --fg-muted: var(--tt-lux-muted);
+  --border-col: rgba(22, 19, 16, 0.24);
+  --tt-area-accent: var(--tt-lux-fg);
+  --tt-area-accent-ink: var(--tt-lux-card);
+  --tt-area-hi: var(--tt-lux-accent);
+  --tt-area-secondary: var(--tt-lux-muted);
+  --tt-btn-bg: rgba(216, 188, 163, 0.92);
+  --tt-btn-ink: var(--tt-lux-fg);
+  --tt-chip-bg: rgba(22, 19, 16, 0.08);
+  --tt-hero-glow: rgba(255, 240, 224, 0.22);
 }
 
+/* VIDEO — červená */
 .division-view[data-brand="teatro"].theme-VID {
-  --bg-main: #0f1218;
-  --bg-card: #161b24;
-  --border-col: var(--tt-border-cool);
+  --bg-main: var(--tt-vid-bg);
+  --bg-card: var(--tt-vid-card);
+  --fg-main: var(--tt-vid-fg);
+  --fg-muted: var(--tt-vid-muted);
+  --border-col: rgba(242, 235, 230, 0.28);
+  --tt-area-accent: var(--tt-vid-fg);
+  --tt-area-accent-ink: var(--tt-vid-bg);
+  --tt-area-hi: var(--tt-vid-accent);
+  --tt-area-secondary: var(--tt-vid-muted);
+  --tt-btn-bg: rgba(97, 17, 23, 0.9);
+  --tt-btn-ink: var(--tt-vid-fg);
+  --tt-chip-bg: rgba(24, 4, 6, 0.34);
+  --tt-hero-glow: rgba(255, 110, 102, 0.14);
 }
 
+/* Pevné pozadí bez backdrop-filter blur pro plynulých 60 FPS při scrollování */
 .division-view[data-brand="teatro"] .hud-nav {
-  background: rgba(15, 17, 21, 0.94);
-  backdrop-filter: blur(8px);
-  border-bottom: 2px solid var(--tt-spotlight);
+  background: var(--bg-main);
+  border-bottom: 2px solid var(--tt-area-hi);
 }
 
 .division-view[data-brand="teatro"] .btn-hud,
 .division-view[data-brand="teatro"] .btn-back {
-  background: var(--tt-bg-2);
-  border-color: var(--tt-border-cool);
-  color: var(--tt-text);
+  background: var(--tt-btn-bg);
+  border-color: var(--border-col);
+  color: var(--tt-btn-ink);
   transition:
-    color 0.34s var(--tt-dimmer),
-    background-color 0.36s var(--tt-dimmer),
-    border-color 0.34s var(--tt-dimmer);
+    color var(--tt-dur-ui) ease,
+    background-color var(--tt-dur-ui) ease,
+    border-color var(--tt-dur-ui) ease;
+}
+
+.division-view[data-brand="teatro"] .btn-hud.btn-brand-toggle {
+  background: transparent;
+  color: var(--fg-main);
+  border-color: var(--border-col);
 }
 
 .division-view[data-brand="teatro"] .btn-hud:hover,
 .division-view[data-brand="teatro"] .btn-back:hover {
-  border-color: var(--tt-spotlight);
-  color: var(--tt-spotlight-hi);
-}
-
-.division-view[data-brand="teatro"] .btn-teatro-jump {
-  border-color: rgba(216, 162, 94, 0.45);
-}
-
-.division-view[data-brand="teatro"] .btn-teatro-jump:hover {
-  background: var(--tt-spotlight);
-  border-color: var(--tt-spotlight);
-  color: var(--tt-bg);
+  border-color: var(--fg-main);
+  color: var(--fg-main);
 }
 
 .division-view[data-brand="teatro"] .div-switcher {
-  border-color: var(--tt-border);
+  border-color: var(--border-col);
 }
 
 .division-view[data-brand="teatro"] .div-tab,
 .division-view[data-brand="teatro"] .sub-tab {
-  color: var(--tt-text-muted);
+  color: var(--fg-muted);
   transition:
-    color 0.32s var(--tt-dimmer),
-    background-color 0.36s var(--tt-dimmer),
-    border-color 0.32s var(--tt-dimmer);
+    color var(--tt-dur-ui) ease,
+    background-color var(--tt-dur-light) ease,
+    border-color var(--tt-dur-ui) ease;
 }
 
 .division-view[data-brand="teatro"] .div-tab:hover,
 .division-view[data-brand="teatro"] .sub-tab:hover {
-  color: var(--tt-text);
-  border-color: var(--tt-border);
+  color: var(--fg-main);
+  border-color: var(--border-col);
 }
 
 .division-view[data-brand="teatro"] .div-tab.active,
 .division-view[data-brand="teatro"] .sub-tab.active {
-  background: var(--tt-spotlight);
-  border-color: var(--tt-spotlight);
-  color: var(--tt-bg);
+  background: var(--tt-area-accent);
+  border-color: var(--tt-area-accent);
+  color: var(--tt-area-accent-ink);
 }
 
 .division-view[data-brand="teatro"] .div-hero {
-  background: radial-gradient(ellipse at 26% 0%, rgba(216, 162, 94, 0.11), transparent 62%);
-  border-bottom: 1px solid var(--tt-border);
+  background: linear-gradient(180deg, var(--tt-hero-glow) 0%, transparent 100%);
+  border-bottom: 1px solid var(--border-col);
 }
 
 .division-view[data-brand="teatro"] .div-context-bar {
-  background: var(--tt-bg-2);
-  border-color: var(--tt-border-cool);
+  background: var(--bg-card);
+  border-color: var(--border-col);
 }
 
 .division-view[data-brand="teatro"] .context-crumb.is-current,
 .division-view[data-brand="teatro"] button.context-crumb:hover,
 .division-view[data-brand="teatro"] .div-hero-code,
 .division-view[data-brand="teatro"] .sec-num {
-  color: var(--tt-spotlight);
+  color: var(--tt-area-hi);
 }
 
 .division-view[data-brand="teatro"] .sec-head {
-  border-left: 3px solid var(--tt-spotlight);
+  border-left: 3px solid var(--tt-area-hi);
   padding-left: 16px;
 }
 
-/* Karty TEATRO: klidný nástup reflektoru místo poskakování */
+/* Karty TEATRO: čisté rozsvícení horní linky přes GPU opacity bez poskakování */
 .division-view[data-brand="teatro"] .hud-card,
 .division-view[data-brand="teatro"] .person-card {
-  background: var(--tt-bg-card);
-  border-color: var(--tt-border-cool);
+  position: relative;
+  background: var(--bg-card);
+  border-color: var(--border-col);
   transition:
-    border-color 0.42s var(--tt-dimmer),
-    box-shadow 0.48s var(--tt-dimmer),
-    background-color 0.42s var(--tt-dimmer);
+    border-color var(--tt-dur-light) ease,
+    background-color var(--tt-dur-light) ease;
+}
+
+.division-view[data-brand="teatro"] .hud-card::before,
+.division-view[data-brand="teatro"] .person-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--tt-area-hi);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--tt-dur-ui) ease;
 }
 
 .division-view[data-brand="teatro"] .hud-card:hover,
 .division-view[data-brand="teatro"] .person-card:hover {
   transform: none;
-  border-color: var(--tt-spotlight);
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.42),
-    inset 0 2px 0 rgba(216, 162, 94, 0.45);
+  border-color: var(--tt-area-hi);
+}
+
+.division-view[data-brand="teatro"] .hud-card:hover::before,
+.division-view[data-brand="teatro"] .person-card:hover::before {
+  opacity: 1;
 }
 
 .division-view[data-brand="teatro"] .hud-card-head {
-  color: var(--tt-backlight);
-  border-bottom-color: var(--tt-border-cool);
+  color: var(--tt-area-secondary);
+  border-bottom-color: var(--border-col);
 }
 
 .division-view[data-brand="teatro"] .btn-outline {
-  color: var(--tt-spotlight-hi);
-  border-color: var(--tt-spotlight);
+  color: var(--fg-main);
+  border-color: var(--tt-area-hi);
   transition:
-    color 0.34s var(--tt-dimmer),
-    background-color 0.38s var(--tt-dimmer),
-    border-color 0.34s var(--tt-dimmer);
+    color var(--tt-dur-ui) ease,
+    background-color var(--tt-dur-light) ease,
+    border-color var(--tt-dur-ui) ease;
 }
 
 .division-view[data-brand="teatro"] .btn-outline:hover {
-  background: var(--tt-spotlight);
-  border-color: var(--tt-spotlight);
-  color: var(--tt-bg);
+  background: var(--tt-area-accent);
+  border-color: var(--tt-area-accent);
+  color: var(--tt-area-accent-ink);
 }
 
 .division-view[data-brand="teatro"] .person-initials {
-  border-color: var(--tt-spotlight);
-  color: var(--tt-spotlight-hi);
+  border-color: var(--tt-area-hi);
+  color: var(--tt-area-hi);
 }
 
 .division-view[data-brand="teatro"] .modal-chip {
-  border-color: var(--tt-border-cool);
-  color: var(--tt-text);
-  background: rgba(15, 17, 21, 0.4);
+  border-color: var(--border-col);
+  color: var(--fg-main);
+  background: var(--tt-chip-bg);
 }
 
 .division-view[data-brand="teatro"] .blog-editor {
-  background: var(--tt-bg-card);
-  border-color: var(--tt-spotlight) !important;
+  background: var(--bg-card);
+  border-color: var(--tt-area-hi) !important;
 }
 
 .division-view[data-brand="teatro"] .blog-input,
 .division-view[data-brand="teatro"] .blog-textarea {
-  background: var(--tt-bg);
-  border-color: var(--tt-border-cool);
-  color: var(--tt-text);
-  transition: border-color 0.34s var(--tt-dimmer);
+  background: var(--bg-main);
+  border-color: var(--border-col);
+  color: var(--fg-main);
+  transition: border-color var(--tt-dur-ui) ease;
 }
 
 .division-view[data-brand="teatro"] .blog-input:focus,
 .division-view[data-brand="teatro"] .blog-textarea:focus {
-  border-color: var(--tt-spotlight);
+  border-color: var(--tt-area-hi);
   outline: none;
 }
 
 .division-view[data-brand="teatro"] .hud-check input[type="checkbox"] {
-  accent-color: var(--tt-spotlight);
+  accent-color: var(--tt-area-hi);
 }
 
 .division-view[data-brand="teatro"] .brief-feedback {
-  color: var(--tt-spotlight-hi) !important;
+  color: var(--tt-area-hi) !important;
 }
 
 .division-view[data-brand="teatro"] .pcb-footer {
-  border-top-color: var(--tt-border);
+  border-top-color: var(--border-col);
 }
 
 .division-view[data-brand="teatro"] .mf-accent-strip,
 .division-view[data-brand="teatro"] .mf-reg {
-  color: var(--tt-spotlight);
-  opacity: 0.78;
+  color: var(--tt-area-hi);
+  opacity: 0.85;
 }
 
 .division-view[data-brand="teatro"] .mf-serial-left {
-  color: var(--tt-backlight);
+  color: var(--tt-area-secondary);
 }
 
 .division-view[data-brand="teatro"] .mf-brand-text {
-  color: var(--tt-text);
+  color: var(--fg-main);
 }
 
-/* ----- 4. SCÉNICKÉ NÁSTUPY PRO TEATRO (divadelní opona + postupné rozsvícení) ----- */
-@keyframes teatroCurtainOpen {
+.division-view[data-brand="teatro"] .landing-bottombar .lang-active {
+  color: var(--fg-main);
+}
+
+/* ----- 4. SVIŽNÉ SCÉNICKÉ NÁSTUPY PRO TEATRO (300–400 MS, STAGGER 45 MS, POUZE GPU OPACITY + TRANSFORM) ----- */
+@keyframes teatroHeroWash {
   from {
     opacity: 0;
-    clip-path: inset(0 0 14% 0);
-    transform: translateY(10px);
+    transform: translateY(-4px);
   }
   to {
     opacity: 1;
-    clip-path: inset(0 0 0 0);
     transform: translateY(0);
   }
 }
@@ -3083,7 +3308,7 @@ body[data-brand="teatro"] .fx-overlay.fx-vid {
 @keyframes teatroStageEnter {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -3092,12 +3317,12 @@ body[data-brand="teatro"] .fx-overlay.fx-vid {
 }
 
 .division-view[data-brand="teatro"] .teatro-enter .div-hero {
-  animation: teatroCurtainOpen 0.72s var(--tt-ease) backwards;
+  animation: teatroHeroWash var(--tt-dur-scene) var(--tt-ease-stage) backwards;
 }
 
 .division-view[data-brand="teatro"] .teatro-enter .div-section {
-  animation: teatroDimmerIn 0.78s var(--tt-dimmer) backwards;
-  animation-delay: 0.08s;
+  animation: teatroDimmerIn var(--tt-dur-scene) ease backwards;
+  animation-delay: 40ms;
 }
 
 .division-view[data-brand="teatro"] .teatro-enter .cards-grid > *,
@@ -3107,8 +3332,8 @@ body[data-brand="teatro"] .fx-overlay.fx-vid {
 .division-view[data-brand="teatro"] .teatro-enter .blog-editor,
 .division-view[data-brand="teatro"] .teatro-enter .hud-empty-box {
   --ti: 0;
-  animation: teatroStageEnter 0.66s var(--tt-ease) backwards;
-  animation-delay: calc(0.12s + var(--ti) * 75ms);
+  animation: teatroStageEnter 320ms var(--tt-ease-stage) backwards;
+  animation-delay: calc(50ms + var(--ti) * var(--tt-stagger));
 }
 
 .division-view[data-brand="teatro"] .teatro-enter .cards-grid > :nth-child(2),
@@ -3119,8 +3344,17 @@ body[data-brand="teatro"] .fx-overlay.fx-vid {
 .division-view[data-brand="teatro"] .teatro-enter .people-grid > :nth-child(3) { --ti: 2; }
 .division-view[data-brand="teatro"] .teatro-enter .cards-grid > :nth-child(4),
 .division-view[data-brand="teatro"] .teatro-enter .cards-grid-2 > :nth-child(4) { --ti: 3; }
-.division-view[data-brand="teatro"] .teatro-enter .cards-grid > :nth-child(n+5),
-.division-view[data-brand="teatro"] .teatro-enter .cards-grid-2 > :nth-child(n+5) { --ti: 4; }
+.division-view[data-brand="teatro"] .teatro-enter .cards-grid > :nth-child(5),
+.division-view[data-brand="teatro"] .teatro-enter .cards-grid-2 > :nth-child(5) { --ti: 4; }
+.division-view[data-brand="teatro"] .teatro-enter .cards-grid > :nth-child(n+6),
+.division-view[data-brand="teatro"] .teatro-enter .cards-grid-2 > :nth-child(n+6) { --ti: 5; }
+
+@media (max-width: 960px) {
+  .landing-view[data-brand="teatro"] .split-panel + .split-panel {
+    border-left: none;
+    border-top: 1px solid rgba(234, 234, 228, 0.22);
+  }
+}
 
 /* Přístupnost: omezení animací podle preferencí systému */
 @media (prefers-reduced-motion: reduce) {

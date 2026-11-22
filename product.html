@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261122l" />
+  <link rel="stylesheet" href="styles.css?v=20261122p" />
 </head>
 <body id="productBody" class="product-page">
   <a class="skip-link" href="#productMain">Přejít na obsah / Skip to content</a>
@@ -41,9 +41,6 @@
         <button id="cartToggleProd" class="btn-hud btn-sm" type="button" aria-expanded="false" aria-controls="cartDrawer">
           <span data-i18n="list_btn">SEZNAM</span>
           <span class="cart-count-pill">[<span data-cart-count>0</span>]</span>
-        </button>
-        <button id="langToggleProd" class="btn-hud btn-sm" type="button">
-          <span class="lang-active">CZ</span> / <span>EN</span>
         </button>
       </div>
     </div>
@@ -81,7 +78,13 @@
     </div>
   </aside>
 
-  <script src="data.js?v=20261122l"></script>
-  <script src="product.js?v=20261122l"></script>
+  <div class="landing-bottombar">
+    <button id="langToggleProd" class="btn-hud btn-sm" type="button">
+      <span class="lang-active">CZ</span> / <span>EN</span>
+    </button>
+  </div>
+
+  <script src="data.js?v=20261122p"></script>
+  <script src="product.js?v=20261122p"></script>
 </body>
 </html>

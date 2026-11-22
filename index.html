@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261122l" />
+  <link rel="stylesheet" href="styles.css?v=20261122p" />
 </head>
 <body data-brand="decoy">
   <a class="skip-link" href="#divisionContent">Přejít na obsah / Skip to content</a>
@@ -89,10 +89,6 @@
     </main>
 
     <div class="landing-bottombar">
-      <button id="cartToggleLanding" class="btn-hud btn-sm" type="button" aria-expanded="false" aria-controls="cartDrawer">
-        <span data-i18n="list_btn">SEZNAM</span>
-        <span class="cart-count-pill">[<span data-cart-count>0</span>]</span>
-      </button>
       <button id="langToggleLanding" class="btn-hud btn-sm" type="button">
         <span class="lang-active">CZ</span> / <span>EN</span>
       </button>
@@ -106,10 +102,14 @@
     <header class="hud-nav">
       <div class="container hud-nav-inner">
         <div class="nav-left">
-          <button id="backToSplit" class="btn-back" type="button">
-            <span>←</span>
-            <span>DECØY DEVICES</span>
-          </button>
+          <div class="nav-brand-group">
+            <button id="backToSplit" class="btn-back btn-back-icon" type="button" aria-label="Zpět na úvod" title="Zpět na úvod">
+              <span>←</span>
+            </button>
+            <button id="selectBrandDecoyDiv" class="btn-hud btn-sm btn-brand-toggle" type="button" data-select-brand="decoy">
+              DECØY DEVICES
+            </button>
+          </div>
           <div class="div-switcher" role="tablist" aria-label="Přepnout divizi">
             <button type="button" class="div-tab" data-switch-div="AUD" data-i18n="div_sound">ZVUK</button>
             <button type="button" class="div-tab" data-switch-div="LUX" data-i18n="div_light">SVĚTLO</button>
@@ -127,11 +127,8 @@
             <span data-i18n="list_btn">SEZNAM</span>
             <span class="cart-count-pill">[<span data-cart-count>0</span>]</span>
           </button>
-          <button id="openTeatroFromDiv" class="btn-hud btn-sm btn-teatro-jump" type="button">
-            TEATRO\\\SVJÖTLO ↗
-          </button>
-          <button id="langToggleDiv" class="btn-hud btn-sm" type="button">
-            <span class="lang-active">CZ</span> / <span>EN</span>
+          <button id="openTeatroFromDiv" class="btn-hud btn-sm btn-brand-toggle" type="button" data-select-brand="teatro">
+            TEATRO\\\SVJÖTLO
           </button>
         </div>
       </div>
@@ -144,6 +141,12 @@
     <footer id="siteFooter" class="pcb-footer">
       <!-- Populated by renderModuleFooterHTML() according to GRAPHIC_MANUAL.md -->
     </footer>
+
+    <div class="landing-bottombar">
+      <button id="langToggleDiv" class="btn-hud btn-sm" type="button">
+        <span class="lang-active">CZ</span> / <span>EN</span>
+      </button>
+    </div>
   </div>
 
   <!-- FX OVERLAY (Světlo / Zvuk / Video / Modul efekty) -->
@@ -178,7 +181,7 @@
     </div>
   </aside>
 
-  <script src="data.js?v=20261122l"></script>
-  <script src="app.js?v=20261122l"></script>
+  <script src="data.js?v=20261122p"></script>
+  <script src="app.js?v=20261122p"></script>
 </body>
 </html>
