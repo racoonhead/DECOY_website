@@ -49,12 +49,14 @@ let currentSection = "landing"; // "landing" | "decoy" | "teatro"
 let currentDivision = null;
 let currentTab = "eurorack";
 let currentSecIdx = 0;
+let currentSectionItems = [];
 let currentModalId = null;
 
 let hudFilter = {
   q: "",
   category: "all",
   subcategory: "all",
+  availability: "all",
   originalOnly: false,
   sort: "featured",
 };
@@ -125,10 +127,16 @@ function applyTranslations() {
   updateCartCountUI();
 }
 
-function updateCartCountUI() {
+function updateCartCountUI(pulse = false) {
   const count = String(DECOY_STORE.getCount());
   document.querySelectorAll("[data-cart-count]").forEach((el) => {
     el.textContent = count;
+    const pill = el.closest(".cart-count-pill") || el;
+    if (pulse) {
+      pill.classList.remove("cart-pulse");
+      void pill.offsetWidth;
+      pill.classList.add("cart-pulse");
+    }
   });
 }
 
@@ -154,6 +162,7 @@ function renderHudProductCard(item, { idx = 0, total = 1, isSelected = false, sh
   const priceText = DECOY_STORE.formatPrice(item, currentLang);
   const availText = DECOY_STORE.availabilityLabel(item, currentLang);
   const inCart = DECOY_STORE.getItems().some((e) => e.id === item.id);
+  const availClass = `avail-${item.availability || "tbd"}`;
 
   let mediaHtml = "";
   if (imgSrc) {
@@ -165,10 +174,13 @@ function renderHudProductCard(item, { idx = 0, total = 1, isSelected = false, sh
   }
 
   return `
-    <article class="hud-card hud-card-click ${showSelectState && isSelected ? "hud-card-selected" : ""}" id="card-${item.id}" data-open-mod="${item.id}" tabindex="0">
+    <article class="hud-card hud-card-click ${showSelectState && isSelected ? "hud-card-selected" : ""}" id="card-${item.id}" data-open-mod="${item.id}" tabindex="0" role="article" aria-label="${escapeHtml(name)}">
       <div class="hud-card-head">
         <span>${escapeHtml(item.serial)}</span>
-        <span>${item.isOriginal ? dict.original_badge : escapeHtml(item.brand)} · ${idx + 1}/${total} · ${escapeHtml(item.hp)}</span>
+        <span class="hud-card-head-right">
+          <span class="${item.isOriginal ? "hud-badge-orig" : "hud-badge-partner"}">${item.isOriginal ? dict.original_badge : escapeHtml(item.brand)}</span>
+          <span>${idx + 1}/${total} · ${escapeHtml(item.hp)}</span>
+        </span>
       </div>
       <div class="hud-card-media">
         ${mediaHtml}
@@ -177,7 +189,7 @@ function renderHudProductCard(item, { idx = 0, total = 1, isSelected = false, sh
         <h3>${escapeHtml(name)}</h3>
         <p>${escapeHtml(textVal(item.short))}</p>
         <div class="hud-card-commerce">
-          <span>${escapeHtml(item.brand)} · ${escapeHtml(availText)}</span>
+          <span class="hud-avail-meta"><i class="avail-dot ${availClass}" aria-hidden="true"></i>${escapeHtml(item.brand)} · ${escapeHtml(availText)}</span>
           <strong class="${item.price === null ? "is-tbd" : ""}">${escapeHtml(priceText)}</strong>
         </div>
         <div class="card-actions">
@@ -191,7 +203,15 @@ function renderHudProductCard(item, { idx = 0, total = 1, isSelected = false, sh
 }
 
 /* ---------------------------------------------------- HUD Filter Bar (native DECØY strip) */
-function renderHudFilterStrip(subcategories, dict, { showCatSelect = false, showSearch = true } = {}) {
+function renderHudFilterStrip(subcategories, dict, { showCatSelect = false, showAvailSelect = false, showSearch = true, totalShown = null, totalAll = null } = {}) {
+  const hasActiveFilter =
+    Boolean(hudFilter.q.trim()) ||
+    hudFilter.category !== "all" ||
+    hudFilter.subcategory !== "all" ||
+    hudFilter.availability !== "all" ||
+    hudFilter.originalOnly ||
+    hudFilter.sort !== "featured";
+
   return `
     <div class="hud-filter-strip">
       ${
@@ -210,12 +230,26 @@ function renderHudFilterStrip(subcategories, dict, { showCatSelect = false, show
           : ""
       }
       <div class="hud-controls-row">
-        ${showSearch ? `<input id="hudSearchInput" class="hud-input" type="search" value="${escapeHtml(hudFilter.q)}" placeholder="${dict.search_ph}" />` : ""}
+        ${showSearch ? `<input id="hudSearchInput" class="hud-input" type="search" value="${escapeHtml(hudFilter.q)}" placeholder="${dict.search_ph}" aria-label="${dict.search_ph}" />` : ""}
         ${
           showCatSelect
             ? `<select id="hudCatSelect" class="hud-select" aria-label="${dict.all_categories}">
-                <option value="all">${dict.all_categories}</option>
-                ${CATEGORIES.map((c) => `<option value="${c.id}" ${hudFilter.category === c.id ? "selected" : ""}>${escapeHtml(textVal(c.name))}</option>`).join("")}
+                <option value="all">${dict.all_categories} (${CATALOG_ITEMS.length})</option>
+                ${CATEGORIES.map((c) => {
+                  const cnt = CATALOG_ITEMS.filter((item) => (item.categories || [item.category]).includes(c.id)).length;
+                  return `<option value="${c.id}" ${hudFilter.category === c.id ? "selected" : ""}>${escapeHtml(textVal(c.name))} (${cnt})</option>`;
+                }).join("")}
+              </select>`
+            : ""
+        }
+        ${
+          showAvailSelect
+            ? `<select id="hudAvailSelect" class="hud-select" aria-label="${dict.all_avail}">
+                <option value="all" ${hudFilter.availability === "all" ? "selected" : ""}>${dict.all_avail}</option>
+                <option value="on_order" ${hudFilter.availability === "on_order" ? "selected" : ""}>${dict.avail_on_order}</option>
+                <option value="prototype" ${hudFilter.availability === "prototype" ? "selected" : ""}>${dict.avail_prototype}</option>
+                <option value="in_development" ${hudFilter.availability === "in_development" ? "selected" : ""}>${dict.avail_in_development}</option>
+                <option value="concept" ${hudFilter.availability === "concept" ? "selected" : ""}>${dict.avail_concept}</option>
               </select>`
             : ""
         }
@@ -229,6 +263,8 @@ function renderHudFilterStrip(subcategories, dict, { showCatSelect = false, show
           <option value="name" ${hudFilter.sort === "name" ? "selected" : ""}>${dict.sort_name}</option>
           <option value="price_asc" ${hudFilter.sort === "price_asc" ? "selected" : ""}>${dict.sort_price_asc}</option>
         </select>
+        ${hasActiveFilter ? `<button type="button" class="btn-outline btn-xs" id="hudInlineResetBtn">${dict.reset_filters}</button>` : ""}
+        ${totalShown !== null && totalAll !== null ? `<span class="hud-filter-count">${totalShown} / ${totalAll}</span>` : ""}
       </div>
     </div>
   `;
@@ -241,28 +277,29 @@ function renderProductCollection(div, dict, { key, secNum, heading }) {
   const relevantSubcats = key === "eurorack" && catObj ? catObj.subcategories : [];
 
   let items = baseIds.map((id) => getCatalogItem(id)).filter(Boolean);
-  if (hudFilter.subcategory !== "all" || hudFilter.q.trim() || hudFilter.originalOnly || hudFilter.sort !== "featured") {
-    const filteredSet = new Set(
-      DECOY_STORE.queryProducts({
-        q: hudFilter.q,
-        subcategory: hudFilter.subcategory,
-        originalOnly: hudFilter.originalOnly,
-        sort: hudFilter.sort,
-        lang: currentLang,
-      }).map((i) => i.id)
-    );
-    items = items.filter((i) => filteredSet.has(i.id));
-    if (hudFilter.sort !== "featured") {
-      items = DECOY_STORE.queryProducts({
-        q: hudFilter.q,
-        subcategory: hudFilter.subcategory,
-        originalOnly: hudFilter.originalOnly,
-        sort: hudFilter.sort,
-        lang: currentLang,
-      }).filter((i) => baseIds.includes(i.id));
-    }
+  if (
+    hudFilter.subcategory !== "all" ||
+    hudFilter.availability !== "all" ||
+    hudFilter.q.trim() ||
+    hudFilter.originalOnly ||
+    hudFilter.sort !== "featured"
+  ) {
+    const queried = DECOY_STORE.queryProducts({
+      q: hudFilter.q,
+      subcategory: hudFilter.subcategory,
+      availability: hudFilter.availability,
+      originalOnly: hudFilter.originalOnly,
+      sort: hudFilter.sort,
+      lang: currentLang,
+    });
+    const filteredSet = new Set(queried.map((i) => i.id));
+    items =
+      hudFilter.sort !== "featured"
+        ? queried.filter((i) => baseIds.includes(i.id))
+        : items.filter((i) => filteredSet.has(i.id));
   }
 
+  currentSectionItems = items;
   if (currentSecIdx >= items.length) currentSecIdx = 0;
   const activeProd = items[currentSecIdx] || null;
   const divParam = currentDivision ? `&div=${currentDivision}` : "";
@@ -289,7 +326,7 @@ function renderProductCollection(div, dict, { key, secNum, heading }) {
               : `<span class="sec-num">${dict.soon_badge}</span>`
           }
         </div>
-        ${baseIds.length ? renderHudFilterStrip(relevantSubcats, dict) : ""}
+        ${baseIds.length ? renderHudFilterStrip(relevantSubcats, dict, { totalShown: items.length, totalAll: baseIds.length }) : ""}
         ${
           items.length
             ? `<div class="cards-grid">
@@ -383,11 +420,13 @@ function renderCatalogAndBrands(dict) {
   const items = DECOY_STORE.queryProducts({
     category: hudFilter.category,
     subcategory: hudFilter.subcategory,
+    availability: hudFilter.availability,
     q: hudFilter.q,
     originalOnly: hudFilter.originalOnly,
     sort: hudFilter.sort,
     lang: currentLang,
   });
+  currentSectionItems = items;
 
   return `
     <section class="div-section">
@@ -404,20 +443,24 @@ function renderCatalogAndBrands(dict) {
         <div class="cards-grid-2" style="margin-bottom:26px;">
           ${BRANDS.map(
             (b) => `
-            <article class="hud-card">
+            <article class="hud-card brand-card-interactive ${hudFilter.originalOnly ? "hud-card-selected" : ""}" data-toggle-orig-brand tabindex="0" role="button" aria-pressed="${hudFilter.originalOnly}">
               <div class="hud-card-head">
-                <span>${dict.original_badge}</span>
+                <span class="hud-badge-orig">${dict.original_badge}</span>
                 <span>${escapeHtml(textVal(b.origin))}</span>
               </div>
               <div class="hud-card-body">
                 <h3>${escapeHtml(b.name)}</h3>
                 <p>${escapeHtml(textVal(b.focus))}</p>
+                <div class="hud-card-commerce">
+                  <span>${CATALOG_ITEMS.filter((i) => i.isOriginal).length} ${currentLang === "cs" ? "vlastních produktů" : "in-house products"}</span>
+                  <strong>${hudFilter.originalOnly ? (currentLang === "cs" ? "FILTR AKTIVNÍ ✓" : "FILTER ACTIVE ✓") : (currentLang === "cs" ? "FILTROVAT →" : "FILTER →")}</strong>
+                </div>
               </div>
             </article>`
           ).join("")}
           <article class="hud-card">
             <div class="hud-card-head">
-              <span>${dict.partner_badge}</span>
+              <span class="hud-badge-partner">${dict.partner_badge}</span>
               <span>SLOT // READY</span>
             </div>
             <div class="hud-card-body">
@@ -425,11 +468,20 @@ function renderCatalogAndBrands(dict) {
               <p>${currentLang === "cs"
                 ? "Katalogové rozhraní je připraveno pro přidání externích výrobců bez zásahu do architektury."
                 : "Catalog interface ready for onboarding verified external manufacturers."}</p>
+              <div class="hud-card-commerce">
+                <span>EURORACK · DMX · VIDEO · DIY</span>
+                <strong class="is-tbd">DISTRIBUCE // TBD</strong>
+              </div>
             </div>
           </article>
         </div>
 
-        ${renderHudFilterStrip(activeCat ? activeCat.subcategories : [], dict, { showCatSelect: true })}
+        ${renderHudFilterStrip(activeCat ? activeCat.subcategories : [], dict, {
+          showCatSelect: true,
+          showAvailSelect: true,
+          totalShown: items.length,
+          totalAll: CATALOG_ITEMS.length,
+        })}
         ${
           items.length
             ? `<div class="cards-grid">
@@ -704,7 +756,7 @@ function renderMerch(dict) {
 }
 
 /* ---------------------------------------------------- division & teatro views */
-function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScroll = false } = {}) {
+function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScroll = false, replaceHistory = false } = {}) {
   const div = DIVISIONS[divKey];
   if (!div) return;
   const allowedTabs = getDivisionTabs(divKey);
@@ -722,12 +774,16 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
   divView.className = `division-view theme-${divKey}`;
 
   document.querySelectorAll("[data-switch-div]").forEach((btn) => {
-    btn.classList.toggle("active", btn.getAttribute("data-switch-div") === divKey);
+    const active = btn.getAttribute("data-switch-div") === divKey;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-selected", String(active));
   });
   document.querySelectorAll("[data-tab]").forEach((btn) => {
     const t = btn.getAttribute("data-tab");
+    const active = t === currentTab;
     btn.hidden = !allowedTabs.includes(t);
-    btn.classList.toggle("active", t === currentTab);
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-selected", String(active));
   });
 
   const siteFooter = document.getElementById("siteFooter");
@@ -736,6 +792,15 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
   }
 
   const dict = I18N[currentLang];
+  const tabLabels = {
+    eurorack: "EURORACK",
+    desktop: dict.sec_desktop,
+    pedals: dict.sec_pedals,
+    diy: dict.sec_diy,
+    catalog: dict.sec_catalog,
+    blog: dict.sec_blog,
+    merch: dict.sec_merch,
+  };
   const body = {
     eurorack: () => renderEurorack(div, dict),
     desktop: () => renderDesktop(div, dict),
@@ -749,6 +814,13 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
   document.getElementById("divisionContent").innerHTML = `
     <section class="div-hero">
       <div class="container">
+        <div class="div-context-bar" aria-label="Orientace v sekci">
+          <button type="button" class="context-crumb" data-crumb-home>DECØY DEVICES</button>
+          <span class="context-sep">//</span>
+          <span class="context-crumb">${div.serialLeft} · ${div.title[currentLang]}</span>
+          <span class="context-sep">//</span>
+          <strong class="context-crumb is-current">${escapeHtml(tabLabels[currentTab] || currentTab.toUpperCase())}</strong>
+        </div>
         <div class="div-hero-code">${div.code}</div>
         <h1>${div.title[currentLang]}</h1>
         <p class="div-hero-lead">${div.lead[currentLang]}</p>
@@ -757,12 +829,16 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
     ${body}
   `;
 
-  history.replaceState(null, "", `#${divKey}/${currentTab}`);
+  const nextHash = `#${divKey}/${currentTab}`;
+  if (location.hash !== nextHash) {
+    if (replaceHistory) history.replaceState(null, "", nextHash);
+    else history.pushState(null, "", nextHash);
+  }
   if (!preserveScroll) window.scrollTo({ top: 0, behavior: "instant" });
   bindDivisionEvents();
 }
 
-function openTeatroView({ fx = false, anchorId = null } = {}) {
+function openTeatroView({ fx = false, anchorId = null, replaceHistory = false } = {}) {
   currentSection = "teatro";
   currentDivision = null;
   if (fx) triggerOverlayFx("fx-mod");
@@ -796,7 +872,10 @@ function openTeatroView({ fx = false, anchorId = null } = {}) {
     if (fb) fb.textContent = `${I18N[currentLang].cart_copied}: ${scopes.join(", ")}`;
   });
 
-  history.replaceState(null, "", "#TEATRO");
+  if (location.hash !== "#TEATRO") {
+    if (replaceHistory) history.replaceState(null, "", "#TEATRO");
+    else history.pushState(null, "", "#TEATRO");
+  }
   if (anchorId) {
     document.getElementById(anchorId)?.scrollIntoView({ behavior: "smooth" });
   } else {
@@ -804,14 +883,17 @@ function openTeatroView({ fx = false, anchorId = null } = {}) {
   }
 }
 
-function goHome() {
+function goHome({ replaceHistory = false } = {}) {
   currentSection = "landing";
   currentDivision = null;
   document.getElementById("divisionView").hidden = true;
   const teatroView = document.getElementById("teatroView");
   if (teatroView) teatroView.hidden = true;
   document.getElementById("landingView").hidden = false;
-  history.replaceState(null, "", location.pathname);
+  if (location.hash) {
+    if (replaceHistory) history.replaceState(null, "", location.pathname || "index.html");
+    else history.pushState(null, "", location.pathname || "index.html");
+  }
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
@@ -879,11 +961,16 @@ function openProductModal(id) {
                   <tbody>
                     ${keySpecs
                       .map(
-                        (s) => `
+                        (s) => {
+                          const srcKey = s.s || "doc";
+                          const srcLabel = dict[`src_${srcKey}`] || srcKey.toUpperCase();
+                          return `
                       <tr>
                         <th>${escapeHtml(s.p[currentLang])}</th>
                         <td>${escapeHtml(specVal(s.v, currentLang))}</td>
-                      </tr>`
+                        <td style="text-align:right; width:90px;"><span class="src-tag src-${srcKey}">${escapeHtml(srcLabel)}</span></td>
+                      </tr>`;
+                        }
                       )
                       .join("")}
                   </tbody>
@@ -943,36 +1030,63 @@ function bindDivisionEvents() {
     renderDivision(currentDivision, "blog");
   });
 
+  document.querySelectorAll("[data-crumb-home]").forEach((btn) => {
+    btn.addEventListener("click", () => goHome());
+  });
+
+  document.querySelectorAll("[data-toggle-orig-brand]").forEach((card) => {
+    const toggle = () => {
+      hudFilter.originalOnly = !hudFilter.originalOnly;
+      renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
+    };
+    card.addEventListener("click", toggle);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+
   document.querySelectorAll("[data-sec-step]").forEach((btn) => {
     btn.addEventListener("click", () => {
       if (!currentDivision) return;
-      const list = DIVISIONS[currentDivision][currentTab];
+      const list = currentSectionItems.length ? currentSectionItems.map((i) => i.id) : DIVISIONS[currentDivision][currentTab];
       if (!Array.isArray(list) || !list.length) return;
       const step = parseInt(btn.getAttribute("data-sec-step"), 10) || 1;
       currentSecIdx = (currentSecIdx + step + list.length) % list.length;
-      renderDivision(currentDivision, currentTab, { preserveScroll: true });
+      renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
     });
   });
 
   document.querySelectorAll("[data-open-mod]").forEach((el) => {
-    el.addEventListener("click", (e) => {
+    const activate = (e) => {
       if (e.target.closest("a") || e.target.closest("[data-add-cart]")) return;
       e.stopPropagation();
       const id = el.getAttribute("data-open-mod");
       if (currentDivision) {
-        const list = DIVISIONS[currentDivision][currentTab];
+        const list = currentSectionItems.length ? currentSectionItems.map((i) => i.id) : DIVISIONS[currentDivision][currentTab];
         const idx = Array.isArray(list) ? list.indexOf(id) : -1;
         if (idx >= 0) currentSecIdx = idx;
       }
       openProductModal(id);
-    });
+    };
+    el.addEventListener("click", activate);
+    if (el.tagName === "ARTICLE") {
+      el.addEventListener("keydown", (e) => {
+        if ((e.key === "Enter" || e.key === " ") && e.target === el) {
+          e.preventDefault();
+          activate(e);
+        }
+      });
+    }
   });
 
   document.querySelectorAll("[data-hud-subcat]").forEach((btn) => {
     btn.addEventListener("click", () => {
       hudFilter.subcategory = btn.getAttribute("data-hud-subcat");
       currentSecIdx = 0;
-      renderDivision(currentDivision, currentTab, { preserveScroll: true });
+      renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
     });
   });
 
@@ -981,11 +1095,13 @@ function bindDivisionEvents() {
     hudSearch.addEventListener("input", (e) => {
       hudFilter.q = e.target.value;
       currentSecIdx = 0;
-      renderDivision(currentDivision, currentTab, { preserveScroll: true });
+      renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
       const refocused = document.getElementById("hudSearchInput");
       if (refocused) {
         refocused.focus();
-        refocused.setSelectionRange(refocused.value.length, refocused.value.length);
+        if (typeof refocused.setSelectionRange === "function") {
+          refocused.setSelectionRange(refocused.value.length, refocused.value.length);
+        }
       }
     });
   }
@@ -993,32 +1109,44 @@ function bindDivisionEvents() {
   document.getElementById("hudCatSelect")?.addEventListener("change", (e) => {
     hudFilter.category = e.target.value;
     hudFilter.subcategory = "all";
-    renderDivision(currentDivision, currentTab, { preserveScroll: true });
+    renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
+  });
+
+  document.getElementById("hudAvailSelect")?.addEventListener("change", (e) => {
+    hudFilter.availability = e.target.value;
+    renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
   });
 
   document.getElementById("hudOrigCheck")?.addEventListener("change", (e) => {
     hudFilter.originalOnly = e.target.checked;
-    renderDivision(currentDivision, currentTab, { preserveScroll: true });
+    renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
   });
 
   document.getElementById("hudSortSelect")?.addEventListener("change", (e) => {
     hudFilter.sort = e.target.value;
-    renderDivision(currentDivision, currentTab, { preserveScroll: true });
+    renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
   });
 
-  document.getElementById("hudResetBtn")?.addEventListener("click", () => {
-    hudFilter = { q: "", category: "all", subcategory: "all", originalOnly: false, sort: "featured" };
-    renderDivision(currentDivision, currentTab, { preserveScroll: true });
-  });
+  const resetFilterHandler = () => {
+    hudFilter = { q: "", category: "all", subcategory: "all", availability: "all", originalOnly: false, sort: "featured" };
+    renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
+  };
+  document.getElementById("hudResetBtn")?.addEventListener("click", resetFilterHandler);
+  document.getElementById("hudInlineResetBtn")?.addEventListener("click", resetFilterHandler);
 }
 
 function routeFromHash() {
-  const [divKey, tab] = location.hash.replace("#", "").split("/");
-  if (divKey === "TEATRO" || divKey === "teatro" || tab === "teatro") {
-    openTeatroView();
+  const cleanHash = location.hash.replace("#", "").trim();
+  if (!cleanHash) {
+    if (currentSection !== "landing") goHome({ replaceHistory: true });
     return;
   }
-  if (DIVISIONS[divKey]) renderDivision(divKey, tab || null);
+  const [divKey, tab] = cleanHash.split("/");
+  if (divKey === "TEATRO" || divKey === "teatro" || tab === "teatro") {
+    openTeatroView({ replaceHistory: true });
+    return;
+  }
+  if (DIVISIONS[divKey]) renderDivision(divKey, tab || null, { replaceHistory: true });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1027,14 +1155,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-open-division]").forEach((btn) => {
     btn.addEventListener("click", () => {
       currentSecIdx = 0;
-      hudFilter = { q: "", category: "all", subcategory: "all", originalOnly: false, sort: "featured" };
+      hudFilter = { q: "", category: "all", subcategory: "all", availability: "all", originalOnly: false, sort: "featured" };
       renderDivision(btn.getAttribute("data-open-division"), null, { fx: true });
     });
   });
 
   document.getElementById("openTeatroLanding")?.addEventListener("click", () => openTeatroView({ fx: true }));
   document.getElementById("openTeatroFromDiv")?.addEventListener("click", () => openTeatroView({ fx: true }));
-  document.getElementById("backFromTeatro")?.addEventListener("click", goHome);
+  document.getElementById("backFromTeatro")?.addEventListener("click", () => goHome());
 
   const subNavBtn = document.getElementById("mobileSubNavBtn");
   const divSubNav = document.getElementById("divSubNav");
@@ -1071,14 +1199,14 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDivision(currentDivision, tabBtn.getAttribute("data-tab"));
   });
 
-  document.getElementById("backToSplit")?.addEventListener("click", goHome);
+  document.getElementById("backToSplit")?.addEventListener("click", () => goHome());
 
   const toggleLang = () => {
     currentLang = currentLang === "cs" ? "en" : "cs";
     setLang(currentLang);
     applyTranslations();
-    if (currentSection === "teatro") openTeatroView();
-    else if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true });
+    if (currentSection === "teatro") openTeatroView({ replaceHistory: true });
+    else if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
     if (currentModalId) openProductModal(currentModalId);
     if (!document.getElementById("cartDrawer").hidden) renderCartDrawer();
   };
@@ -1086,6 +1214,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("langToggleDiv")?.addEventListener("click", toggleLang);
   document.getElementById("langToggleTeatro")?.addEventListener("click", toggleLang);
 
+  document.getElementById("cartToggleLanding")?.addEventListener("click", openCartDrawer);
   document.getElementById("cartToggleDiv")?.addEventListener("click", openCartDrawer);
   document.querySelectorAll("[data-close-cart]").forEach((el) => el.addEventListener("click", closeCartDrawer));
   document.querySelectorAll("[data-close-modal]").forEach((el) => el.addEventListener("click", closeModal));
@@ -1096,16 +1225,16 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       const id = addBtn.getAttribute("data-add-cart");
       DECOY_STORE.addItem(id, 1);
-      updateCartCountUI();
+      updateCartCountUI(true);
       if (currentModalId === id) openProductModal(id);
-      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true });
+      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
       return;
     }
 
     const incBtn = e.target.closest("[data-cart-inc]");
     if (incBtn) {
       DECOY_STORE.updateQty(incBtn.getAttribute("data-cart-inc"), 1);
-      updateCartCountUI();
+      updateCartCountUI(true);
       renderCartDrawer();
       return;
     }
@@ -1114,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
       DECOY_STORE.updateQty(decBtn.getAttribute("data-cart-dec"), -1);
       updateCartCountUI();
       renderCartDrawer();
-      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true });
+      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
       return;
     }
     const rmBtn = e.target.closest("[data-cart-rm]");
@@ -1122,14 +1251,14 @@ document.addEventListener("DOMContentLoaded", () => {
       DECOY_STORE.removeItem(rmBtn.getAttribute("data-cart-rm"));
       updateCartCountUI();
       renderCartDrawer();
-      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true });
+      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
       return;
     }
     if (e.target.id === "clearCartBtn") {
       DECOY_STORE.clear();
       updateCartCountUI();
       renderCartDrawer();
-      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true });
+      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
       return;
     }
     if (e.target.id === "copyCartBtn") {
@@ -1152,12 +1281,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") {
       closeModal();
       closeCartDrawer();
+      return;
     }
+    const tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
     if (currentModalId && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
       const nav = getSectionProductNav(currentModalId, currentDivision);
       if (nav) openProductModal(e.key === "ArrowLeft" ? nav.prevId : nav.nextId);
     }
   });
+
+  window.addEventListener("hashchange", routeFromHash);
+  window.addEventListener("popstate", routeFromHash);
 
   routeFromHash();
 });

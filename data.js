@@ -2610,14 +2610,14 @@ if (typeof window !== "undefined") {
   window.DECOY_STORE = DECOY_STORE;
 }
 
-function renderCartDrawerHTML(lang = getLang(), productsHref = "#products", closeNavAttr = "data-close-cart-nav") {
+function renderCartDrawerHTML(lang = getLang(), productsHref = "#AUD/catalog", closeNavAttr = "data-close-cart-nav") {
   const dict = I18N[lang];
   const summary = DECOY_STORE.getSummary();
   if (!summary.entries.length) {
     return `
       <div class="cart-notice">${dict.cart_notice}</div>
       <p class="cart-empty-msg">${dict.cart_empty}</p>
-      <a href="${productsHref}" class="btn-primary" ${closeNavAttr}>${dict.home_cta_products} →</a>
+      <a href="${productsHref}" class="btn-outline btn-solid" ${closeNavAttr}>${dict.home_cta_products} →</a>
     `;
   }
   return `
@@ -2627,8 +2627,8 @@ function renderCartDrawerHTML(lang = getLang(), productsHref = "#products", clos
         .map(
           ({ product, qty }) => `
         <li class="cart-item">
-          <div>
-            <strong>${itemDisplayName(product, lang)}</strong>
+          <div class="cart-item-info">
+            <strong><a href="product.html?id=${product.id}${product.division && product.division !== "MRC" ? `&div=${product.division}` : ""}">${itemDisplayName(product, lang)}</a></strong>
             <small>${product.brand} · ${product.serial} · ${DECOY_STORE.formatPrice(product, lang)}</small>
           </div>
           <div class="cart-qty-ctrl">
@@ -2646,7 +2646,7 @@ function renderCartDrawerHTML(lang = getLang(), productsHref = "#products", clos
       ${summary.hasUnpriced ? `<small>${dict.cart_tbd_note}</small>` : ""}
     </div>
     <div class="link-row" style="margin-top:16px;">
-      <button type="button" id="copyCartBtn" class="btn-primary">${dict.cart_copy}</button>
+      <button type="button" id="copyCartBtn" class="btn-outline btn-solid">${dict.cart_copy}</button>
       <button type="button" id="clearCartBtn" class="btn-outline">${dict.cart_clear}</button>
     </div>
     <div id="cartCopyFeedback" class="brief-feedback" aria-live="polite"></div>

@@ -55,10 +55,10 @@ a {
   left: 14px;
   z-index: 9999;
   padding: 8px 14px;
-  background: #121215;
-  color: #f4f4f6;
-  border: 1px solid #fe5000;
-  font-family: 'Space Mono', monospace;
+  background: var(--silk-black);
+  color: var(--silk-white);
+  border: 1px solid var(--pantone-orange);
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -70,7 +70,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent, #fe5000);
+  outline: 2px solid var(--prod-accent, var(--pantone-orange));
   outline-offset: 2px;
 }
 
@@ -80,10 +80,9 @@ a {
   justify-content: center;
   padding: 6px 11px;
   border: 1px solid var(--border-col);
-  border-radius: var(--radius);
   background: transparent;
-  color: var(--ink-main);
-  font-family: 'Space Mono', monospace;
+  color: var(--fg-main, var(--silk-white));
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2043,11 +2042,130 @@ a {
    NATIVE HUD CATALOG CONTROLS, COMMERCE STRIPS & CART DRAWER
    ========================================================= */
 
+.landing-bottombar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .cart-count-pill {
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+@keyframes cartPulseAnim {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.24); color: var(--pantone-orange); }
+  100% { transform: scale(1); }
+}
+
+.cart-count-pill.cart-pulse {
+  animation: cartPulseAnim 0.36s ease;
+}
+
+.div-context-bar {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 5px 10px;
+  border: 1px solid var(--border-col);
+  background: var(--bg-card);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.context-crumb {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+button.context-crumb {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+button.context-crumb:hover,
+.context-crumb.is-current {
+  color: var(--fg-main);
+}
+
+.context-sep {
+  opacity: 0.45;
+}
+
+.pager-crumb-link {
+  color: var(--prod-accent, var(--silk-white));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hud-card-head-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-badge-orig,
+.hud-badge-partner {
+  display: inline-block;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border: 1px solid currentColor;
+}
+
+.hud-badge-orig {
+  color: var(--fg-main);
+  border-color: var(--fg-main);
+}
+
+.theme-LUX .hud-badge-orig {
+  border-color: var(--pantone-orange);
+  color: var(--silk-black);
+  background: rgba(254, 80, 0, 0.16);
+}
+
+.hud-avail-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.avail-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg-muted);
+}
+
+.avail-dot.avail-in_stock,
+.avail-dot.avail-on_order {
+  background: #38e2c5;
+}
+
+.avail-dot.avail-prototype,
+.avail-dot.avail-in_development {
+  background: var(--pantone-orange);
+}
+
+.brand-card-interactive {
+  cursor: pointer;
 }
 
 .hud-filter-strip {
@@ -2057,8 +2175,7 @@ a {
   margin: 0 0 24px;
   padding: 14px 16px;
   border: 1px solid var(--border-col);
-  border-radius: var(--radius);
-  background: var(--card-bg);
+  background: var(--bg-card);
 }
 
 .hud-subcat-row {
@@ -2076,14 +2193,19 @@ a {
 
 .hud-input,
 .hud-select {
-  background: transparent;
-  color: var(--ink-main);
+  background: var(--bg-main);
+  color: var(--fg-main);
   border: 1px solid var(--border-col);
-  border-radius: var(--radius);
   padding: 7px 11px;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.04em;
+  transition: border-color 0.15s ease;
+}
+
+.hud-input:focus,
+.hud-select:focus {
+  border-color: var(--fg-main);
 }
 
 .hud-input {
@@ -2092,8 +2214,8 @@ a {
 }
 
 .hud-input::placeholder {
-  color: var(--ink-muted);
-  opacity: 0.85;
+  color: var(--fg-muted);
+  opacity: 0.82;
 }
 
 .hud-select {
@@ -2102,38 +2224,50 @@ a {
 }
 
 .hud-select option {
-  background: var(--bg-panel, #141518);
-  color: var(--ink-main, #e5e7eb);
+  background: var(--bg-main, #141518);
+  color: var(--fg-main, #e5e7eb);
 }
 
 .hud-check {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-main);
+  color: var(--fg-main);
   cursor: pointer;
   user-select: none;
 }
 
 .hud-check input[type="checkbox"] {
-  accent-color: var(--accent, #fe5000);
+  accent-color: var(--pantone-orange);
   width: 14px;
   height: 14px;
   cursor: pointer;
 }
 
+.btn-outline.btn-xs {
+  padding: 5px 10px;
+  font-size: 0.78rem;
+}
+
+.hud-filter-count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--fg-muted);
+}
+
 .hud-empty-box {
   padding: 28px 20px;
   border: 1px dashed var(--border-col);
-  border-radius: var(--radius);
-  background: var(--card-bg);
+  background: var(--bg-card);
   text-align: center;
-  color: var(--ink-muted);
-  font-family: 'Space Mono', monospace;
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
 }
@@ -2143,15 +2277,21 @@ a {
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 4px;
-  padding-top: 8px;
+  margin-top: auto;
+  padding-top: 10px;
   border-top: 1px dashed var(--border-col);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  color: var(--fg-muted);
 }
 
-.hud-card-commerce.is-tbd {
+.hud-card-commerce strong {
+  color: var(--fg-main);
+}
+
+.hud-card-commerce strong.is-tbd {
+  font-weight: 500;
   opacity: 0.85;
 }
 
@@ -2162,15 +2302,15 @@ a {
   justify-content: center;
   width: 100%;
   height: 100%;
-  min-height: 150px;
+  min-height: 180px;
   padding: 16px;
   border: 1px dashed var(--border-col);
   text-align: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: var(--fg-muted);
 }
 
 .merch-art-inline {
@@ -2183,12 +2323,17 @@ a {
 
 .merch-art-inline svg {
   max-width: 100%;
-  max-height: 190px;
+  max-height: 200px;
 }
 
 .btn-outline.is-added {
-  border-color: var(--accent, #fe5000);
-  color: var(--accent, #fe5000);
+  border-color: var(--pantone-orange);
+  color: var(--pantone-orange);
+}
+
+.theme-LUX .btn-outline.is-added {
+  background: var(--pantone-orange);
+  color: var(--silk-black);
 }
 
 .prod-commerce-strip {
@@ -2200,25 +2345,51 @@ a {
   margin-top: 18px;
   padding: 14px 16px;
   border: 1px solid var(--border-col);
-  border-radius: var(--radius);
-  background: var(--card-bg);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  background: var(--prod-panel, rgba(16, 18, 24, 0.85));
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  color: var(--silver-hasl);
+}
+
+.prod-doc-preview {
+  max-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  cursor: zoom-in;
+  transition: border-color 0.16s ease;
+}
+
+.prod-doc-preview:hover {
+  border-color: var(--prod-accent, var(--silk-white));
+}
+
+.prod-doc-preview img {
+  max-height: 210px;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.spec-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .modal-chip.chip-accent {
-  border-color: var(--accent, #fe5000);
-  color: var(--accent, #fe5000);
+  border-color: var(--prod-accent, var(--pantone-orange));
+  color: var(--prod-accent, var(--pantone-orange));
 }
 
 .brief-feedback {
   min-height: 1.2em;
   margin-top: 10px;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.06em;
-  color: var(--accent, #fe5000);
+  color: var(--pantone-orange);
 }
 
 /* HUD Inquiry / Cart Drawer */
@@ -2237,23 +2408,27 @@ a {
 .cart-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(8, 9, 12, 0.72);
-  backdrop-filter: blur(4px);
+  background: rgba(8, 9, 12, 0.76);
+  backdrop-filter: blur(5px);
 }
 
 .cart-panel {
   position: relative;
   z-index: 1;
-  width: min(440px, 100vw);
+  width: min(450px, 100vw);
   height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 20px;
-  background: var(--bg-panel, #141518);
-  color: var(--ink-main, #e5e7eb);
-  border-left: 1px solid var(--border-col, rgba(255, 255, 255, 0.16));
+  padding: 22px;
+  background: var(--pcb-black-2);
+  color: var(--silk-white);
+  border-left: 1px solid rgba(185, 190, 199, 0.28);
+  --fg-main: var(--silk-white);
+  --bg-main: var(--pcb-black);
+  --fg-muted: var(--silver-hasl);
+  --border-col: rgba(185, 190, 199, 0.24);
 }
 
 .cart-header {
@@ -2262,31 +2437,33 @@ a {
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-col, rgba(255, 255, 255, 0.16));
+  border-bottom: 1px solid var(--border-col);
 }
 
 .cart-notice {
   margin: 0;
   padding: 10px 12px;
-  border: 1px dashed var(--border-col, rgba(255, 255, 255, 0.18));
-  border-radius: var(--radius);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.71rem;
+  border: 1px dashed var(--border-col);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   line-height: 1.5;
-  color: var(--ink-muted, #9aa0a6);
+  color: var(--silver-hasl);
 }
 
 .cart-empty-msg {
   margin: 16px 0;
-  padding: 20px;
-  border: 1px dashed var(--border-col, rgba(255, 255, 255, 0.16));
+  padding: 22px;
+  border: 1px dashed var(--border-col);
   text-align: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.74rem;
-  color: var(--ink-muted, #9aa0a6);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--silver-hasl);
 }
 
 .cart-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -2297,57 +2474,91 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 12px;
-  border: 1px solid var(--border-col, rgba(255, 255, 255, 0.16));
-  border-radius: var(--radius);
-  background: var(--card-bg, rgba(255, 255, 255, 0.03));
+  padding: 11px 12px;
+  border: 1px solid var(--border-col);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cart-item-info strong {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  letter-spacing: 0.08em;
+}
+
+.cart-item-info small {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--silver-hasl);
 }
 
 .cart-qty-ctrl {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.76rem;
 }
 
 .cart-summary {
-  margin-top: auto;
+  margin-top: 14px;
   padding-top: 14px;
-  border-top: 1px solid var(--border-col, rgba(255, 255, 255, 0.16));
+  border-top: 1px solid var(--border-col);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.74rem;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
 }
 
-/* Responsive */
-@media (max-width: 960px) {
-  .mobile-menu-btn {
-    display: inline-flex;
+/* Responsive — zachování charakteristické HUD kompozice na tabletu i mobilu */
+@media (max-width: 1120px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
+  .usecase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
   .hud-nav-inner {
     flex-wrap: wrap;
     row-gap: 8px;
+    padding: 10px 18px;
   }
 
   .nav-right {
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
   }
 
+  /* Charakteristická horizontální HUD lišta místo generického hamburgerového e-shopu */
   .sub-nav {
-    display: none;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
     width: 100%;
     order: 3;
-    padding-top: 8px;
+    padding: 8px 0 4px;
     border-top: 1px solid var(--border-col);
+    gap: 6px;
+  }
+
+  .sub-nav .sub-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   .sub-nav.is-open {
-    display: flex;
     flex-wrap: wrap;
   }
 
@@ -2373,6 +2584,7 @@ a {
   .mf-right-group {
     justify-content: center;
   }
+
   .tri-split {
     flex-direction: column;
   }
@@ -2382,30 +2594,42 @@ a {
     border-top: 1px solid rgba(185, 190, 199, 0.22);
   }
 
-  /* On touch / small screens show titles subtly */
+  /* Na dotykových displejích jsou kódy a názvy divizí vždy čitelné */
   .split-reveal {
-    opacity: 0.9;
+    opacity: 0.94;
     transform: none;
   }
 
-  .cards-grid,
-  .cards-grid-2,
-  .blog-list,
+  .split-title {
+    font-size: clamp(2.6rem, 8vw, 4rem);
+  }
+
   .modal-grid,
   .people-grid,
   .prod-hero-grid,
-  .usecase-grid,
   .prod-two-col {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
+  .cards-grid,
+  .cards-grid-2,
+  .blog-list,
+  .usecase-grid {
+    grid-template-columns: 1fr;
+  }
+
   .landing-topbar {
-    top: 14px;
-    left: 14px;
-    right: 14px;
-    gap: 10px;
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .landing-brand .brand-name,
+  .brand-switch-btn {
+    font-size: 1.15rem;
+    letter-spacing: 0.14em;
+    padding: 5px 10px;
   }
 
   .landing-bottombar {
@@ -2431,5 +2655,10 @@ a {
   .prod-commerce-strip {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .prod-gallery-stage {
+    min-height: 290px;
+    padding: 14px;
   }
 }

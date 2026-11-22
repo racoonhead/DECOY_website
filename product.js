@@ -184,9 +184,21 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
 
   const nav = PRODUCTS[id] ? getSectionProductNav(id, activeDiv) : null;
   if (nav) {
-    topPagerEl.innerHTML = `<span class="pager-status"><strong>${nav.index + 1} / ${nav.total}</strong> · ${escapeHtml(pName)}</span>`;
+    topPagerEl.innerHTML = `
+      <span class="pager-status">
+        <a class="pager-crumb-link" href="index.html#${backDiv}/${backTab}">${activeDiv} // ${escapeHtml(divTitle)}</a>
+        <span>·</span>
+        <strong>${nav.index + 1} / ${nav.total}</strong>
+        <span>·</span>
+        <span>${escapeHtml(pName)}</span>
+      </span>`;
   } else {
-    topPagerEl.innerHTML = `<span class="pager-status">${escapeHtml(pName)}</span>`;
+    topPagerEl.innerHTML = `
+      <span class="pager-status">
+        <a class="pager-crumb-link" href="index.html#${backDiv}/${backTab}">${activeDiv} // ${escapeHtml(divTitle)}</a>
+        <span>·</span>
+        <span>${escapeHtml(pName)}</span>
+      </span>`;
   }
 
   const prevArrow = document.getElementById("pagePrevArrow");
@@ -239,21 +251,20 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
               ${gallery.length > 1 ? `<button type="button" class="gal-arrow gal-next" id="galNextBtn" aria-label="${dict.next_img}">›</button>` : ""}
             </div>
             <div id="galleryCaption" class="prod-gallery-cap"></div>
-            ${
-              gallery.length > 1
-                ? `<div class="prod-thumbs">
+            ${gallery.length > 1
+      ? `<div class="prod-thumbs">
                     ${gallery
-                      .map(
-                        (g, idx) => `
+        .map(
+          (g, idx) => `
                       <button type="button" class="prod-thumb ${idx === 0 ? "active" : ""} ${g.layer ? "is-layer" : ""}" data-gal-idx="${idx}">
                         <img src="${g.src}" alt="${escapeHtml(textVal(g.cap))}" loading="lazy" />
                         <span>${escapeHtml(textVal(g.cap))}</span>
                       </button>`
-                      )
-                      .join("")}
+        )
+        .join("")}
                   </div>`
-                : ""
-            }
+      : ""
+    }
           </div>
 
           <div class="prod-summary">
@@ -281,20 +292,20 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
             <div class="prod-block">
               <div class="prod-block-label">// ${dict.about}</div>
               ${(p.long?.[currentLang] || [])
-                .map((para, idx) => {
-                  const media = p.longMedia?.[idx];
-                  const mediaSrc = media ? media.srcByDiv?.[activeDiv] || media.src : null;
-                  const mediaCap = media?.cap?.[currentLang] || "";
-                  const escCap = escapeHtml(mediaCap);
-                  const figHtml = mediaSrc
-                    ? `<figure class="prod-inline-fig" data-inline-src="${mediaSrc}" data-inline-cap="${escCap}" role="button" tabindex="0">
+      .map((para, idx) => {
+        const media = p.longMedia?.[idx];
+        const mediaSrc = media ? media.srcByDiv?.[activeDiv] || media.src : null;
+        const mediaCap = media?.cap?.[currentLang] || "";
+        const escCap = escapeHtml(mediaCap);
+        const figHtml = mediaSrc
+          ? `<figure class="prod-inline-fig" data-inline-src="${mediaSrc}" data-inline-cap="${escCap}" role="button" tabindex="0">
                         <img src="${mediaSrc}" alt="${escCap}" loading="lazy" />
                         ${mediaCap ? `<figcaption class="prod-inline-cap">${escCap}</figcaption>` : ""}
                       </figure>`
-                    : "";
-                  return `<p class="prod-para">${escapeHtml(para)}</p>${figHtml}`;
-                })
-                .join("")}
+          : "";
+        return `<p class="prod-para">${escapeHtml(para)}</p>${figHtml}`;
+      })
+      .join("")}
               ${p.credit ? `<p class="prod-credit">${escapeHtml(textVal(p.credit))}</p>` : ""}
             </div>
           </div>
@@ -302,9 +313,8 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
       </div>
     </section>
 
-    ${
-      p.useCases && p.useCases.length
-        ? `<section class="prod-section">
+    ${p.useCases && p.useCases.length
+      ? `<section class="prod-section">
             <div class="container">
               <div class="sec-head">
                 <div>
@@ -314,32 +324,31 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
               </div>
               <div class="usecase-grid">
                 ${p.useCases
-                  .map(
-                    (u, i) => `
+        .map(
+          (u, i) => `
                   <article class="usecase-card">
                     <div class="usecase-num">0${i + 1}</div>
                     <h3>${escapeHtml(textVal(u.t))}</h3>
                     <p>${escapeHtml(textVal(u.d))}</p>
                   </article>`
-                  )
-                  .join("")}
+        )
+        .join("")}
               </div>
             </div>
           </section>`
-        : ""
+      : ""
     }
 
-    ${
-      p.comparison && p.comparison.length
-        ? (() => {
-            const cm = p.comparisonMeta || {};
-            const cNum = cm.num ? cm.num[currentLang] : dict.diff_num;
-            const cHead = cm.heading ? cm.heading[currentLang] : dict.diff_heading;
-            const c0 = cm.col0 ? cm.col0[currentLang] : dict.diff_feature;
-            const c1 = cm.col1 ? cm.col1[currentLang] : dict.diff_orig;
-            const c2 = cm.col2 ? cm.col2[currentLang] : dict.diff_v04;
-            const c3 = cm.col3 ? cm.col3[currentLang] : dict.diff_impact;
-            return `<section class="prod-section">
+    ${p.comparison && p.comparison.length
+      ? (() => {
+        const cm = p.comparisonMeta || {};
+        const cNum = cm.num ? cm.num[currentLang] : dict.diff_num;
+        const cHead = cm.heading ? cm.heading[currentLang] : dict.diff_heading;
+        const c0 = cm.col0 ? cm.col0[currentLang] : dict.diff_feature;
+        const c1 = cm.col1 ? cm.col1[currentLang] : dict.diff_orig;
+        const c2 = cm.col2 ? cm.col2[currentLang] : dict.diff_v04;
+        const c3 = cm.col3 ? cm.col3[currentLang] : dict.diff_impact;
+        return `<section class="prod-section">
               <div class="container">
                 <div class="sec-head">
                   <div>
@@ -360,39 +369,37 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
                       </thead>
                       <tbody>
                         ${p.comparison
-                          .map(
-                            (row) => `
+            .map(
+              (row) => `
                           <tr>
                             <th>${escapeHtml(textVal(row.f))}</th>
                             <td class="diff-orig-cell">${escapeHtml(textVal(row.orig))}</td>
                             <td class="diff-v04-col">${escapeHtml(textVal(row.v04))}</td>
                             <td>${escapeHtml(textVal(row.imp))}</td>
                           </tr>`
-                          )
-                          .join("")}
+            )
+            .join("")}
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
             </section>`;
-          })()
-        : ""
+      })()
+      : ""
     }
 
-    ${
-      (p.controls?.[currentLang]?.length || p.specs?.length)
-        ? `<section class="prod-section">
+    ${(p.controls?.[currentLang]?.length || p.specs?.length)
+      ? `<section class="prod-section">
             <div class="container">
               <div class="prod-two-col">
                 <div class="prod-panel-box">
                   <div class="sec-num">${dict.app_num_io}</div>
                   <h2>${dict.controls}</h2>
-                  ${
-                    p.controls?.[currentLang]?.length
-                      ? `<ul class="prod-controls-list">${p.controls[currentLang].map((c) => `<li>${escapeHtml(c)}</li>`).join("")}</ul>`
-                      : `<p class="prod-para" style="margin-top:14px;">${dict.docs_empty}</p>`
-                  }
+                  ${p.controls?.[currentLang]?.length
+        ? `<ul class="prod-controls-list">${p.controls[currentLang].map((c) => `<li>${escapeHtml(c)}</li>`).join("")}</ul>`
+        : `<p class="prod-para" style="margin-top:14px;">${dict.docs_empty}</p>`
+      }
                 </div>
 
                 <div class="prod-panel-box">
@@ -403,25 +410,32 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
                       <tr>
                         <th>${dict.param}</th>
                         <th>${dict.value}</th>
+                        <th style="text-align:right;">${dict.source}</th>
                       </tr>
                     </thead>
                     <tbody>
                       ${(p.specs || [])
-                        .map(
-                          (s) => `
+        .map(
+          (s) => {
+            const srcKey = s.s || "doc";
+            const srcLabel = dict[`src_${srcKey}`] || srcKey.toUpperCase();
+            return `
                         <tr>
                           <th>${escapeHtml(s.p[currentLang])}</th>
                           <td>${escapeHtml(specVal(s.v, currentLang))}</td>
-                        </tr>`
-                        )
-                        .join("")}
+                          <td style="text-align:right; width:96px;"><span class="src-tag src-${srcKey}">${escapeHtml(srcLabel)}</span></td>
+                        </tr>`;
+          }
+        )
+        .join("")}
                     </tbody>
                   </table>
+                  <p class="spec-legend">${escapeHtml(dict.legend)}</p>
                 </div>
               </div>
             </div>
           </section>`
-        : ""
+      : ""
     }
 
     <!-- DOKUMENTACE & MANUÁLY -->
@@ -432,33 +446,37 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
             <div class="sec-num">${dict.docs_num}</div>
             <h2>${dict.docs_heading}</h2>
           </div>
+          <span class="sec-num">${escapeHtml(p.serial)} · ${escapeHtml(p.brand)}</span>
         </div>
-        ${
-          manuals.length
-            ? `<div class="cards-grid-2">
+        ${manuals.length
+      ? `<div class="cards-grid-2">
                 ${manuals
-                  .map(
-                    (m) => `
-                  <article class="prod-panel-box">
-                    <div class="sec-num">SVG DIAGRAM</div>
-                    <p style="margin:6px 0 14px; color:var(--silk-white);">${escapeHtml(textVal(m.cap) || m.src)}</p>
-                    <div class="link-row">
-                      <button type="button" class="btn-outline" data-inline-src="${m.src}" data-inline-cap="${escapeHtml(textVal(m.cap))}">${currentLang === "cs" ? "ZOBRAZIT" : "VIEW"}</button>
-                      <a class="btn-outline" href="${m.src}" target="_blank" rel="noopener noreferrer">SVG ↗</a>
+        .map(
+          (m, mIdx) => `
+                  <article class="diagram-card">
+                    <div class="diagram-head">
+                      <div class="sec-num">0${mIdx + 1} // SVG SCHÉMA &amp; DIAGRAM</div>
+                      <h3>${escapeHtml(textVal(m.cap) || m.src)}</h3>
+                    </div>
+                    <div class="diagram-frame prod-doc-preview" data-inline-src="${m.src}" data-inline-cap="${escapeHtml(textVal(m.cap))}" role="button" tabindex="0">
+                      <img src="${m.src}" alt="${escapeHtml(textVal(m.cap))}" loading="lazy" />
+                    </div>
+                    <div class="link-row" style="margin-top:14px;">
+                      <button type="button" class="btn-outline" data-inline-src="${m.src}" data-inline-cap="${escapeHtml(textVal(m.cap))}">${currentLang === "cs" ? "ZVĚTŠIT SCHÉMA ⤢" : "ZOOM DIAGRAM ⤢"}</button>
+                      <a class="btn-outline" href="${m.src}" target="_blank" rel="noopener noreferrer">RAW SVG ↗</a>
                     </div>
                   </article>`
-                  )
-                  .join("")}
+        )
+        .join("")}
               </div>`
-            : `<div class="prod-panel-box"><p style="margin:0; color:var(--silver-hasl);">${dict.docs_empty}</p></div>`
-        }
+      : `<div class="prod-panel-box"><p style="margin:0; color:var(--silver-hasl);">${dict.docs_empty}</p></div>`
+    }
       </div>
     </section>
 
     <!-- SOUVISEJÍCÍ PRODUKTY -->
-    ${
-      related.length
-        ? `<section class="prod-section">
+    ${related.length
+      ? `<section class="prod-section">
             <div class="container">
               <div class="sec-head">
                 <div>
@@ -468,10 +486,10 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
               </div>
               <div class="cards-grid-2">
                 ${related
-                  .map((rp) => {
-                    const rImg = (rp.imageByDiv && rp.imageByDiv[activeDiv]) || rp.image;
-                    const rName = itemDisplayName(rp, currentLang);
-                    return `
+        .map((rp) => {
+          const rImg = (rp.imageByDiv && rp.imageByDiv[activeDiv]) || rp.image;
+          const rName = itemDisplayName(rp, currentLang);
+          return `
                       <article class="prod-rel-card" data-prod-go="${rp.id}">
                         ${rImg ? `<img src="${rImg}" alt="${escapeHtml(rName)}" loading="lazy" />` : `<div class="hud-card-wireframe"><span>${escapeHtml(rp.serial)}</span></div>`}
                         <div>
@@ -482,12 +500,12 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
                         </div>
                       </article>
                     `;
-                  })
-                  .join("")}
+        })
+        .join("")}
               </div>
             </div>
           </section>`
-        : ""
+      : ""
     }
 
     <!-- ZÁRUKA & PODPORA -->
@@ -505,9 +523,8 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
       </div>
     </section>
 
-    ${
-      nav
-        ? `<section class="prod-section prod-bottom-nav">
+    ${nav
+      ? `<section class="prod-section prod-bottom-nav">
             <div class="container">
               <div class="modal-nav-bar">
                 <button type="button" class="pager-btn" data-prod-go="${nav.prevId}">
@@ -528,7 +545,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
               </div>
             </div>
           </section>`
-        : ""
+      : ""
     }
   `;
 
@@ -634,7 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const lines = summary.entries.map(
         ({ product, qty }) => `- ${qty}× ${itemDisplayName(product, currentLang)} (${product.serial}) — ${DECOY_STORE.formatPrice(product, currentLang)}`
       );
-      navigator.clipboard?.writeText(`DECØY ORDER / INQUIRY LIST\n${lines.join("\n")}`).catch(() => {});
+      navigator.clipboard?.writeText(`DECØY ORDER / INQUIRY LIST\n${lines.join("\n")}`).catch(() => { });
       const fb = document.getElementById("cartCopyFeedback");
       if (fb) fb.textContent = I18N[currentLang].cart_copied;
     }
@@ -681,7 +698,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (e.key === "Escape") closeCartDrawer();
+    if (e.key === "Escape") {
+      closeCartDrawer();
+      return;
+    }
+
+    const tag = e.target && e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    if (!document.getElementById("cartDrawer")?.hidden) return;
 
     if (!currentProdId) return;
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {

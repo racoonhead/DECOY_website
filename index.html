@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261122h" />
+  <link rel="stylesheet" href="styles.css?v=20261122i" />
 </head>
 <body>
   <a class="skip-link" href="#divisionContent">Přejít na obsah / Skip to content</a>
@@ -87,6 +87,10 @@
     </main>
 
     <div class="landing-bottombar">
+      <button id="cartToggleLanding" class="btn-hud btn-sm" type="button" aria-expanded="false" aria-controls="cartDrawer">
+        <span data-i18n="list_btn">SEZNAM</span>
+        <span class="cart-count-pill">[<span data-cart-count>0</span>]</span>
+      </button>
       <button id="langToggleLanding" class="btn-hud btn-sm" type="button">
         <span class="lang-active">CZ</span> / <span>EN</span>
       </button>
@@ -215,7 +219,7 @@
     </div>
   </aside>
 
-  <script src="data.js?v=20261122h"></script>
-  <script src="app.js?v=20261122h"></script>
+  <script src="data.js?v=20261122i"></script>
+  <script src="app.js?v=20261122i"></script>
 </body>
 </html>
