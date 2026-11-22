@@ -3,179 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DECØY DEVICES — Světlo · Zvuk · Video</title>
+  <title>DECØY — Hardware R&amp;D · Audio · Light · Video · TEATRO\\\SVJÖTLO</title>
+  <meta name="description" content="DECØY vyvíjí vlastní elektronická zařízení pro zvuk, světlo a video, prodává specializovanou techniku a zastřešuje produkční a stage divizi TEATRO\\\SVJÖTLO." />
+  <meta property="og:title" content="DECØY — Devices &amp; TEATRO\\\SVJÖTLO" />
+  <meta property="og:description" content="Experimental electronics, Eurorack modules, video synthesizers, lighting controllers, and stage production." />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261122f" />
+  <link rel="stylesheet" href="styles.css?v=20261122g" />
 </head>
-<body>
-  <!-- =========================================================
-       1. ÚVODNÍ STRANA: DECØY DEVICES (3-BAREVNÝ SPLIT) + TEATRO\\\SVJÖTLO
-       ========================================================= -->
-  <div id="landingView" class="landing-view">
-    <header class="landing-topbar">
-      <div class="landing-brand">
-        <span class="brand-name">DECØY DEVICES</span>
-      </div>
-      <div class="landing-top-right">
-        <button id="openTeatroLanding" class="brand-switch-btn" type="button">
-          TEATRO\\\SVJÖTLO
+<body id="appBody">
+  <a class="skip-link" href="#appMain">Přejít na obsah / Skip to content</a>
+
+  <header id="siteHeader" class="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a href="#home" class="brand-logo" data-route="home" aria-label="DECØY Domů">
+          <span class="brand-mark" aria-hidden="true">Ø</span>
+          <span class="brand-text">
+            <strong>DECØY</strong>
+            <small>DEVICES // LAB &amp; STORE</small>
+          </span>
+        </a>
+
+        <button id="mobileMenuBtn" class="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Menu">
+          ☰
         </button>
       </div>
-    </header>
 
-    <main class="tri-split" aria-label="Výběr divize">
-      <!-- ZVUK (ČERNÁ) -->
-      <button type="button" class="split-panel panel-aud" data-open-division="AUD">
-        <span class="split-reg tl">+</span>
-        <span class="split-reg bl">+</span>
-        <div class="split-watermark" aria-hidden="true">
-          <svg viewBox="0 0 120 120" width="140" height="140">
-            <polygon points="34,8 86,8 112,34 112,86 86,112 34,112 8,86 8,34" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="60" cy="60" r="30" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M30 60 Q45 34 60 60 T90 60" fill="none" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </div>
-        <div class="split-reveal">
-          <span class="split-code">AUD // 01</span>
-          <h2 class="split-title" data-i18n="div_sound">ZVUK</h2>
-          <span class="split-enter" data-i18n="enter_section">VSTOUPIT &gt;&gt;&gt;</span>
-        </div>
-      </button>
+      <nav id="mainNav" class="main-nav" aria-label="Hlavní navigace">
+        <a href="#products" class="nav-link" data-route="products" data-i18n="nav_products">PRODUKTY</a>
+        <a href="#brands" class="nav-link" data-route="brands" data-i18n="nav_brands">ZNAČKY</a>
+        <a href="#originals" class="nav-link" data-route="originals" data-i18n="nav_originals">DECØY ORIGINALS</a>
+        <a href="#teatro" class="nav-link nav-link-teatro" data-route="teatro" data-i18n="nav_teatro">TEATRO\\\SVJÖTLO</a>
+        <a href="#support" class="nav-link" data-route="support" data-i18n="nav_support">PODPORA</a>
+        <a href="#about" class="nav-link" data-route="about" data-i18n="nav_about">O ZNAČCE</a>
+      </nav>
 
-      <!-- SVĚTLO (TLUMENÁ ŠEDOBÍLÁ) -->
-      <button type="button" class="split-panel panel-lux" data-open-division="LUX">
-        <span class="split-reg tl">+</span>
-        <span class="split-reg br">+</span>
-        <div class="split-watermark" aria-hidden="true">
-          <svg viewBox="0 0 120 120" width="140" height="140">
-            <polygon points="34,8 86,8 112,34 112,86 86,112 34,112 8,86 8,34" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="46" cy="60" r="16" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="68" y1="60" x2="98" y2="60" stroke="currentColor" stroke-width="1.8"/>
-            <line x1="65" y1="45" x2="94" y2="32" stroke="currentColor" stroke-width="1.8"/>
-            <line x1="65" y1="75" x2="94" y2="88" stroke="currentColor" stroke-width="1.8"/>
-          </svg>
-        </div>
-        <div class="split-reveal">
-          <span class="split-code">LUX // 02</span>
-          <h2 class="split-title" data-i18n="div_light">SVĚTLO</h2>
-          <span class="split-enter" data-i18n="enter_section">VSTOUPIT &gt;&gt;&gt;</span>
-        </div>
-      </button>
+      <div class="header-actions">
+        <form id="globalSearchForm" class="header-search" role="search">
+          <input id="globalSearchInput" type="search" placeholder="Hledat produkty, kódy, specifikace..." aria-label="Vyhledávání v katalogu" />
+          <button type="submit" class="search-submit" aria-label="Hledat">⌕</button>
+        </form>
 
-      <!-- VIDEO (CYBER FIALOVÁ) -->
-      <button type="button" class="split-panel panel-vid" data-open-division="VID">
-        <span class="split-reg tr">+</span>
-        <span class="split-reg br">+</span>
-        <div class="split-watermark" aria-hidden="true">
-          <svg viewBox="0 0 120 120" width="140" height="140">
-            <polygon points="34,8 86,8 112,34 112,86 86,112 34,112 8,86 8,34" fill="none" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M32 42 H46 M32 42 V56 M88 42 H74 M88 42 V56 M32 78 H46 M32 78 V64 M88 78 H74 M88 78 V64" fill="none" stroke="currentColor" stroke-width="1.8"/>
-            <polyline points="38,60 50,60 56,44 64,76 70,60 82,60" fill="none" stroke="currentColor" stroke-width="1.8"/>
-          </svg>
-        </div>
-        <div class="split-reveal">
-          <span class="split-code">VID // 03</span>
-          <h2 class="split-title" data-i18n="div_video">VIDEO</h2>
-          <span class="split-enter" data-i18n="enter_section">VSTOUPIT &gt;&gt;&gt;</span>
-        </div>
-      </button>
-    </main>
+        <button id="cartToggleBtn" class="btn-hud btn-cart" type="button" aria-expanded="false" aria-controls="cartDrawer">
+          <span data-i18n="cart_btn">POPTÁVKA / KOŠÍK</span>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
 
-    <div class="landing-bottombar">
-      <button id="langToggleLanding" class="btn-hud btn-sm" type="button">
-        <span class="lang-active">CZ</span> / <span>EN</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       2. DETAIL DIVIZE (PO ROZKLIKNUTÍ BARVY)
-       ========================================================= -->
-  <div id="divisionView" class="division-view" hidden>
-    <header class="hud-nav">
-      <div class="container hud-nav-inner">
-        <div class="nav-left">
-          <button id="backToSplit" class="btn-back" type="button">
-            <span>←</span>
-            <span>DECØY DEVICES</span>
-          </button>
-          <div class="div-switcher" role="tablist" aria-label="Přepnout divizi">
-            <button type="button" class="div-tab" data-switch-div="AUD" data-i18n="div_sound">ZVUK</button>
-            <button type="button" class="div-tab" data-switch-div="LUX" data-i18n="div_light">SVĚTLO</button>
-            <button type="button" class="div-tab" data-switch-div="VID" data-i18n="div_video">VIDEO</button>
-          </div>
-        </div>
-
-        <nav class="sub-nav" role="tablist" aria-label="Záložky divize">
-          <button type="button" class="sub-tab active" data-tab="eurorack">EURORACK</button>
-          <button type="button" class="sub-tab" data-tab="desktop" data-i18n="sec_desktop">DESKTOP</button>
-          <button type="button" class="sub-tab" data-tab="pedals" data-i18n="sec_pedals">PEDÁLY</button>
-          <button type="button" class="sub-tab" data-tab="blog" data-i18n="sec_blog">BLOK</button>
-          <button type="button" class="sub-tab" data-tab="merch" data-i18n="sec_merch">TRIČKA &amp; MERCH</button>
-        </nav>
-
-        <div class="nav-right">
-          <button id="openTeatroFromDiv" class="btn-hud btn-sm btn-teatro-jump" type="button">
-            TEATRO\\\SVJÖTLO ↗
-          </button>
-          <button id="langToggleDiv" class="btn-hud btn-sm" type="button">
-            <span class="lang-active">CZ</span> / <span>EN</span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <main id="divisionContent">
-      <!-- Populated dynamically by app.js based on selected division (AUD / LUX / VID) -->
-    </main>
-
-    <footer id="siteFooter" class="pcb-footer">
-      <!-- Populated by renderModuleFooterHTML() according to GRAPHIC_MANUAL.md -->
-    </footer>
-  </div>
-
-  <!-- =========================================================
-       3. SEKCE TEATRO\\\SVJÖTLO (AKCE, DESIGN, RENTÁL, ZAKÁZKOVÁ VÝROBA)
-       ========================================================= -->
-  <div id="teatroView" class="teatro-view" hidden>
-    <header class="hud-nav teatro-nav">
-      <div class="container hud-nav-inner">
-        <div class="nav-left">
-          <button id="backFromTeatro" class="btn-back" type="button">
-            <span>←</span>
-            <span>DECØY DEVICES</span>
-          </button>
-          <span class="teatro-nav-badge">TEATRO\\\SVJÖTLO</span>
-        </div>
-
-        <nav class="sub-nav" aria-label="Sekce Teatro Svjötlo">
-          <button type="button" class="sub-tab active" data-teatro-jump="ts-design" data-i18n="ts_tab_design">STAGE · SOUND · LIGHT</button>
-          <button type="button" class="sub-tab" data-teatro-jump="ts-rental" data-i18n="ts_tab_rental">RENTÁL</button>
-          <button type="button" class="sub-tab" data-teatro-jump="ts-custom" data-i18n="ts_tab_custom">ZAKÁZKOVÁ VÝROBA</button>
-          <button type="button" class="sub-tab" data-teatro-jump="ts-events" data-i18n="ts_tab_events">AKCE &amp; TÝM</button>
-        </nav>
-
-        <button id="langToggleTeatro" class="btn-hud btn-sm" type="button">
+        <button id="langToggle" class="btn-hud btn-sm" type="button" aria-label="Přepnout jazyk">
           <span class="lang-active">CZ</span> / <span>EN</span>
         </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main id="teatroContent">
-      <!-- Populated dynamically by app.js -->
-    </main>
+  <main id="appMain" tabindex="-1">
+    <!-- Populated dynamically by app.js -->
+  </main>
 
-    <footer id="teatroFooter" class="pcb-footer">
-      <!-- Populated by renderModuleFooterHTML() -->
-    </footer>
-  </div>
+  <footer id="siteFooter" class="site-footer">
+    <!-- Populated dynamically by app.js -->
+  </footer>
 
-  <!-- FX OVERLAY (Světlo / Zvuk / Video / Modul efekty) -->
-  <div id="fxOverlay" class="fx-overlay" aria-hidden="true"></div>
-
-  <!-- MODAL PRO DETAIL MODULU / PRODUKTU (šipky přímo v gradient pozadí produktu) -->
+  <!-- QUICK-VIEW MODAL PRO RYCHLÝ NÁHLED PRODUKTU -->
   <div id="itemModal" class="modal" hidden aria-modal="true" role="dialog">
     <div class="modal-backdrop" data-close-modal></div>
     <button id="modalPrevArrow" class="bg-nav-arrow bg-nav-prev" type="button" aria-label="Předchozí produkt">
@@ -192,7 +84,19 @@
     </button>
   </div>
 
-  <script src="data.js?v=20261122f"></script>
-  <script src="app.js?v=20261122f"></script>
+  <!-- CART / INQUIRY DRAWER (připravené rozhraní pro budoucí e-shop) -->
+  <aside id="cartDrawer" class="cart-drawer" hidden aria-modal="true" role="dialog" aria-labelledby="cartDrawerTitle">
+    <div class="cart-backdrop" data-close-cart></div>
+    <div class="cart-panel">
+      <div class="cart-header">
+        <h2 id="cartDrawerTitle" data-i18n="cart_title">NÁKUPNÍ SEZNAM &amp; POPTÁVKA</h2>
+        <button type="button" class="modal-close" data-close-cart aria-label="Zavřít">✕</button>
+      </div>
+      <div id="cartDrawerBody" class="cart-body"></div>
+    </div>
+  </aside>
+
+  <script src="data.js?v=20261122g"></script>
+  <script src="app.js?v=20261122g"></script>
 </body>
 </html>

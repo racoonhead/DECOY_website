@@ -77,6 +77,77 @@ const I18N = {
     ts_tab_rental: "RENTÁL",
     ts_tab_custom: "ZAKÁZKOVÁ VÝROBA",
     ts_tab_events: "AKCE & TÝM",
+    nav_home: "ÚVOD",
+    nav_products: "PRODUKTY",
+    nav_brands: "ZNAČKY",
+    nav_originals: "DECØY ORIGINALS",
+    nav_teatro: "TEATRO\\\\\\SVJÖTLO",
+    nav_support: "PODPORA",
+    nav_about: "O ZNAČCE",
+    search_ph: "Hledat produkty, kódy, specifikace...",
+    search_btn: "HLEDAT",
+    cart_btn: "POPTÁVKA / KOŠÍK",
+    cart_title: "NÁKUPNÍ SEZNAM & POPTÁVKA",
+    cart_empty: "Zatím nemáte vybrané žádné produkty.",
+    cart_notice: "E-shopový backend se připravuje — seznam slouží jako rozhraní pro budoucí objednávku nebo export poptávky.",
+    cart_add: "DO KOŠÍKU / POPTÁVKY",
+    cart_added: "V SEZNAMU",
+    cart_clear: "VYČISTIT SEZNAM",
+    cart_copy: "ZKOPÍROVAT POPTÁVKU",
+    cart_copied: "ZKOPÍROVÁNO",
+    cart_total_known: "Součet položek s uvedenou cenou",
+    cart_tbd_note: "+ položky s cenou na dotaz",
+    price_tbd: "Cena na dotaz / Připravujeme",
+    avail_label: "DOSTUPNOST",
+    avail_in_stock: "Skladem",
+    avail_on_order: "Na objednávku",
+    avail_prototype: "Prototyp / Ve vývoji",
+    avail_in_development: "Rozpracováno",
+    avail_concept: "Koncept / Připravujeme",
+    avail_tbd: "Bude upřesněno",
+    brand_label: "VÝROBCE",
+    original_badge: "DECØY ORIGINAL",
+    partner_badge: "ZASTOUPENÁ ZNAČKA",
+    all_categories: "VŠECHNY KATEGORIE",
+    all_subcategories: "VŠECHNY PODKATEGORIE",
+    all_brands: "VŠICHNI VÝROBCI",
+    all_avail: "JAKÁKOLIV DOSTUPNOST",
+    filter_originals: "Pouze DECØY ORIGINALS",
+    reset_filters: "RESET FILTRŮ",
+    sort_featured: "Doporučené",
+    sort_name: "Název A–Z",
+    sort_price_asc: "Cena nejnižší",
+    sort_newest: "Nejnovější revize",
+    no_results: "Žádné položky neodpovídají zvolenému filtru.",
+    empty_category_msg: "Pro tuto kategorii zatím nejsou zařazeny položky. Datová struktura katalogu je připravena pro doplnění.",
+    docs_heading: "DOKUMENTACE & MANUÁLY",
+    docs_num: "05 // DOKUMENTACE & SCHÉMATA",
+    docs_empty: "Uživatelský manuál a PDF dokumentace jsou v přípravě.",
+    warranty_heading: "ZÁRUKA & TECHNICKÁ PODPORA",
+    warranty_num: "06 // ZÁRUKA & SERVIS",
+    warranty_empty: "Záruční a servisní podmínky budou upřesněny při spuštění prodeje. Technická podpora, kalibrace a servis probíhá přímo přes DECØY DEVICES.",
+    purchase_info_label: "NÁKUP & DOSTUPNOST",
+    service_inquiry_btn: "POPTAT SLUŽBU / AKCI",
+    back_to_catalog: "ZPĚT DO KATALOGU",
+    home_hero_kicker: "CZ // HARDWARE R&D · SPECIALIZOVANÝ OBCHOD · STAGE TECHNOLOGIE",
+    home_hero_lead: "DECØY vyvíjí vlastní elektronické nástroje pro zvuk, světlo a video, prodává pečlivě vybranou techniku a zastřešuje produkční a stage divizi TEATRO\\\\\\SVJÖTLO.",
+    home_cta_products: "PROHLÉDNOUT PRODUKTY",
+    home_cta_originals: "DECØY ORIGINALS",
+    home_cta_teatro: "TEATRO\\\\\\SVJÖTLO",
+    home_split_num: "01 // HLAVNÍ OKRUHY",
+    home_split_title: "ZVUK · SVĚTLO · VIDEO",
+    home_featured_num: "02 // VÝBĚR PRODUKTŮ",
+    home_featured_title: "VYBRANÉ ZAŘÍZENÍ",
+    home_originals_num: "03 // VLASTNÍ VÝVOJ",
+    home_originals_title: "DECØY ORIGINALS",
+    home_brands_num: "04 // ZASTOUPENÉ ZNAČKY",
+    home_brands_title: "VÝROBCI & DISTRIBUCE",
+    home_news_num: "05 // NOVINKY & VÝVOJOVÝ LOG",
+    home_news_title: "NOVÉ PRODUKTY & ZÁPISY",
+    home_teatro_num: "06 // SAMOSTATNÁ DIVIZE",
+    home_teatro_title: "TEATRO\\\\\\SVJÖTLO",
+    home_about_num: "07 // O ZNAČCE DECØY",
+    home_about_title: "NÁVRH, OBCHOD & SCÉNA",
   },
   en: {
     div_sound: "SOUND",
@@ -145,6 +216,77 @@ const I18N = {
     ts_tab_rental: "RENTAL",
     ts_tab_custom: "CUSTOM FABRICATION",
     ts_tab_events: "EVENTS & CREW",
+    nav_home: "HOME",
+    nav_products: "PRODUCTS",
+    nav_brands: "BRANDS",
+    nav_originals: "DECØY ORIGINALS",
+    nav_teatro: "TEATRO\\\\\\SVJÖTLO",
+    nav_support: "SUPPORT",
+    nav_about: "ABOUT",
+    search_ph: "Search products, serials, specs...",
+    search_btn: "SEARCH",
+    cart_btn: "INQUIRY / CART",
+    cart_title: "SHOPPING LIST & INQUIRY",
+    cart_empty: "No products selected yet.",
+    cart_notice: "E-commerce checkout backend is not connected yet — this list serves as a structured storefront interface for future orders or inquiry export.",
+    cart_add: "ADD TO LIST / CART",
+    cart_added: "IN LIST",
+    cart_clear: "CLEAR LIST",
+    cart_copy: "COPY INQUIRY",
+    cart_copied: "COPIED",
+    cart_total_known: "Subtotal of priced items",
+    cart_tbd_note: "+ items priced on request",
+    price_tbd: "Price on request / Coming soon",
+    avail_label: "AVAILABILITY",
+    avail_in_stock: "In stock",
+    avail_on_order: "Made to order",
+    avail_prototype: "Prototype / In R&D",
+    avail_in_development: "Work in progress",
+    avail_concept: "Concept / Upcoming",
+    avail_tbd: "To be confirmed",
+    brand_label: "MANUFACTURER",
+    original_badge: "DECØY ORIGINAL",
+    partner_badge: "PARTNER BRAND",
+    all_categories: "ALL CATEGORIES",
+    all_subcategories: "ALL SUBCATEGORIES",
+    all_brands: "ALL BRANDS",
+    all_avail: "ANY AVAILABILITY",
+    filter_originals: "DECØY ORIGINALS only",
+    reset_filters: "RESET FILTERS",
+    sort_featured: "Featured",
+    sort_name: "Name A–Z",
+    sort_price_asc: "Lowest price",
+    sort_newest: "Latest revisions",
+    no_results: "No items match the current filters.",
+    empty_category_msg: "No items are listed in this category yet. The catalog schema is ready for upcoming entries.",
+    docs_heading: "DOCUMENTATION & MANUALS",
+    docs_num: "05 // DOCUMENTATION & SCHEMATICS",
+    docs_empty: "User manual and PDF documentation are in preparation.",
+    warranty_heading: "WARRANTY & SUPPORT",
+    warranty_num: "06 // WARRANTY & SERVICE",
+    warranty_empty: "Warranty and service terms will be finalized upon commercial release. Technical support and calibration are handled directly by DECØY DEVICES.",
+    purchase_info_label: "PURCHASE & AVAILABILITY",
+    service_inquiry_btn: "INQUIRE SERVICE / EVENT",
+    back_to_catalog: "BACK TO CATALOG",
+    home_hero_kicker: "CZ // HARDWARE R&D · SPECIALIST STORE · STAGE TECHNOLOGY",
+    home_hero_lead: "DECØY engineers proprietary electronics for sound, light, and video, curates specialist technical hardware, and runs the independent stage production division TEATRO\\\\\\SVJÖTLO.",
+    home_cta_products: "BROWSE PRODUCTS",
+    home_cta_originals: "DECØY ORIGINALS",
+    home_cta_teatro: "TEATRO\\\\\\SVJÖTLO",
+    home_split_num: "01 // CORE DOMAINS",
+    home_split_title: "AUDIO · LIGHT · VIDEO",
+    home_featured_num: "02 // FEATURED HARDWARE",
+    home_featured_title: "SELECTED DEVICES",
+    home_originals_num: "03 // IN-HOUSE R&D",
+    home_originals_title: "DECØY ORIGINALS",
+    home_brands_num: "04 // REPRESENTED BRANDS",
+    home_brands_title: "BRANDS & DISTRIBUTION",
+    home_news_num: "05 // NEWS & DEVLOG",
+    home_news_title: "NEW RELEASES & FIELD LOGS",
+    home_teatro_num: "06 // SEPARATE DIVISION",
+    home_teatro_title: "TEATRO\\\\\\SVJÖTLO",
+    home_about_num: "07 // ABOUT DECØY",
+    home_about_title: "ENGINEERING, STORE & STAGE",
   },
 };
 
@@ -1810,6 +1952,693 @@ function getSectionProductNav(id, divKey) {
     prev: PRODUCTS[prevId],
     next: PRODUCTS[nextId],
   };
+}
+
+/* =========================================================
+   KATALOGOVÁ TAXONOMIE, ZNAČKY, NOVINKY A OBCHODNÍ ROZHRANÍ
+   ========================================================= */
+const CATEGORIES = [
+  {
+    id: "audio",
+    divKey: "AUD",
+    code: "AUD // 01",
+    name: { cs: "AUDIO", en: "AUDIO" },
+    short: {
+      cs: "Eurorack moduly, syntezátory, pedály, rozhraní a studiové nástroje.",
+      en: "Eurorack modules, synthesizers, effects, audio interfaces, and studio tools.",
+    },
+    subcategories: [
+      { id: "eurorack", name: { cs: "Eurorack", en: "Eurorack" } },
+      { id: "synthesizers", name: { cs: "Syntezátory", en: "Synthesizers" } },
+      { id: "effects-pedals", name: { cs: "Efekty & Pedály", en: "Effects & Pedals" } },
+      { id: "midi-controllers", name: { cs: "MIDI kontroléry", en: "MIDI Controllers" } },
+      { id: "samplers-sequencers", name: { cs: "Samplery & Sekvencery", en: "Samplers & Sequencers" } },
+      { id: "audio-interfaces", name: { cs: "Audio rozhraní", en: "Audio Interfaces" } },
+      { id: "studio-equipment", name: { cs: "Studiové vybavení", en: "Studio Equipment" } },
+    ],
+  },
+  {
+    id: "light",
+    divKey: "LUX",
+    code: "LUX // 02",
+    name: { cs: "LIGHT", en: "LIGHT" },
+    short: {
+      cs: "Světelné kontroléry, DMX převodníky, LED technologie a příslušenství.",
+      en: "Lighting controllers, DMX equipment, LED technology, stage lighting, and accessories.",
+    },
+    subcategories: [
+      { id: "lighting-controllers", name: { cs: "Světelné kontroléry", en: "Lighting Controllers" } },
+      { id: "dmx-equipment", name: { cs: "DMX technika", en: "DMX Equipment" } },
+      { id: "led-technology", name: { cs: "LED technologie", en: "LED Technology" } },
+      { id: "stage-lighting", name: { cs: "Pódiové osvětlení", en: "Stage Lighting" } },
+      { id: "lighting-accessories", name: { cs: "Světelné příslušenství", en: "Lighting Accessories" } },
+    ],
+  },
+  {
+    id: "video",
+    divKey: "VID",
+    code: "VID // 03",
+    name: { cs: "VIDEO", en: "VIDEO" },
+    short: {
+      cs: "Video syntezátory, FPGA systémy, zpracování obrazu a vizuální konzole.",
+      en: "Video synthesizers, FPGA systems, video processing, and visual instruments.",
+    },
+    subcategories: [
+      { id: "video-synthesizers", name: { cs: "Video syntezátory", en: "Video Synthesizers" } },
+      { id: "video-processing", name: { cs: "Zpracování videa", en: "Video Processing" } },
+      { id: "fpga-systems", name: { cs: "FPGA systémy", en: "FPGA Systems" } },
+      { id: "video-equipment", name: { cs: "Video technika", en: "Video Equipment" } },
+      { id: "visual-instruments", name: { cs: "Vizuální nástroje", en: "Visual Instruments" } },
+    ],
+  },
+  {
+    id: "electronics",
+    divKey: "ELC",
+    code: "ELC // 04",
+    name: { cs: "ELECTRONICS / DIY", en: "ELECTRONICS / DIY" },
+    short: {
+      cs: "Vývojové desky, FPGA & embedded systémy, součástky, DIY stavebnice a nástroje.",
+      en: "Development boards, FPGA & embedded, electronic components, DIY kits, and tools.",
+    },
+    subcategories: [
+      { id: "development-boards", name: { cs: "Vývojové desky", en: "Development Boards" } },
+      { id: "fpga-embedded", name: { cs: "FPGA & Embedded", en: "FPGA & Embedded" } },
+      { id: "electronic-components", name: { cs: "Elektronické součástky", en: "Electronic Components" } },
+      { id: "diy-kits", name: { cs: "DIY stavebnice", en: "DIY Kits" } },
+      { id: "tools-accessories", name: { cs: "Nářadí & Příslušenství", en: "Tools & Accessories" } },
+    ],
+  },
+  {
+    id: "merch",
+    divKey: "MRC",
+    code: "MRC // 05",
+    name: { cs: "MERCH", en: "MERCH" },
+    short: {
+      cs: "Oblečení, tašky a značkové objekty DECØY DEVICES & TEATRO\\\\\\SVJÖTLO.",
+      en: "Clothing, accessories, and branded DECØY DEVICES & TEATRO\\\\\\SVJÖTLO merchandise.",
+    },
+    subcategories: [
+      { id: "clothing", name: { cs: "Oblečení", en: "Clothing" } },
+      { id: "accessories", name: { cs: "Doplňky", en: "Accessories" } },
+      { id: "branded-merchandise", name: { cs: "Značkový merch", en: "Branded Merchandise" } },
+    ],
+  },
+];
+
+const BRANDS = [
+  {
+    id: "decoy-devices",
+    name: "DECØY DEVICES",
+    isOriginal: true,
+    origin: { cs: "Česká republika · Vlastní vývoj & výroba", en: "Czech Republic · In-house R&D & manufacturing" },
+    focus: {
+      cs: "Modulární audio/CV/DMX nástroje, video syntezátory, zakázkový hardware a merch.",
+      en: "Modular audio/CV/DMX instruments, video synthesizers, custom hardware, and merch.",
+    },
+  },
+];
+
+const MERCH_ITEMS = [
+  {
+    id: "dd-tee-01",
+    code: "DD-TEE-01",
+    subcategory: "clothing",
+    subcategories: ["clothing", "branded-merchandise"],
+    name: { cs: "TRIČKO DECØY // Ø", en: "DECØY // Ø TEE" },
+    priceValue: 790,
+    price: "790 Kč",
+    desc: {
+      cs: "Těžká černá bavlna (240 g/m²), bílý sítotisk s emblémem Ø na hrudi a servisním kódem na zádech.",
+      en: "Heavyweight black cotton (240 gsm), white screenprint with the Ø emblem and service code on the back.",
+    },
+    svg: `<svg viewBox="0 0 120 120" width="110" height="110"><path d="M35 24 L48 20 Q60 28 72 20 L85 24 L104 42 L92 56 L82 48 L82 100 L38 100 L38 48 L28 56 L16 42 Z" fill="#0c0c0e" stroke="currentColor" stroke-width="2"/><circle cx="60" cy="54" r="10" fill="none" stroke="#eaeae4" stroke-width="2"/><line x1="51" y1="63" x2="69" y2="45" stroke="#eaeae4" stroke-width="2"/></svg>`,
+  },
+  {
+    id: "ts-hood-02",
+    code: "TS-HOOD-02",
+    subcategory: "clothing",
+    subcategories: ["clothing", "branded-merchandise"],
+    name: { cs: `MIKINA ${TS}`, en: `${TS} HOODIE` },
+    priceValue: 1690,
+    price: "1 690 Kč",
+    desc: {
+      cs: "Volnější střih, hazard pruhy na rukávu a reflexní stříbrný potisk na zádech.",
+      en: "Relaxed fit, hazard stripes on the sleeve, and reflective silver print on the back.",
+    },
+    svg: `<svg viewBox="0 0 120 120" width="110" height="110"><path d="M40 22 Q60 12 80 22 L102 44 L90 58 L82 50 L82 102 L38 102 L38 50 L30 58 L18 44 Z" fill="#18181c" stroke="currentColor" stroke-width="2"/><text x="60" y="64" text-anchor="middle" fill="#eaeae4" font-family="sans-serif" font-size="11" font-weight="700" letter-spacing="2">T\\\\\\S</text></svg>`,
+  },
+  {
+    id: "dd-tote-03",
+    code: "DD-TOTE-03",
+    subcategory: "accessories",
+    subcategories: ["accessories", "branded-merchandise"],
+    name: { cs: "PLÁTĚNKA HAZARD // PATCH", en: "HAZARD TOTE // PATCH" },
+    priceValue: 420,
+    price: "420 Kč",
+    desc: {
+      cs: "Pevná taška na kabely a moduly s 45° hazard motivem a nášivkou DECØY DEVICES.",
+      en: "Sturdy bag for patch cables and modules with 45° hazard motif and DECØY DEVICES woven patch.",
+    },
+    svg: `<svg viewBox="0 0 120 120" width="110" height="110"><path d="M44 38 V24 Q60 14 76 24 V38" fill="none" stroke="currentColor" stroke-width="2.5"/><rect x="30" y="38" width="60" height="62" fill="#0c0c0e" stroke="currentColor" stroke-width="2"/><line x1="36" y1="86" x2="84" y2="86" stroke="#b9bec7" stroke-width="4" stroke-dasharray="6 4"/></svg>`,
+  },
+];
+
+const PEDAL_CONCEPTS = [
+  {
+    id: "fuzz-01",
+    code: "DD-PD01 // CONCEPT",
+    name: "DECØY // FUZZ-01",
+    tag: { cs: "ANALOGOVÝ PEDÁL", en: "ANALOG STOMPBOX" },
+    desc: {
+      cs: "Surové zkreslení a feedback smyčka v hliníkovém šasi s PCB předním panelem ve stylu DECØY AUDIO.",
+      en: "Raw saturation and feedback loop in an aluminum enclosure with a DECØY AUDIO PCB faceplate.",
+    },
+  },
+  {
+    id: "tape-glitch",
+    code: "DD-PD02 // CONCEPT",
+    name: "DECØY // TAPE-GLITCH",
+    tag: { cs: "GRANULÁRNÍ DELAY", en: "GRANULAR DELAY" },
+    desc: {
+      cs: "Pódiový pedál pro zmrazování zvuku, krátké smyčky a CV/Expression modulaci.",
+      en: "Stage stompbox for sound freeze, micro-loops, and CV/Expression modulation.",
+    },
+  },
+];
+
+const DEFAULT_NEWS_POSTS = [
+  {
+    id: "dhogh-1",
+    division: "LUX",
+    date: "2026-11-15",
+    title: {
+      cs: "DHOGH // SVĚTLO, ZVUK & ŽIŽKÁRNA",
+      en: "DHOGH // LIGHT, SOUND & ŽIŽKÁRNA",
+    },
+    body: {
+      cs: `Projekt DHOGH — elektronická klubová série a festival v českobudějovické Žižkárně (od roku 2019), kde se potkává současná klubová scéna s prostorovým designem, scénickým svícením a audiovizuálními zážitky. Na akcích DHOGH a ve spolupráci s ${TS} testujeme hardware DECØY DEVICES v ostrém provozu.`,
+      en: `DHOGH — an electronic club series and festival at Žižkárna in České Budějovice (since 2019), bringing together contemporary club music, spatial design, stage lighting, and audiovisual experiences. At DHOGH events and with ${TS}, we field-test DECØY DEVICES hardware live.`,
+    },
+    links: [
+      { label: "DHOGH.COM", url: "https://dhogh.com/" },
+      { label: "@DHOGHTEAM", url: "https://www.instagram.com/dhoghteam/" },
+      { label: "@ADAM_VEIT", url: "https://www.instagram.com/adam_veit/" },
+    ],
+  },
+  {
+    id: "ssd-1",
+    division: "AUD",
+    date: "2026-11-14",
+    title: {
+      cs: "SYNTHETIC SEX DRIVE // ŽIVÁ ELEKTRONIKA",
+      en: "SYNTHETIC SEX DRIVE // LIVE ELECTRONICS",
+    },
+    body: {
+      cs: "Projekt Synthetic Sex Drive (Ladislav Mareš) — živá elektronika, modulární syntezátory a přímé napojení na světelný a vizuální rig.",
+      en: "Synthetic Sex Drive (Ladislav Mareš) — live electronics and modular synthesizers wired directly into the stage lighting and visual rig.",
+    },
+    links: [{ label: "@SYNTHETICSEXDRIVE", url: "https://www.instagram.com/syntheticsexdrive/" }],
+  },
+  {
+    id: "lux-1",
+    division: "LUX",
+    date: "2026-11-12",
+    title: {
+      cs: "Propojení Patchbay a DMX_out jedním kabelem",
+      en: "Linking Patchbay and DMX_out with a single cable",
+    },
+    body: {
+      cs: "Světla na rampě reagují na LFO a CUE_FRAMES z moduláru okamžitě. Žádné zamotané svazky kabelů, jen jeden stíněný RJ45 z Patchbay do hlavního DMX_out.",
+      en: "Truss fixtures react to LFOs and CUE_FRAMES from the modular immediately. No tangled cable looms—just one shielded RJ45 from Patchbay into the main DMX_out.",
+    },
+  },
+  {
+    id: "aud-1",
+    division: "AUD",
+    date: "2026-11-10",
+    title: {
+      cs: "Testování THE IN a THE OUT na zkoušce",
+      en: "Testing THE IN and THE OUT in rehearsal",
+    },
+    body: {
+      cs: "První ostrý test kompletní audio cesty z mikrofonu přímo do moduláru a zpět do PA přes symetrické XLR. Interní klik v THE OUT drží tempo bez jediného výpadku.",
+      en: "First live test of the full audio path from mic into the modular and back to the PA over balanced XLR. The internal click in THE OUT holds tempo without a hitch.",
+    },
+  },
+];
+
+const PRODUCT_CATALOG_META = {
+  "the-in": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "audio-interfaces",
+    subcategories: ["eurorack", "audio-interfaces"],
+    availability: "prototype",
+    featured: true,
+    isNew: false,
+  },
+  "the-out": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "audio-interfaces",
+    subcategories: ["eurorack", "audio-interfaces", "studio-equipment"],
+    availability: "prototype",
+    featured: true,
+    isNew: false,
+  },
+  "elements-v04": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "dmx-out": {
+    category: "light",
+    categories: ["light"],
+    subcategory: "dmx-equipment",
+    subcategories: ["dmx-equipment", "lighting-controllers", "stage-lighting"],
+    availability: "prototype",
+    featured: true,
+    isNew: false,
+  },
+  "patchbay-8ch": {
+    category: "light",
+    categories: ["light"],
+    subcategory: "lighting-accessories",
+    subcategories: ["lighting-accessories", "dmx-equipment"],
+    availability: "prototype",
+    featured: false,
+    isNew: false,
+  },
+  "patchbay-16ch": {
+    category: "light",
+    categories: ["light"],
+    subcategory: "lighting-accessories",
+    subcategories: ["lighting-accessories", "dmx-equipment"],
+    availability: "in_development",
+    featured: false,
+    isNew: true,
+  },
+  "lux-core": {
+    category: "light",
+    categories: ["light"],
+    subcategory: "lighting-controllers",
+    subcategories: ["lighting-controllers", "dmx-equipment", "stage-lighting"],
+    availability: "concept",
+    featured: false,
+    isNew: false,
+  },
+  "cue-frames": {
+    category: "light",
+    categories: ["light", "audio"],
+    subcategory: "lighting-controllers",
+    subcategories: ["lighting-controllers", "samplers-sequencers", "eurorack"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "cube-seq": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "samplers-sequencers",
+    subcategories: ["eurorack", "samplers-sequencers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  monobox: {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "studio-equipment",
+    subcategories: ["eurorack", "studio-equipment"],
+    availability: "in_development",
+    featured: false,
+    isNew: true,
+  },
+  "fvck-girl": {
+    category: "video",
+    categories: ["video", "electronics"],
+    subcategory: "video-synthesizers",
+    subcategories: ["video-synthesizers", "fpga-systems", "visual-instruments", "fpga-embedded"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "fvck-boy": {
+    category: "video",
+    categories: ["video", "audio", "light"],
+    subcategory: "visual-instruments",
+    subcategories: ["visual-instruments", "video-processing", "midi-controllers", "lighting-controllers", "samplers-sequencers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+};
+
+function extractDiagrams(prod) {
+  const list = [];
+  const seen = new Set();
+  const pushItem = (src, cap) => {
+    if (!src || seen.has(src)) return;
+    if (src.includes("diagrams/") || src.endsWith(".svg")) {
+      seen.add(src);
+      list.push({ src, cap });
+    }
+  };
+  (prod.gallery || []).forEach((g) => pushItem(g.src, g.cap));
+  if (prod.galleryByDiv) {
+    Object.values(prod.galleryByDiv).forEach((arr) => arr.forEach((g) => pushItem(g.src, g.cap)));
+  }
+  if (prod.longMedia) {
+    Object.values(prod.longMedia).forEach((m) => {
+      if (m.src) pushItem(m.src, m.cap);
+      if (m.srcByDiv) Object.values(m.srcByDiv).forEach((s) => pushItem(s, m.cap));
+    });
+  }
+  return list;
+}
+
+const CATALOG_ITEMS = (() => {
+  const items = [];
+  Object.entries(PRODUCTS).forEach(([id, p], idx) => {
+    const meta = PRODUCT_CATALOG_META[id] || {};
+    p.id = id;
+    p.kind = "hardware";
+    p.brand = p.brand || "DECØY DEVICES";
+    p.brandId = p.brandId || "decoy-devices";
+    p.isOriginal = p.isOriginal !== undefined ? p.isOriginal : true;
+    p.sku = p.sku || p.serial;
+    p.price = p.price !== undefined ? p.price : null;
+    p.currency = p.currency || "CZK";
+    p.category = meta.category || (p.division === "LUX" ? "light" : p.division === "VID" ? "video" : "audio");
+    p.categories = meta.categories || [p.category];
+    p.subcategory = meta.subcategory || "eurorack";
+    p.subcategories = meta.subcategories || [p.subcategory];
+    p.availability = meta.availability || "prototype";
+    p.warranty = p.warranty || null;
+    p.manuals = extractDiagrams(p);
+    p.featured = Boolean(meta.featured);
+    p.isNew = Boolean(meta.isNew);
+    p.sortOrder = idx;
+    items.push(p);
+  });
+
+  PEDAL_CONCEPTS.forEach((pc, idx) => {
+    items.push({
+      id: pc.id,
+      kind: "concept",
+      division: "AUD",
+      category: "audio",
+      categories: ["audio"],
+      subcategory: "effects-pedals",
+      subcategories: ["effects-pedals"],
+      name: pc.name,
+      hp: "STOMPBOX",
+      serial: pc.code,
+      sku: pc.code,
+      brand: "DECØY DEVICES",
+      brandId: "decoy-devices",
+      isOriginal: true,
+      price: null,
+      currency: "CZK",
+      availability: "concept",
+      status: pc.tag,
+      tagline: pc.tag,
+      short: pc.desc,
+      long: { cs: [pc.desc.cs], en: [pc.desc.en] },
+      useCases: [],
+      controls: { cs: [], en: [] },
+      specs: [],
+      gallery: [],
+      manuals: [],
+      warranty: null,
+      related: ["the-in", "the-out"],
+      featured: false,
+      isNew: false,
+      sortOrder: 100 + idx,
+    });
+  });
+
+  MERCH_ITEMS.forEach((m, idx) => {
+    items.push({
+      id: m.id,
+      kind: "merch",
+      division: "MRC",
+      category: "merch",
+      categories: ["merch"],
+      subcategory: m.subcategory,
+      subcategories: m.subcategories,
+      name: m.name,
+      hp: "MERCH",
+      serial: m.code,
+      sku: m.code,
+      brand: "DECØY DEVICES",
+      brandId: "decoy-devices",
+      isOriginal: true,
+      price: m.priceValue,
+      priceFormatted: m.price,
+      currency: "CZK",
+      availability: "on_order",
+      status: { cs: "Merch / Zakázkový tisk", en: "Merch / Batch production" },
+      tagline: { cs: "Oficiální merch DECØY DEVICES & TEATRO\\\\\\SVJÖTLO", en: "Official DECØY DEVICES & TEATRO\\\\\\SVJÖTLO merch" },
+      short: m.desc,
+      long: { cs: [m.desc.cs], en: [m.desc.en] },
+      useCases: [],
+      controls: { cs: [], en: [] },
+      specs: [
+        S("Kód položky", "Item SKU", m.code, "doc", true),
+        S("Cena", "Price", m.price, "doc", true),
+      ],
+      svg: m.svg,
+      gallery: [],
+      manuals: [],
+      warranty: null,
+      related: [],
+      featured: false,
+      isNew: false,
+      sortOrder: 200 + idx,
+    });
+  });
+
+  return items;
+})();
+
+function getCatalogItem(id) {
+  return CATALOG_ITEMS.find((item) => item.id === id) || null;
+}
+
+function itemDisplayName(item, lang = getLang()) {
+  if (!item) return "";
+  return typeof item.name === "string" ? item.name : item.name[lang] || item.name.cs;
+}
+
+const DECOY_STORE = (() => {
+  const STORAGE_KEY = "decoy_store_cart_v1";
+
+  function loadCart() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveCart(items) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    } catch {
+      /* ignore storage errors */
+    }
+  }
+
+  function getItems() {
+    return loadCart()
+      .map((entry) => {
+        const product = getCatalogItem(entry.id);
+        return product ? { ...entry, product } : null;
+      })
+      .filter(Boolean);
+  }
+
+  function addItem(id, qty = 1) {
+    if (!getCatalogItem(id)) return getItems();
+    const cart = loadCart();
+    const existing = cart.find((c) => c.id === id);
+    if (existing) {
+      existing.qty = Math.max(1, (existing.qty || 1) + qty);
+    } else {
+      cart.push({ id, qty: Math.max(1, qty), addedAt: new Date().toISOString() });
+    }
+    saveCart(cart);
+    return getItems();
+  }
+
+  function updateQty(id, delta) {
+    const cart = loadCart();
+    const idx = cart.findIndex((c) => c.id === id);
+    if (idx < 0) return getItems();
+    const nextQty = (cart[idx].qty || 1) + delta;
+    if (nextQty <= 0) cart.splice(idx, 1);
+    else cart[idx].qty = nextQty;
+    saveCart(cart);
+    return getItems();
+  }
+
+  function removeItem(id) {
+    saveCart(loadCart().filter((c) => c.id !== id));
+    return getItems();
+  }
+
+  function clear() {
+    saveCart([]);
+    return [];
+  }
+
+  function getCount() {
+    return loadCart().reduce((sum, entry) => sum + (entry.qty || 1), 0);
+  }
+
+  function formatPrice(item, lang = getLang()) {
+    const dict = I18N[lang];
+    if (!item || item.price === null || item.price === undefined) return dict.price_tbd;
+    return item.priceFormatted || `${item.price.toLocaleString(lang === "cs" ? "cs-CZ" : "en-US")} Kč`;
+  }
+
+  function availabilityLabel(item, lang = getLang()) {
+    const dict = I18N[lang];
+    const map = {
+      in_stock: dict.avail_in_stock,
+      on_order: dict.avail_on_order,
+      prototype: dict.avail_prototype,
+      in_development: dict.avail_in_development,
+      concept: dict.avail_concept,
+    };
+    return (item && map[item.availability]) || dict.avail_tbd;
+  }
+
+  function getSummary() {
+    const entries = getItems();
+    let pricedTotal = 0;
+    let hasUnpriced = false;
+    entries.forEach(({ product, qty }) => {
+      if (typeof product.price === "number") pricedTotal += product.price * qty;
+      else hasUnpriced = true;
+    });
+    return { entries, count: getCount(), pricedTotal, hasUnpriced };
+  }
+
+  function queryProducts({
+    q = "",
+    category = "all",
+    subcategory = "all",
+    brand = "all",
+    originalOnly = false,
+    availability = "all",
+    sort = "featured",
+    lang = getLang(),
+  } = {}) {
+    const needle = q.trim().toLowerCase();
+    let list = CATALOG_ITEMS.filter((item) => {
+      if (category !== "all" && !(item.categories || [item.category]).includes(category)) return false;
+      if (subcategory !== "all" && !(item.subcategories || [item.subcategory]).includes(subcategory)) return false;
+      if (brand !== "all" && item.brandId !== brand) return false;
+      if (originalOnly && !item.isOriginal) return false;
+      if (availability !== "all" && item.availability !== availability) return false;
+      if (needle) {
+        const hay = [
+          itemDisplayName(item, lang),
+          item.brand,
+          item.serial,
+          item.sku,
+          item.tagline?.[lang] || "",
+          item.short?.[lang] || "",
+          item.category,
+          ...(item.subcategories || []),
+        ]
+          .join(" ")
+          .toLowerCase();
+        if (!hay.includes(needle)) return false;
+      }
+      return true;
+    });
+
+    if (sort === "name") {
+      list = [...list].sort((a, b) => itemDisplayName(a, lang).localeCompare(itemDisplayName(b, lang)));
+    } else if (sort === "price_asc") {
+      list = [...list].sort((a, b) => (a.price ?? Number.MAX_SAFE_INTEGER) - (b.price ?? Number.MAX_SAFE_INTEGER));
+    } else if (sort === "newest") {
+      list = [...list].sort((a, b) => Number(b.isNew) - Number(a.isNew) || a.sortOrder - b.sortOrder);
+    } else {
+      list = [...list].sort((a, b) => Number(b.featured) - Number(a.featured) || a.sortOrder - b.sortOrder);
+    }
+    return list;
+  }
+
+  return {
+    checkoutReady: false,
+    getItems,
+    addItem,
+    updateQty,
+    removeItem,
+    clear,
+    getCount,
+    getSummary,
+    formatPrice,
+    availabilityLabel,
+    queryProducts,
+  };
+})();
+
+if (typeof window !== "undefined") {
+  window.DECOY_STORE = DECOY_STORE;
+}
+
+function renderCartDrawerHTML(lang = getLang(), productsHref = "#products", closeNavAttr = "data-close-cart-nav") {
+  const dict = I18N[lang];
+  const summary = DECOY_STORE.getSummary();
+  if (!summary.entries.length) {
+    return `
+      <div class="cart-notice">${dict.cart_notice}</div>
+      <p class="cart-empty-msg">${dict.cart_empty}</p>
+      <a href="${productsHref}" class="btn-primary" ${closeNavAttr}>${dict.home_cta_products} →</a>
+    `;
+  }
+  return `
+    <div class="cart-notice">${dict.cart_notice}</div>
+    <ul class="cart-list">
+      ${summary.entries
+        .map(
+          ({ product, qty }) => `
+        <li class="cart-item">
+          <div>
+            <strong>${itemDisplayName(product, lang)}</strong>
+            <small>${product.brand} · ${product.serial} · ${DECOY_STORE.formatPrice(product, lang)}</small>
+          </div>
+          <div class="cart-qty-ctrl">
+            <button type="button" class="pager-arrow" data-cart-dec="${product.id}" aria-label="−">−</button>
+            <span>${qty}</span>
+            <button type="button" class="pager-arrow" data-cart-inc="${product.id}" aria-label="+">+</button>
+            <button type="button" class="pager-arrow" data-cart-rm="${product.id}" aria-label="✕">✕</button>
+          </div>
+        </li>`
+        )
+        .join("")}
+    </ul>
+    <div class="cart-summary">
+      <div>${dict.cart_total_known}: <strong>${summary.pricedTotal.toLocaleString(lang === "cs" ? "cs-CZ" : "en-US")} Kč</strong></div>
+      ${summary.hasUnpriced ? `<small>${dict.cart_tbd_note}</small>` : ""}
+    </div>
+    <div class="link-row" style="margin-top:16px;">
+      <button type="button" id="copyCartBtn" class="btn-primary">${dict.cart_copy}</button>
+      <button type="button" id="clearCartBtn" class="btn-outline">${dict.cart_clear}</button>
+    </div>
+    <div id="cartCopyFeedback" class="brief-feedback" aria-live="polite"></div>
+  `;
 }
 
 /* =========================================================
