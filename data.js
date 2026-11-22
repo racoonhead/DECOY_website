@@ -148,6 +148,12 @@ const I18N = {
     home_teatro_title: "TEATRO\\\\\\SVJÖTLO",
     home_about_num: "07 // O ZNAČCE DECØY",
     home_about_title: "NÁVRH, OBCHOD & SCÉNA",
+    sec_diy: "ELEKTRONIKA / DIY",
+    sec_num_diy: "04 // ELEKTRONIKA & DIY",
+    sec_catalog: "KATALOG & ZNAČKY",
+    sec_num_catalog: "05 // KOMPLETNÍ KATALOG & ZNAČKY",
+    list_btn: "SEZNAM",
+    add_list_btn: "+ SEZNAM",
   },
   en: {
     div_sound: "SOUND",
@@ -287,6 +293,12 @@ const I18N = {
     home_teatro_title: "TEATRO\\\\\\SVJÖTLO",
     home_about_num: "07 // ABOUT DECØY",
     home_about_title: "ENGINEERING, STORE & STAGE",
+    sec_diy: "ELECTRONICS / DIY",
+    sec_num_diy: "04 // ELECTRONICS & DIY",
+    sec_catalog: "CATALOG & BRANDS",
+    sec_num_catalog: "05 // FULL CATALOG & BRANDS",
+    list_btn: "LIST",
+    add_list_btn: "+ LIST",
   },
 };
 

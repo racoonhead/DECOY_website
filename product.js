@@ -1,15 +1,4 @@
-/* =========================================================
-   DECØY — Detail produktu (product.html)
-   8 strukturálních sekcí dle specifikace:
-     1. Galerie fotografií
-     2. Název, výrobce a cena
-     3. Dostupnost a nákupní informace
-     4. Podrobný popis (+ inline diagramy & use cases)
-     5. Technické specifikace (+ ovládání & porovnání)
-     6. Dokumentace a manuály
-     7. Související produkty
-     8. Informace o záruce a podpoře
-   ========================================================= */
+/* DECØY DEVICES — product.html (samostatná detailní stránka modulu v původním stylu DECØY) */
 
 let currentLang = getLang();
 let currentProdId = null;
@@ -17,8 +6,8 @@ let currentDivCtx = null;
 let currentGalleryIdx = 0;
 
 const DIV_NAMES = {
-  AUD: { cs: "AUDIO", en: "AUDIO" },
-  LUX: { cs: "LIGHT", en: "LIGHT" },
+  AUD: { cs: "ZVUK", en: "SOUND" },
+  LUX: { cs: "SVĚTLO", en: "LIGHT" },
   VID: { cs: "VIDEO", en: "VIDEO" },
   MRC: { cs: "MERCH", en: "MERCH" },
 };
@@ -36,7 +25,15 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
-function applyHeaderTranslations() {
+function triggerProductFx() {
+  const overlay = document.getElementById("fxOverlay");
+  if (!overlay) return;
+  overlay.className = "fx-overlay";
+  void overlay.offsetWidth;
+  overlay.classList.add("fx-mod");
+}
+
+function updateHeaderUI() {
   const dict = I18N[currentLang];
   document.documentElement.lang = currentLang;
   document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -50,8 +47,10 @@ function applyHeaderTranslations() {
         ? '<span class="lang-active">CZ</span> / <span>EN</span>'
         : '<span>CZ</span> / <span class="lang-active">EN</span>';
   }
-  const badge = document.getElementById("cartCountBadge");
-  if (badge) badge.textContent = String(DECOY_STORE.getCount());
+  const count = String(DECOY_STORE.getCount());
+  document.querySelectorAll("[data-cart-count]").forEach((el) => {
+    el.textContent = count;
+  });
 }
 
 function getProductGallery(p, divKey) {
@@ -73,8 +72,8 @@ function renderGalleryStage(p) {
   if (!items.length) {
     stageEl.className = "prod-gallery-stage";
     stageEl.innerHTML = p.svg
-      ? `<div class="prod-svg-stage">${p.svg}</div>`
-      : `<div class="card-placeholder" style="min-height:280px;"><span>${escapeHtml(p.serial)}</span><small>${escapeHtml(textVal(p.status))}</small></div>`;
+      ? `<div class="merch-art-inline">${p.svg}</div>`
+      : `<div class="hud-card-wireframe" style="min-height:260px;"><span>${escapeHtml(p.serial)}</span><small>${escapeHtml(textVal(p.status))}</small></div>`;
     capEl.innerHTML = `<span>${escapeHtml(itemDisplayName(p, currentLang))}</span><span>—</span>`;
     return;
   }
@@ -137,36 +136,33 @@ function closeLightbox() {
 function renderCartDrawer() {
   const body = document.getElementById("cartDrawerBody");
   if (!body) return;
-  body.innerHTML = renderCartDrawerHTML(currentLang, "index.html#products", "");
+  body.innerHTML = renderCartDrawerHTML(currentLang, "index.html#AUD/catalog", "");
 }
 
 function openCartDrawer() {
   renderCartDrawer();
-  const drawer = document.getElementById("cartDrawer");
-  if (drawer) drawer.hidden = false;
-  document.getElementById("cartToggleBtn")?.setAttribute("aria-expanded", "true");
+  document.getElementById("cartDrawer").hidden = false;
+  document.getElementById("cartToggleProd")?.setAttribute("aria-expanded", "true");
 }
 
 function closeCartDrawer() {
-  const drawer = document.getElementById("cartDrawer");
-  if (drawer) drawer.hidden = true;
-  document.getElementById("cartToggleBtn")?.setAttribute("aria-expanded", "false");
+  document.getElementById("cartDrawer").hidden = true;
+  document.getElementById("cartToggleProd")?.setAttribute("aria-expanded", "false");
 }
 
-function renderProductPage(id, { divKey = null } = {}) {
+function renderProductPage(id, { fx = false, divKey = null } = {}) {
   const p = getCatalogItem(id);
   const dict = I18N[currentLang];
   const bodyEl = document.getElementById("productBody");
   const mainEl = document.getElementById("productMain");
-  const footerEl = document.getElementById("siteFooter");
   const topPagerEl = document.getElementById("topProductPager");
   const backLink = document.getElementById("backToDivLink");
   const backLabel = document.getElementById("backToDivLabel");
 
-  applyHeaderTranslations();
+  updateHeaderUI();
 
   if (!p) {
-    mainEl.innerHTML = `<div class="container" style="padding:80px 24px;"><h2>${dict.not_found}</h2><p><a class="btn-outline" href="index.html#products">${dict.back_to_catalog}</a></p></div>`;
+    mainEl.innerHTML = `<div class="container" style="padding:80px 24px;"><h2>${dict.not_found}</h2></div>`;
     return;
   }
 
@@ -174,14 +170,17 @@ function renderProductPage(id, { divKey = null } = {}) {
   currentDivCtx = activeDiv;
   currentProdId = id;
   currentGalleryIdx = 0;
+  if (fx) triggerProductFx();
 
   const pName = itemDisplayName(p, currentLang);
-  document.title = `${pName} — DECØY`;
+  document.title = `${pName} — DECØY DEVICES`;
   bodyEl.className = `product-page theme-${activeDiv} mod-${id}`;
 
-  const backCat = p.category || "audio";
-  backLink.href = `index.html#products/${backCat}`;
-  backLabel.textContent = dict.back_to_catalog;
+  const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
+  const backDiv = activeDiv === "MRC" ? "AUD" : activeDiv;
+  const backTab = p.kind === "merch" ? "merch" : p.kind === "concept" ? "pedals" : p.tab || "eurorack";
+  backLink.href = `index.html#${backDiv}/${backTab}`;
+  backLabel.textContent = `${dict.back_to} ${divTitle}`;
 
   const nav = PRODUCTS[id] ? getSectionProductNav(id, activeDiv) : null;
   if (nav) {
@@ -202,12 +201,12 @@ function renderProductPage(id, { divKey = null } = {}) {
       nextLabel.textContent = nav.next.name;
       prevArrow.onclick = () => {
         history.pushState(null, "", `product.html?id=${nav.prevId}&div=${activeDiv}`);
-        renderProductPage(nav.prevId, { divKey: activeDiv });
+        renderProductPage(nav.prevId, { fx: true, divKey: activeDiv });
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
       nextArrow.onclick = () => {
         history.pushState(null, "", `product.html?id=${nav.nextId}&div=${activeDiv}`);
-        renderProductPage(nav.nextId, { divKey: activeDiv });
+        renderProductPage(nav.nextId, { fx: true, divKey: activeDiv });
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
     } else {
@@ -216,8 +215,9 @@ function renderProductPage(id, { divKey = null } = {}) {
     }
   }
 
-  if (footerEl) {
-    footerEl.innerHTML = `<div class="container">${renderModuleFooterHTML(activeDiv, `${activeDiv} // ${p.hp}`, "DECØY DEVICES")}</div>`;
+  const siteFooter = document.getElementById("siteFooter");
+  if (siteFooter) {
+    siteFooter.innerHTML = renderModuleFooterHTML(activeDiv, `${activeDiv} // ${p.hp}`, "TEATRO\\\\\\SVJÖTLO");
   }
 
   const gallery = getProductGallery(p, activeDiv);
@@ -226,14 +226,12 @@ function renderProductPage(id, { divKey = null } = {}) {
   const priceText = DECOY_STORE.formatPrice(p, currentLang);
   const availText = DECOY_STORE.availabilityLabel(p, currentLang);
   const manuals = p.manuals || [];
-  const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
 
   mainEl.innerHTML = `
-    <!-- 1. GALERIE FOTOGRAFIÍ + 2. NÁZEV, VÝROBCE A CENA + 3. DOSTUPNOST A NÁKUPNÍ INFO + 4. PODROBNÝ POPIS -->
+    <!-- 1. GALERIE + 2. NÁZEV, VÝROBCE & CENA + 3. DOSTUPNOST & NÁKUP + 4. POPIS -->
     <section class="prod-hero">
       <div class="container">
         <div class="prod-hero-grid">
-          <!-- 1. Galerie fotografií -->
           <div class="prod-gallery">
             <div class="prod-gallery-wrap">
               ${gallery.length > 1 ? `<button type="button" class="gal-arrow gal-prev" id="galPrevBtn" aria-label="${dict.prev_img}">‹</button>` : ""}
@@ -258,44 +256,28 @@ function renderProductPage(id, { divKey = null } = {}) {
             }
           </div>
 
-          <!-- 2. Název, výrobce, cena + 3. Dostupnost a nákup + 4. Popis -->
           <div class="prod-summary">
-            <div class="card-badges" style="margin-bottom:8px;">
-              ${p.isOriginal ? `<span class="badge badge-original">${dict.original_badge}</span>` : `<span class="badge">${dict.partner_badge}</span>`}
-              <span class="badge">${escapeHtml(divTitle)}</span>
-              <span class="badge">${escapeHtml(p.hp)}</span>
-            </div>
-
             <div class="modal-serial">${escapeHtml(p.serial)} · ${dict.brand_label}: ${escapeHtml(p.brand)}</div>
             <h1>${escapeHtml(pName)}</h1>
             <p class="prod-tagline">${escapeHtml(textVal(p.tagline))}</p>
 
-            <!-- 3. Dostupnost a nákupní informace -->
-            <div class="prod-commerce-panel">
-              <div class="prod-commerce-meta">
-                <div>
-                  <small>${currentLang === "cs" ? "CENA" : "PRICE"}</small>
-                  <strong class="prod-price ${p.price === null ? "is-tbd" : ""}">${escapeHtml(priceText)}</strong>
-                </div>
-                <div>
-                  <small>${dict.avail_label}</small>
-                  <strong class="card-avail avail-${p.availability || "tbd"}">${escapeHtml(availText)}</strong>
-                </div>
-                <div>
-                  <small>${dict.status}</small>
-                  <strong>${escapeHtml(textVal(p.status))}</strong>
-                </div>
-              </div>
-              <div class="link-row" style="margin-top:14px;">
+            <div class="modal-meta-row">
+              ${p.isOriginal ? `<span class="modal-chip chip-accent">${dict.original_badge}</span>` : `<span class="modal-chip">${dict.partner_badge}</span>`}
+              <span class="modal-chip">${activeDiv} // ${divTitle}</span>
+              <span class="modal-chip">${escapeHtml(p.hp)}</span>
+              <span class="modal-chip">${escapeHtml(priceText)}</span>
+              <span class="modal-chip">${escapeHtml(availText)}</span>
+            </div>
+
+            <div class="prod-commerce-strip">
+              <div class="link-row">
                 <button type="button" id="addToCartDetailBtn" class="btn-detail" style="margin-top:0; border:none; cursor:pointer;">
                   ${inCart ? dict.cart_added : dict.cart_add}
                 </button>
-                <a href="index.html#support" class="btn-outline">${dict.nav_support}</a>
               </div>
-              <div class="prod-store-note">${dict.cart_notice}</div>
+              <small>${dict.cart_notice}</small>
             </div>
 
-            <!-- 4. Podrobný popis -->
             <div class="prod-block">
               <div class="prod-block-label">// ${dict.about}</div>
               ${(p.long?.[currentLang] || [])
@@ -398,7 +380,6 @@ function renderProductPage(id, { divKey = null } = {}) {
         : ""
     }
 
-    <!-- 5. TECHNICKÉ SPECIFIKACE & OVLÁDÁNÍ -->
     ${
       (p.controls?.[currentLang]?.length || p.specs?.length)
         ? `<section class="prod-section">
@@ -443,7 +424,7 @@ function renderProductPage(id, { divKey = null } = {}) {
         : ""
     }
 
-    <!-- 6. DOKUMENTACE A MANUÁLY -->
+    <!-- DOKUMENTACE & MANUÁLY -->
     <section id="docs" class="prod-section">
       <div class="container">
         <div class="sec-head">
@@ -462,7 +443,7 @@ function renderProductPage(id, { divKey = null } = {}) {
                     <div class="sec-num">SVG DIAGRAM</div>
                     <p style="margin:6px 0 14px; color:var(--silk-white);">${escapeHtml(textVal(m.cap) || m.src)}</p>
                     <div class="link-row">
-                      <button type="button" class="btn-outline" data-inline-src="${m.src}" data-inline-cap="${escapeHtml(textVal(m.cap))}">${currentLang === "cs" ? "ZOBRAZIT DIAGRAM" : "VIEW DIAGRAM"}</button>
+                      <button type="button" class="btn-outline" data-inline-src="${m.src}" data-inline-cap="${escapeHtml(textVal(m.cap))}">${currentLang === "cs" ? "ZOBRAZIT" : "VIEW"}</button>
                       <a class="btn-outline" href="${m.src}" target="_blank" rel="noopener noreferrer">SVG ↗</a>
                     </div>
                   </article>`
@@ -474,7 +455,7 @@ function renderProductPage(id, { divKey = null } = {}) {
       </div>
     </section>
 
-    <!-- 7. SOUVISEJÍCÍ PRODUKTY -->
+    <!-- SOUVISEJÍCÍ PRODUKTY -->
     ${
       related.length
         ? `<section class="prod-section">
@@ -492,12 +473,11 @@ function renderProductPage(id, { divKey = null } = {}) {
                     const rName = itemDisplayName(rp, currentLang);
                     return `
                       <article class="prod-rel-card" data-prod-go="${rp.id}">
-                        ${rImg ? `<img src="${rImg}" alt="${escapeHtml(rName)}" loading="lazy" />` : `<div class="card-placeholder"><span>${escapeHtml(rp.serial)}</span></div>`}
+                        ${rImg ? `<img src="${rImg}" alt="${escapeHtml(rName)}" loading="lazy" />` : `<div class="hud-card-wireframe"><span>${escapeHtml(rp.serial)}</span></div>`}
                         <div>
-                          <div class="modal-serial">${escapeHtml(rp.brand)} · ${escapeHtml(rp.serial)}</div>
+                          <div class="modal-serial">${escapeHtml(rp.serial)} · ${escapeHtml(rp.hp)}</div>
                           <h3>${escapeHtml(rName)}</h3>
                           <p>${escapeHtml(textVal(rp.short))}</p>
-                          <div class="card-price ${rp.price === null ? "is-tbd" : ""}" style="margin-bottom:8px;">${escapeHtml(DECOY_STORE.formatPrice(rp, currentLang))}</div>
                           <span class="btn-outline">${dict.detail_btn}</span>
                         </div>
                       </article>
@@ -510,7 +490,7 @@ function renderProductPage(id, { divKey = null } = {}) {
         : ""
     }
 
-    <!-- 8. INFORMACE O ZÁRUCE A PODPOŘE -->
+    <!-- ZÁRUKA & PODPORA -->
     <section class="prod-section">
       <div class="container">
         <div class="sec-head">
@@ -518,7 +498,6 @@ function renderProductPage(id, { divKey = null } = {}) {
             <div class="sec-num">${dict.warranty_num}</div>
             <h2>${dict.warranty_heading}</h2>
           </div>
-          <a class="btn-outline" href="index.html#support">${dict.nav_support} →</a>
         </div>
         <div class="prod-panel-box">
           <p style="margin:0; color:var(--silver-hasl);">${escapeHtml(textVal(p.warranty) || dict.warranty_empty)}</p>
@@ -599,7 +578,7 @@ function renderProductPage(id, { divKey = null } = {}) {
       const targetId = el.getAttribute("data-prod-go");
       const divQuery = currentDivCtx ? `&div=${currentDivCtx}` : "";
       history.pushState(null, "", `product.html?id=${targetId}${divQuery}`);
-      renderProductPage(targetId, { divKey: currentDivCtx });
+      renderProductPage(targetId, { fx: true, divKey: currentDivCtx });
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
@@ -618,34 +597,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!document.getElementById("cartDrawer").hidden) renderCartDrawer();
   });
 
-  document.getElementById("cartToggleBtn")?.addEventListener("click", openCartDrawer);
+  document.getElementById("cartToggleProd")?.addEventListener("click", openCartDrawer);
   document.querySelectorAll("[data-close-cart]").forEach((el) => el.addEventListener("click", closeCartDrawer));
 
   document.addEventListener("click", (e) => {
     const incBtn = e.target.closest("[data-cart-inc]");
     if (incBtn) {
       DECOY_STORE.updateQty(incBtn.getAttribute("data-cart-inc"), 1);
-      applyHeaderTranslations();
+      updateHeaderUI();
       renderCartDrawer();
       return;
     }
     const decBtn = e.target.closest("[data-cart-dec]");
     if (decBtn) {
       DECOY_STORE.updateQty(decBtn.getAttribute("data-cart-dec"), -1);
-      applyHeaderTranslations();
+      updateHeaderUI();
       renderCartDrawer();
       return;
     }
     const rmBtn = e.target.closest("[data-cart-rm]");
     if (rmBtn) {
       DECOY_STORE.removeItem(rmBtn.getAttribute("data-cart-rm"));
-      applyHeaderTranslations();
+      updateHeaderUI();
       renderCartDrawer();
       return;
     }
     if (e.target.id === "clearCartBtn") {
       DECOY_STORE.clear();
-      applyHeaderTranslations();
+      updateHeaderUI();
       renderCartDrawer();
       if (currentProdId) renderProductPage(currentProdId, { divKey: currentDivCtx });
       return;
