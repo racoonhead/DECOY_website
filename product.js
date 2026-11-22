@@ -179,14 +179,17 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
   const backDiv = activeDiv === "MRC" ? "AUD" : activeDiv;
   const backTab = p.kind === "merch" ? "merch" : p.kind === "concept" ? "pedals" : p.tab || "eurorack";
-  backLink.href = `index.html#${backDiv}/${backTab}`;
+  const urlBrandRaw = (new URLSearchParams(location.search || "").get("brand") || "").trim().toLowerCase();
+  const activeBrand = urlBrandRaw === "teatro" ? "teatro" : "decoy";
+  const backHref = `index.html?brand=${activeBrand}#${backDiv}/${backTab}`;
+  backLink.href = backHref;
   backLabel.textContent = `${dict.back_to} ${divTitle}`;
 
   const nav = PRODUCTS[id] ? getSectionProductNav(id, activeDiv) : null;
   if (nav) {
     topPagerEl.innerHTML = `
       <span class="pager-status">
-        <a class="pager-crumb-link" href="index.html#${backDiv}/${backTab}">${activeDiv} // ${escapeHtml(divTitle)}</a>
+        <a class="pager-crumb-link" href="${backHref}">${activeDiv} // ${escapeHtml(divTitle)}</a>
         <span>·</span>
         <strong>${nav.index + 1} / ${nav.total}</strong>
         <span>·</span>
@@ -195,7 +198,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   } else {
     topPagerEl.innerHTML = `
       <span class="pager-status">
-        <a class="pager-crumb-link" href="index.html#${backDiv}/${backTab}">${activeDiv} // ${escapeHtml(divTitle)}</a>
+        <a class="pager-crumb-link" href="${backHref}">${activeDiv} // ${escapeHtml(divTitle)}</a>
         <span>·</span>
         <span>${escapeHtml(pName)}</span>
       </span>`;

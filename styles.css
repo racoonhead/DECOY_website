@@ -142,18 +142,16 @@ a {
   padding: 6px 14px;
   border: 1px solid rgba(185, 190, 199, 0.35);
   backdrop-filter: blur(6px);
-}
-
-.brand-switch-btn {
   cursor: pointer;
-  border-color: rgba(254, 80, 0, 0.65);
   transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
 }
 
-.brand-switch-btn:hover {
-  border-color: var(--pantone-orange);
-  background: var(--pantone-orange);
-  color: var(--silk-black);
+.brand-switch-btn:hover,
+.brand-switch-btn:focus-visible {
+  border-color: var(--silk-white);
+  background: rgba(20, 20, 24, 0.88);
+  color: var(--silk-white);
+  outline: none;
 }
 
 .landing-bottombar {
@@ -219,7 +217,7 @@ a {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: flex 0.42s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+  transition: flex 0.42s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease, background-color 0.32s ease, background 0.32s ease, color 0.32s ease;
   outline: none;
 }
 
@@ -227,6 +225,7 @@ a {
   border-left: 1px solid rgba(185, 190, 199, 0.22);
 }
 
+/* Výchozí barevný profil DECØY (AUD // 01, LUX // 02, VID // 03) */
 .panel-aud {
   background: var(--pcb-black);
   color: var(--silk-white);
@@ -240,6 +239,44 @@ a {
 .panel-vid {
   background: var(--pcb-purple);
   color: var(--silk-white);
+}
+
+/* Barevný profil TEATRO na úvodní stránce (všechny 3 oblasti AUD // 01, LUX // 02, VID // 03) */
+.landing-view[data-brand="teatro"] .panel-aud,
+body[data-brand="teatro"] .landing-view .panel-aud {
+  background-color: #141210;
+  background-image: radial-gradient(circle at 50% 42%, rgba(254, 80, 0, 0.22), rgba(19, 19, 24, 0.98) 72%);
+  color: var(--pantone-orange);
+}
+
+.landing-view[data-brand="teatro"] .panel-aud .split-title,
+body[data-brand="teatro"] .landing-view .panel-aud .split-title {
+  color: var(--silk-white);
+}
+
+.landing-view[data-brand="teatro"] .panel-lux,
+body[data-brand="teatro"] .landing-view .panel-lux {
+  background-color: var(--pantone-orange);
+  background-image: radial-gradient(circle at 50% 45%, rgba(255, 138, 76, 0.35), rgba(254, 80, 0, 0.98) 75%);
+  color: var(--silk-black);
+}
+
+.landing-view[data-brand="teatro"] .panel-vid,
+body[data-brand="teatro"] .landing-view .panel-vid {
+  background-color: #191a17;
+  background-image: radial-gradient(circle at 50% 48%, rgba(235, 222, 188, 0.18), rgba(11, 11, 14, 0.98) 74%);
+  color: var(--silk-white);
+}
+
+.landing-view[data-brand="teatro"] .panel-vid .split-watermark,
+.landing-view[data-brand="teatro"] .panel-vid .split-code,
+.landing-view[data-brand="teatro"] .panel-vid .split-enter,
+.landing-view[data-brand="teatro"] .panel-vid .split-reg,
+body[data-brand="teatro"] .landing-view .panel-vid .split-watermark,
+body[data-brand="teatro"] .landing-view .panel-vid .split-code,
+body[data-brand="teatro"] .landing-view .panel-vid .split-enter,
+body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
+  color: var(--pantone-orange);
 }
 
 /* Subtle PCB traces inside each split */
@@ -360,6 +397,58 @@ a {
   --fg-main: var(--silk-white);
   --fg-muted: #c8b8e8;
   --border-col: rgba(185, 190, 199, 0.26);
+}
+
+/* Barevný profil TEATRO pro divize TEATRO AUDIO, TEATRO LIGHT, TEATRO VIDEO */
+.division-view[data-brand="teatro"].theme-AUD {
+  --bg-main: #0f0d0c;
+  --bg-card: #181412;
+  --fg-main: var(--silk-white);
+  --fg-muted: var(--silver-hasl);
+  --border-col: rgba(254, 80, 0, 0.28);
+}
+
+.division-view[data-brand="teatro"].theme-LUX {
+  --bg-main: #141513;
+  --bg-card: #1e201c;
+  --fg-main: var(--silk-white);
+  --fg-muted: var(--silver-hasl);
+  --border-col: rgba(254, 80, 0, 0.35);
+}
+
+.division-view[data-brand="teatro"].theme-VID {
+  --bg-main: #0b0b0e;
+  --bg-card: #14141a;
+  --fg-main: var(--silk-white);
+  --fg-muted: var(--silver-hasl);
+  --border-col: rgba(254, 80, 0, 0.28);
+}
+
+.division-view[data-brand="teatro"] .hud-nav {
+  border-bottom: 2px solid var(--pantone-orange);
+}
+
+.division-view[data-brand="teatro"] .div-tab.active,
+.division-view[data-brand="teatro"] .sub-tab.active,
+.division-view[data-brand="teatro"] .btn-outline:hover {
+  background: var(--pantone-orange);
+  border-color: var(--pantone-orange);
+  color: var(--silk-black);
+}
+
+.division-view[data-brand="teatro"] .sec-head {
+  border-left: 4px solid var(--pantone-orange);
+  padding-left: 14px;
+}
+
+.division-view[data-brand="teatro"] .hud-card:hover {
+  border-color: var(--pantone-orange);
+}
+
+.division-view[data-brand="teatro"] .mf-accent-strip,
+.division-view[data-brand="teatro"] .mf-reg,
+.division-view[data-brand="teatro"] .div-hero-code {
+  color: var(--pantone-orange);
 }
 
 .division-view {

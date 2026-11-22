@@ -8,21 +8,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261122i" />
+  <link rel="stylesheet" href="styles.css?v=20261122j" />
 </head>
-<body>
+<body data-brand="decoy">
   <a class="skip-link" href="#divisionContent">Přejít na obsah / Skip to content</a>
 
   <!-- =========================================================
        1. ÚVODNÍ STRANA: DECØY DEVICES (3-BAREVNÝ SPLIT) + TEATRO\\\SVJÖTLO
        ========================================================= -->
-  <div id="landingView" class="landing-view">
+  <div id="landingView" class="landing-view" data-brand="decoy">
     <header class="landing-topbar">
       <div class="landing-brand">
-        <span class="brand-name">DECØY DEVICES</span>
+        <button id="selectBrandDecoy" class="brand-switch-btn" type="button" data-select-brand="decoy">
+          DECØY DEVICES
+        </button>
       </div>
       <div class="landing-top-right">
-        <button id="openTeatroLanding" class="brand-switch-btn" type="button">
+        <button id="openTeatroLanding" class="brand-switch-btn" type="button" data-select-brand="teatro">
           TEATRO\\\SVJÖTLO
         </button>
       </div>
@@ -219,7 +221,7 @@
     </div>
   </aside>
 
-  <script src="data.js?v=20261122i"></script>
-  <script src="app.js?v=20261122i"></script>
+  <script src="data.js?v=20261122j"></script>
+  <script src="app.js?v=20261122j"></script>
 </body>
 </html>
