@@ -2656,7 +2656,7 @@ function renderCartDrawerHTML(lang = getLang(), productsHref = "#AUD/catalog", c
 /* =========================================================
    PATIČKA VOLNĚ INSPIROVANÁ SPODKEM MODULU (DECØY DEVICES)
    ========================================================= */
-function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serialRight = "TEATRO\\\\\\SVJÖTLO") {
+function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serialRight = TS, brandText = "DECØY DEVICES") {
   const motifClass = divKey === "LUX" ? "mf-motif-lux" : divKey === "VID" ? "mf-motif-vid" : "mf-motif-aud";
 
   // Jemný minimalistický čárový akcent
@@ -2685,7 +2685,7 @@ function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serial
         </div>
 
         <div class="mf-brand-group">
-          <span class="mf-brand-text">DECØY DEVICES</span>
+          <span class="mf-brand-text">${brandText}</span>
         </div>
 
         <div class="mf-right-group">
@@ -2700,3 +2700,171 @@ function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serial
   `;
 }
 
+
+/* =========================================================
+   SDÍLENÁ KONFIGURACE ZNAČEK (DECØY / TEATRO)
+   ---------------------------------------------------------
+   Obě značky sdílejí stejné tři hlavní oblasti (AUD // 01 ZVUK, LUX // 02 SVĚTLO,
+   VID // 03 VIDEO), stejné komponenty, routování i animační systém.
+   Odděleně jsou definovány: navigační podsekce (BRAND_CONFIG), obsah oblastí
+   TEATRO (TEATRO_AREAS) a obsah sekce SOFTWARE (SOFTWARE_CATALOG).
+   Barevné profily jsou definovány v CSS proměnných (styles.css, [data-brand]).
+   ========================================================= */
+const TS_SHORT = "T" + "\\".repeat(3) + "S";
+
+Object.assign(I18N.cs, {
+  sec_software: "SOFTWARE",
+  software_item_status: "STAV",
+  software_empty: "V této oblasti zatím nejsou zveřejněny žádné položky.",
+  software_intro_decoy: "DECØY SOFTWARE — samostatná sekce značky DECØY. Datová struktura je připravena pro firmware, editory, pluginy a podpůrné nástroje.",
+  software_intro_teatro: `${TS} SOFTWARE — samostatná sekce značky TEATRO. Datová struktura je připravena pro software, nástroje a technická řešení pro režii a produkci.`,
+  software_open: "OTEVŘÍT ↗",
+  brand_switch_to_decoy: "DECØY DEVICES ↗",
+  brand_switch_to_teatro: `${TS} ↗`,
+});
+Object.assign(I18N.en, {
+  sec_software: "SOFTWARE",
+  software_item_status: "STATUS",
+  software_empty: "No items have been published in this area yet.",
+  software_intro_decoy: "DECØY SOFTWARE — a standalone section of the DECØY brand. The data structure is ready for firmware, editors, plugins and supporting tools.",
+  software_intro_teatro: `${TS} SOFTWARE — a standalone section of the TEATRO brand. The data structure is ready for software, tools and technical solutions for stage direction and production.`,
+  software_open: "OPEN ↗",
+  brand_switch_to_decoy: "DECØY DEVICES ↗",
+  brand_switch_to_teatro: `${TS} ↗`,
+});
+
+/* Navigační podsekce definované odděleně pro každou značku.
+   - labelKey / label / labelByDiv: popisek (i18n klíč, pevný text, nebo text podle oblasti)
+   - onlyDivisions: položka se zobrazí jen ve vybraných oblastech
+   - contentKey (TEATRO): položka se zobrazí jen pokud má oblast v TEATRO_AREAS příslušný obsah */
+const BRAND_CONFIG = {
+  decoy: {
+    id: "decoy",
+    name: "DECØY DEVICES",
+    nav: [
+      { id: "eurorack", label: { cs: "EURORACK", en: "EURORACK" } },
+      { id: "desktop", labelKey: "sec_desktop" },
+      { id: "pedals", labelKey: "sec_pedals", onlyDivisions: ["AUD"] },
+      { id: "diy", labelKey: "sec_diy" },
+      { id: "software", labelKey: "sec_software" },
+      { id: "catalog", labelKey: "sec_catalog" },
+      { id: "blog", labelKey: "sec_blog" },
+      { id: "merch", labelKey: "sec_merch" },
+    ],
+  },
+  teatro: {
+    id: "teatro",
+    name: TS,
+    nav: [
+      {
+        id: "design",
+        contentKey: "pillarIdx",
+        labelByDiv: {
+          AUD: { cs: "SOUND DESIGN", en: "SOUND DESIGN" },
+          LUX: { cs: "STAGE & LIGHT DESIGN", en: "STAGE & LIGHT DESIGN" },
+          VID: { cs: "STAGE DESIGN", en: "STAGE DESIGN" },
+        },
+      },
+      { id: "rental", contentKey: "rentalCodes", labelKey: "ts_tab_rental" },
+      { id: "custom", contentKey: "customCodes", labelKey: "ts_tab_custom" },
+      { id: "events", contentKey: "eventCodes", labelKey: "ts_tab_events" },
+      { id: "software", labelKey: "sec_software" },
+      { id: "inquiry", labelKey: "service_inquiry_btn" },
+    ],
+  },
+};
+
+/* Obsah TEATRO rozdělený do oblastí ZVUK / SVĚTLO / VIDEO.
+   Odkazuje pouze na existující záznamy v TEATRO_DATA a PEOPLE (nic nového se nevymýšlí). */
+const TEATRO_AREAS = {
+  AUD: {
+    code: `${TS} // AUD // 01 — SOUND DESIGN & PA`,
+    serialLeft: `${TS_SHORT} · AUD // 01`,
+    heading: { cs: "TEATRO AUDIO", en: "TEATRO AUDIO" },
+    lead: {
+      cs: "Kompletní sound design, FOH a monitorová režie, pronájem klubových i koncertních PA sestav, živá elektroakustika a zakázková audio rozhraní v přímém propojení s DECØY DEVICES.",
+      en: "End-to-end sound design, FOH and monitor engineering, club and concert PA rental, live electroacoustics, and custom stage audio interfaces backed by DECØY DEVICES.",
+    },
+    pillarIdx: [2],
+    rentalCodes: ["RENT // 02", "RENT // 04"],
+    customCodes: ["FAB // 02"],
+    eventCodes: ["LIVE // 02", "LIVE // 03"],
+    peopleNames: ["Vojtěch Divoký", "Ladislav Mareš"],
+    specialtyIdx: [1, 4],
+    defaultScopes: ["Sound Design", "Rental"],
+  },
+  LUX: {
+    code: `${TS} // LUX // 02 — LIGHT DESIGN & STAGE`,
+    serialLeft: `${TS_SHORT} · LUX // 02`,
+    heading: { cs: "TEATRO LIGHT", en: "TEATRO LIGHT" },
+    lead: {
+      cs: "Stage design a světelná režie pro koncerty, festivaly, kluby i divadlo. Vlastní světelný rentál, DMX/CV integrace, konstrukce a zakázková výroba atypických svítidel a LED objektů.",
+      en: "Stage design and lighting direction for concerts, festivals, clubs, and theatre. In-house lighting rental, DMX/CV integration, trussing, and bespoke LED fixture fabrication.",
+    },
+    pillarIdx: [0, 1],
+    rentalCodes: ["RENT // 01", "RENT // 04"],
+    customCodes: ["FAB // 01", "FAB // 03"],
+    eventCodes: ["LIVE // 01", "LIVE // 03"],
+    peopleNames: ["Adam Veit"],
+    specialtyIdx: [0, 2],
+    defaultScopes: ["Stage Design", "Light Design"],
+  },
+  VID: {
+    code: `${TS} // VID // 03 — VIDEO, CRT & VISUALS`,
+    serialLeft: `${TS_SHORT} · VID // 03`,
+    heading: { cs: "TEATRO VIDEO", en: "TEATRO VIDEO" },
+    lead: {
+      cs: "Scénické video, projekce, broadcast a historické CRT stěny, hardwarové konzole pro Resolume Arena a živá audiovizuální synchronizace obrazu se zvukem a světelným parkem.",
+      en: "Stage video, projection, broadcast and vintage CRT walls, hardware Resolume Arena consoles, and live audiovisual synchronization with sound and stage lighting.",
+    },
+    pillarIdx: [0],
+    rentalCodes: ["RENT // 03", "RENT // 04"],
+    customCodes: ["FAB // 02", "FAB // 03"],
+    eventCodes: ["LIVE // 02", "LIVE // 03"],
+    peopleNames: [],
+    specialtyIdx: [3, 4],
+    defaultScopes: ["Stage Design", "Custom Production"],
+  },
+};
+
+/* SOFTWARE — oddělený obsah pro každou značku a oblast.
+   Položka: { id, name: {cs,en}, short: {cs,en}, status: {cs,en}, url }.
+   Zatím nejsou k dispozici žádná data, proto jsou seznamy prázdné (zobrazí se prázdný stav). */
+const SOFTWARE_CATALOG = {
+  decoy: { AUD: [], LUX: [], VID: [] },
+  teatro: { AUD: [], LUX: [], VID: [] },
+};
+
+function normalizeBrand(brand) {
+  return String(brand || "").trim().toLowerCase() === "teatro" ? "teatro" : "decoy";
+}
+
+function getBrandNav(brand, divKey) {
+  const cfg = BRAND_CONFIG[normalizeBrand(brand)];
+  const area = TEATRO_AREAS[divKey];
+  return cfg.nav.filter((item) => {
+    if (item.onlyDivisions && !item.onlyDivisions.includes(divKey)) return false;
+    if (item.contentKey && cfg.id === "teatro") {
+      return Boolean(area && area[item.contentKey] && area[item.contentKey].length);
+    }
+    return true;
+  });
+}
+
+function navLabel(item, divKey, lang = getLang()) {
+  if (item.labelByDiv && item.labelByDiv[divKey]) {
+    return item.labelByDiv[divKey][lang] || item.labelByDiv[divKey].cs;
+  }
+  if (item.label) return item.label[lang] || item.label.cs;
+  const dict = I18N[lang] || I18N.cs;
+  return dict[item.labelKey] || I18N.cs[item.labelKey] || item.id.toUpperCase();
+}
+
+/* Preferuje plynulé rolování jen pokud uživatel nemá zapnuto omezení pohybu */
+function motionBehavior() {
+  try {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  } catch {
+    return "smooth";
+  }
+}

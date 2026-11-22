@@ -179,9 +179,8 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
   const backDiv = activeDiv === "MRC" ? "AUD" : activeDiv;
   const backTab = p.kind === "merch" ? "merch" : p.kind === "concept" ? "pedals" : p.tab || "eurorack";
-  const urlBrandRaw = (new URLSearchParams(location.search || "").get("brand") || "").trim().toLowerCase();
-  const activeBrand = urlBrandRaw === "teatro" ? "teatro" : "decoy";
-  const backHref = `index.html?brand=${activeBrand}#${backDiv}/${backTab}`;
+  /* produkty patří značce DECØY (TEATRO nemá produktové kategorie) */
+  const backHref = `index.html?brand=decoy#${backDiv}/${backTab}`;
   backLink.href = backHref;
   backLabel.textContent = `${dict.back_to} ${divTitle}`;
 
@@ -217,12 +216,12 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
       prevArrow.onclick = () => {
         history.pushState(null, "", `product.html?id=${nav.prevId}&div=${activeDiv}`);
         renderProductPage(nav.prevId, { fx: true, divKey: activeDiv });
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: motionBehavior() });
       };
       nextArrow.onclick = () => {
         history.pushState(null, "", `product.html?id=${nav.nextId}&div=${activeDiv}`);
         renderProductPage(nav.nextId, { fx: true, divKey: activeDiv });
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: motionBehavior() });
       };
     } else {
       prevArrow.hidden = true;
@@ -599,7 +598,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
       const divQuery = currentDivCtx ? `&div=${currentDivCtx}` : "";
       history.pushState(null, "", `product.html?id=${targetId}${divQuery}`);
       renderProductPage(targetId, { fx: true, divKey: currentDivCtx });
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: motionBehavior() });
     });
   });
 }
@@ -717,7 +716,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const targetId = e.key === "ArrowLeft" ? nav.prevId : nav.nextId;
         history.pushState(null, "", `product.html?id=${targetId}${currentDivCtx ? `&div=${currentDivCtx}` : ""}`);
         renderProductPage(targetId, { divKey: currentDivCtx });
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: motionBehavior() });
       }
     }
   });

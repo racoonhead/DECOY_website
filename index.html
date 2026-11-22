@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261122j" />
+  <link rel="stylesheet" href="styles.css?v=20261122k" />
 </head>
 <body data-brand="decoy">
   <a class="skip-link" href="#divisionContent">Přejít na obsah / Skip to content</a>
@@ -118,14 +118,8 @@
           <button id="mobileSubNavBtn" class="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="divSubNav" aria-label="Menu">☰</button>
         </div>
 
-        <nav id="divSubNav" class="sub-nav" role="tablist" aria-label="Záložky divize">
-          <button type="button" class="sub-tab active" data-tab="eurorack">EURORACK</button>
-          <button type="button" class="sub-tab" data-tab="desktop" data-i18n="sec_desktop">DESKTOP</button>
-          <button type="button" class="sub-tab" data-tab="pedals" data-i18n="sec_pedals">PEDÁLY</button>
-          <button type="button" class="sub-tab" data-tab="diy" data-i18n="sec_diy">ELEKTRONIKA / DIY</button>
-          <button type="button" class="sub-tab" data-tab="catalog" data-i18n="sec_catalog">KATALOG &amp; ZNAČKY</button>
-          <button type="button" class="sub-tab" data-tab="blog" data-i18n="sec_blog">BLOK</button>
-          <button type="button" class="sub-tab" data-tab="merch" data-i18n="sec_merch">TRIČKA &amp; MERCH</button>
+        <nav id="divSubNav" class="sub-nav" role="tablist" aria-label="Sekce">
+          <!-- Navigační podsekce se generují dynamicky podle aktivní značky a oblasti (BRAND_CONFIG v data.js) -->
         </nav>
 
         <div class="nav-right">
@@ -149,43 +143,6 @@
 
     <footer id="siteFooter" class="pcb-footer">
       <!-- Populated by renderModuleFooterHTML() according to GRAPHIC_MANUAL.md -->
-    </footer>
-  </div>
-
-  <!-- =========================================================
-       3. SEKCE TEATRO\\\SVJÖTLO (AKCE, DESIGN, RENTÁL, ZAKÁZKOVÁ VÝROBA)
-       ========================================================= -->
-  <div id="teatroView" class="teatro-view" hidden>
-    <header class="hud-nav teatro-nav">
-      <div class="container hud-nav-inner">
-        <div class="nav-left">
-          <button id="backFromTeatro" class="btn-back" type="button">
-            <span>←</span>
-            <span>DECØY DEVICES</span>
-          </button>
-          <span class="teatro-nav-badge">TEATRO\\\SVJÖTLO</span>
-        </div>
-
-        <nav class="sub-nav" aria-label="Sekce Teatro Svjötlo">
-          <button type="button" class="sub-tab active" data-teatro-jump="ts-design" data-i18n="ts_tab_design">STAGE · SOUND · LIGHT</button>
-          <button type="button" class="sub-tab" data-teatro-jump="ts-rental" data-i18n="ts_tab_rental">RENTÁL</button>
-          <button type="button" class="sub-tab" data-teatro-jump="ts-custom" data-i18n="ts_tab_custom">ZAKÁZKOVÁ VÝROBA</button>
-          <button type="button" class="sub-tab" data-teatro-jump="ts-events" data-i18n="ts_tab_events">AKCE &amp; TÝM</button>
-          <button type="button" class="sub-tab" data-teatro-jump="ts-inquiry" data-i18n="service_inquiry_btn">POPTÁVKA</button>
-        </nav>
-
-        <button id="langToggleTeatro" class="btn-hud btn-sm" type="button">
-          <span class="lang-active">CZ</span> / <span>EN</span>
-        </button>
-      </div>
-    </header>
-
-    <main id="teatroContent" tabindex="-1">
-      <!-- Populated dynamically by app.js -->
-    </main>
-
-    <footer id="teatroFooter" class="pcb-footer">
-      <!-- Populated by renderModuleFooterHTML() -->
     </footer>
   </div>
 
@@ -221,7 +178,7 @@
     </div>
   </aside>
 
-  <script src="data.js?v=20261122j"></script>
-  <script src="app.js?v=20261122j"></script>
+  <script src="data.js?v=20261122k"></script>
+  <script src="app.js?v=20261122k"></script>
 </body>
 </html>

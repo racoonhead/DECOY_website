@@ -11,6 +11,30 @@
   --silver-dark: #5f6570;
   --pantone-orange: #fe5000; /* Pantone Orange 021 C */
 
+  /* BAREVNÝ PROFIL ZNAČKY — výchozí DECØY (beze změny barev); TEATRO přepisuje [data-brand="teatro"] */
+  --brand-accent: var(--pantone-orange);
+  --brand-accent-text: var(--pantone-orange);
+  --brand-on-accent: var(--silk-black);
+
+  /* BAREVNÝ PROFIL TEATRO */
+  --tt-bg: #171416;
+  --tt-bg-2: #292124;
+  --tt-accent: #873B49;          /* vínová — hlavní charakter */
+  --tt-accent-2: #C18B52;        /* jantarová — teplé světlo reflektorů */
+  --tt-text: #E8DED2;
+  --tt-text-2: #766B69;          /* dekorativní / terciární (oddělovače, nenápadné popisky) */
+  --tt-text-2-readable: #A99F98; /* sekundární text s kontrastem AA (mix --tt-text-2 a --tt-text) */
+
+  /* ANIMAČNÍ SYSTÉM — jednotné časování a easing */
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 420ms;
+  --dur-scene: 560ms;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --shift: 8px;
+  --shift-lg: 24px;
+  --stagger: 40ms;
+
   --font-display: 'Barlow Condensed', 'Bahnschrift', 'DIN Condensed', sans-serif;
   --font-mono: 'JetBrains Mono', 'Consolas', monospace;
 }
@@ -57,12 +81,12 @@ a {
   padding: 8px 14px;
   background: var(--silk-black);
   color: var(--silk-white);
-  border: 1px solid var(--pantone-orange);
+  border: 1px solid var(--brand-accent);
   font-family: var(--font-mono);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: top 0.16s ease;
+  transition: top var(--dur-fast) var(--ease);
 }
 
 .skip-link:focus {
@@ -70,7 +94,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--prod-accent, var(--pantone-orange));
+  outline: 2px solid var(--prod-accent, var(--brand-accent-text));
   outline-offset: 2px;
 }
 
@@ -143,7 +167,7 @@ a {
   border: 1px solid rgba(185, 190, 199, 0.35);
   backdrop-filter: blur(6px);
   cursor: pointer;
-  transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 
 .brand-switch-btn:hover,
@@ -168,13 +192,13 @@ a {
 }
 
 .btn-teatro-jump {
-  border-color: rgba(254, 80, 0, 0.6);
+  border-color: rgba(135, 59, 73, 0.9);
 }
 
 .btn-teatro-jump:hover {
-  background: var(--pantone-orange);
-  border-color: var(--pantone-orange);
-  color: var(--silk-black);
+  background: var(--tt-accent);
+  border-color: var(--tt-accent);
+  color: var(--tt-text);
 }
 
 .btn-hud {
@@ -217,7 +241,7 @@ a {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: flex 0.42s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease, background-color 0.32s ease, background 0.32s ease, color 0.32s ease;
+  transition: flex var(--dur-slow) var(--ease), filter var(--dur-base) var(--ease), background-color var(--dur-base) var(--ease), background var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
   outline: none;
 }
 
@@ -241,42 +265,56 @@ a {
   color: var(--silk-white);
 }
 
-/* Barevný profil TEATRO na úvodní stránce (všechny 3 oblasti AUD // 01, LUX // 02, VID // 03) */
-.landing-view[data-brand="teatro"] .panel-aud,
-body[data-brand="teatro"] .landing-view .panel-aud {
-  background-color: #141210;
-  background-image: radial-gradient(circle at 50% 42%, rgba(254, 80, 0, 0.22), rgba(19, 19, 24, 0.98) 72%);
-  color: var(--pantone-orange);
+/* Barevný profil TEATRO — úvodní stránka (stejné tři oblasti AUD // 01, LUX // 02, VID // 03).
+   Paleta je definována v :root (--tt-*), vínová je hlavní charakteristická barva, jantarová doplňkový akcent. */
+.landing-view[data-brand="teatro"] .panel-aud {
+  background-color: var(--tt-bg);
+  color: var(--tt-text);
 }
 
-.landing-view[data-brand="teatro"] .panel-aud .split-title,
-body[data-brand="teatro"] .landing-view .panel-aud .split-title {
-  color: var(--silk-white);
+.landing-view[data-brand="teatro"] .panel-lux {
+  background-color: var(--tt-accent);
+  color: var(--tt-text);
 }
 
-.landing-view[data-brand="teatro"] .panel-lux,
-body[data-brand="teatro"] .landing-view .panel-lux {
-  background-color: var(--pantone-orange);
-  background-image: radial-gradient(circle at 50% 45%, rgba(255, 138, 76, 0.35), rgba(254, 80, 0, 0.98) 75%);
-  color: var(--silk-black);
+.landing-view[data-brand="teatro"] .panel-vid {
+  background-color: var(--tt-bg-2);
+  color: var(--tt-text);
 }
 
-.landing-view[data-brand="teatro"] .panel-vid,
-body[data-brand="teatro"] .landing-view .panel-vid {
-  background-color: #191a17;
-  background-image: radial-gradient(circle at 50% 48%, rgba(235, 222, 188, 0.18), rgba(11, 11, 14, 0.98) 74%);
-  color: var(--silk-white);
-}
-
-.landing-view[data-brand="teatro"] .panel-vid .split-watermark,
+.landing-view[data-brand="teatro"] .panel-aud .split-code,
+.landing-view[data-brand="teatro"] .panel-aud .split-enter,
+.landing-view[data-brand="teatro"] .panel-aud .split-reg,
+.landing-view[data-brand="teatro"] .panel-aud .split-watermark,
 .landing-view[data-brand="teatro"] .panel-vid .split-code,
 .landing-view[data-brand="teatro"] .panel-vid .split-enter,
 .landing-view[data-brand="teatro"] .panel-vid .split-reg,
-body[data-brand="teatro"] .landing-view .panel-vid .split-watermark,
-body[data-brand="teatro"] .landing-view .panel-vid .split-code,
-body[data-brand="teatro"] .landing-view .panel-vid .split-enter,
-body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
-  color: var(--pantone-orange);
+.landing-view[data-brand="teatro"] .panel-vid .split-watermark {
+  color: var(--tt-accent-2);
+}
+
+/* Teplé světlo reflektoru: velmi jemný jantarový kužel, mění se pouze opacity */
+.split-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse at 50% 36%, rgba(193, 139, 82, 0.2), transparent 62%);
+  transition: opacity var(--dur-slow) var(--ease);
+}
+
+.landing-view[data-brand="teatro"] .split-panel::after {
+  opacity: 1;
+}
+
+.split-watermark,
+.split-reveal {
+  z-index: 1;
+}
+
+.split-watermark {
+  position: relative;
 }
 
 /* Subtle PCB traces inside each split */
@@ -307,7 +345,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
 
 .split-watermark {
   opacity: 0.14;
-  transition: opacity 0.35s ease, transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
   pointer-events: none;
 }
 
@@ -319,8 +357,8 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   align-items: center;
   gap: 10px;
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(var(--shift));
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
   pointer-events: none;
 }
 
@@ -352,7 +390,6 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
 .split-panel:hover .split-watermark,
 .split-panel:focus-visible .split-watermark {
   opacity: 0.06;
-  transform: scale(1.22);
 }
 
 .split-panel:hover .split-reveal,
@@ -372,7 +409,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
 }
 
 .division-view.theme-AUD {
@@ -399,56 +436,139 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   --border-col: rgba(185, 190, 199, 0.26);
 }
 
-/* Barevný profil TEATRO pro divize TEATRO AUDIO, TEATRO LIGHT, TEATRO VIDEO */
-.division-view[data-brand="teatro"].theme-AUD {
-  --bg-main: #0f0d0c;
-  --bg-card: #181412;
-  --fg-main: var(--silk-white);
-  --fg-muted: var(--silver-hasl);
-  --border-col: rgba(254, 80, 0, 0.28);
+/* =========================================================
+   BAREVNÝ PROFIL TEATRO — divize (ZVUK / SVĚTLO / VIDEO)
+   Vínová (#873B49) = hlavní charakter (výplně, aktivní prvky, oddělovače)
+   Jantarová (#C18B52) = doplňkový akcent teplého světla reflektorů (odkazy, popisky, hover)
+   ========================================================= */
+body[data-brand="teatro"],
+.landing-view[data-brand="teatro"],
+.division-view[data-brand="teatro"] {
+  --brand-accent: var(--tt-accent);
+  --brand-accent-text: var(--tt-accent-2);
+  --brand-on-accent: var(--tt-text);
 }
 
-.division-view[data-brand="teatro"].theme-LUX {
-  --bg-main: #141513;
-  --bg-card: #1e201c;
-  --fg-main: var(--silk-white);
-  --fg-muted: var(--silver-hasl);
-  --border-col: rgba(254, 80, 0, 0.35);
-}
-
-.division-view[data-brand="teatro"].theme-VID {
-  --bg-main: #0b0b0e;
-  --bg-card: #14141a;
-  --fg-main: var(--silk-white);
-  --fg-muted: var(--silver-hasl);
-  --border-col: rgba(254, 80, 0, 0.28);
+.division-view[data-brand="teatro"] {
+  --bg-main: var(--tt-bg);
+  --bg-card: var(--tt-bg-2);
+  --fg-main: var(--tt-text);
+  --fg-muted: var(--tt-text-2-readable);
+  --fg-faint: var(--tt-text-2);
+  --border-col: rgba(118, 107, 105, 0.55);
 }
 
 .division-view[data-brand="teatro"] .hud-nav {
-  border-bottom: 2px solid var(--pantone-orange);
+  border-bottom: 2px solid var(--tt-accent);
+}
+
+.division-view[data-brand="teatro"] .btn-hud {
+  background: var(--tt-bg-2);
+  border-color: var(--tt-text-2);
+  color: var(--tt-text);
+}
+
+.division-view[data-brand="teatro"] .btn-hud:hover,
+.division-view[data-brand="teatro"] .btn-back:hover,
+.division-view[data-brand="teatro"] .sub-tab:hover,
+.division-view[data-brand="teatro"] .div-tab:hover {
+  border-color: var(--tt-accent-2);
+  color: var(--tt-text);
 }
 
 .division-view[data-brand="teatro"] .div-tab.active,
 .division-view[data-brand="teatro"] .sub-tab.active,
+.division-view[data-brand="teatro"] .view-pill.active {
+  background: var(--tt-accent);
+  border-color: var(--tt-accent);
+  color: var(--tt-text);
+}
+
+.division-view[data-brand="teatro"] .btn-outline {
+  color: var(--tt-accent-2);
+  border-color: var(--tt-accent-2);
+}
+
 .division-view[data-brand="teatro"] .btn-outline:hover {
-  background: var(--pantone-orange);
-  border-color: var(--pantone-orange);
-  color: var(--silk-black);
+  background: var(--tt-accent);
+  border-color: var(--tt-accent);
+  color: var(--tt-text);
+}
+
+.division-view[data-brand="teatro"] .btn-outline.btn-solid {
+  background: var(--tt-accent);
+  border-color: var(--tt-accent);
+  color: var(--tt-text);
+  opacity: 1;
+}
+
+.division-view[data-brand="teatro"] .btn-outline.btn-solid:hover {
+  background: var(--tt-accent-2);
+  border-color: var(--tt-accent-2);
+  color: var(--tt-bg);
 }
 
 .division-view[data-brand="teatro"] .sec-head {
-  border-left: 4px solid var(--pantone-orange);
+  border-left: 4px solid var(--tt-accent);
   padding-left: 14px;
 }
 
-.division-view[data-brand="teatro"] .hud-card:hover {
-  border-color: var(--pantone-orange);
+.division-view[data-brand="teatro"] .div-hero {
+  border-bottom-color: var(--tt-accent);
+}
+
+.division-view[data-brand="teatro"] .sec-num,
+.division-view[data-brand="teatro"] .div-hero-code,
+.division-view[data-brand="teatro"] .context-crumb.is-current,
+.division-view[data-brand="teatro"] button.context-crumb:hover {
+  color: var(--tt-accent-2);
+}
+
+.division-view[data-brand="teatro"] .hud-card:hover,
+.division-view[data-brand="teatro"] .person-card:hover {
+  border-color: var(--tt-accent-2);
+}
+
+.division-view[data-brand="teatro"] .hud-input:focus,
+.division-view[data-brand="teatro"] .hud-select:focus,
+.division-view[data-brand="teatro"] .blog-input:focus,
+.division-view[data-brand="teatro"] .blog-textarea:focus {
+  border-color: var(--tt-accent-2);
+  outline: none;
+}
+
+.division-view[data-brand="teatro"] .blog-editor {
+  border-color: var(--tt-accent);
+}
+
+.division-view[data-brand="teatro"] .person-initials {
+  border-color: var(--tt-accent);
+  color: var(--tt-accent-2);
+}
+
+.division-view[data-brand="teatro"] .modal-chip {
+  border-color: var(--tt-text-2);
+  color: var(--tt-text);
+}
+
+.division-view[data-brand="teatro"] .hud-empty-box {
+  border-color: var(--tt-text-2);
 }
 
 .division-view[data-brand="teatro"] .mf-accent-strip,
-.division-view[data-brand="teatro"] .mf-reg,
-.division-view[data-brand="teatro"] .div-hero-code {
-  color: var(--pantone-orange);
+.division-view[data-brand="teatro"] .mf-reg {
+  color: var(--tt-accent);
+  opacity: 0.9;
+}
+
+.division-view[data-brand="teatro"] ::selection {
+  background: var(--tt-accent);
+  color: var(--tt-text);
+}
+
+.division-view[data-brand="teatro"] .software-intro,
+.division-view[data-brand="teatro"] .div-hero-lead {
+  color: var(--tt-text-2-readable);
 }
 
 .division-view {
@@ -539,7 +659,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   letter-spacing: 0.1em;
   color: var(--fg-muted);
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
 
 .sub-tab[hidden] {
@@ -627,11 +747,10 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: transform 0.16s ease, border-color 0.16s ease;
+  transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 
 .hud-card:hover {
-  transform: translateY(-2px);
   border-color: var(--fg-main);
 }
 
@@ -793,56 +912,10 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
 }
 
 /* =========================================================
-   TEATRO\\\SVJÖTLO (SEKCE AKCÍ, DESIGNU, RENTÁLU A ZAKÁZKOVÉ VÝROBY)
+   TEATRO — obsahové komponenty podsekcí (barvy řídí [data-brand="teatro"])
    ========================================================= */
-.teatro-view[hidden] {
-  display: none;
-}
-
-.teatro-view {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  --bg-main: #0b0b0e;
-  --bg-card: #131318;
-  --fg-main: var(--silk-white);
-  --fg-muted: var(--silver-hasl);
-  --border-col: rgba(185, 190, 199, 0.22);
-  background: var(--bg-main);
-  color: var(--fg-main);
-}
-
-.teatro-nav {
-  border-bottom: 2px solid var(--pantone-orange);
-}
-
-.teatro-nav-badge {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  padding: 5px 12px;
-  background: var(--pantone-orange);
-  color: var(--silk-black);
-}
-
-.teatro-view .sub-tab.active,
-.teatro-view .btn-outline:hover {
-  background: var(--pantone-orange);
-  border-color: var(--pantone-orange);
-  color: var(--silk-black);
-}
-
-.teatro-view .sec-head {
-  border-left: 4px solid var(--pantone-orange);
-  padding-left: 14px;
-}
-
-.teatro-card:hover {
-  border-color: var(--pantone-orange);
-}
-
 .teatro-crew-banner {
+  margin-top: 32px;
   background: var(--bg-card);
   border: 1px solid var(--border-col);
   padding: 24px;
@@ -851,20 +924,37 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   gap: 16px;
 }
 
+.teatro-crew-banner h2 {
+  margin-bottom: 10px;
+}
+
+.teatro-crew-banner p {
+  margin: 0;
+  color: var(--fg-muted);
+  max-width: 65ch;
+}
+
+.teatro-crew-banner + .people-grid {
+  margin-top: 22px;
+}
+
 .teatro-specs-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.teatro-view .person-initials {
-  border-color: var(--pantone-orange);
+.brief-scopes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
-.teatro-view .mf-accent-strip,
-.teatro-view .mf-reg {
-  color: var(--pantone-orange);
-  opacity: 0.9;
+.software-intro {
+  margin: 0 0 22px;
+  max-width: 70ch;
+  color: var(--fg-muted);
+  font-size: 0.86rem;
 }
 
 .merch-art {
@@ -958,7 +1048,9 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
 }
 
 /* =========================================================
-   FX OVERLAY (Divize + Produktové efekty)
+   FX OVERLAY — jednotný přechod „změna světelné scény“
+   Jemný vodorovný průchod světla (pouze opacity + transform), stejný pro všechny přechody.
+   Odstín určuje oblast (AUD / LUX / VID) a značka (TEATRO = teplá jantarová).
    ========================================================= */
 .fx-overlay {
   position: fixed;
@@ -966,71 +1058,23 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   z-index: 200;
   pointer-events: none;
   opacity: 0;
+  will-change: opacity, transform;
 }
 
-.fx-overlay.fx-lux {
-  background: radial-gradient(circle at 50% 35%, rgba(255, 252, 235, 0.92) 0%, rgba(181, 182, 176, 0.45) 42%, transparent 75%);
-  animation: fxLuxFlash 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.fx-overlay.fx-aud {
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 18px,
-      rgba(56, 226, 197, 0.12) 19px,
-      transparent 20px
-    ),
-    radial-gradient(circle at 50% 50%, rgba(56, 226, 197, 0.25) 0%, transparent 65%);
-  animation: fxAudPulse 0.55s ease-out forwards;
-}
-
-.fx-overlay.fx-vid {
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 0, 128, 0.14) 0px,
-      rgba(0, 255, 255, 0.14) 2px,
-      transparent 2px,
-      transparent 6px
-    ),
-    linear-gradient(90deg, rgba(140, 92, 230, 0.35), transparent 30%, rgba(56, 226, 197, 0.25) 70%, rgba(255, 40, 140, 0.3));
-  animation: fxVidGlitch 0.55s steps(4, end) forwards;
-}
-
+.fx-overlay.fx-lux,
+.fx-overlay.fx-aud,
+.fx-overlay.fx-vid,
 .fx-overlay.fx-mod {
-  border: 3px solid var(--silk-white);
-  box-shadow: inset 0 0 90px rgba(185, 190, 199, 0.45);
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.16) 0%, transparent 60%);
-  animation: fxModLock 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: linear-gradient(90deg, transparent 0%, var(--fx-tint, rgba(232, 222, 210, 0.12)) 50%, transparent 100%);
+  animation: dd-scene var(--dur-scene) var(--ease) both;
 }
 
-@keyframes fxLuxFlash {
-  0% { opacity: 0; transform: scale(0.75); }
-  20% { opacity: 1; transform: scale(1.05); }
-  45% { opacity: 0.35; }
-  65% { opacity: 0.85; }
-  100% { opacity: 0; transform: scale(1.25); }
-}
+.fx-overlay.fx-lux { --fx-tint: rgba(234, 234, 228, 0.16); }
+.fx-overlay.fx-aud { --fx-tint: rgba(185, 190, 199, 0.12); }
+.fx-overlay.fx-vid { --fx-tint: rgba(200, 184, 232, 0.14); }
+.fx-overlay.fx-mod { --fx-tint: rgba(185, 190, 199, 0.08); animation-duration: var(--dur-slow); }
 
-@keyframes fxAudPulse {
-  0% { opacity: 0.95; transform: scaleY(0.15); }
-  40% { opacity: 0.75; transform: scaleY(1.05); }
-  100% { opacity: 0; transform: scaleY(1); }
-}
-
-@keyframes fxVidGlitch {
-  0% { opacity: 1; transform: translateX(-8px) skewX(3deg); }
-  30% { opacity: 0.85; transform: translateX(10px) skewX(-4deg); }
-  60% { opacity: 0.65; transform: translateX(-4px) scaleY(1.03); }
-  100% { opacity: 0; transform: translateX(0); }
-}
-
-@keyframes fxModLock {
-  0% { opacity: 0.95; transform: scale(1.06); }
-  100% { opacity: 0; transform: scale(1); }
-}
+body[data-brand="teatro"] .fx-overlay { --fx-tint: rgba(193, 139, 82, 0.16); }
 
 /* =========================================================
    UNIKÁTNÍ POZADÍ & SPECIFIKACE PRO KAŽDÝ PRODUKT V MODALU
@@ -1046,7 +1090,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   color: var(--silk-white);
   border: 1px solid var(--prod-accent, var(--silver-hasl));
   padding: 28px;
-  transition: background 0.3s ease;
+  transition: background var(--dur-base) var(--ease);
 }
 
 /* Barevné téma každého produktu — sdílí modal i stránka produktu */
@@ -1275,11 +1319,10 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   background: var(--prod-accent, var(--silk-white));
   color: #0c0c0e;
   clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
-  transition: transform 0.12s ease, filter 0.15s ease;
+  transition: transform var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease);
 }
 
 .btn-detail:hover {
-  transform: translateY(-1px);
   filter: brightness(1.1);
 }
 
@@ -1407,13 +1450,12 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   font-family: var(--font-mono);
   font-size: 1.05rem;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
 }
 
 .pager-arrow:hover {
   background: var(--fg-main, var(--silk-white));
   color: var(--bg-main, var(--pcb-black));
-  transform: translateY(-1px);
 }
 
 .pager-status {
@@ -1447,7 +1489,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   padding: 8px 14px;
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
 
 .pager-btn:hover {
@@ -1557,7 +1599,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   font-size: 1rem;
   cursor: pointer;
   z-index: 2;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--dur-fast) var(--ease);
 }
 
 .gal-zoom-btn:hover {
@@ -1768,13 +1810,12 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   background: rgba(8, 10, 14, 0.72);
   border-radius: 4px;
   cursor: zoom-in;
-  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
 }
 
 .prod-inline-fig:hover,
 .prod-inline-fig:focus-visible {
   border-color: var(--prod-accent, var(--silver-hasl));
-  transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   outline: none;
 }
@@ -1867,12 +1908,11 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   gap: 18px;
   align-items: center;
   cursor: pointer;
-  transition: border-color 0.15s ease, transform 0.15s ease;
+  transition: border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
 }
 
 .prod-rel-card:hover {
   border-color: var(--prod-accent, var(--silk-white));
-  transform: translateY(-2px);
 }
 
 .prod-rel-card img {
@@ -1954,7 +1994,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   color: var(--silk-white);
   border: 1px solid rgba(234, 234, 228, 0.28);
   cursor: pointer;
-  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
 }
 
 .bg-nav-prev {
@@ -1969,14 +2009,6 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   border-color: var(--prod-accent, var(--silk-white));
   background: rgba(12, 14, 20, 0.72);
   box-shadow: 0 0 28px rgba(0, 0, 0, 0.55);
-}
-
-.bg-nav-prev:hover {
-  transform: translateY(-50%) translateX(-3px);
-}
-
-.bg-nav-next:hover {
-  transform: translateY(-50%) translateX(3px);
 }
 
 .bg-arrow-glyph {
@@ -2142,17 +2174,7 @@ body[data-brand="teatro"] .landing-view .panel-vid .split-reg {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: transform 0.18s ease, color 0.18s ease;
-}
-
-@keyframes cartPulseAnim {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.24); color: var(--pantone-orange); }
-  100% { transform: scale(1); }
-}
-
-.cart-count-pill.cart-pulse {
-  animation: cartPulseAnim 0.36s ease;
+  transition: transform var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 
 .div-context-bar {
@@ -2250,7 +2272,7 @@ button.context-crumb:hover,
 
 .avail-dot.avail-prototype,
 .avail-dot.avail-in_development {
-  background: var(--pantone-orange);
+  background: var(--brand-accent-text);
 }
 
 .brand-card-interactive {
@@ -2289,7 +2311,7 @@ button.context-crumb:hover,
   font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.04em;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--dur-fast) var(--ease);
 }
 
 .hud-input:focus,
@@ -2331,7 +2353,7 @@ button.context-crumb:hover,
 }
 
 .hud-check input[type="checkbox"] {
-  accent-color: var(--pantone-orange);
+  accent-color: var(--brand-accent);
   width: 14px;
   height: 14px;
   cursor: pointer;
@@ -2416,13 +2438,14 @@ button.context-crumb:hover,
 }
 
 .btn-outline.is-added {
-  border-color: var(--pantone-orange);
-  color: var(--pantone-orange);
+  border-color: var(--brand-accent-text);
+  color: var(--brand-accent-text);
 }
 
 .theme-LUX .btn-outline.is-added {
-  background: var(--pantone-orange);
-  color: var(--silk-black);
+  background: var(--brand-accent);
+  border-color: var(--brand-accent);
+  color: var(--brand-on-accent);
 }
 
 .prod-commerce-strip {
@@ -2448,7 +2471,7 @@ button.context-crumb:hover,
   justify-content: center;
   padding: 12px;
   cursor: zoom-in;
-  transition: border-color 0.16s ease;
+  transition: border-color var(--dur-fast) var(--ease);
 }
 
 .prod-doc-preview:hover {
@@ -2468,8 +2491,8 @@ button.context-crumb:hover,
 }
 
 .modal-chip.chip-accent {
-  border-color: var(--prod-accent, var(--pantone-orange));
-  color: var(--prod-accent, var(--pantone-orange));
+  border-color: var(--prod-accent, var(--brand-accent-text));
+  color: var(--prod-accent, var(--brand-accent-text));
 }
 
 .brief-feedback {
@@ -2478,7 +2501,7 @@ button.context-crumb:hover,
   font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.06em;
-  color: var(--pantone-orange);
+  color: var(--brand-accent-text);
 }
 
 /* HUD Inquiry / Cart Drawer */
@@ -2749,5 +2772,202 @@ button.context-crumb:hover,
   .prod-gallery-stage {
     min-height: 290px;
     padding: 14px;
+  }
+}
+
+/* =========================================================
+   MOTION SYSTEM — jednotný animační systém (DECØY i TEATRO)
+   ---------------------------------------------------------
+   Princip: „přepnutí světelné scény“. Vše používá stejné časování a easing (tokeny v :root),
+   pouze opacity a krátký posun (transform) — žádný zoom, rotace, bounce ani blikání.
+     • vstup obsahu   = dd-reveal (fade + posun o --shift), postupně po --stagger
+     • přepnutí scény = dd-scene (jemný průchod světla přes obrazovku)
+     • odezva prvků   = color / background / border / opacity v --dur-fast
+   ========================================================= */
+[hidden] {
+  display: none !important;
+}
+
+@keyframes dd-reveal {
+  from { opacity: 0; transform: translateY(var(--shift)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dd-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dd-slide-in {
+  from { opacity: 0; transform: translateX(var(--shift-lg)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dd-scene {
+  0% { opacity: 0; transform: translateX(-40%); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(40%); }
+}
+
+@keyframes dd-ack {
+  from { color: var(--brand-accent-text); }
+  to { color: inherit; }
+}
+
+/* Jednotná odezva interaktivních prvků */
+.btn-outline,
+.btn-hud,
+.btn-back,
+.btn-detail,
+.div-tab,
+.sub-tab,
+.view-pill,
+.pager-arrow,
+.pager-btn,
+.hud-card,
+.person-card,
+.hud-input,
+.hud-select,
+.brand-switch-btn,
+.modal-close,
+.gal-arrow,
+.gal-zoom-btn,
+.lightbox-arrow,
+.lightbox-close,
+.prod-thumb,
+.prod-rel-card,
+.prod-inline-fig,
+.bg-nav-arrow,
+.cart-item,
+.prod-doc-preview {
+  transition:
+    color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    opacity var(--dur-fast) var(--ease),
+    box-shadow var(--dur-base) var(--ease);
+}
+
+.btn-outline:active,
+.btn-hud:active,
+.btn-back:active,
+.btn-detail:active,
+.sub-tab:active,
+.div-tab:active,
+.view-pill:active,
+.pager-arrow:active,
+.brand-switch-btn:active {
+  opacity: 0.8;
+}
+
+/* Přechody mezi pohledy */
+.landing-view:not([hidden]),
+.division-view:not([hidden]) {
+  animation: dd-fade var(--dur-base) var(--ease) both;
+}
+
+/* Postupné odhalení obsahu sekce (třídu .dd-enter nastavuje renderDivision jen při změně sekce) */
+.dd-enter .div-hero .container > * {
+  animation: dd-reveal var(--dur-slow) var(--ease) backwards;
+}
+
+.dd-enter .div-hero .container > :nth-child(2) { animation-delay: calc(var(--stagger) * 1); }
+.dd-enter .div-hero .container > :nth-child(3) { animation-delay: calc(var(--stagger) * 2); }
+.dd-enter .div-hero .container > :nth-child(4) { animation-delay: calc(var(--stagger) * 3); }
+
+.dd-enter .div-section {
+  animation: dd-fade var(--dur-slow) var(--ease) backwards;
+  animation-delay: var(--dur-fast);
+}
+
+.dd-enter .cards-grid > *,
+.dd-enter .cards-grid-2 > *,
+.dd-enter .people-grid > *,
+.dd-enter .blog-list > *,
+.dd-enter .teatro-crew-banner,
+.dd-enter .hud-filter-strip,
+.dd-enter .blog-editor,
+.dd-enter .hud-empty-box {
+  --i: 0;
+  animation: dd-reveal var(--dur-slow) var(--ease) backwards;
+  animation-delay: calc(var(--dur-fast) + var(--i) * var(--stagger));
+}
+
+.dd-enter .cards-grid > :nth-child(2), .dd-enter .cards-grid-2 > :nth-child(2),
+.dd-enter .people-grid > :nth-child(2), .dd-enter .blog-list > :nth-child(2) { --i: 1; }
+.dd-enter .cards-grid > :nth-child(3), .dd-enter .cards-grid-2 > :nth-child(3),
+.dd-enter .people-grid > :nth-child(3), .dd-enter .blog-list > :nth-child(3) { --i: 2; }
+.dd-enter .cards-grid > :nth-child(4), .dd-enter .cards-grid-2 > :nth-child(4),
+.dd-enter .blog-list > :nth-child(4) { --i: 3; }
+.dd-enter .cards-grid > :nth-child(5), .dd-enter .cards-grid-2 > :nth-child(5),
+.dd-enter .blog-list > :nth-child(5) { --i: 4; }
+.dd-enter .cards-grid > :nth-child(n+6), .dd-enter .cards-grid-2 > :nth-child(n+6),
+.dd-enter .blog-list > :nth-child(n+6) { --i: 5; }
+
+/* Modal, zásuvka seznamu, lightbox */
+.modal:not([hidden]) .modal-backdrop,
+.cart-drawer:not([hidden]) .cart-backdrop,
+.img-lightbox:not([hidden]) .lightbox-backdrop {
+  animation: dd-fade var(--dur-base) var(--ease) backwards;
+}
+
+.modal:not([hidden]) .modal-dialog {
+  animation: dd-reveal var(--dur-base) var(--ease) backwards;
+}
+
+#modalBody > .modal-grid {
+  animation: dd-fade var(--dur-base) var(--ease) backwards;
+}
+
+.cart-drawer:not([hidden]) .cart-panel {
+  animation: dd-slide-in var(--dur-base) var(--ease) backwards;
+}
+
+.img-lightbox:not([hidden]) .lightbox-figure {
+  animation: dd-fade var(--dur-base) var(--ease) backwards;
+}
+
+/* Stránka produktu */
+#productMain > section {
+  animation: dd-fade var(--dur-slow) var(--ease) backwards;
+}
+
+.prod-hero-grid > * {
+  animation: dd-reveal var(--dur-slow) var(--ease) backwards;
+}
+
+.prod-hero-grid > :nth-child(2) {
+  animation-delay: var(--stagger);
+}
+
+.prod-gallery-stage img {
+  animation: dd-fade var(--dur-base) var(--ease) backwards;
+}
+
+/* Potvrzení přidání do seznamu: plynulý návrat barvy (bez zoomu a blikání) */
+.cart-count-pill.cart-pulse {
+  animation: dd-ack var(--dur-slow) var(--ease);
+}
+
+/* Respektování systémového nastavení omezeného pohybu */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fx-overlay {
+    display: none !important;
   }
 }

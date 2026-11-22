@@ -40,54 +40,8 @@ const DIVISIONS = {
   },
 };
 
-const TABS = ["eurorack", "desktop", "pedals", "diy", "catalog", "blog", "merch"];
-
 const DIV_TO_CAT = { AUD: "audio", LUX: "light", VID: "video" };
 
-const TEATRO_DIVISIONS = {
-  AUD: {
-    code: "TEATRO\\\\\\SVJÖTLO // AUD // 01 — SOUND DESIGN & PA",
-    serialLeft: "T\\\\\\S · AUD // 01",
-    serialRight: "TEATRO\\\\\\SVJÖTLO",
-    heading: { cs: "TEATRO AUDIO", en: "TEATRO AUDIO" },
-    lead: {
-      cs: "Kompletní sound design, FOH a monitorová režie, pronájem klubových i koncertních PA sestav, živá elektroakustika a zakázková audio rozhraní v přímém propojení s DECØY DEVICES.",
-      en: "End-to-end sound design, FOH and monitor engineering, club and concert PA rental, live electroacoustics, and custom stage audio interfaces backed by DECØY DEVICES.",
-    },
-    pillarIdx: [2],
-    rentalCodes: ["RENT // 02", "RENT // 04"],
-    customCodes: ["FAB // 02"],
-    defaultScopes: ["Sound Design", "Rental"],
-  },
-  LUX: {
-    code: "TEATRO\\\\\\SVJÖTLO // LUX // 02 — LIGHT DESIGN & STAGE",
-    serialLeft: "T\\\\\\S · LUX // 02",
-    serialRight: "TEATRO\\\\\\SVJÖTLO",
-    heading: { cs: "TEATRO LIGHT", en: "TEATRO LIGHT" },
-    lead: {
-      cs: "Stage design a světelná režie pro koncerty, festivaly, kluby i divadlo. Vlastní světelný rentál, DMX/CV integrace, konstrukce a zakázková výroba atypických svítidel a LED objektů.",
-      en: "Stage design and lighting direction for concerts, festivals, clubs, and theatre. In-house lighting rental, DMX/CV integration, trussing, and bespoke LED fixture fabrication.",
-    },
-    pillarIdx: [0, 1],
-    rentalCodes: ["RENT // 01", "RENT // 04"],
-    customCodes: ["FAB // 01", "FAB // 03"],
-    defaultScopes: ["Stage Design", "Light Design"],
-  },
-  VID: {
-    code: "TEATRO\\\\\\SVJÖTLO // VID // 03 — VIDEO, CRT & VISUALS",
-    serialLeft: "T\\\\\\S · VID // 03",
-    serialRight: "TEATRO\\\\\\SVJÖTLO",
-    heading: { cs: "TEATRO VIDEO", en: "TEATRO VIDEO" },
-    lead: {
-      cs: "Scénické video, projekce, broadcast a historické CRT stěny, hardwarové konzole pro Resolume Arena a živá audiovizuální synchronizace obrazu se zvukem a světelným parkem.",
-      en: "Stage video, projection, broadcast and vintage CRT walls, hardware Resolume Arena consoles, and live audiovisual synchronization with sound and stage lighting.",
-    },
-    pillarIdx: [0],
-    rentalCodes: ["RENT // 03", "RENT // 04"],
-    customCodes: ["FAB // 02", "FAB // 03"],
-    defaultScopes: ["Stage Design", "Custom Production"],
-  },
-};
 
 function getBrandFromUrl() {
   try {
@@ -101,7 +55,7 @@ function getBrandFromUrl() {
 
 let currentLang = getLang();
 let currentBrand = getBrandFromUrl(); // "decoy" | "teatro"
-let currentSection = "landing"; // "landing" | "decoy" | "teatro"
+let currentSection = "landing"; // "landing" | "division"
 let currentDivision = null;
 let currentTab = "eurorack";
 let currentSecIdx = 0;
@@ -126,7 +80,7 @@ function setActiveBrand(brand, { updateUrl = true, replaceHistory = false } = {}
   const normalized = brand && String(brand).toLowerCase() === "teatro" ? "teatro" : "decoy";
   applyBrandProfileDOM(normalized);
   if (updateUrl) {
-    const targetUrl = buildUrlWithBrand(normalized, currentSection === "decoy" && currentDivision ? `${currentDivision}/${currentTab}` : "");
+    const targetUrl = buildUrlWithBrand(normalized, currentSection === "division" && currentDivision ? `${currentDivision}/${currentTab}` : "");
     if (replaceHistory) history.replaceState(null, "", targetUrl);
     else history.pushState(null, "", targetUrl);
   }
@@ -152,20 +106,6 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-}
-
-function getDivisionTabs(divKey) {
-  const div = DIVISIONS[divKey];
-  if (!div) return TABS;
-  return TABS.filter((tab) => tab !== "pedals" || Boolean(div.pedals));
-}
-
-function getDefaultDivisionTab(divKey) {
-  const div = DIVISIONS[divKey];
-  if (!div) return "eurorack";
-  if (div.eurorack && div.eurorack.length) return "eurorack";
-  if (div.desktop && div.desktop.length) return "desktop";
-  return "eurorack";
 }
 
 /* ---------------------------------------------------- blog storage */
@@ -200,7 +140,7 @@ function applyTranslations() {
     currentLang === "cs"
       ? '<span class="lang-active">CZ</span> / <span>EN</span>'
       : '<span>CZ</span> / <span class="lang-active">EN</span>';
-  ["langToggleLanding", "langToggleDiv", "langToggleTeatro"].forEach((id) => {
+  ["langToggleLanding", "langToggleDiv"].forEach((id) => {
     const el = document.getElementById(id);
     if (el) el.innerHTML = html;
   });
@@ -237,7 +177,7 @@ function triggerDivisionFx(divKey) {
 function renderHudProductCard(item, { idx = 0, total = 1, isSelected = false, showSelectState = false } = {}) {
   const dict = I18N[currentLang];
   const imgSrc = (item.imageByDiv && item.imageByDiv[currentDivision]) || item.image;
-  const divParam = `${currentDivision && item.kind === "hardware" ? `&div=${currentDivision}` : ""}&brand=${currentBrand}`;
+  const divParam = `${currentDivision && item.kind === "hardware" ? `&div=${currentDivision}` : ""}&brand=decoy`;
   const name = itemDisplayName(item, currentLang);
   const priceText = DECOY_STORE.formatPrice(item, currentLang);
   const availText = DECOY_STORE.availabilityLabel(item, currentLang);
@@ -382,7 +322,7 @@ function renderProductCollection(div, dict, { key, secNum, heading }) {
   currentSectionItems = items;
   if (currentSecIdx >= items.length) currentSecIdx = 0;
   const activeProd = items[currentSecIdx] || null;
-  const divParam = `${currentDivision ? `&div=${currentDivision}` : ""}&brand=${currentBrand}`;
+  const divParam = `${currentDivision ? `&div=${currentDivision}` : ""}&brand=decoy`;
 
   return `
     <section class="div-section">
@@ -626,195 +566,6 @@ function renderBlog(divKey, dict) {
   `;
 }
 
-function renderTeatroPage(dict) {
-  const td = TEATRO_DATA;
-  return `
-    <section class="div-hero teatro-hero">
-      <div class="container">
-        <div class="div-hero-code">${td.code}</div>
-        <h1>${td.title}</h1>
-        <p class="div-hero-lead">${td.lead[currentLang]}</p>
-        <div class="link-row" style="margin-top:20px;">
-          <a class="btn-outline" href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer">@TEATRO_SVJOTLO ↗</a>
-          <a class="btn-outline" href="https://dhogh.com/" target="_blank" rel="noopener noreferrer">DHOGH ↗</a>
-          <a class="btn-outline" href="https://www.instagram.com/syntheticsexdrive/" target="_blank" rel="noopener noreferrer">SYNTHETIC SEX DRIVE ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="ts-design" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">01 // STAGE · LIGHT · SOUND</div>
-            <h2>${dict.ts_tab_design}</h2>
-          </div>
-        </div>
-        <div class="cards-grid">
-          ${td.pillars
-            .map(
-              (p) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${p.num}</span>
-                <span>${p.tag[currentLang]}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${p.title[currentLang]}</h3>
-                <p>${p.desc[currentLang]}</p>
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
-
-    <section id="ts-rental" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">02 // TECHNICAL RENTAL</div>
-            <h2>${dict.ts_tab_rental}</h2>
-          </div>
-        </div>
-        <div class="cards-grid-2">
-          ${td.rental
-            .map(
-              (r) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${r.code}</span>
-                <span>${r.tag[currentLang]}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${r.name[currentLang]}</h3>
-                <p>${r.desc[currentLang]}</p>
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
-
-    <section id="ts-custom" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">03 // CUSTOM LIGHTS &amp; HARDWARE</div>
-            <h2>${dict.ts_tab_custom}</h2>
-          </div>
-        </div>
-        <div class="cards-grid">
-          ${td.custom
-            .map(
-              (c) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${c.code}</span>
-                <span>${c.tag[currentLang]}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${c.name[currentLang]}</h3>
-                <p>${c.desc[currentLang]}</p>
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
-
-    <section id="ts-events" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">04 // EVENTS &amp; SPECIALISTS</div>
-            <h2>${dict.ts_tab_events}</h2>
-          </div>
-        </div>
-        <div class="cards-grid" style="margin-bottom:40px;">
-          ${td.events
-            .map(
-              (ev) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${ev.code}</span>
-                <span>${TS}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${ev.name[currentLang]}</h3>
-                <p>${ev.desc[currentLang]}</p>
-                ${
-                  ev.links
-                    ? `<div class="link-row">${ev.links
-                        .map((l) => `<a class="btn-outline" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)
-                        .join("")}</div>`
-                    : ""
-                }
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
-
-        <div class="teatro-crew-banner">
-          <div>
-            <div class="sec-num">${dict.sec_num_crew}</div>
-            <h2 style="margin-bottom:10px;">${dict.people}</h2>
-            <p style="margin:0; color:var(--fg-muted); max-width:65ch;">${td.crewSummary[currentLang]}</p>
-          </div>
-          <div class="teatro-specs-tags">
-            ${td.specialties.map((s) => `<span class="modal-chip">${s[currentLang]}</span>`).join("")}
-          </div>
-        </div>
-
-        <div class="people-grid" style="margin-top:22px;">
-          ${PEOPLE.map(
-            (p) => `
-            <article class="person-card">
-              <div class="person-initials">${p.name
-                .split(" ")
-                .map((w) => w[0])
-                .join("")}</div>
-              <h3>${p.name}</h3>
-              <p>${p.role[currentLang]}</p>
-              ${p.url ? `<a class="btn-outline" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.handle} ↗</a>` : ""}
-            </article>`
-          ).join("")}
-        </div>
-      </div>
-    </section>
-
-    <section id="ts-inquiry" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">05 // SERVICE INQUIRY (SEPARATE FROM STORE)</div>
-            <h2>${dict.service_inquiry_btn}</h2>
-          </div>
-        </div>
-        <form id="teatroBriefForm" class="blog-editor" style="border-color:var(--pantone-orange);">
-          <div style="display:flex; flex-wrap:wrap; gap:14px;">
-            <label class="hud-check"><input type="checkbox" name="scope" value="Stage Design" checked /><span>Stage Design</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Light Design" /><span>Light Design</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Sound Design" /><span>Sound Design</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Rental" /><span>${dict.ts_tab_rental}</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Custom Production" /><span>${dict.ts_tab_custom}</span></label>
-          </div>
-          <input id="briefEventInput" class="blog-input" type="text" placeholder="${currentLang === "cs" ? "Název akce / termín / lokalita..." : "Event name / date / venue..."}" />
-          <textarea id="briefNotesInput" class="blog-textarea" placeholder="${currentLang === "cs" ? "Popište požadavky na techniku, scénu, světla nebo zakázkovou výrobu..." : "Describe stage, lighting, sound, rental, or custom build requirements..."}"></textarea>
-          <div class="link-row">
-            <button type="submit" class="btn-outline">${dict.cart_copy}</button>
-            <a class="btn-outline" href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer">@TEATRO_SVJOTLO ↗</a>
-          </div>
-          <div id="briefFeedback" style="color:var(--pantone-orange); font-size:0.82rem;" aria-live="polite"></div>
-        </form>
-      </div>
-    </section>
-  `;
-}
 
 function renderMerch(dict) {
   const items = MERCH_ITEMS.map((m) => getCatalogItem(m.id)).filter(Boolean);
@@ -835,272 +586,307 @@ function renderMerch(dict) {
   `;
 }
 
-function renderTeatroDivisionSection(divKey, dict) {
-  const td = TEATRO_DATA;
-  const tDiv = TEATRO_DIVISIONS[divKey] || TEATRO_DIVISIONS.LUX;
-  const pillars = tDiv.pillarIdx.map((idx) => td.pillars[idx]).filter(Boolean);
-  const rentals = td.rental.filter((r) => tDiv.rentalCodes.includes(r.code));
-  const customs = td.custom.filter((c) => tDiv.customCodes.includes(c.code));
 
+/* ---------------------------------------------------- division & teatro views */
+/* ---------------------------------------------------- společné komponenty podsekcí (obě značky) */
+function renderSecHead(num, title, aside = "") {
   return `
-    <section id="ts-design" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">01 // ${tDiv.serialLeft} · DESIGN &amp; PRODUCTION</div>
-            <h2>${tDiv.heading[currentLang]} — ${dict.ts_tab_design}</h2>
-          </div>
-        </div>
-        <div class="cards-grid">
-          ${pillars
-            .map(
-              (p) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${p.num}</span>
-                <span>${p.tag[currentLang]}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${p.title[currentLang]}</h3>
-                <p>${p.desc[currentLang]}</p>
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
+    <div class="sec-head">
+      <div>
+        <div class="sec-num">${num}</div>
+        <h2>${title}</h2>
       </div>
-    </section>
+      ${aside}
+    </div>`;
+}
 
-    <section id="ts-rental" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">02 // ${tDiv.serialLeft} · TECHNICAL RENTAL</div>
-            <h2>${dict.ts_tab_rental}</h2>
-          </div>
-        </div>
-        <div class="cards-grid-2">
-          ${rentals
-            .map(
-              (r) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${r.code}</span>
-                <span>${r.tag[currentLang]}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${r.name[currentLang]}</h3>
-                <p>${r.desc[currentLang]}</p>
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
+function renderTeatroCard({ head, tag, title, desc, links = null }) {
+  return `
+    <article class="hud-card teatro-card">
+      <div class="hud-card-head">
+        <span>${head}</span>
+        <span>${tag}</span>
       </div>
-    </section>
-
-    <section id="ts-custom" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">03 // ${tDiv.serialLeft} · CUSTOM FABRICATION</div>
-            <h2>${dict.ts_tab_custom}</h2>
-          </div>
-        </div>
-        <div class="cards-grid-2">
-          ${customs
-            .map(
-              (c) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${c.code}</span>
-                <span>${c.tag[currentLang]}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${c.name[currentLang]}</h3>
-                <p>${c.desc[currentLang]}</p>
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
+      <div class="hud-card-body">
+        <h3>${title}</h3>
+        <p>${desc}</p>
+        ${
+          links && links.length
+            ? `<div class="link-row">${links
+                .map((l) => `<a class="btn-outline" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)
+                .join("")}</div>`
+            : ""
+        }
       </div>
-    </section>
+    </article>`;
+}
 
-    <section id="ts-events" class="div-section">
-      <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">04 // EVENTS &amp; SPECIALISTS</div>
-            <h2>${dict.ts_tab_events}</h2>
-          </div>
-        </div>
-        <div class="cards-grid" style="margin-bottom:32px;">
-          ${td.events
-            .map(
-              (ev) => `
-            <article class="hud-card teatro-card">
-              <div class="hud-card-head">
-                <span>${ev.code}</span>
-                <span>${TS}</span>
-              </div>
-              <div class="hud-card-body">
-                <h3>${ev.name[currentLang]}</h3>
-                <p>${ev.desc[currentLang]}</p>
-                ${
-                  ev.links
-                    ? `<div class="link-row">${ev.links
-                        .map((l) => `<a class="btn-outline" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)
-                        .join("")}</div>`
-                    : ""
-                }
-              </div>
-            </article>`
-            )
-            .join("")}
-        </div>
+/* ---------------------------------------------------- TEATRO podsekce (ZVUK / SVĚTLO / VIDEO) */
+function renderTeatroTab(tab, divKey, dict) {
+  const td = TEATRO_DATA;
+  const area = TEATRO_AREAS[divKey];
+  const lang = currentLang;
+  const nav = getBrandNav("teatro", divKey);
+  const navIdx = nav.findIndex((n) => n.id === tab);
+  const num = `${String(Math.max(0, navIdx) + 1).padStart(2, "0")} // ${area.serialLeft}`;
+  const title = navIdx >= 0 ? navLabel(nav[navIdx], divKey, lang) : "";
+  let content = "";
 
-        <div class="people-grid">
-          ${PEOPLE.map(
-            (p) => `
+  if (tab === "design") {
+    const items = area.pillarIdx.map((i) => td.pillars[i]).filter(Boolean);
+    content = `<div class="cards-grid">${items
+      .map((p) => renderTeatroCard({ head: p.num, tag: p.tag[lang], title: p.title[lang], desc: p.desc[lang] }))
+      .join("")}</div>`;
+  } else if (tab === "rental") {
+    const items = td.rental.filter((r) => area.rentalCodes.includes(r.code));
+    content = `<div class="cards-grid-2">${items
+      .map((r) => renderTeatroCard({ head: r.code, tag: r.tag[lang], title: r.name[lang], desc: r.desc[lang] }))
+      .join("")}</div>`;
+  } else if (tab === "custom") {
+    const items = td.custom.filter((c) => area.customCodes.includes(c.code));
+    content = `<div class="cards-grid-2">${items
+      .map((c) => renderTeatroCard({ head: c.code, tag: c.tag[lang], title: c.name[lang], desc: c.desc[lang] }))
+      .join("")}</div>`;
+  } else if (tab === "events") {
+    const events = td.events.filter((ev) => area.eventCodes.includes(ev.code));
+    const specs = area.specialtyIdx.map((i) => td.specialties[i]).filter(Boolean);
+    const people = PEOPLE.filter((p) => area.peopleNames.includes(p.name));
+    content = `
+      <div class="cards-grid">${events
+        .map((ev) => renderTeatroCard({ head: ev.code, tag: TS, title: ev.name[lang], desc: ev.desc[lang], links: ev.links }))
+        .join("")}</div>
+      <div class="teatro-crew-banner">
+        <div>
+          <div class="sec-num">${dict.sec_num_crew}</div>
+          <h2>${dict.people}</h2>
+          <p>${td.crewSummary[lang]}</p>
+        </div>
+        <div class="teatro-specs-tags">${specs.map((s) => `<span class="modal-chip">${s[lang]}</span>`).join("")}</div>
+      </div>
+      ${
+        people.length
+          ? `<div class="people-grid">${people
+              .map(
+                (p) => `
             <article class="person-card">
               <div class="person-initials">${p.name
                 .split(" ")
                 .map((w) => w[0])
                 .join("")}</div>
               <h3>${p.name}</h3>
-              <p>${p.role[currentLang]}</p>
+              <p>${p.role[lang]}</p>
               ${p.url ? `<a class="btn-outline" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.handle} ↗</a>` : ""}
             </article>`
-          ).join("")}
+              )
+              .join("")}</div>`
+          : ""
+      }`;
+  } else if (tab === "inquiry") {
+    const scopes = [
+      { value: "Stage Design", label: "Stage Design" },
+      { value: "Light Design", label: "Light Design" },
+      { value: "Sound Design", label: "Sound Design" },
+      { value: "Rental", label: dict.ts_tab_rental },
+      { value: "Custom Production", label: dict.ts_tab_custom },
+    ];
+    content = `
+      <form id="teatroBriefForm" class="blog-editor">
+        <div class="brief-scopes">
+          ${scopes
+            .map(
+              (s) =>
+                `<label class="hud-check"><input type="checkbox" name="scope" value="${s.value}" ${area.defaultScopes.includes(s.value) ? "checked" : ""} /><span>${s.label}</span></label>`
+            )
+            .join("")}
         </div>
-      </div>
-    </section>
+        <input id="briefEventInput" class="blog-input" type="text" placeholder="${lang === "cs" ? "Název akce / termín / lokalita..." : "Event name / date / venue..."}" />
+        <textarea id="briefNotesInput" class="blog-textarea" placeholder="${lang === "cs" ? "Popište požadavky na techniku, scénu, světla nebo zakázkovou výrobu..." : "Describe stage, lighting, sound, rental, or custom build requirements..."}"></textarea>
+        <div class="link-row">
+          <button type="submit" class="btn-outline">${dict.cart_copy}</button>
+          <a class="btn-outline" href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer">@TEATRO_SVJOTLO ↗</a>
+        </div>
+        <div id="briefFeedback" class="brief-feedback" aria-live="polite"></div>
+      </form>`;
+  }
 
-    <section id="ts-inquiry" class="div-section">
+  return `
+    <section class="div-section">
       <div class="container">
-        <div class="sec-head">
-          <div>
-            <div class="sec-num">05 // ${tDiv.heading[currentLang]} · SERVICE INQUIRY</div>
-            <h2>${dict.service_inquiry_btn}</h2>
-          </div>
-        </div>
-        <form id="teatroBriefForm" class="blog-editor" style="border-color:var(--pantone-orange);">
-          <div style="display:flex; flex-wrap:wrap; gap:14px;">
-            <label class="hud-check"><input type="checkbox" name="scope" value="Stage Design" ${tDiv.defaultScopes.includes("Stage Design") ? "checked" : ""} /><span>Stage Design</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Light Design" ${tDiv.defaultScopes.includes("Light Design") ? "checked" : ""} /><span>Light Design</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Sound Design" ${tDiv.defaultScopes.includes("Sound Design") ? "checked" : ""} /><span>Sound Design</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Rental" ${tDiv.defaultScopes.includes("Rental") ? "checked" : ""} /><span>${dict.ts_tab_rental}</span></label>
-            <label class="hud-check"><input type="checkbox" name="scope" value="Custom Production" ${tDiv.defaultScopes.includes("Custom Production") ? "checked" : ""} /><span>${dict.ts_tab_custom}</span></label>
-          </div>
-          <input id="briefEventInput" class="blog-input" type="text" placeholder="${currentLang === "cs" ? "Název akce / termín / lokalita..." : "Event name / date / venue..."}" />
-          <textarea id="briefNotesInput" class="blog-textarea" placeholder="${currentLang === "cs" ? "Popište požadavky na techniku, scénu, světla nebo zakázkovou výrobu..." : "Describe stage, lighting, sound, rental, or custom build requirements..."}"></textarea>
-          <div class="link-row">
-            <button type="submit" class="btn-outline">${dict.cart_copy}</button>
-            <a class="btn-outline" href="https://www.instagram.com/teatro_svjotlo/" target="_blank" rel="noopener noreferrer">@TEATRO_SVJOTLO ↗</a>
-          </div>
-          <div id="briefFeedback" class="brief-feedback" aria-live="polite"></div>
-        </form>
+        ${renderSecHead(num, title)}
+        ${content}
       </div>
-    </section>
-  `;
+    </section>`;
 }
 
-/* ---------------------------------------------------- division & teatro views */
+/* ---------------------------------------------------- SOFTWARE (samostatná sekce obou značek, oddělený obsah) */
+function renderSoftware(brand, divKey, dict) {
+  const brandKey = normalizeBrand(brand);
+  const items = (SOFTWARE_CATALOG[brandKey] && SOFTWARE_CATALOG[brandKey][divKey]) || [];
+  const div = DIVISIONS[divKey];
+  const lang = currentLang;
+  const nav = getBrandNav(brandKey, divKey);
+  const navIdx = nav.findIndex((n) => n.id === "software");
+  const leftCode = brandKey === "teatro" ? TEATRO_AREAS[divKey].serialLeft : div.serialLeft;
+  const num = `${String(Math.max(0, navIdx) + 1).padStart(2, "0")} // ${leftCode}`;
+  const count = `<span class="sec-num">${items.length} ${lang === "cs" ? "POLOŽEK" : "ITEMS"}</span>`;
+
+  const cards = items
+    .map((item) =>
+      renderTeatroCard({
+        head: escapeHtml(item.code || item.id.toUpperCase()),
+        tag: escapeHtml(textVal(item.status)),
+        title: escapeHtml(textVal(item.name)),
+        desc: escapeHtml(textVal(item.short)),
+        links: item.url ? [{ label: lang === "cs" ? "OTEVŘÍT" : "OPEN", url: item.url }] : null,
+      })
+    )
+    .join("");
+
+  return `
+    <section class="div-section">
+      <div class="container">
+        ${renderSecHead(num, `${dict.sec_software} — ${div.title[lang]}`, count)}
+        <p class="software-intro">${dict[`software_intro_${brandKey}`]}</p>
+        ${
+          items.length
+            ? `<div class="cards-grid">${cards}</div>`
+            : `<div class="hud-empty-box"><p>${dict.software_empty}</p></div>`
+        }
+      </div>
+    </section>`;
+}
+
+/* ---------------------------------------------------- navigace podsekcí (dynamicky podle značky a oblasti) */
+function renderBrandNav(navItems, divKey) {
+  const navEl = document.getElementById("divSubNav");
+  if (!navEl) return;
+  navEl.innerHTML = navItems
+    .map((item) => {
+      const active = item.id === currentTab;
+      return `<button type="button" class="sub-tab ${active ? "active" : ""}" role="tab" aria-selected="${active}" data-tab="${item.id}">${escapeHtml(navLabel(item, divKey, currentLang))}</button>`;
+    })
+    .join("");
+  navEl.setAttribute("data-brand", currentBrand);
+  navEl.setAttribute("aria-label", currentBrand === "teatro" ? "Sekce TEATRO" : "Sekce DECØY");
+}
+
+function defaultHudFilter(divKey = null) {
+  return {
+    q: "",
+    category: (divKey && DIV_TO_CAT[divKey]) || "all",
+    subcategory: "all",
+    availability: "all",
+    originalOnly: false,
+    sort: "featured",
+  };
+}
+
+function getDefaultDivisionTab(divKey, brand = currentBrand) {
+  const brandKey = normalizeBrand(brand);
+  const nav = getBrandNav(brandKey, divKey);
+  if (brandKey === "teatro") return nav.length ? nav[0].id : "design";
+  const div = DIVISIONS[divKey];
+  if (!div) return "eurorack";
+  if (div.eurorack && div.eurorack.length) return "eurorack";
+  if (div.desktop && div.desktop.length) return "desktop";
+  return "eurorack";
+}
+
+/* ---------------------------------------------------- division view (společná komponenta obou značek) */
 function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScroll = false, replaceHistory = false, brand = currentBrand } = {}) {
   const div = DIVISIONS[divKey];
   if (!div) return;
   applyBrandProfileDOM(brand);
   const isTeatro = currentBrand === "teatro";
-  const tDiv = TEATRO_DIVISIONS[divKey] || TEATRO_DIVISIONS.LUX;
-  const allowedTabs = getDivisionTabs(divKey);
-  currentSection = "decoy";
+  const area = TEATRO_AREAS[divKey];
+  const navItems = getBrandNav(currentBrand, divKey);
+  const allowedTabs = navItems.map((item) => item.id);
+  const divisionChanged = currentDivision !== divKey;
+  currentSection = "division";
   currentDivision = divKey;
-  currentTab = tabKey && allowedTabs.includes(tabKey) ? tabKey : getDefaultDivisionTab(divKey);
+  currentTab = tabKey && allowedTabs.includes(tabKey) ? tabKey : getDefaultDivisionTab(divKey, currentBrand);
+  if (divisionChanged) {
+    hudFilter.category = DIV_TO_CAT[divKey] || "all";
+    hudFilter.subcategory = "all";
+  }
 
   if (fx) triggerDivisionFx(divKey);
 
   document.getElementById("landingView").hidden = true;
-  const teatroView = document.getElementById("teatroView");
-  if (teatroView) teatroView.hidden = true;
   const divView = document.getElementById("divisionView");
   divView.hidden = false;
   divView.className = `division-view theme-${divKey}`;
   divView.setAttribute("data-brand", currentBrand);
 
+  const dict = I18N[currentLang];
+  const brandName = isTeatro ? TS : "DECØY DEVICES";
+
   const backBtn = document.getElementById("backToSplit");
-  if (backBtn) {
-    backBtn.innerHTML = `<span>←</span><span>${isTeatro ? "TEATRO\\\\\\SVJÖTLO" : "DECØY DEVICES"}</span>`;
-  }
-  const switchBrandInDivBtn = document.getElementById("openTeatroFromDiv");
-  if (switchBrandInDivBtn) {
-    switchBrandInDivBtn.textContent = isTeatro ? "DECØY DEVICES ↗" : "TEATRO\\\\\\SVJÖTLO ↗";
-  }
+  if (backBtn) backBtn.innerHTML = `<span>←</span><span>${brandName}</span>`;
+  const switchBtn = document.getElementById("openTeatroFromDiv");
+  if (switchBtn) switchBtn.textContent = isTeatro ? dict.brand_switch_to_decoy : dict.brand_switch_to_teatro;
+  const cartBtn = document.getElementById("cartToggleDiv");
+  if (cartBtn) cartBtn.hidden = isTeatro;
 
   document.querySelectorAll("[data-switch-div]").forEach((btn) => {
     const active = btn.getAttribute("data-switch-div") === divKey;
     btn.classList.toggle("active", active);
     btn.setAttribute("aria-selected", String(active));
   });
-  document.querySelectorAll("[data-tab]").forEach((btn) => {
-    const t = btn.getAttribute("data-tab");
-    const active = t === currentTab;
-    btn.hidden = !allowedTabs.includes(t);
-    btn.classList.toggle("active", active);
-    btn.setAttribute("aria-selected", String(active));
-  });
+  renderBrandNav(navItems, divKey);
 
+  const leftCode = isTeatro ? area.serialLeft : div.serialLeft;
   const siteFooter = document.getElementById("siteFooter");
   if (siteFooter) {
     siteFooter.innerHTML = renderModuleFooterHTML(
       divKey,
-      isTeatro ? tDiv.serialLeft : div.serialLeft,
-      isTeatro ? "DECØY DEVICES" : div.serialRight
+      leftCode,
+      isTeatro ? "DECØY DEVICES" : div.serialRight,
+      brandName
     );
   }
 
-  const dict = I18N[currentLang];
-  const tabLabels = {
-    eurorack: "EURORACK",
-    desktop: dict.sec_desktop,
-    pedals: dict.sec_pedals,
-    diy: dict.sec_diy,
-    catalog: dict.sec_catalog,
-    blog: dict.sec_blog,
-    merch: dict.sec_merch,
-  };
-  const decoySectionBody = {
-    eurorack: () => renderEurorack(div, dict),
-    desktop: () => renderDesktop(div, dict),
-    pedals: () => renderPedals(div, dict),
-    diy: () => renderDiy(dict),
-    catalog: () => renderCatalogAndBrands(dict),
-    blog: () => renderBlog(divKey, dict),
-    merch: () => renderMerch(dict),
-  }[currentTab]();
+  let body;
+  if (isTeatro) {
+    body = currentTab === "software" ? renderSoftware("teatro", divKey, dict) : renderTeatroTab(currentTab, divKey, dict);
+  } else {
+    body = {
+      eurorack: () => renderEurorack(div, dict),
+      desktop: () => renderDesktop(div, dict),
+      pedals: () => renderPedals(div, dict),
+      diy: () => renderDiy(dict),
+      software: () => renderSoftware("decoy", divKey, dict),
+      catalog: () => renderCatalogAndBrands(dict),
+      blog: () => renderBlog(divKey, dict),
+      merch: () => renderMerch(dict),
+    }[currentTab]();
+  }
 
-  const brandLabel = isTeatro ? "TEATRO\\\\\\SVJÖTLO" : "DECØY DEVICES";
-  const heroCode = isTeatro ? tDiv.code : div.code;
-  const heroTitle = isTeatro ? `${tDiv.heading[currentLang]} — ${div.title[currentLang]}` : div.title[currentLang];
-  const heroLead = isTeatro ? tDiv.lead[currentLang] : div.lead[currentLang];
+  const currentNavItem = navItems.find((item) => item.id === currentTab);
+  const tabLabel = currentNavItem ? navLabel(currentNavItem, divKey, currentLang) : currentTab.toUpperCase();
+  const heroCode = isTeatro ? area.code : div.code;
+  const heroLead = isTeatro ? area.lead[currentLang] : div.lead[currentLang];
 
-  document.getElementById("divisionContent").innerHTML = `
+  const content = document.getElementById("divisionContent");
+  content.innerHTML = `
     <section class="div-hero">
       <div class="container">
         <div class="div-context-bar" aria-label="Orientace v sekci">
-          <button type="button" class="context-crumb" data-crumb-home>${brandLabel}</button>
+          <button type="button" class="context-crumb" data-crumb-home>${brandName}</button>
           <span class="context-sep">//</span>
           <span class="context-crumb">${div.serialLeft} · ${div.title[currentLang]}</span>
           <span class="context-sep">//</span>
-          <strong class="context-crumb is-current">${escapeHtml(isTeatro ? tDiv.heading[currentLang] : tabLabels[currentTab] || currentTab.toUpperCase())}</strong>
+          <strong class="context-crumb is-current">${escapeHtml(tabLabel)}</strong>
         </div>
         <div class="div-hero-code">${heroCode}</div>
-        <h1>${heroTitle}</h1>
+        <h1>${div.title[currentLang]}</h1>
         <p class="div-hero-lead">${heroLead}</p>
       </div>
     </section>
-    ${isTeatro ? renderTeatroDivisionSection(divKey, dict) + decoySectionBody : decoySectionBody}
+    ${body}
   `;
+  /* postupné odhalení obsahu jen při skutečné změně sekce (ne při filtrování) */
+  content.classList.toggle("dd-enter", !preserveScroll);
 
   const targetUrl = buildUrlWithBrand(currentBrand, `${divKey}/${currentTab}`);
   if (`${location.pathname || "index.html"}${location.search || ""}${location.hash || ""}` !== targetUrl) {
@@ -1111,59 +897,12 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
   bindDivisionEvents();
 }
 
-function openTeatroView({ fx = false, anchorId = null, replaceHistory = false } = {}) {
-  currentSection = "teatro";
-  currentDivision = null;
-  if (fx) triggerOverlayFx("fx-mod");
-
-  document.getElementById("landingView").hidden = true;
-  document.getElementById("divisionView").hidden = true;
-  const teatroView = document.getElementById("teatroView");
-  if (!teatroView) return;
-  teatroView.hidden = false;
-
-  const dict = I18N[currentLang];
-  document.getElementById("teatroContent").innerHTML = renderTeatroPage(dict);
-
-  const teatroFooter = document.getElementById("teatroFooter");
-  if (teatroFooter) {
-    teatroFooter.innerHTML = renderModuleFooterHTML("LUX", "TEATRO\\\\\\SVJÖTLO", "STAGE · SOUND · LIGHT");
-  }
-
-  document.querySelectorAll("[data-teatro-jump]").forEach((btn) => {
-    const target = btn.getAttribute("data-teatro-jump");
-    btn.classList.toggle("active", anchorId ? target === anchorId : target === "ts-design");
-  });
-
-  document.getElementById("teatroBriefForm")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const scopes = Array.from(e.target.querySelectorAll('input[name="scope"]:checked')).map((i) => i.value);
-    const ev = document.getElementById("briefEventInput")?.value.trim() || "—";
-    const notes = document.getElementById("briefNotesInput")?.value.trim() || "—";
-    navigator.clipboard?.writeText(`TEATRO\\\\\\SVJÖTLO BRIEF\nScope: ${scopes.join(", ") || "—"}\nEvent: ${ev}\nNotes: ${notes}`).catch(() => {});
-    const fb = document.getElementById("briefFeedback");
-    if (fb) fb.textContent = `${I18N[currentLang].cart_copied}: ${scopes.join(", ")}`;
-  });
-
-  if (location.hash !== "#TEATRO") {
-    if (replaceHistory) history.replaceState(null, "", "#TEATRO");
-    else history.pushState(null, "", "#TEATRO");
-  }
-  if (anchorId) {
-    document.getElementById(anchorId)?.scrollIntoView({ behavior: "smooth" });
-  } else {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }
-}
 
 function goHome({ replaceHistory = false } = {}) {
   currentSection = "landing";
   currentDivision = null;
   document.getElementById("divisionView").hidden = true;
-  const teatroView = document.getElementById("teatroView");
-  if (teatroView) teatroView.hidden = true;
-  const landingView = document.getElementById("landingView");
-  landingView.hidden = false;
+  document.getElementById("landingView").hidden = false;
   applyBrandProfileDOM(currentBrand);
   const targetUrl = buildUrlWithBrand(currentBrand, "");
   if (replaceHistory) history.replaceState(null, "", targetUrl);
@@ -1185,7 +924,7 @@ function openProductModal(id) {
   modal.className = `modal theme-${activeDiv} mod-${id}`;
   const keySpecs = (item.specs || []).filter((s) => s.key);
   const imgSrc = (item.imageByDiv && item.imageByDiv[activeDiv]) || item.image;
-  const divParam = `${item.kind === "hardware" ? `&div=${activeDiv}` : ""}&brand=${currentBrand}`;
+  const divParam = `${item.kind === "hardware" ? `&div=${activeDiv}` : ""}&brand=decoy`;
   const inCart = DECOY_STORE.getItems().some((e) => e.id === item.id);
 
   const prevArrow = document.getElementById("modalPrevArrow");
@@ -1412,7 +1151,7 @@ function bindDivisionEvents() {
   });
 
   const resetFilterHandler = () => {
-    hudFilter = { q: "", category: "all", subcategory: "all", availability: "all", originalOnly: false, sort: "featured" };
+    hudFilter = defaultHudFilter(currentDivision);
     renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
   };
   document.getElementById("hudResetBtn")?.addEventListener("click", resetFilterHandler);
@@ -1456,7 +1195,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-open-division]").forEach((btn) => {
     btn.addEventListener("click", () => {
       currentSecIdx = 0;
-      hudFilter = { q: "", category: "all", subcategory: "all", availability: "all", originalOnly: false, sort: "featured" };
+      hudFilter = defaultHudFilter(currentDivision);
       renderDivision(btn.getAttribute("data-open-division"), null, { fx: true, brand: currentBrand });
     });
   });
@@ -1468,7 +1207,6 @@ document.addEventListener("DOMContentLoaded", () => {
       renderDivision(currentDivision, currentTab, { fx: true, brand: nextBrand });
     }
   });
-  document.getElementById("backFromTeatro")?.addEventListener("click", () => goHome());
 
   const subNavBtn = document.getElementById("mobileSubNavBtn");
   const divSubNav = document.getElementById("divSubNav");
@@ -1477,20 +1215,12 @@ document.addEventListener("DOMContentLoaded", () => {
     subNavBtn.setAttribute("aria-expanded", String(open));
   });
 
-  document.querySelectorAll("[data-teatro-jump]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = btn.getAttribute("data-teatro-jump");
-      document.querySelectorAll("[data-teatro-jump]").forEach((b) => b.classList.toggle("active", b === btn));
-      document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
-    });
-  });
-
   document.querySelectorAll("[data-switch-div]").forEach((btn) => {
     btn.addEventListener("click", () => {
       currentSecIdx = 0;
       hudFilter.subcategory = "all";
       const targetDiv = btn.getAttribute("data-switch-div");
-      const targetTab = currentTab === "eurorack" || currentTab === "desktop" ? null : currentTab;
+      const targetTab = currentBrand === "decoy" && (currentTab === "eurorack" || currentTab === "desktop") ? null : currentTab;
       renderDivision(targetDiv, targetTab, { fx: true });
     });
   });
@@ -1511,14 +1241,12 @@ document.addEventListener("DOMContentLoaded", () => {
     currentLang = currentLang === "cs" ? "en" : "cs";
     setLang(currentLang);
     applyTranslations();
-    if (currentSection === "teatro") openTeatroView({ replaceHistory: true });
-    else if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
+    if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
     if (currentModalId) openProductModal(currentModalId);
     if (!document.getElementById("cartDrawer").hidden) renderCartDrawer();
   };
   document.getElementById("langToggleLanding")?.addEventListener("click", toggleLang);
   document.getElementById("langToggleDiv")?.addEventListener("click", toggleLang);
-  document.getElementById("langToggleTeatro")?.addEventListener("click", toggleLang);
 
   document.getElementById("cartToggleLanding")?.addEventListener("click", openCartDrawer);
   document.getElementById("cartToggleDiv")?.addEventListener("click", openCartDrawer);
