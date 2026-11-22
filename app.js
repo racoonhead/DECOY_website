@@ -116,15 +116,24 @@ function escapeHtml(str) {
 
 /* ---------------------------------------------------- blog storage */
 function getPosts(divKey) {
+  let base = [];
   const saved = localStorage.getItem(`decoy_blog_v3_${divKey}`);
   if (saved) {
     try {
-      return JSON.parse(saved);
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) base = parsed;
     } catch {
-      /* fall through */
+      base = [];
     }
   }
-  return DEFAULT_NEWS_POSTS.filter((p) => p.division === divKey || !p.division);
+  if (!base.length) {
+    base = DEFAULT_NEWS_POSTS.filter((p) => p.division === divKey || !p.division);
+  }
+  const serverPosts = typeof SERVER_BLOG_POSTS !== "undefined" && Array.isArray(SERVER_BLOG_POSTS)
+    ? SERVER_BLOG_POSTS.filter((p) => p.division === divKey)
+    : [];
+  const seen = new Set(serverPosts.map((p) => p.id));
+  return [...serverPosts, ...base.filter((p) => !seen.has(p.id))];
 }
 
 function savePost(divKey, title, body) {
@@ -1042,14 +1051,21 @@ function closeCartDrawer() {
 
 /* ---------------------------------------------------- events */
 function bindDivisionEvents() {
-  document.getElementById("teatroBriefForm")?.addEventListener("submit", (e) => {
+  document.getElementById("teatroBriefForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const scopes = Array.from(e.target.querySelectorAll('input[name="scope"]:checked')).map((i) => i.value);
     const ev = document.getElementById("briefEventInput")?.value.trim() || "—";
     const notes = document.getElementById("briefNotesInput")?.value.trim() || "—";
     navigator.clipboard?.writeText(`TEATRO\\\\\\SVJÖTLO BRIEF (${currentDivision || "STAGE"})\nScope: ${scopes.join(", ") || "—"}\nEvent: ${ev}\nNotes: ${notes}`).catch(() => {});
     const fb = document.getElementById("briefFeedback");
-    if (fb) fb.textContent = `${I18N[currentLang].cart_copied}: ${scopes.join(", ")}`;
+    const res = typeof submitPublicInquiry === "function"
+      ? await submitPublicInquiry({ type: "teatro_brief", division: currentDivision || "AUD", summary: ev, notes, scopes })
+      : { ok: false };
+    if (fb) {
+      fb.textContent = res.ok
+        ? `${I18N[currentLang].cart_sent} (${res.inquiry.id}) · ${scopes.join(", ")}`
+        : `${I18N[currentLang].cart_copied}: ${scopes.join(", ")}`;
+    }
   });
 
   const editor = document.getElementById("blogEditor");
@@ -1319,6 +1335,42 @@ document.addEventListener("DOMContentLoaded", () => {
       if (fb) fb.textContent = I18N[currentLang].cart_copied;
       return;
     }
+    if (e.target.id === "submitCartInquiryBtn") {
+      const summary = DECOY_STORE.getSummary();
+      if (!summary.entries.length) return;
+      const contact = document.getElementById("cartContactInput")?.value.trim() || "—";
+      const lines = summary.entries.map(
+        ({ product, qty }) => `- ${qty}× ${itemDisplayName(product, currentLang)} (${product.serial}) — ${DECOY_STORE.formatPrice(product, currentLang)}`
+      );
+      const items = summary.entries.map(({ product, qty }) => ({
+        id: product.id,
+        name: itemDisplayName(product, currentLang),
+        qty,
+      }));
+      const fb = document.getElementById("cartCopyFeedback");
+      if (typeof submitPublicInquiry === "function") {
+        submitPublicInquiry({
+          type: "decoy_order",
+          division: currentDivision || "AUD",
+          contact,
+          summary: `${summary.count} ks (${summary.pricedTotal} Kč)`,
+          notes: lines.join("\n"),
+          items,
+        }).then((res) => {
+          if (res.ok) {
+            DECOY_STORE.clear();
+            updateCartCountUI();
+            renderCartDrawer();
+            const fb2 = document.getElementById("cartCopyFeedback");
+            if (fb2) fb2.textContent = `${I18N[currentLang].cart_sent} (${res.inquiry.id})`;
+          } else {
+            navigator.clipboard?.writeText(`DECØY ORDER\n${lines.join("\n")}`).catch(() => {});
+            if (fb) fb.textContent = I18N[currentLang].cart_copied;
+          }
+        });
+      }
+      return;
+    }
     if (e.target.closest("[data-close-cart-nav]")) {
       closeCartDrawer();
       renderDivision(currentDivision || "AUD", "catalog");
@@ -1343,4 +1395,14 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("popstate", routeFromHash);
 
   routeFromHash();
+
+  if (typeof syncPublicServerState === "function") {
+    syncPublicServerState().then((synced) => {
+      if (!synced) return;
+      if (currentSection === "division" && currentDivision) {
+        renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
+      }
+      if (currentModalId) openProductModal(currentModalId);
+    });
+  }
 });

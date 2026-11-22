@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DECØY / TEATRO\\\SVJÖTLO — Admin Konzole</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20261122q" />
+</head>
+<body class="admin-page">
+  <header class="hud-nav">
+    <div class="container hud-nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="btn-back">← ZPĚT NA WEB</a>
+        <div class="admin-head-title">
+          <span class="sec-num" style="margin:0;">CONTROL ROOM // TEST MODE</span>
+          <strong>DECØY / TEATRO\\\SVJÖTLO ADMIN</strong>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <span id="adminUserBadge" class="modal-chip" hidden></span>
+        <button id="adminLogoutBtn" class="btn-hud btn-sm" type="button" hidden>ODHLÁSIT SE</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <!-- Stav kdy stránka běží jen staticky bez backendu -->
+    <section id="adminOfflineBox" class="hud-card admin-box" hidden>
+      <div class="hud-card-head">
+        <span>SERVER // OFFLINE</span>
+        <span>VYŽADOVÁN NODE BACKEND</span>
+      </div>
+      <div class="hud-card-body">
+        <h2>ADMIN BACKEND NEBĚŽÍ</h2>
+        <p>Přihlašování a ukládání dat vyžadují spuštěný testovací server (nejde o falešné lokální přihlášení jen v prohlížeči).</p>
+        <div class="admin-cmd-box">
+          <code>node backend/server.js</code>
+        </div>
+        <p class="admin-hint">Na Windows stačí spustit <code>start-admin.bat</code> a pak otevřít <code>http://127.0.0.1:4173/admin.html</code>.</p>
+      </div>
+    </section>
+
+    <!-- Přihlašovací formulář -->
+    <section id="adminLoginView" class="admin-login-wrap" hidden>
+      <article class="hud-card admin-login-card">
+        <div class="hud-card-head">
+          <span>AUTH // SCRYPT + HTTPONLY SESSION</span>
+          <span>TEST ADMIN</span>
+        </div>
+        <div class="hud-card-body">
+          <h1>PŘIHLÁŠENÍ DO ADMINU</h1>
+          <p>Reálné serverové ověření přes HMAC-SHA256 HttpOnly cookie. Po přihlášení můžete spravovat poptávky, katalog, blok i software.</p>
+          <form id="adminLoginForm" class="admin-form">
+            <label class="admin-field">
+              <span>UŽIVATELSKÉ JMÉNO</span>
+              <input id="loginUsername" class="blog-input" type="text" name="username" autocomplete="username" placeholder="admin" required />
+            </label>
+            <label class="admin-field">
+              <span>HESLO</span>
+              <input id="loginPassword" class="blog-input" type="password" name="password" autocomplete="current-password" required />
+            </label>
+            <div class="link-row">
+              <button type="submit" id="loginSubmitBtn" class="btn-outline btn-solid">PŘIHLÁSIT SE →</button>
+            </div>
+            <div id="loginFeedback" class="admin-feedback" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </article>
+    </section>
+
+    <!-- Autentizovaný dashboard -->
+    <section id="adminDashboard" hidden>
+      <div id="adminSeedBanner" class="cart-notice" style="margin-bottom:18px;" hidden>
+        TESTOVACÍ REŽIM: Jste přihlášeni výchozím testovacím účtem. Heslo si můžete změnit v záložce <strong>ÚČET &amp; BEZPEČNOST</strong>.
+      </div>
+
+      <div class="admin-tabs" role="tablist" aria-label="Sekce administrace">
+        <button type="button" class="sub-tab active" data-admin-tab="inquiries">POPTÁVKY &amp; PŘEHLED</button>
+        <button type="button" class="sub-tab" data-admin-tab="products">PRODUKTY &amp; CENY</button>
+        <button type="button" class="sub-tab" data-admin-tab="blog">BLOK / DENÍK</button>
+        <button type="button" class="sub-tab" data-admin-tab="software">SOFTWARE</button>
+        <button type="button" class="sub-tab" data-admin-tab="security">ÚČET &amp; BEZPEČNOST</button>
+      </div>
+
+      <div id="adminStatusBar" class="admin-feedback" role="status" aria-live="polite"></div>
+      <div id="adminTabBody"></div>
+    </section>
+  </main>
+
+  <script src="data.js?v=20261122s"></script>
+  <script src="admin.js?v=20261122s"></script>
+</body>
+</html>

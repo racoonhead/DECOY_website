@@ -2741,6 +2741,162 @@ button.context-crumb:hover,
   font-size: 0.86rem;
 }
 
+.mf-admin-link {
+  margin-left: 10px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  opacity: 0.62;
+  border-bottom: 1px dotted currentColor;
+}
+
+.mf-admin-link:hover {
+  opacity: 1;
+}
+
+/* Admin konzole (.admin-page — oddělená od veřejného rozhraní) */
+.admin-page {
+  --bg-main: var(--pcb-black);
+  --bg-card: var(--pcb-black-2);
+  --fg-main: var(--silk-white);
+  --fg-muted: var(--silver-hasl);
+  --border-col: rgba(185, 190, 199, 0.24);
+  background: var(--bg-main);
+  color: var(--fg-main);
+  min-height: 100vh;
+}
+
+.admin-main {
+  padding-top: 28px;
+  padding-bottom: 56px;
+}
+
+.admin-head-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-login-wrap {
+  max-width: 480px;
+  margin: 48px auto;
+}
+
+.admin-box {
+  max-width: 680px;
+  margin: 48px auto;
+}
+
+.admin-cmd-box {
+  padding: 10px 14px;
+  background: var(--pcb-black);
+  border: 1px solid var(--pantone-orange);
+  color: var(--silk-white);
+  font-family: var(--font-mono);
+  margin: 12px 0;
+}
+
+.admin-hint {
+  font-size: 0.8rem;
+  color: var(--silver-hasl);
+}
+
+.admin-form,
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  color: var(--silver-hasl);
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-bottom: 1px solid rgba(185, 190, 199, 0.25);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.admin-kpi-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--pantone-orange);
+}
+
+.admin-grid-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.admin-prod-edit {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.admin-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-feedback {
+  min-height: 22px;
+  font-size: 0.78rem;
+  color: #38e2c5;
+  margin-bottom: 12px;
+}
+
+.admin-feedback.is-error {
+  color: #ff6b6b;
+}
+
+.admin-user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(185, 190, 199, 0.22);
+}
+
+.admin-user-row,
+.admin-audit-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(185, 190, 199, 0.2);
+  background: rgba(20, 20, 24, 0.65);
+  font-size: 0.76rem;
+}
+
+@media (max-width: 960px) {
+  .admin-kpi-grid,
+  .admin-grid-form,
+  .admin-prod-edit {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* =========================================================
    TEATRO\\\SVJÖTLO — SAMOSTATNÝ BAREVNÝ A ANIMAČNÍ PROFIL
    ---------------------------------------------------------

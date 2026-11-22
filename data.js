@@ -95,6 +95,9 @@ const I18N = {
     cart_clear: "VYČISTIT SEZNAM",
     cart_copy: "ZKOPÍROVAT POPTÁVKU",
     cart_copied: "ZKOPÍROVÁNO",
+    cart_submit: "ODESLAT POPTÁVKU",
+    cart_contact_ph: "E-mail nebo kontakt (volitelné)...",
+    cart_sent: "ODESLÁNO DO ADMINU",
     cart_total_known: "Součet položek s uvedenou cenou",
     cart_tbd_note: "+ položky s cenou na dotaz",
     price_tbd: "Cena na dotaz / Připravujeme",
@@ -240,6 +243,9 @@ const I18N = {
     cart_clear: "CLEAR LIST",
     cart_copy: "COPY INQUIRY",
     cart_copied: "COPIED",
+    cart_submit: "SEND INQUIRY",
+    cart_contact_ph: "Email or contact (optional)...",
+    cart_sent: "SENT TO ADMIN",
     cart_total_known: "Subtotal of priced items",
     cart_tbd_note: "+ items priced on request",
     price_tbd: "Price on request / Coming soon",
@@ -2618,6 +2624,7 @@ function renderCartDrawerHTML(lang = getLang(), productsHref = "#AUD/catalog", c
       <div class="cart-notice">${dict.cart_notice}</div>
       <p class="cart-empty-msg">${dict.cart_empty}</p>
       <a href="${productsHref}" class="btn-outline btn-solid" ${closeNavAttr}>${dict.home_cta_products} →</a>
+      <div id="cartCopyFeedback" class="brief-feedback" style="margin-top:12px;" aria-live="polite"></div>
     `;
   }
   return `
@@ -2649,8 +2656,119 @@ function renderCartDrawerHTML(lang = getLang(), productsHref = "#AUD/catalog", c
       <button type="button" id="copyCartBtn" class="btn-outline btn-solid">${dict.cart_copy}</button>
       <button type="button" id="clearCartBtn" class="btn-outline">${dict.cart_clear}</button>
     </div>
+    <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
+      <input id="cartContactInput" class="blog-input" type="text" placeholder="${dict.cart_contact_ph}" />
+      <button type="button" id="submitCartInquiryBtn" class="btn-outline">${dict.cart_submit}</button>
+    </div>
     <div id="cartCopyFeedback" class="brief-feedback" aria-live="polite"></div>
   `;
+}
+
+let SERVER_BLOG_POSTS = [];
+const BASE_CATALOG_SNAPSHOT = CATALOG_ITEMS.map((item) => ({
+  id: item.id,
+  price: item.price,
+  priceFormatted: item.priceFormatted,
+  availability: item.availability,
+  short: item.short,
+  brand: item.brand,
+}));
+
+function applyPublicServerState(state) {
+  if (!state || typeof state !== "object") return false;
+  const overrides = state.productOverrides && typeof state.productOverrides === "object" ? state.productOverrides : {};
+
+  // Odstranit předchozí admin produkty a obnovit výchozí hodnoty před aplikací aktuálních úprav
+  for (let i = CATALOG_ITEMS.length - 1; i >= 0; i--) {
+    if (CATALOG_ITEMS[i].fromAdmin) CATALOG_ITEMS.splice(i, 1);
+  }
+  for (const snap of BASE_CATALOG_SNAPSHOT) {
+    const target = CATALOG_ITEMS.find((p) => p.id === snap.id);
+    if (!target) continue;
+    target.price = snap.price;
+    target.priceFormatted = snap.priceFormatted;
+    target.availability = snap.availability;
+    target.short = snap.short;
+    target.brand = snap.brand;
+  }
+
+  for (const [id, ov] of Object.entries(overrides)) {
+    const target = CATALOG_ITEMS.find((p) => p.id === id);
+    if (!target || !ov || typeof ov !== "object") continue;
+    if (ov.price !== undefined) {
+      target.price = ov.price;
+      target.priceFormatted = ov.price === null ? undefined : `${Number(ov.price).toLocaleString("cs-CZ")} Kč`;
+    }
+    if (ov.availability) target.availability = ov.availability;
+    if (ov.brand) target.brand = ov.brand;
+    if (ov.shortCs || ov.shortEn) {
+      target.short = {
+        cs: ov.shortCs || (typeof target.short === "string" ? target.short : target.short?.cs || ""),
+        en: ov.shortEn || ov.shortCs || (typeof target.short === "string" ? target.short : target.short?.en || ""),
+      };
+    }
+  }
+
+  if (Array.isArray(state.customProducts)) {
+    for (const cp of state.customProducts) {
+      if (cp && cp.id && !CATALOG_ITEMS.some((p) => p.id === cp.id)) {
+        CATALOG_ITEMS.push({ ...cp, fromAdmin: true });
+      }
+    }
+  }
+
+  if (state.softwareItems && typeof SOFTWARE_CATALOG !== "undefined") {
+    for (const brand of ["decoy", "teatro"]) {
+      for (const div of ["AUD", "LUX", "VID"]) {
+        const list = state.softwareItems[brand]?.[div];
+        if (Array.isArray(list)) {
+          SOFTWARE_CATALOG[brand][div] = list;
+        }
+      }
+    }
+  }
+
+  if (Array.isArray(state.blogPosts)) {
+    SERVER_BLOG_POSTS = state.blogPosts;
+  }
+  return true;
+}
+
+async function syncPublicServerState() {
+  if (typeof fetch !== "function" || typeof window === "undefined" || window.location.protocol === "file:") {
+    return false;
+  }
+  const ctrl = typeof AbortController === "function" ? new AbortController() : null;
+  const timer = ctrl ? setTimeout(() => ctrl.abort(), 1200) : null;
+  try {
+    const res = await fetch("/api/public-state", { cache: "no-store", signal: ctrl ? ctrl.signal : undefined });
+    if (!res.ok) return false;
+    const data = await res.json();
+    if (!data || !data.ok) return false;
+    return applyPublicServerState(data);
+  } catch {
+    return false;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
+async function submitPublicInquiry(payload) {
+  if (typeof fetch !== "function" || typeof window === "undefined" || window.location.protocol === "file:") {
+    return { ok: false, offline: true };
+  }
+  try {
+    const res = await fetch("/api/inquiries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Requested-With": "decoy-admin" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) return { ok: false, offline: res.status === 404 };
+    const data = await res.json();
+    return data && data.ok ? { ok: true, inquiry: data.inquiry } : { ok: false };
+  } catch {
+    return { ok: false, offline: true };
+  }
 }
 
 /* =========================================================
@@ -2682,6 +2800,7 @@ function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serial
         <div class="mf-left-group">
           <span class="mf-reg">+</span>
           <span class="mf-serial-left">${serialLeft}</span>
+          <a class="mf-admin-link" href="admin.html">ADMIN</a>
         </div>
 
         <div class="mf-brand-group">

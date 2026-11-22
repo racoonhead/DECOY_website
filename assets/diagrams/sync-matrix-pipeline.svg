@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620">
+  <defs>
+    <style>
+      .bg { fill: #0b0514; }
+      .card { fill: #140a24; stroke: rgba(186, 134, 252, 0.28); stroke-width: 1; }
+      .card-hi { fill: #140a24; stroke: rgba(217, 70, 239, 0.58); stroke-width: 1.2; }
+      .plot { fill: #090410; stroke: rgba(186, 134, 252, 0.28); stroke-width: 0.9; }
+      .title { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #f4ecff; letter-spacing: 0.08em; }
+      .hd { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #f4ecff; font-size: 13px; letter-spacing: 0.07em; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; fill: #d4c3f0; font-size: 9.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #9c84c4; font-size: 8.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #d946ef; font-size: 9.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #22d3ee; font-size: 9.5px; }
+      .reg { font-family: 'JetBrains Mono', monospace; fill: #9c84c4; font-size: 11px; opacity: 0.55; }
+    </style>
+    <marker id="arr-cy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arr-acc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d946ef"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1100" height="620"/>
+  <rect x="8" y="8" width="1084" height="604" fill="none" stroke="rgba(186, 134, 252, 0.28)" stroke-width="1"/>
+  <text class="reg" x="12" y="21">+</text><text class="reg" x="1082" y="21">+</text>
+  <text class="reg" x="12" y="609">+</text><text class="reg" x="1082" y="609">+</text>
+  <text class="mono-acc" x="26" y="23">DD-VD02 // SYNC_MATRIX · CYBER PURPLE PCB</text>
+  <text class="mono-sm" x="1074" y="23" text-anchor="end">10 HP · GENLOCK &amp; LUMA KEYER</text>
+  <line x1="26" y1="29" x2="1074" y2="29" stroke="rgba(186, 134, 252, 0.28)" stroke-width="0.9"/>
+  <text class="title" x="34" y="62" font-size="22">GENLOCK SYNC DISTRIBUTOR &amp; HARD/SOFT LUMA KEYER</text>
+  <line x1="34" y1="74" x2="1066" y2="74" stroke="rgba(186,134,252,0.22)" stroke-width="1"/>
+  <rect class="card-hi" x="34" y="96" width="320" height="478"/>
+  <text class="mono-cy" x="50" y="118">01 // GENLOCK &amp; SYNC STRIPPER</text>
+  <text class="title" x="50" y="142" font-size="18">PAL 50HZ / NTSC 60HZ LOCK</text>
+  <text class="mono-sm" x="50" y="166">• Composite Video IN (75 Ω loop-thru)</text>
+  <text class="mono-sm" x="50" y="184">• Internal crystal master fallback (SRC)</text>
+  <text class="mono-sm" x="50" y="202">• Extracts frame-accurate Eurorack clocks:</text>
+  <rect class="plot" x="50" y="218" width="288" height="148"/>
+  <text class="mono-acc" x="62" y="238">EURORACK CLOCK &amp; SYNC OUTPUTS (+5 V)</text>
+  <text class="mono" x="62" y="264">→ H-SYNC: 15.625 kHz line trigger (to RASTER)</text>
+  <text class="mono" x="62" y="286">→ V-SYNC: 50 / 60 Hz frame trigger</text>
+  <text class="mono" x="62" y="308">→ FRM CLK: /1 /2 /4 divided tempo clock</text>
+  <text class="mono" x="62" y="330">→ FLD OUT: Odd/Even field gate (25/30 Hz)</text>
+  <rect class="plot" x="50" y="382" width="288" height="172"/>
+  <text class="mono-cy" x="62" y="404">WHY GENLOCK MATTERS:</text>
+  <text class="mono-sm" x="62" y="428">Audio-driven LFOs &amp; sequencers run</text>
+  <text class="mono-sm" x="62" y="446">locked to video frame boundaries —</text>
+  <text class="mono-sm" x="62" y="464">zero rolling bars on cameras &amp; CRTs.</text>
+  <text class="mono-acc" x="62" y="502">Locks CUE_FRAMES, LUX_CORE &amp; RASTER</text>
+  <line x1="354" y1="335" x2="410" y2="335" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arr-cy)"/>
+  <rect class="card-hi" x="414" y="96" width="376" height="478"/>
+  <text class="mono-acc" x="432" y="118">02 // ANALOG LUMA &amp; XOR KEYER</text>
+  <text class="title" x="432" y="142" font-size="18">THRESHOLD · SOFTNESS · SOLARIZE</text>
+  <rect class="plot" x="432" y="160" width="340" height="186"/>
+  <text class="mono-cy" x="444" y="180">TRANSFER CURVES (NORM / INV / XOR):</text>
+  <polyline fill="none" stroke="#22d3ee" stroke-width="2" points="454,314 550,314 550,204 750,204"/>
+  <line x1="454" y1="314" x2="750" y2="204" stroke="#d946ef" stroke-width="1.8" stroke-dasharray="5 3"/>
+  <polyline fill="none" stroke="#facc15" stroke-width="1.4" points="454,314 520,214 585,314 650,214 750,254"/>
+  <text class="mono-sm" x="454" y="334">Hard Comparator (Cyan) · Soft Mix (Magenta) · Solarize (Yellow)</text>
+  <rect class="plot" x="432" y="364" width="340" height="190"/>
+  <text class="mono-acc" x="444" y="386">KEYER ROUTING MATRIX:</text>
+  <text class="mono" x="444" y="410">• VID A IN (0–1 V) → foreground source</text>
+  <text class="mono" x="444" y="432">• VID B IN (0–1 V) → background source</text>
+  <text class="mono" x="444" y="454">• KEY CV / THRS CV → threshold swept by rack CV</text>
+  <text class="mono" x="444" y="476">• KEY POL: NORM / INVERT / ANALOG XOR</text>
+  <text class="mono-cy" x="444" y="510">Cut hard graphic silhouettes or soft dissolves</text>
+  <line x1="790" y1="335" x2="846" y2="335" stroke="#d946ef" stroke-width="1.8" marker-end="url(#arr-acc)"/>
+  <rect class="card" x="850" y="160" width="216" height="350"/>
+  <text class="mono-cy" x="868" y="184">03 // OUTPUTS</text>
+  <text class="title" x="868" y="208" font-size="18">MIX · KEY · INV</text>
+  <text class="mono-sm" x="868" y="236">• MIX OUT (0–1 V / 75 Ω)</text>
+  <text class="mono-sm" x="868" y="256">• KEY OUT (1 V comparator gate)</text>
+  <text class="mono-sm" x="868" y="276">• INV OUT (solarized inversion)</text>
+  <text class="mono-sm" x="868" y="296">• Loop-thru termination toggle</text>
+  <rect class="plot" x="868" y="324" width="180" height="164"/>
+  <text class="mono-acc" x="880" y="350">POWER &amp; SPECS:</text>
+  <text class="mono-sm" x="880" y="374">Width: 10 HP (50.8 mm)</text>
+  <text class="mono-sm" x="880" y="394">Video BW: &gt; 15 MHz</text>
+  <text class="mono-sm" x="880" y="414">Key Slew: &lt; 18 ns</text>
+  <text class="mono-sm" x="880" y="434">Rails: ±12 V</text>
+</svg>

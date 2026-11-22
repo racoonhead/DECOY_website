@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 178" width="760" height="178">
+  <defs>
+    <style>
+      .bg { fill: #0b0514; }
+      .card { fill: #140a24; stroke: rgba(186, 134, 252, 0.28); stroke-width: 1; }
+      .card-hi { fill: #140a24; stroke: rgba(217, 70, 239, 0.58); stroke-width: 1.2; }
+      .plot { fill: #090410; stroke: rgba(186, 134, 252, 0.28); stroke-width: 0.9; }
+      .title { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #f4ecff; letter-spacing: 0.08em; }
+      .hd { font-family: 'Barlow Condensed', 'Bahnschrift', sans-serif; font-weight: 600; fill: #f4ecff; font-size: 13px; letter-spacing: 0.07em; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; fill: #d4c3f0; font-size: 9.5px; }
+      .mono-sm { font-family: 'JetBrains Mono', monospace; font-weight: 400; fill: #9c84c4; font-size: 8.5px; }
+      .mono-acc { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #d946ef; font-size: 9.5px; }
+      .mono-cy { font-family: 'JetBrains Mono', monospace; font-weight: 600; fill: #22d3ee; font-size: 9.5px; }
+      .reg { font-family: 'JetBrains Mono', monospace; fill: #9c84c4; font-size: 11px; opacity: 0.55; }
+    </style>
+    <marker id="arr-cy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arr-acc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d946ef"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="760" height="178"/>
+  <rect x="8" y="8" width="744" height="162" fill="none" stroke="rgba(186, 134, 252, 0.28)" stroke-width="1"/>
+  <text class="reg" x="12" y="21">+</text><text class="reg" x="742" y="21">+</text>
+  <text class="reg" x="12" y="167">+</text><text class="reg" x="742" y="167">+</text>
+  <text class="mono-acc" x="26" y="23">RASTER // RGB WINDOW COLORIZER &amp; AUDIO-TO-CRT DEFLECTION</text>
+  <text class="mono-sm" x="734" y="23" text-anchor="end">15 MHZ VIDEO BANDWIDTH</text>
+  <line x1="26" y1="29" x2="734" y2="29" stroke="rgba(186, 134, 252, 0.28)" stroke-width="0.9"/>
+  <rect class="card-hi" x="16" y="38" width="430" height="124" rx="2"/>
+  <text class="hd" x="26" y="55" fill="#d946ef">3-BAND RGB COLORIZER + HUE ROTATION</text>
+  <rect class="plot" x="26" y="63" width="410" height="88"/>
+  <text class="mono-sm" x="36" y="80">COLORIZE scans Luma (0–1 V) across RGB overlap windows:</text>
+  <rect x="36" y="92" width="126" height="44" fill="#ef4444" fill-opacity="0.22" stroke="#ef4444"/>
+  <rect x="168" y="92" width="126" height="44" fill="#4ade80" fill-opacity="0.22" stroke="#4ade80"/>
+  <rect x="300" y="92" width="126" height="44" fill="#3b82f6" fill-opacity="0.22" stroke="#3b82f6"/>
+  <text class="mono" x="99" y="118" text-anchor="middle">R SHADOW BAND</text>
+  <text class="mono" x="231" y="118" text-anchor="middle">G MIDTONE BAND</text>
+  <text class="mono" x="363" y="118" text-anchor="middle">B HIGHLIGHT</text>
+  <rect class="card" x="458" y="38" width="286" height="124" rx="2"/>
+  <text class="hd" x="468" y="55" fill="#22d3ee">COLOR MODE &amp; GAMMA MATRIX</text>
+  <rect class="plot" x="468" y="63" width="266" height="42"/>
+  <text class="mono-cy" x="478" y="80">RGB · YUV · COMP ENCODE · INVERT</text>
+  <text class="mono-sm" x="478" y="95">Direct 0–1 V @ 75 Ω or Composite + Sync</text>
+  <rect class="plot" x="468" y="111" width="266" height="40"/>
+  <text class="mono-acc" x="478" y="128">AUDIO IN → LINE SCAN DEFLECTION</text>
+  <text class="mono-sm" x="478" y="142">Synthesizes music directly onto CRT scanlines</text>
+</svg>

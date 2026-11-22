@@ -609,6 +609,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const initialDiv = params.get("div") || null;
   renderProductPage(initialId, { divKey: initialDiv });
 
+  if (typeof syncPublicServerState === "function") {
+    syncPublicServerState().then((synced) => {
+      if (synced && currentProdId) {
+        renderProductPage(currentProdId, { divKey: currentDivCtx });
+      }
+    });
+  }
+
   document.getElementById("langToggleProd")?.addEventListener("click", () => {
     currentLang = currentLang === "cs" ? "en" : "cs";
     setLang(currentLang);
