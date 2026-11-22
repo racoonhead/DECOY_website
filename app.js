@@ -62,6 +62,8 @@ let currentSecIdx = 0;
 let currentSectionItems = [];
 let currentModalId = null;
 
+if (typeof document !== "undefined") applyBrandProfileDOM(currentBrand);
+
 function buildUrlWithBrand(brand = currentBrand, hashStr = "") {
   const pathPart = (window.location && window.location.pathname) || "index.html";
   const cleanHash = hashStr ? (hashStr.startsWith("#") ? hashStr : `#${hashStr}`) : "";
@@ -885,8 +887,8 @@ function renderDivision(divKey, tabKey = currentTab, { fx = false, preserveScrol
     </section>
     ${body}
   `;
-  /* postupné odhalení obsahu jen při skutečné změně sekce (ne při filtrování) */
-  content.classList.toggle("dd-enter", !preserveScroll);
+  /* Scénický nástup (divadelní opona / dimmer) se používá výhradně pro TEATRO; DECØY používá vlastní původní FX */
+  content.classList.toggle("teatro-enter", isTeatro && !preserveScroll);
 
   const targetUrl = buildUrlWithBrand(currentBrand, `${divKey}/${currentTab}`);
   if (`${location.pathname || "index.html"}${location.search || ""}${location.hash || ""}` !== targetUrl) {
@@ -1202,6 +1204,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("openTeatroFromDiv")?.addEventListener("click", () => {
     const nextBrand = currentBrand === "teatro" ? "decoy" : "teatro";
+    if (nextBrand === "teatro") closeCartDrawer();
     setActiveBrand(nextBrand, { updateUrl: false });
     if (currentDivision) {
       renderDivision(currentDivision, currentTab, { fx: true, brand: nextBrand });
