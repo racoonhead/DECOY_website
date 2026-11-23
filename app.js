@@ -10,7 +10,7 @@ const DIVISIONS = {
       cs: "Nástroje pro signálovou cestu do moduláru i ven, kytarové a experimentální pedály, zvukové poznámky a živá vystoupení.",
       en: "Instruments for getting sound in and out of the rack, experimental stompboxes, audio notes, and live performances.",
     },
-    eurorack: ["the-in", "the-out", "elements-v04", "cue-frames", "cube-seq", "monobox"],
+    eurorack: ["the-in", "the-out", "elements-v04", "opl3-fm", "triple-psg", "cue-frames", "cube-seq", "monobox", "psu-eurorack"],
     desktop: [],
     pedals: ["fuzz-01", "tape-glitch"],
   },
@@ -23,7 +23,7 @@ const DIVISIONS = {
       cs: "Řízení divadelních a koncertních světel přímo z modulárního syntezátoru. CV-to-DMX převodníky, světelné loopery a scénické ovladače.",
       en: "Controlling theatrical and concert lighting directly from a modular synthesizer. CV-to-DMX bridges, light loopers, and scene controllers.",
     },
-    eurorack: ["dmx-out", "patchbay-8ch", "patchbay-16ch", "lux-core", "cue-frames"],
+    eurorack: ["dmx-out", "dmx-processor", "patchbay-8ch", "patchbay-16ch", "lux-core", "cue-frames", "psu-eurorack"],
     desktop: [],
   },
   VID: {

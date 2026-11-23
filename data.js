@@ -1740,6 +1740,374 @@ const PRODUCTS = {
     ],
     related: ["fvck-girl", "dmx-out", "cue-frames"],
   },
+
+  /* ------------------------------------------------------- RETRO & NOVÉ MODULY */
+  "opl3-fm": {
+    division: "AUD",
+    name: "OPL3 FM",
+    hp: "18 HP",
+    serial: "DD-RT04 // RTR.FM.01",
+    status: { cs: "Schéma + 2vrstvá PCB + panel + firmware", en: "Schematic + 2-layer PCB + panel + firmware" },
+    image: "assets/products/opl3-fm/preview.png?v=20261123g",
+    tagline: {
+      cs: "Monofonní 4-operátorový FM oscilátor se skutečným čipem Yamaha YMF262-M (OPL3) a 16bit DAC YAC512-M.",
+      en: "Monophonic 4-operator FM oscillator powered by a genuine Yamaha YMF262-M (OPL3) & 16-bit YAC512-M DAC.",
+    },
+    short: {
+      cs: "18 HP RETRO edice (smaragdová maska + ENIG zlato): autentický LSI čip YMF262-M @ 14,31818 MHz, 4 algoritmy 4-OP FM, 8 průběhů WS0–WS7, hardwarový ADSR / Drone režim, 15bit oversampling ADC a dvoubodová 1V/Oct kalibrace.",
+      en: "18 HP RETRO edition (emerald green + ENIG gold): genuine YMF262-M LSI silicon @ 14.31818 MHz, 4 4-OP FM algorithms, 8 OPL3 waveforms (WS0–WS7), hardware ADSR / Drone mode, 15-bit oversampled ADC, and 2-point 1V/Oct calibration.",
+    },
+    long: {
+      cs: [
+        "SKUTEČNÝ KŘEMÍK YAMAHA OPL3 V EURORACKU: OPL3 FM není softwarová emulace — veškerý zvuk generuje originální 4-operátorový FM syntezátorový čip Yamaha YMF262-M napojený na sériový 16bitový DAC Yamaha YAC512-M s přesným hodinovým oscilátorem 14,31818 MHz (vzorkovací kmitočet 49,716 kHz). O řízení sběrnice, snímání potenciometrů a CV vstupů se stará 32bitový mikrokontrolér STM32G0B1RET6 (64 MHz).",
+        "4-OP FM ALGORITMY, RATIO & 8 PRŮBĚHŮ (WS0–WS7): Ovladač ALGO vybírá jeden ze 4 hardwarových 4-operátorových FM algoritmů (FM-FM, FM-AM, AM-FM, AM-AM) s automatickou kompenzací hlasitosti nosičů. Knob RATIO volí z 24 přednastavených poměrů násobičů operátorů (s hysterezí proti přeskokům), FM INDEX řídí modulační hloubku, FEEDBACK zpětnou vazbu OP1 (0–7) a WAVE přepíná 12 kombinací osmi ikonických průběhů OPL3 (WS0–WS7 zobrazených přímo v osciloskopickém okně na čelním panelu).",
+        "HARMONICKÁ PŘESNOST & DRONE REŽIM: Vstup 1V/OCT (0–8 V) prochází přesným tenkovrstvým děličem (0,1 %, 25 ppm/°C) a 15bitovým hardwarově převzorkovaným ADC (64× oversampling na referenci REF3030 3,000 V) s rozlišením ~0,34 centu a dvoubodovou kalibrací (0 V / 5 V) uloženou s CRC-32 ve Flash. Při vytažení kabelu ze vstupu GATE se modul automaticky přepne do kontinuálního Drone režimu; po zapojení Gate spouští interní hardwarovou obálku ADSR všech operátorů.",
+        "ANALOGOVÝ VÝSTUP & RETRO PANEL: Dvojice sample-hold kondenzátorů C0G a trojpólový rekonstrukční LPF (TL074IDR, útlum vzorkování > 27 dB) dodávají čistý 10 Vpp signál přes výstupní ochranu 1,00 kΩ. Všechna SMD elektronika sedí jednostranně na B.Cu dvouvrstvé desky a smaragdově zelený přední panel s ENIG zlatými ISA edge-fingery a reliéfem křemíkového čipu (retro_silicon) nese schémata všech 4 algoritmů i 8 průběhů OPL3.",
+      ],
+      en: [
+        "GENUINE YAMAHA OPL3 SILICON IN EURORACK: OPL3 FM is no software emulation—all audio is synthesized directly by an authentic Yamaha YMF262-M 4-operator FM chip paired with a YAC512-M 16-bit serial DAC clocked at 14.31818 MHz (49.716 kHz sample rate). An STM32G0B1RET6 MCU (64 MHz) handles shadow-cached register writes, hysteresis filtering, and high-resolution CV/pot scanning.",
+        "4-OP FM ALGORITHMS, RATIOS & 8 WAVEFORMS (WS0–WS7): ALGO sweeps across all 4 hardware 4-operator topologies (FM-FM, FM-AM, AM-FM, AM-AM) with automatic carrier gain compensation. RATIO steps cleanly through 24 curated operator multiplier ratios, FM INDEX sets modulation depth, FEEDBACK controls OP1 self-modulation (0–7), and WAVE selects 12 combinations of the 8 classic OPL3 waveforms printed directly on the panel.",
+        "1V/OCT PRECISION & AUTOMATIC DRONE: The 1V/OCT input (0–8 V) uses 0.1% / 25 ppm/°C thin-film dividers feeding a 15-bit hardware-oversampled ADC (64× on a 3.000 V REF3030 reference, ~0.34-cent step) with 2-point Flash calibration (CRC-32 protected). Unplugging the GATE jack switches straight to continuous Drone mode; patching a Gate engages the YMF262's internal hardware ADSR across all active operators.",
+        "3RD-ORDER LPF & RETRO PCB PANEL: C0G sample-and-hold capacitors and a 3rd-order TL074 reconstruction filter (> 27 dB sample-clock attenuation) deliver a hot 10 Vpp Eurorack output. Built on a 2-layer single-sided B.Cu SMD PCB behind an emerald green + ENIG gold RETRO front panel with silicon-die copper relief and ISA edge fingers.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Autentická Sound Blaster / AdLib FM syntéza", en: "Authentic Sound Blaster / AdLib FM tones" },
+        d: {
+          cs: "Skutečný čip YMF262-M dává nezaměnitelné kovové basy, zvonky, chiptune leady i syrovou digitální zpětnou vazbu přímo v moduláru.",
+          en: "Real YMF262-M silicon delivers unmistakable metallic basses, bells, chiptune leads, and raw feedback grit straight in your rack.",
+        },
+      },
+      {
+        t: { cs: "4-OP FM s CV modulací v reálném čase", en: "Live CV modulation over 4-OP FM" },
+        d: {
+          cs: "Vstupy FM CV, RATIO CV a FB CV dovolují modulovat barvu, poměr operátorů i feedback pomocí LFO nebo obálek bez klikání.",
+          en: "Dedicated FM CV, RATIO CV, and FB CV jacks sweep timbre, harmonic ratios, and feedback smoothly via rack LFOs and envelopes.",
+        },
+      },
+      {
+        t: { cs: "Drone VCO nebo samostatný ADSR hlas", en: "Drone VCO or self-contained ADSR voice" },
+        d: {
+          cs: "Bez zapojeného Gate hraje modul trvale jako komplexní 4-OP oscilátor; s Gate kabelem funguje jako kompletní FM hlas s vestavěným ADSR.",
+          en: "Unpatched Gate gives a continuous 4-OP drone oscillator; patched Gate turns it into a full FM voice with onboard hardware ADSR.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "TUNE, RATIO (24 poměrů), FM INDEX, FEEDBACK (0–7), ALGO (1–4 s blokovými ikonami), WAVE (12 sad WS0–WS7)",
+        "ATK, DEC, SUS, REL — interní hardwarová obálka YMF262-M + LEVEL (výstupní úroveň)",
+        "Vstupy: 1V/OCT (0–8 V), FM CV, RATIO CV, FB CV (0–5 V), GATE (0–10 V + detekce Drone)",
+        "Výstup: OUT (10 Vpp / 1,00 kΩ) + indikátory GATE / CAL a tlačítko SW_CAL na PCB",
+      ],
+      en: [
+        "TUNE, RATIO (24 presets), FM INDEX, FEEDBACK (0–7), ALGO (1–4 with block icons), WAVE (12 WS0–WS7 sets)",
+        "ATK, DEC, SUS, REL — YMF262-M internal hardware envelope + analog LEVEL attenuator",
+        "Inputs: 1V/OCT (0–8 V), FM CV, RATIO CV, FB CV (0–5 V), GATE (0–10 V + Drone auto-detect)",
+        "Output: OUT (10 Vpp / 1.00 kΩ) + GATE / CAL LEDs and rear SW_CAL calibration button",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "18 HP (91,24 mm × 128,50 mm) / 3U", "doc", true),
+      S("Zvukový čip & DAC", "Sound IC & DAC", "Yamaha YMF262-M (OPL3) + YAC512-M (16 bit DAC)", "doc", true),
+      S("Hodinový kmitočet", "Master clock", "14,31818 MHz (fs ≈ 49,716 kHz)", "doc", true),
+      S("Řídicí MCU", "Control MCU", "STM32G0B1RET6 (Cortex-M0+ @ 64 MHz, 15bit oversampled ADC)", "doc", true),
+      S("Pitch & CV vstupy", "Pitch & CV inputs", { cs: "1V/OCT (0–8 V, ~0,34 centu) + 3× CV (0–5 V) + Gate/Drone", en: "1V/OCT (0–8 V, ~0.34 ct) + 3× CV (0–5 V) + Gate/Drone" }, "doc", true),
+      S("Audio výstup", "Audio output", "10,0 Vpp (3. řád LPF, Z_out = 1,00 kΩ)", "doc", true),
+      S("Čelní panel", "Front panel", { cs: "RETRO smaragdově zelená PCB + ENIG zlato + reliéf retro_silicon", en: "RETRO emerald green PCB + ENIG gold + retro_silicon relief" }, "doc"),
+      S("Odběr +12 V / −12 V", "Current draw +12 V / −12 V", "+12 V ≈ 76 mA · −12 V ≈ 16 mA", "doc", true),
+    ],
+    gallery: [
+      { src: "assets/products/opl3-fm/preview.png?v=20261123g", cap: { cs: "Čelní panel 18 HP — RETRO smaragdová + ENIG zlato (retro_silicon)", en: "18 HP Front Panel — RETRO Emerald + ENIG Gold (retro_silicon)" } },
+      { src: "assets/products/opl3-fm/pcb_3d_top.png?v=20261123g", cap: { cs: "3D render PCB — přední THT strana (1:1 s panelem)", en: "3D PCB render — front THT side (1:1 panel alignment)" } },
+      { src: "assets/products/opl3-fm/pcb_3d_back.png?v=20261123g", cap: { cs: "3D render PCB — zadní SMD strana (YMF262-M, YAC512-M, STM32G0B1)", en: "3D PCB render — bottom SMD side (YMF262-M, YAC512-M, STM32G0B1)" } },
+    ],
+    related: ["triple-psg", "elements-v04", "cube-seq", "the-out"],
+  },
+
+  "triple-psg": {
+    division: "AUD",
+    name: "TRIPLE PSG",
+    hp: "20 HP",
+    serial: "DD-RT03 // RTR.PSG.03",
+    status: { cs: "Schéma + PCB + panel + firmware + SysEx", en: "Schematic + PCB + panel + firmware + SysEx" },
+    image: "assets/products/triple-psg/preview.png?v=20261123g",
+    tagline: {
+      cs: "Tříhlasý chiptune oscilátor s paticí pro originální AY-3-8910 / YM2149F, MIDI CC & SysEx.",
+      en: "Triple chiptune voice with drop-in autodetect socket for AY-3-8910 / YM2149F, MIDI CC & SysEx.",
+    },
+    short: {
+      cs: "20 HP RETRO edice (smaragdová + ENIG zlato): 3 nezávislé PSG kanály (OSC A/B/C + MIX OUT), autodetekce AY-3-8910 / YM2149F @ 2,000 MHz, 8 hardwarových obálek, LFSR šum, FM IN, TRS MIDI Type-A (Ch 1–3) i přímý zápis registrů přes SysEx.",
+      en: "20 HP RETRO edition (emerald green + ENIG gold): 3 independent PSG voices (OSC A/B/C + MIX OUT), AY-3-8910 / YM2149F drop-in autodetection @ 2.000 MHz, 8 hardware envelopes, LFSR noise, FM IN, TRS Type-A MIDI (Ch 1–3) & raw register SysEx.",
+    },
+    long: {
+      cs: [
+        "AUTODETEKCE AY-3-8910 vs. YM2149F BEZ JUMPERŮ: TRIPLE PSG osazuje originální 40pinovou DIP patici (U6), do které lze bez jakýchkoli úprav zasunout legendární zvukový čip General Instrument AY-3-8910 (ZX Spectrum 128K, MSX, Amstrad CPC) nebo Yamaha YM2149F (Atari ST). Při startu firmware STM32C071 čip automaticky identifikuje zpětným čtením registru R1, dodává mu přesné 2,0000 MHz (±50 ppm) hodiny a přizpůsobí obálkové rozlišení (16 kroků u AY vs. 32 kroků u YM).",
+        "TŘI NEZÁVISLÉ HLASY + CHYTRÝ ANALOGOVÝ MIX: Sekce OSC A (MAIN) nabízí plné panelové ovládání: PITCH A, FINE A, FM AMT (bipolární FM modulace z jacku FM IN), LEVEL A, ENV SPD, přepínače TONE / BOTH / NOISE a ENV ON / OFF, plus tlačítko SHAPE se třemi indikačními LED (S0–S2) pro cyklování 8 tvarů hardwarové obálky. Sekce OSC B a OSC C disponují vlastními ovladači PITCH a LEVEL a každý z hlasů má vlastní 1V/OCT, LVL CV, GATE a samostatný výstup OSC A/B/C OUT (8,5–12,5 Vpp) i společný součtový výstup MIX OUT.",
+        "PLNÝ MIDI & SYSEX PŘÍSTUP PRO VŠECHNY 3 KANÁLY: Optoizolovaný vstup MIDI A IN (3,5 mm TRS Type A, 6N137S) mapuje MIDI kanály 1–3 přímo na OSC A, OSC B a OSC C včetně Velocity a Pitch Bendu (±2 půltóny). Zatímco fyzický panel šetří místo u OSC B a C, přes MIDI CC (CC 7 Volume, CC 14 Fine Tune, CC 15 Tone/Noise/Mute, CC 16 Env Enable, CC 17 Noise Period, CC 18 Env Period, CC 19 Env Shape) i SysEx rámce (F0 7D 50 <CMD> ... F7) máte identický přístup k úplně všem funkcím včetně přímého zápisu do registrů R0–R15.",
+        "RETRO ARCADE PANEL & 1:1 HARDWAROVÝ DESIGN: Na smaragdově zeleném panelu s měděným reliéfem retro_arcade (Outrun slunce, Space Invaders a laserová mřížka) jsou přímo vytištěny průběhy všech 8 hardwarových obálek (000–111), blokové schéma 3× PSG MIX (0xFFFD), piktogram 5pin DIN MIDI i ISA zlaté edge-fingery.",
+      ],
+      en: [
+        "JUMPER-FREE AY-3-8910 / YM2149F AUTODETECTION: TRIPLE PSG features a 40-pin DIP socket (U6) accepting either a classic General Instrument AY-3-8910 (ZX Spectrum 128K, MSX, Amstrad CPC) or Yamaha YM2149F (Atari ST) with zero hardware jumpers. On boot, the STM32C071 firmware identifies the installed chip via register readback, clocks it at a rock-solid 2.0000 MHz (±50 ppm), and adapts to 16-step (AY) or 32-step (YM) envelope curves.",
+        "THREE INDEPENDENT VOICES + HEADROOM-SAFE MIX: OSC A (MAIN) provides full panel control—PITCH A, FINE A, bipolar FM AMT, LEVEL A, ENV SPD, TONE / BOTH / NOISE and ENV ON / OFF toggles, plus the arcade SHAPE switch with S0–S2 LEDs cycling through 8 hardware envelope modes. OSC B and OSC C offer dedicated PITCH, LEVEL, 1V/OCT, LVL CV, GATE, and individual 8.5–12.5 Vpp outputs alongside a clipping-free MIX OUT.",
+        "FULL MIDI CC & RAW REGISTER SYSEX: Opto-isolated TRS Type-A MIDI IN (6N137S) maps MIDI Channels 1–3 to OSC A, B, and C with Velocity and ±2-semitone Pitch Bend. Through MIDI CC (CC 7 Volume, CC 14 Fine Tune, CC 15 Tone/Noise/Mute, CC 16 Env Enable, CC 17–19 Noise & Env) and custom SysEx (F0 7D 50 <CMD> ... F7), OSC B and C gain identical control over Tone/Noise mixing, envelopes, and raw R0–R15 register writes.",
+        "RETRO ARCADE PANEL: Built on an emerald-green + ENIG gold PCB front panel with retro_arcade copper relief (Outrun striped sun, Space Invaders, perspective laser grid), featuring an onboard AY-3-8910 envelope reference chart (000–111), 3× PSG mixer diagram, MIDI DIN icon, and ISA gold edge fingers.",
+      ],
+    },
+    comparisonMeta: {
+      num: { cs: "// MIDI CC & SYSEX MAPA (ETAPA 10)", en: "// MIDI CC & SYSEX SPEC (STAGE 10)" },
+      heading: { cs: "HARDWAROVÁ ARCHITEKTURA & SYSEX PROTOKOL", en: "SILICON AUTODETECT & MIDI / SYSEX SPEC" },
+      col0: { cs: "OBLAST / PŘÍKAZ", en: "FEATURE / COMMAND" },
+      col1: { cs: "HARDWAROVÉ OVLÁDÁNÍ", en: "FRONT PANEL CONTROL" },
+      col2: { cs: "MIDI CC (CH 1 / 2 / 3)", en: "MIDI CC (CH 1 / 2 / 3)" },
+      col3: { cs: "SYSEX (F0 7D 50 ... F7)", en: "SYSEX (F0 7D 50 ... F7)" },
+    },
+    comparison: [
+      {
+        f: { cs: "Mix Tone / Both / Noise / Mute", en: "Tone / Both / Noise / Mute" },
+        orig: { cs: "SW1 přepínač pro OSC A", en: "SW1 toggle for OSC A" },
+        v04: { cs: "CC 15 (0..3) nezávisle pro OSC A/B/C", en: "CC 15 (0..3) independently on OSC A/B/C" },
+        imp: { cs: "CMD 0x05 <voice 0..2> <mode 0..3>", en: "CMD 0x05 <voice 0..2> <mode 0..3>" },
+      },
+      {
+        f: { cs: "Hardwarová obálka (R11–R13)", en: "Hardware envelope (R11–R13)" },
+        orig: { cs: "SW2 (ENV) + RV5 (ENV SPD) + SW4 (SHAPE)", en: "SW2 (ENV) + RV5 (ENV SPD) + SW4 (SHAPE)" },
+        v04: { cs: "CC 16 (On/Off), CC 18 (Period), CC 19 (Shape)", en: "CC 16 (On/Off), CC 18 (Period), CC 19 (Shape)" },
+        imp: { cs: "CMD 0x03 (16b perioda) & CMD 0x04 (tvar + trig)", en: "CMD 0x03 (16b period) & CMD 0x04 (shape + trig)" },
+      },
+      {
+        f: { cs: "LFSR šumový generátor (R6)", en: "LFSR noise generator (R6)" },
+        orig: { cs: "Sdílený šumový generátor PSG", en: "Shared PSG noise generator" },
+        v04: { cs: "CC 17 (5bit Noise Period 0..31)", en: "CC 17 (5-bit Noise Period 0..31)" },
+        imp: { cs: "CMD 0x02 <period 0..31>", en: "CMD 0x02 <period 0..31>" },
+      },
+      {
+        f: { cs: "Přímý přístup do registrů", en: "Raw PSG register access" },
+        orig: { cs: "Autodetekce AY-3-8910 / YM2149F při startu", en: "Boot autodetect AY-3-8910 / YM2149F" },
+        v04: { cs: "CC 7 (Vol), CC 14 (±100 ct), Pitch Bend (±2 st)", en: "CC 7 (Vol), CC 14 (±100 ct), Pitch Bend (±2 st)" },
+        imp: { cs: "CMD 0x01 <reg 0..15> <lo4> <hi4> · CMD 0x07 Save", en: "CMD 0x01 <reg 0..15> <lo4> <hi4> · CMD 0x07 Save" },
+      },
+    ],
+    useCases: [
+      {
+        t: { cs: "Tříhlasé chiptune akordy & arpeggia", en: "Three-voice chiptune chords & arps" },
+        d: {
+          cs: "Tři nezávislé 1V/Oct hlasy ze společného čipu nebo přes jediný MIDI TRS kabel na kanálech 1–3.",
+          en: "Three independent 1V/Oct voices from real retro silicon—patched via CV/Gate or driven polyphonically over MIDI Ch 1–3.",
+        },
+      },
+      {
+        t: { cs: "Hardwarové obálky jako rychlá modulace", en: "Hardware envelopes & bass buzz" },
+        d: {
+          cs: "Klasické 16/32krokové trojúhelníkové a pilovité obálky PSG mohou běžet v audio pásmu pro typický Atari ST / ZX bass buzz.",
+          en: "Run the iconic 16/32-step PSG hardware triangle and sawtooth envelopes into audio rates for classic Atari ST / ZX buzz tones.",
+        },
+      },
+      {
+        t: { cs: "LFSR chiptune bicí & retro šumy", en: "LFSR chiptune drums & noise" },
+        d: {
+          cs: "Kombinace obdélníku, sdíleného LFSR šumu a rychlých obálek dává autentické 8bitové hajtky, snary i laserové efekty.",
+          en: "Blend square tones with the shared LFSR noise generator and snappy envelopes for authentic 8-bit snares, hats, and arcade SFX.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "OSC A (MAIN): PITCH A, FINE A, FM AMT, LEVEL A, ENV SPD, přepínače TONE/NOISE & ENV/OFF, tlačítko SHAPE + LED S0–S2",
+        "OSC B & OSC C: PITCH B/C, LEVEL B/C, vstupy 1V/OCT, LVL CV, GATE a výstupy OSC A/B/C OUT + společný MIX OUT",
+        "MIDI A IN (3,5 mm TRS Type A) + MIDI RX LED + zadní 40pin patice U6 (AY-3-8910 / YM2149F) a tlačítko CAL",
+      ],
+      en: [
+        "OSC A (MAIN): PITCH A, FINE A, FM AMT, LEVEL A, ENV SPD, TONE/NOISE & ENV/OFF toggles, arcade SHAPE button + S0–S2 LEDs",
+        "OSC B & OSC C: PITCH B/C, LEVEL B/C, 1V/OCT, LVL CV, GATE inputs, individual OSC A/B/C outputs & summed MIX OUT",
+        "MIDI A IN (3.5 mm TRS Type A) + MIDI RX LED + rear 40-pin U6 socket (AY-3-8910 / YM2149F) and CAL button",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "20 HP (101,40 mm × 128,50 mm) / 3U", "doc", true),
+      S("Zvukový čip (patice U6)", "Sound IC (U6 socket)", "AY-3-8910 / YM2149F (automatická detekce při startu)", "doc", true),
+      S("Hodinový signál", "Clock frequency", "2,0000 MHz (±50 ppm, 50 % střída, 5 V CMOS)", "doc", true),
+      S("Řídicí MCU", "Control MCU", "STM32C071 (snímání CV/potů, MIDI UART & SysEx)", "doc", true),
+      S("Audio výstupy", "Audio outputs", { cs: "OSC A/B/C OUT (8,5–12,5 Vpp) + MIX OUT (bez ořezu při A+B+C)", en: "OSC A/B/C OUT (8.5–12.5 Vpp) + MIX OUT (clipping-free sum)" }, "doc", true),
+      S("CV & Gate vstupy", "CV & Gate inputs", { cs: "3× 1V/OCT, 3× LVL CV (16 log kroků), FM IN, 3× Gate (práh ~1 V)", en: "3× 1V/OCT, 3× LVL CV (16 log steps), FM IN, 3× Gate (~1 V threshold)" }, "doc", true),
+      S("MIDI rozhraní", "MIDI interface", "3,5 mm TRS Type A (optoizolace 6N137S), Ch 1–3, CC 7/14–19 + SysEx", "doc", true),
+      S("Čelní panel", "Front panel", { cs: "RETRO smaragdově zelená PCB + ENIG zlato + reliéf retro_arcade", en: "RETRO emerald green PCB + ENIG gold + retro_arcade relief" }, "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/triple-psg/preview.png?v=20261123g", cap: { cs: "Čelní panel 20 HP — RETRO smaragdová + ENIG zlato (retro_arcade)", en: "20 HP Front Panel — RETRO Emerald + ENIG Gold (retro_arcade)" } },
+      { src: "assets/products/triple-psg/pcb_3d_top.png?v=20261123g", cap: { cs: "3D render PCB — přední THT strana (1:1 s panelem)", en: "3D PCB render — front THT side (1:1 panel alignment)" } },
+      { src: "assets/products/triple-psg/pcb_3d_back.png?v=20261123g", cap: { cs: "3D render PCB — zadní strana (DIP-40 patice U6, STM32C071, TL074)", en: "3D PCB render — bottom side (DIP-40 U6 socket, STM32C071, TL074)" } },
+    ],
+    related: ["opl3-fm", "cube-seq", "elements-v04", "the-out"],
+  },
+
+  "psu-eurorack": {
+    division: "AUD",
+    divisions: ["AUD", "LUX"],
+    name: "PSU EURORACK v2.0",
+    hp: "INTERNAL PCB · 48 W",
+    serial: "DD-PS02 // 48W.±12V",
+    status: { cs: "Schéma + 4vrstvé PCB + BOM + Gerbery", en: "Schematic + 4-layer PCB + BOM + Gerbers" },
+    image: "assets/products/psu-eurorack/preview.png?v=20261123g",
+    tagline: {
+      cs: "Spínaný Eurorack napájecí zdroj 48 W (12 V DC → +12 V / 3 A & −12 V / 1 A) na 4vrstvém 2oz PCB.",
+      en: "48 W switching Eurorack PSU (12 V DC → +12 V / 3 A & −12 V / 1 A) on a 4-layer 2 oz PCB.",
+    },
+    short: {
+      cs: "Interní napájecí deska do kufru: vstup z jediného 12V/6A adaptéru, TI LM5175 (+12 V / 3 A @ 384,4 kHz CCM), TI TPS62933F (−12 V / 1 A @ 500 kHz FCCM bez přeskakování pulzů v audio pásmu), aktivní P-FET ochrana přepólování a 4× 16pin IDC výstup.",
+      en: "Internal skiff power board: single 12 V / 6 A brick input, TI LM5175 (+12 V / 3 A @ 384.4 kHz CCM), TI TPS62933F (−12 V / 1 A @ 500 kHz FCCM with zero audio-band pulse skipping), active P-FET reverse-polarity protection, and 4× 16-pin IDC headers.",
+    },
+    long: {
+      cs: [
+        "DVĚ DEDIKOVANÉ VĚTVE Z JEDINÉHO 12V ADAPTÉRU: PSU_eurorack v2.0 převádí běžný externí zdroj 12 V DC (doporučeno 12 V / 6 A Mean Well) na regulované symetrické napájení +12 V / 3 A (36 W) a −12 V / 1 A (12 W) s celkovým trvalým výkonem 48 W. Vychází z ověřených referenčních návrhů Texas Instruments PMP10624 a TIDA-050053 Rev A přepočítaných přesně pro Eurorack zátěž.",
+        "ČISTÝ PROVOZ V AUDIO PÁSMU (CCM & FCCM): Kladnou větev řídí 4-spínačový synchronní buck-boost kontroler LM5175PWPR (384,4 kHz, režim CCM + Hiccup bez rozptylového ditheringu). Zápornou větev řídí invertující buck-boost TPS62933FDRLR v pevném režimu 500 kHz FCCM (Forced Continuous Conduction Mode) — měnič nikdy nepřechází do úsporného PFM režimu a nevytváří slyšitelné zvlnění v audio pásmu ani při nízkém odběru.",
+        "OCHRANA VSTUPU & 4VRSTVÉ 2oz PCB: Vstupní svorkovnice MKDS 3/2 je jištěna 8A pomalou pojistkou, aktivní P-FET ochranou proti přepólování (SQJ409EP, jen 7 mΩ / ~0,16 W při plném odběru) a výkonovou TVS diodou SMCJ14A. Čtyřvrstvá deska s těžkou mědí 2 oz na vnějších vrstvách (2 oz / 1 oz / 1 oz / 2 oz, ENIG) rozvádí silové proudy s minimálním úbytkem a výborným chlazením.",
+        "DISTRIBUCE DO RACKU: Čtyři klíčované 16pinové Eurorack IDC konektory (J2–J5) doplňuje pomocná svorkovnice MKDS 3/3 (J6), trojice stavových LED (IN_OK, +12V_OK, -12V_OK) a 7 testovacích bodů (TP1–TP7) pro rychlé oživení a měření zvlnění. Piny +5 V jsou ponechány nezapojené (NC).",
+      ],
+      en: [
+        "DUAL REGULATED RAILS FROM ONE 12 V BRICK: PSU_eurorack v2.0 converts a single external 12 V DC brick (12 V / 6 A Mean Well recommended) into +12 V / 3 A (36 W) and −12 V / 1 A (12 W) Eurorack power rails (48 W continuous), adapted from TI PMP10624 and TIDA-050053 Rev A reference designs.",
+        "AUDIO-CLEAN CCM & FCCM OPERATION: The positive rail uses an LM5175PWPR 4-switch synchronous buck-boost controller at 384.4 kHz (CCM + Hiccup, dithering disabled). The negative rail runs a TPS62933FDRLR inverting buck-boost locked to 500 kHz FCCM—completely eliminating PFM pulse-skipping noise in the audio band even at light loads.",
+        "ROBUST INPUT PROTECTION & 4-LAYER 2 OZ STACKUP: Input J1 (MKDS 3/2) is protected by an 8 A time-lag fuse, an active 7 mΩ SQJ409EP reverse-polarity P-FET (~0.16 W loss at 4.7 A), and an SMCJ14A transient TVS clamp. The 4-layer 2 oz / 1 oz / 1 oz / 2 oz ENIG PCB provides low-impedance power planes and solid thermal spreading.",
+        "RACK DISTRIBUTION & BENCH DIAGNOSTICS: Four shrouded 16-pin Eurorack IDC headers (J2–J5, +5 V pins NC) are paired with an auxiliary 3-pin MKDS 3/3 terminal (J6), three status LEDs (IN_OK, +12V_OK, -12V_OK), and 7 test points (TP1–TP7). Verified with 0 ERC and 0 error-severity DRC violations in KiCad 10.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Napájení přenosných Eurorack kufrů (104+ HP)", en: "Powering portable Eurorack skiffs (104+ HP)" },
+        d: {
+          cs: "Bezpečných 48 W (±12 V) z jediného externího 12V adaptéru bez nebezpečného síťového napětí 230 V uvnitř kufru.",
+          en: "Delivers 48 W (±12 V) from a single safe external 12 V brick—zero mains voltage inside your portable case.",
+        },
+      },
+      {
+        t: { cs: "Čisté napájení citlivých analogových i digitálních modulů", en: "Clean power for sensitive analog & DSP rigs" },
+        d: {
+          cs: "Režimy CCM a 500 kHz FCCM drží spínací frekvenci vysoko nad audio pásmem bez PFM cvakání při změně zátěže.",
+          en: "Fixed-frequency CCM and 500 kHz FCCM keep switching artifacts well above the audio band with zero PFM chatter.",
+        },
+      },
+      {
+        t: { cs: "DIY stavebnice & laboratorní testování", en: "DIY build & bench verification" },
+        d: {
+          cs: "Kompletní 10krokový testovací plán, 7 měřicích bodů TP1–TP7, jasně označená polarita −12 V kondenzátoru a dostupný BOM.",
+          en: "Includes a 10-step test procedure, TP1–TP7 test loops, clear −12 V bulk cap polarity silkscreen, and full KiCad 10 manufacturing files.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "J1 — silová svorkovnice MKDS 3/2 pro vstup 12 V DC (10,8–14,4 V, absolutní strop 16,0 V)",
+        "J2–J5 — 4× klíčovaný 16pinový Eurorack IDC konektor (+12 V, GND, −12 V; piny +5 V nezapojeny)",
+        "J6 — pomocný 3pinový výstup MKDS 3/3 (+12 V / GND / −12 V)",
+        "LED IN_OK, +12V_OK, -12V_OK + měřicí očka TP1–TP7",
+      ],
+      en: [
+        "J1 — MKDS 3/2 12 V DC input terminal block (10.8–14.4 V operating, 16.0 V strict max)",
+        "J2–J5 — 4× shrouded 16-pin Eurorack IDC headers (+12 V, GND, −12 V; +5 V pins NC)",
+        "J6 — auxiliary 3-pin MKDS 3/3 power output (+12 V / GND / −12 V)",
+        "IN_OK, +12V_OK, -12V_OK status LEDs + TP1–TP7 bench test loops",
+      ],
+    },
+    specs: [
+      S("Vstupní napětí", "Input voltage", "12 V DC nom. (10,8–14,4 V, max. 16,0 V · dop. 12 V / 6 A zdroj)", "doc", true),
+      S("Kladná větev (+12 V)", "Positive rail (+12 V)", "+12,00 V / 3,0 A (36 W) · TI LM5175PWPR @ 384,4 kHz CCM+Hiccup", "doc", true),
+      S("Záporná větev (−12 V)", "Negative rail (−12 V)", "−12,02 V / 1,0 A (12 W) · TI TPS62933FDRLR @ 500 kHz FCCM", "doc", true),
+      S("Celkový výkon", "Continuous power", "48 W (bez +5 V větve)", "doc", true),
+      S("Vstupní ochrana", "Input protection", "8 A Time-Lag pojistka + 7 mΩ P-FET SQJ409EP + TVS SMCJ14A", "doc", true),
+      S("Výstupní konektory", "Output headers", "4× 16pin shrouded IDC + 1× MKDS 3/3 (+5 V piny NC)", "doc", true),
+      S("Stackup PCB", "PCB stackup", "4 vrstvy (2 oz / 1 oz / 1 oz / 2 oz FR-4, ENIG)", "doc"),
+      S("Ověření návrhu", "Verification", "KiCad 10 ERC: 0 chyb · DRC: 0 errorů · 75 položek BOM", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/psu-eurorack/preview.png?v=20261123g", cap: { cs: "3D render 4vrstvého PCB — PSU_eurorack v2.0 (48 W)", en: "3D render of 4-layer PCB — PSU_eurorack v2.0 (48 W)" } },
+      { src: "assets/products/psu-eurorack/pcb_top.png?v=20261123g", cap: { cs: "Horní strana PCB (F.Cu 2 oz): LM5175, TPS62933F, 4× IDC", en: "PCB Top View (F.Cu 2 oz): LM5175, TPS62933F, 4× IDC" } },
+      { src: "assets/products/psu-eurorack/pcb_bot.png?v=20261123g", cap: { cs: "Spodní strana PCB (B.Cu 2 oz): zemní a proudové plochy", en: "PCB Bottom View (B.Cu 2 oz): return & thermal planes" } },
+    ],
+    related: ["the-in", "the-out", "dmx-out", "opl3-fm"],
+  },
+
+  "dmx-processor": {
+    division: "LUX",
+    name: "DMX_PROCESSOR",
+    hp: "20 HP",
+    serial: "DD-DP02 // LUX.PROC.02",
+    status: { cs: "Architektura + 20 HP panel + README", en: "Architecture + 20 HP panel + README" },
+    image: "assets/products/dmx-processor/preview.png?v=20261123g",
+    tagline: {
+      cs: "Mikro-DMX pult, multiefekt, DMX looper, CV-to-n-DMX router a CDJ-style Ethernet LINK v 20 HP.",
+      en: "Micro-DMX desk, multieffect, DMX looper, CV-to-n-DMX router & CDJ-style Ethernet LINK in 20 HP.",
+    },
+    short: {
+      cs: "20 HP (STM32H743 @ 480 MHz + KSZ8863MLL 3port switch): funguje mezi DMX_out a světly (XLR→XLR), přímo za Patchbay (RJ45→XLR) i samostatně. DELAY, RATCHET, COLOR SHIFT (HSV), STROBE, BLACKOUT, looper, USB-C Host pro FVCK_BOY a duální RJ45 LINK.",
+      en: "20 HP (STM32H743 @ 480 MHz + KSZ8863MLL 3-port switch): operates between DMX_out and fixtures (XLR→XLR), directly after Patchbay (RJ45→XLR), or standalone. Features DELAY, RATCHET, HSV COLOR SHIFT, STROBE, BLACKOUT, looper, FVCK_BOY USB Host, and dual RJ45 LINK.",
+    },
+    long: {
+      cs: [
+        "TŘI REŽIMY ZAPOJENÍ SVĚTELNÉHO ŘETĚZCE: DMX_PROCESSOR funguje jako univerzální procesor mezi Resolume Arena / DMX_out a světly (galvanicky izolovaný XLR IN → XLR OUT s prioritami HTP, LTP, Override/Mask a Additive), jako skupinový procesor přímo za moduly Patchbay 8ch–128ch (RJ45 PATCH IN s vlastním I²C/ADC čtením multiplexerů MAX14662 bez nutnosti DMX_out), nebo zcela samostatně jako 512kanálový mikro-DMX-pult napájený z interních presetů na SD kartě a CV vstupů.",
+        "MULTIEFEKT & KVANTIZOVANÝ DMX LOOPER: Tlačítka REC/STOP a PLAY/PAUSE nahrávají a smyčkují celý 512kanálový DMX proud do paměti (s kvantizací na CLK IN nebo LINK BPM). Živé efekty DELAY (fázový chase/wave fan-out napříč kanály), RATCHET (rytmický stutter ×1..×16), COLOR SHIFT (globální rotace odstínu 0–360° v HSV pro RGB/RGBW/CMY svítidla s respektem k diskrétním Gobo kanálům), STROBE a BLACKOUT pracují okamžitě bez zpoždění.",
+        "MATICE CV IN → N DMX KANÁLŮ: Osm bipolárních CV/Clock jacků (−10 V .. +10 V: CLK IN, DELAY CV, RATCH CV, COLOR CV a CV 1..4) lze v matici [PATCH] na OLED displeji zapsat na libovolných n DMX kanálů současně s individuálním rozsahem Min/Max, inverzí a křivkou — jediné LFO tak může plynule měnit například dimmer na adrese 002 i pan na adrese 014.",
+        "USB-C HOST PRO FVCK_BOY & CDJ-STYLE ETHERNET LINK: Přední port USB HOST (5 V / 1 A) přímo napájí a obsluhuje konzoli FVCK_BOY po jediném kabelu. Dvojice MagJack portů LINK A / LINK B s integrovaným 3portovým Ethernet switchem KSZ8863MLL umožňuje řetězení více procesorů za sebou (daisy-chain) pro distribuci MIDI příkazů včetně zpětné RGB LED odezvy do FVCK_BOY, sdílený BPM beatgrid, globální Blackout/Strobe i budoucí Art-Net / sACN.",
+      ],
+      en: [
+        "THREE SIGNAL-CHAIN TOPOLOGIES: DMX_PROCESSOR inserts between Resolume Arena / DMX_out and stage fixtures (galvanically isolated XLR IN → XLR OUT with HTP, LTP, Override/Mask, and Additive merge), connects directly after Patchbay 8ch–128ch modules via RJ45 PATCH IN (reading MAX14662 multiplexers natively without needing DMX_out), or runs standalone as a 512-channel micro-DMX desk driven by microSD presets and CV.",
+        "MULTIEFFECT & BEAT-QUANTIZED DMX LOOPER: REC/STOP and PLAY/PAUSE capture and loop live 512-channel DMX streams (quantized to CLK IN or LINK BPM). Dedicated controls for DELAY (multi-fixture chase/wave phase offset), RATCHET (×1..×16 rhythmic stutter), COLOR SHIFT (0–360° HSV Hue Rotate across RGB/RGBW/CMY fixtures while preserving stepped Gobo channels), STROBE, and BLACKOUT react immediately.",
+        "ARBITRARY CV IN → N DMX MATRIX: Eight bipolar ±10 V CV/Clock jacks (CLK IN, DELAY CV, RATCH CV, COLOR CV, CV 1..4) can be routed in the OLED [PATCH] matrix to any n DMX channels simultaneously with independent Min/Max scaling, polarity inversion, and response curves.",
+        "FVCK_BOY USB HOST & CDJ-STYLE ETHERNET LINK: A front-panel 5 V / 1 A USB-C Host port powers and communicates directly with the FVCK_BOY console over one cable. Dual RJ45 MagJacks (LINK A / LINK B) backed by a KSZ8863MLL 3-port Ethernet switch support daisy-chained multi-unit MIDI routing (with bidirectional LED feedback to FVCK_BOY), shared BPM sync, global Blackout/Strobe, and future Art-Net / sACN.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Smyčkování & efektování show z Resolume Arena", en: "Looping & FX on live Resolume Arena streams" },
+        d: {
+          cs: "Nahraj vizuální DMX smyčku (např. Metaballs), rozfázuj ji přes DELAY nebo do ní zasahuj živě přes Additive CV vstupy.",
+          en: "Capture live DMX visuals from Arena, fan phases across fixtures with DELAY, and superimpose live Eurorack CV modulation.",
+        },
+      },
+      {
+        t: { cs: "Kompaktní skupinový DMX procesor za Patchbay", en: "Standalone group DMX engine with Patchbay" },
+        d: {
+          cs: "Připoj Patchbay jedním RJ45 kabelem přímo do DMX_PROCESSOR a nastav adresu skupiny na OLED displeji bez hlavního DMX_out.",
+          en: "Plug any Patchbay directly into PATCH RJ45 IN, set its starting DMX address on the OLED, and drive fixtures straight from XLR OUT.",
+        },
+      },
+      {
+        t: { cs: "Propojení více modulů s konzolí FVCK_BOY", en: "Multi-unit LINK rig controlled by FVCK_BOY" },
+        d: {
+          cs: "Připoj FVCK_BOY jediným USB-C kabelem a řetěz další procesory po RJ45 Ethernet lince bez externího síťového switche.",
+          en: "Connect FVCK_BOY over one USB-C cable and daisy-chain multiple DMX_PROCESSOR units via RJ45 LINK with no external switch.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "OLED displej + enkodér SELECT + tlačítka PATCH / MODE + microSD slot (SD // SHOWS)",
+        "Efekty: DELAY, RATCHET, COLOR SHIFT, tlačítka REC/STOP, PLAY/PAUSE, STROBE, BLACKOUT + stavové LED",
+        "CV & MIDI: CLK IN, DELAY CV, RATCH CV, COLOR CV, CV 1–4 (±10 V), MIDI IN / MIDI OUT (3,5 mm TRS Type A)",
+        "Síť & DMX: LINK A / LINK B (2× RJ45 Ethernet), USB HOST (FVCK_BOY), PATCH RJ45 IN, DMX IN (XLR-3), DMX OUT (XLR-3)",
+      ],
+      en: [
+        "OLED display + SELECT encoder + PATCH / MODE buttons + microSD slot (SD // SHOWS)",
+        "FX section: DELAY, RATCHET, COLOR SHIFT pots; REC/STOP, PLAY/PAUSE, STROBE, BLACKOUT buttons + status LEDs",
+        "CV & MIDI: CLK IN, DELAY CV, RATCH CV, COLOR CV, CV 1–4 (±10 V), MIDI IN / MIDI OUT (3.5 mm TRS Type A)",
+        "Network & DMX: LINK A / LINK B (2× RJ45 Ethernet), USB HOST (FVCK_BOY), PATCH RJ45 IN, DMX IN (XLR-3), DMX OUT (XLR-3)",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "20 HP (101,40 mm × 128,50 mm) / 3U", "doc", true),
+      S("Hlavní MCU", "Main MCU", "STM32H743VIT6 (Cortex-M7 @ 480 MHz, 1 MB RAM)", "doc", true),
+      S("Ethernet LINK switch", "Ethernet LINK switch", "Microchip KSZ8863MLL (3portový 10/100 switch, 2× RJ45 MagJack)", "doc", true),
+      S("DMX512 porty", "DMX512 ports", { cs: "XLR-3 DMX IN + DMX OUT (galvanicky izolované, 512 ch)", en: "XLR-3 DMX IN + DMX OUT (galvanically isolated, 512 ch)" }, "doc", true),
+      S("USB Host", "USB Host", "USB-C Host (5 V / 1 A limit, přímá podpora FVCK_BOY)", "doc", true),
+      S("Patchbay & CV vstupy", "Patchbay & CV inputs", { cs: "1× RJ45 PATCH IN (I²C + ADC) + 8× CV/Clock (−10 V .. +10 V)", en: "1× RJ45 PATCH IN (I²C + ADC) + 8× CV/Clock (−10 V .. +10 V)" }, "doc", true),
+      S("MIDI I/O", "MIDI I/O", "3,5 mm TRS Type-A MIDI IN (6N137) & MIDI OUT", "doc"),
+      S("Stav návrhu", "Design status", { cs: "Architektura + 20 HP panel (sendvičová PCB v přípravě)", en: "Architecture + 20 HP panel (sandwich PCB in development)" }, "tbd", true),
+    ],
+    gallery: [
+      { src: "assets/products/dmx-processor/preview.png?v=20261123g", cap: { cs: "Čelní panel 20 HP — DECØY DEVICES LIGHT (Matte White PCB)", en: "20 HP Front Panel — DECØY DEVICES LIGHT (Matte White PCB)" } },
+    ],
+    related: ["dmx-out", "patchbay-8ch", "patchbay-16ch", "fvck-boy", "cue-frames"],
+  },
 };
 
 const TEATRO_DATA = {
@@ -2143,6 +2511,19 @@ const PEDAL_CONCEPTS = [
 
 const DEFAULT_NEWS_POSTS = [
   {
+    id: "retro-2026",
+    division: "AUD",
+    date: "2026-11-23",
+    title: {
+      cs: "RETRO EDICE: OPL3 FM, TRIPLE PSG, PSU 48W & DMX_PROCESSOR",
+      en: "RETRO EDITION: OPL3 FM, TRIPLE PSG, PSU 48W & DMX_PROCESSOR",
+    },
+    body: {
+      cs: "Na web přibyly čtyři nové hardwarové projekty: retro zvukové moduly OPL3 FM (Yamaha YMF262-M) a TRIPLE PSG (AY-3-8910 / YM2149F) v novém smaragdově-zlatém RETRO PCB standardu, 48W spínaný zdroj PSU EURORACK v2.0 a 20HP DMX_PROCESSOR s Ethernet LINK a USB Hostem pro FVCK_BOY.",
+      en: "Four new hardware projects are live: retro sound-chip modules OPL3 FM (Yamaha YMF262-M) and TRIPLE PSG (AY-3-8910 / YM2149F) in our new emerald-and-gold RETRO PCB standard, the 48 W PSU EURORACK v2.0 supply, and the 20 HP DMX_PROCESSOR with Ethernet LINK and FVCK_BOY USB Host.",
+    },
+  },
+  {
     id: "dhogh-1",
     division: "LUX",
     date: "2026-11-15",
@@ -2308,6 +2689,42 @@ const PRODUCT_CATALOG_META = {
     subcategory: "visual-instruments",
     subcategories: ["visual-instruments", "video-processing", "midi-controllers", "lighting-controllers", "samplers-sequencers"],
     availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "opl3-fm": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "triple-psg": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers", "midi-controllers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "psu-eurorack": {
+    category: "electronics",
+    categories: ["electronics", "audio", "light"],
+    subcategory: "diy-kits",
+    subcategories: ["eurorack", "diy-kits", "electronic-components"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "dmx-processor": {
+    category: "light",
+    categories: ["light"],
+    subcategory: "lighting-controllers",
+    subcategories: ["lighting-controllers", "dmx-equipment", "stage-lighting"],
+    availability: "in_development",
     featured: true,
     isNew: true,
   },

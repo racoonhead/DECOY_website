@@ -883,7 +883,9 @@ a {
 .product-page.mod-patchbay-16ch,
 .modal.mod-patchbay-16ch,
 .product-page.mod-lux-core,
-.modal.mod-lux-core {
+.modal.mod-lux-core,
+.product-page.mod-dmx-processor,
+.modal.mod-dmx-processor {
   --prod-bg: radial-gradient(circle at 28% 24%, rgba(255, 112, 51, 0.14), rgba(220, 214, 202, 0.05) 42%, #111112 100%);
   --prod-bg-solid: #111112;
   --prod-nav-bg: rgba(17, 17, 18, 0.92);
@@ -1089,6 +1091,48 @@ a {
   --prod-border: rgba(247, 109, 176, 0.24);
   --prod-accent: #f76db0;
   --prod-accent-ink: #110918;
+}
+
+.product-page.mod-opl3-fm,
+.modal.mod-opl3-fm {
+  --prod-bg: radial-gradient(circle at 38% 30%, rgba(214, 178, 76, 0.18), rgba(11, 54, 34, 0.42) 48%, #07130d 100%);
+  --prod-bg-solid: #07130d;
+  --prod-nav-bg: rgba(7, 19, 13, 0.92);
+  --prod-panel: linear-gradient(145deg, #0b2418 0%, #103221 100%);
+  --prod-media-bg: #050d09;
+  --prod-ink: #f5f5ee;
+  --prod-muted: #b3cbbd;
+  --prod-border: rgba(214, 178, 76, 0.26);
+  --prod-accent: #d6b24c;
+  --prod-accent-ink: #07130d;
+}
+
+.product-page.mod-triple-psg,
+.modal.mod-triple-psg {
+  --prod-bg: radial-gradient(circle at 60% 32%, rgba(91, 214, 151, 0.18), rgba(11, 54, 34, 0.44) 48%, #07120d 100%);
+  --prod-bg-solid: #07120d;
+  --prod-nav-bg: rgba(7, 18, 13, 0.92);
+  --prod-panel: linear-gradient(145deg, #0b2317 0%, #113423 100%);
+  --prod-media-bg: #050c08;
+  --prod-ink: #f5f5ee;
+  --prod-muted: #b0c9bb;
+  --prod-border: rgba(214, 178, 76, 0.26);
+  --prod-accent: #5bd697;
+  --prod-accent-ink: #07120d;
+}
+
+.product-page.mod-psu-eurorack,
+.modal.mod-psu-eurorack {
+  --prod-bg: radial-gradient(circle at 34% 32%, rgba(224, 168, 78, 0.16), rgba(38, 42, 28, 0.34) 46%, #0d0f0c 100%);
+  --prod-bg-solid: #0d0f0c;
+  --prod-nav-bg: rgba(13, 15, 12, 0.92);
+  --prod-panel: linear-gradient(145deg, #161914 0%, #1f241b 100%);
+  --prod-media-bg: #080907;
+  --prod-ink: #f3f1ea;
+  --prod-muted: #b8baa9;
+  --prod-border: rgba(224, 168, 78, 0.24);
+  --prod-accent: #e0a84e;
+  --prod-accent-ink: #0d0f0c;
 }
 
 .modal[class*="mod-"] .modal-backdrop {
