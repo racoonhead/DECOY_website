@@ -14,19 +14,6 @@ const DIV_NAMES = {
   MRC: { cs: "MERCH", en: "MERCH" },
 };
 
-function textVal(val) {
-  if (!val) return "";
-  return typeof val === "string" ? val : val[currentLang] || val.cs || "";
-}
-
-function escapeHtml(str) {
-  return String(str || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
 function renderInlineMarkdown(raw) {
   const codeTokens = [];
   let text = escapeHtml(raw).replace(/`([^`]+)`/g, (_, code) => {
@@ -307,22 +294,10 @@ function closeLightbox() {
   if (lb) lb.hidden = true;
 }
 
-function renderCartDrawer() {
-  const body = document.getElementById("cartDrawerBody");
-  if (!body) return;
-  body.innerHTML = renderCartDrawerHTML(currentLang, "index.html#AUD/catalog", "");
-}
-
-function openCartDrawer() {
-  renderCartDrawer();
-  document.getElementById("cartDrawer").hidden = false;
-  document.getElementById("cartToggleProd")?.setAttribute("aria-expanded", "true");
-}
-
-function closeCartDrawer() {
-  document.getElementById("cartDrawer").hidden = true;
-  document.getElementById("cartToggleProd")?.setAttribute("aria-expanded", "false");
-}
+const CART_CFG = { toggleId: "cartToggleProd", productsHref: "index.html#AUD/catalog", closeNavAttr: "" };
+const renderCartDrawer = () => setCartDrawerOpen(true, { ...CART_CFG, lang: currentLang });
+const openCartDrawer = () => setCartDrawerOpen(true, { ...CART_CFG, lang: currentLang });
+const closeCartDrawer = () => setCartDrawerOpen(false, CART_CFG);
 
 function renderProductPage(id, { fx = false, divKey = null, brand = null, fromTab = null } = {}) {
   const p = getCatalogItem(id);
@@ -854,43 +829,17 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-close-cart]").forEach((el) => el.addEventListener("click", closeCartDrawer));
 
   document.addEventListener("click", (e) => {
-    const incBtn = e.target.closest("[data-cart-inc]");
-    if (incBtn) {
-      DECOY_STORE.updateQty(incBtn.getAttribute("data-cart-inc"), 1);
-      updateHeaderUI();
-      renderCartDrawer();
-      return;
-    }
-    const decBtn = e.target.closest("[data-cart-dec]");
-    if (decBtn) {
-      DECOY_STORE.updateQty(decBtn.getAttribute("data-cart-dec"), -1);
-      updateHeaderUI();
-      renderCartDrawer();
-      return;
-    }
-    const rmBtn = e.target.closest("[data-cart-rm]");
-    if (rmBtn) {
-      DECOY_STORE.removeItem(rmBtn.getAttribute("data-cart-rm"));
-      updateHeaderUI();
-      renderCartDrawer();
-      return;
-    }
-    if (e.target.id === "clearCartBtn") {
-      DECOY_STORE.clear();
-      updateHeaderUI();
-      renderCartDrawer();
-      if (currentProdId) renderProductPage(currentProdId, { divKey: currentDivCtx });
-      return;
-    }
-    if (e.target.id === "copyCartBtn") {
-      const summary = DECOY_STORE.getSummary();
-      const lines = summary.entries.map(
-        ({ product, qty }) => `- ${qty}× ${itemDisplayName(product, currentLang)} (${product.serial}) — ${DECOY_STORE.formatPrice(product, currentLang)}`
-      );
-      navigator.clipboard?.writeText(`DECØY ORDER / INQUIRY LIST\n${lines.join("\n")}`).catch(() => { });
-      const fb = document.getElementById("cartCopyFeedback");
-      if (fb) fb.textContent = I18N[currentLang].cart_copied;
-    }
+    handleCartDrawerClick(e, {
+      getLangFn: () => currentLang,
+      getDivisionFn: () => currentDivCtx || "AUD",
+      onUpdate: ({ refreshPage }) => {
+        updateHeaderUI();
+        renderCartDrawer();
+        if (refreshPage && currentProdId) {
+          renderProductPage(currentProdId, { divKey: currentDivCtx, brand: currentBrandCtx, fromTab: currentFromTab });
+        }
+      },
+    });
   });
 
   window.addEventListener("popstate", () => {

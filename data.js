@@ -8,6 +8,7 @@
    ========================================================= */
 
 const TS = "TEATRO\\\\\\SVJÖTLO";
+const TS_SHORT = "T" + "\\".repeat(3) + "S";
 
 const I18N = {
   cs: {
@@ -27,7 +28,6 @@ const I18N = {
     specs_btn: "PARAMETRY",
     detail_btn: "DETAIL →",
     soon_badge: "PROTOTYP / PŘIPRAVUJEME",
-    specs_heading: "TECHNICKÉ PARAMETRY",
     key_specs: "KLÍČOVÉ PARAMETRY",
     all_specs: "VŠECHNY PARAMETRY",
     param: "PARAMETR",
@@ -55,38 +55,24 @@ const I18N = {
     sec_num_desktop: "02 // DESKTOP",
     sec_num_pedals: "03 // PEDÁLY",
     sec_num_blog: "04 // POZNÁMKY & DENÍK",
-    sec_num_teatro: "05 // KOLEKTIV & SCÉNA",
     sec_num_merch: "06 // OBLEČENÍ & OBJEKTY",
     sec_num_crew: "// TÝM",
-    pcb_faceplate: "PCB ČELNÍ PANEL",
-    founders_credit: "ZAKLADATELÉ DECØY: VOJTĚCH DIVOKÝ & LADISLAV MAREŠ",
     app_num_use: "01 // POUŽITÍ",
     app_num_io: "02 // PANEL & KONEKTORY",
     app_num_elec: "03 // ELEKTRICKÉ & VÝKONNOSTNÍ PARAMETRY",
     app_num_eco: "04 // EKOSYSTÉM",
     prev_img: "Předchozí obrázek",
     next_img: "Další obrázek",
-    close_btn: "Zavřít",
     diff_num: "// REVIZE vs. PŮVODNÍ VERZE",
     diff_heading: "ROZDÍLY OPROTI PŮVODNÍ VERZI",
     diff_feature: "OBLAST / PARAMETR",
     diff_orig: "PŮVODNÍ ELEMENTS (v0.3)",
     diff_v04: "DECØY ELEMENTS v0.4",
     diff_impact: "PŘÍNOS",
-    ts_tab_design: "STAGE · SOUND · LIGHT",
     ts_tab_rental: "RENTÁL",
     ts_tab_custom: "ZAKÁZKOVÁ VÝROBA",
     ts_tab_events: "AKCE & TÝM",
-    nav_home: "ÚVOD",
-    nav_products: "PRODUKTY",
-    nav_brands: "ZNAČKY",
-    nav_originals: "DECØY ORIGINALS",
-    nav_teatro: "TEATRO\\\\\\SVJÖTLO",
-    nav_support: "PODPORA",
-    nav_about: "O ZNAČCE",
     search_ph: "Hledat produkty, kódy, specifikace...",
-    search_btn: "HLEDAT",
-    cart_btn: "POPTÁVKA / KOŠÍK",
     cart_title: "NÁKUPNÍ SEZNAM & POPTÁVKA",
     cart_empty: "Zatím nemáte vybrané žádné produkty.",
     cart_notice: "E-shopový backend se připravuje — seznam slouží jako rozhraní pro budoucí objednávku nebo export poptávky.",
@@ -113,9 +99,7 @@ const I18N = {
     partner_badge: "ZASTOUPENÁ ZNAČKA",
     all_categories: "VŠECHNY KATEGORIE",
     all_subcategories: "VŠECHNY PODKATEGORIE",
-    all_brands: "VŠICHNI VÝROBCI",
     all_avail: "JAKÁKOLIV DOSTUPNOST",
-    filter_originals: "Pouze DECØY ORIGINALS",
     reset_filters: "RESET FILTRŮ",
     sort_featured: "Doporučené",
     sort_name: "Název A–Z",
@@ -129,32 +113,20 @@ const I18N = {
     warranty_heading: "ZÁRUKA & TECHNICKÁ PODPORA",
     warranty_num: "06 // ZÁRUKA & SERVIS",
     warranty_empty: "Záruční a servisní podmínky budou upřesněny při spuštění prodeje. Technická podpora, kalibrace a servis probíhá přímo přes DECØY DEVICES.",
-    purchase_info_label: "NÁKUP & DOSTUPNOST",
     service_inquiry_btn: "POPTAT SLUŽBU / AKCI",
-    back_to_catalog: "ZPĚT DO KATALOGU",
-    home_hero_kicker: "CZ // HARDWARE R&D · SPECIALIZOVANÝ OBCHOD · STAGE TECHNOLOGIE",
-    home_hero_lead: "DECØY vyvíjí vlastní elektronické nástroje pro zvuk, světlo a video, prodává pečlivě vybranou techniku a zastřešuje produkční a stage divizi TEATRO\\\\\\SVJÖTLO.",
     home_cta_products: "PROHLÉDNOUT PRODUKTY",
-    home_cta_originals: "DECØY ORIGINALS",
-    home_cta_teatro: "TEATRO\\\\\\SVJÖTLO",
-    home_split_num: "01 // HLAVNÍ OKRUHY",
-    home_split_title: "ZVUK · SVĚTLO · VIDEO",
-    home_featured_num: "02 // VÝBĚR PRODUKTŮ",
-    home_featured_title: "VYBRANÉ ZAŘÍZENÍ",
-    home_originals_num: "03 // VLASTNÍ VÝVOJ",
-    home_originals_title: "DECØY ORIGINALS",
-    home_brands_num: "04 // ZASTOUPENÉ ZNAČKY",
-    home_brands_title: "VÝROBCI & DISTRIBUCE",
-    home_news_num: "05 // NOVINKY & VÝVOJOVÝ LOG",
-    home_news_title: "NOVÉ PRODUKTY & ZÁPISY",
-    home_teatro_num: "06 // SAMOSTATNÁ DIVIZE",
-    home_teatro_title: "TEATRO\\\\\\SVJÖTLO",
-    home_about_num: "07 // O ZNAČCE DECØY",
-    home_about_title: "NÁVRH, OBCHOD & SCÉNA",
     sec_diy: "ELEKTRONIKA / DIY",
     sec_num_diy: "04 // ELEKTRONIKA & DIY",
     sec_catalog: "KATALOG & ZNAČKY",
     sec_num_catalog: "05 // KOMPLETNÍ KATALOG & ZNAČKY",
+    sec_software: "SOFTWARE",
+    software_item_status: "STAV",
+    software_empty: "V této oblasti zatím nejsou zveřejněny žádné položky.",
+    software_intro_decoy: "DECØY SOFTWARE — samostatná sekce značky DECØY. Datová struktura je připravena pro firmware, editory, pluginy a podpůrné nástroje.",
+    software_intro_teatro: `${TS} SOFTWARE — samostatná sekce značky TEATRO. Datová struktura je připravena pro software, nástroje a technická řešení pro režii a produkci.`,
+    software_open: "OTEVŘÍT ↗",
+    brand_switch_to_decoy: "DECØY DEVICES ↗",
+    brand_switch_to_teatro: `${TS} ↗`,
     list_btn: "SEZNAM",
     add_list_btn: "+ SEZNAM",
     ts_tab_hardware: "HARDWARE",
@@ -185,7 +157,6 @@ const I18N = {
     specs_btn: "SPECS",
     detail_btn: "DETAIL →",
     soon_badge: "PROTOTYPE / UPCOMING",
-    specs_heading: "TECHNICAL SPECIFICATIONS",
     key_specs: "KEY SPECIFICATIONS",
     all_specs: "FULL SPECIFICATIONS",
     param: "PARAMETER",
@@ -213,38 +184,24 @@ const I18N = {
     sec_num_desktop: "02 // DESKTOP",
     sec_num_pedals: "03 // STOMPBOXES",
     sec_num_blog: "04 // NOTES & JOURNAL",
-    sec_num_teatro: "05 // COLLECTIVE & STAGE",
     sec_num_merch: "06 // APPAREL & OBJECTS",
     sec_num_crew: "// CREW",
-    pcb_faceplate: "PCB FACEPLATE",
-    founders_credit: "DECØY FOUNDERS: VOJTĚCH DIVOKÝ & LADISLAV MAREŠ",
     app_num_use: "01 // APPLICATIONS",
     app_num_io: "02 // FRONT PANEL I/O",
     app_num_elec: "03 // ELECTRICAL & PERFORMANCE",
     app_num_eco: "04 // ECOSYSTEM",
     prev_img: "Previous image",
     next_img: "Next image",
-    close_btn: "Close",
     diff_num: "// REVISION vs. ORIGINAL",
     diff_heading: "DIFFERENCES VS. ORIGINAL",
     diff_feature: "FEATURE / PARAMETER",
     diff_orig: "ORIGINAL ELEMENTS (v0.3)",
     diff_v04: "DECØY ELEMENTS v0.4",
     diff_impact: "IMPACT",
-    ts_tab_design: "STAGE · SOUND · LIGHT",
     ts_tab_rental: "RENTAL",
     ts_tab_custom: "CUSTOM FABRICATION",
     ts_tab_events: "EVENTS & CREW",
-    nav_home: "HOME",
-    nav_products: "PRODUCTS",
-    nav_brands: "BRANDS",
-    nav_originals: "DECØY ORIGINALS",
-    nav_teatro: "TEATRO\\\\\\SVJÖTLO",
-    nav_support: "SUPPORT",
-    nav_about: "ABOUT",
     search_ph: "Search products, serials, specs...",
-    search_btn: "SEARCH",
-    cart_btn: "INQUIRY / CART",
     cart_title: "SHOPPING LIST & INQUIRY",
     cart_empty: "No products selected yet.",
     cart_notice: "E-commerce checkout backend is not connected yet — this list serves as a structured storefront interface for future orders or inquiry export.",
@@ -271,9 +228,7 @@ const I18N = {
     partner_badge: "PARTNER BRAND",
     all_categories: "ALL CATEGORIES",
     all_subcategories: "ALL SUBCATEGORIES",
-    all_brands: "ALL BRANDS",
     all_avail: "ANY AVAILABILITY",
-    filter_originals: "DECØY ORIGINALS only",
     reset_filters: "RESET FILTERS",
     sort_featured: "Featured",
     sort_name: "Name A–Z",
@@ -287,32 +242,20 @@ const I18N = {
     warranty_heading: "WARRANTY & SUPPORT",
     warranty_num: "06 // WARRANTY & SERVICE",
     warranty_empty: "Warranty and service terms will be finalized upon commercial release. Technical support and calibration are handled directly by DECØY DEVICES.",
-    purchase_info_label: "PURCHASE & AVAILABILITY",
     service_inquiry_btn: "INQUIRE SERVICE / EVENT",
-    back_to_catalog: "BACK TO CATALOG",
-    home_hero_kicker: "CZ // HARDWARE R&D · SPECIALIST STORE · STAGE TECHNOLOGY",
-    home_hero_lead: "DECØY engineers proprietary electronics for sound, light, and video, curates specialist technical hardware, and runs the independent stage production division TEATRO\\\\\\SVJÖTLO.",
     home_cta_products: "BROWSE PRODUCTS",
-    home_cta_originals: "DECØY ORIGINALS",
-    home_cta_teatro: "TEATRO\\\\\\SVJÖTLO",
-    home_split_num: "01 // CORE DOMAINS",
-    home_split_title: "AUDIO · LIGHT · VIDEO",
-    home_featured_num: "02 // FEATURED HARDWARE",
-    home_featured_title: "SELECTED DEVICES",
-    home_originals_num: "03 // IN-HOUSE R&D",
-    home_originals_title: "DECØY ORIGINALS",
-    home_brands_num: "04 // REPRESENTED BRANDS",
-    home_brands_title: "BRANDS & DISTRIBUTION",
-    home_news_num: "05 // NEWS & DEVLOG",
-    home_news_title: "NEW RELEASES & FIELD LOGS",
-    home_teatro_num: "06 // SEPARATE DIVISION",
-    home_teatro_title: "TEATRO\\\\\\SVJÖTLO",
-    home_about_num: "07 // ABOUT DECØY",
-    home_about_title: "ENGINEERING, STORE & STAGE",
     sec_diy: "ELECTRONICS / DIY",
     sec_num_diy: "04 // ELECTRONICS & DIY",
     sec_catalog: "CATALOG & BRANDS",
     sec_num_catalog: "05 // FULL CATALOG & BRANDS",
+    sec_software: "SOFTWARE",
+    software_item_status: "STATUS",
+    software_empty: "No items have been published in this area yet.",
+    software_intro_decoy: "DECØY SOFTWARE — a standalone section of the DECØY brand. The data structure is ready for firmware, editors, plugins and supporting tools.",
+    software_intro_teatro: `${TS} SOFTWARE — a standalone section of the TEATRO brand. The data structure is ready for software, tools and technical solutions for stage direction and production.`,
+    software_open: "OPEN ↗",
+    brand_switch_to_decoy: "DECØY DEVICES ↗",
+    brand_switch_to_teatro: `${TS} ↗`,
     list_btn: "LIST",
     add_list_btn: "+ LIST",
     ts_tab_hardware: "HARDWARE",
@@ -327,6 +270,28 @@ const I18N = {
     readme_copied: "COPIED",
   },
 };
+
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function safeUrl(url) {
+  const s = String(url ?? "").trim();
+  if (!s) return "#";
+  if (/^(https?:|mailto:|\/|#|\.\.?\/)/i.test(s)) return s;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(s)) return s;
+  return "#";
+}
+
+function textVal(val, lang = getLang()) {
+  if (!val) return "";
+  return typeof val === "string" ? val : val[lang] || val.cs || "";
+}
 
 /* Pomocník pro dvojjazyčný řádek specifikace */
 const S = (cs, en, v, s = "doc", key = false) => ({ p: { cs, en }, v, s, key });
@@ -1955,12 +1920,24 @@ const PEOPLE = [
   },
 ];
 
+let _cachedLang = null;
+
 function getLang() {
-  return localStorage.getItem("decoy_lang") || "cs";
+  if (_cachedLang) return _cachedLang;
+  try {
+    return localStorage.getItem("decoy_lang") || "cs";
+  } catch {
+    return "cs";
+  }
 }
 
 function setLang(lang) {
-  localStorage.setItem("decoy_lang", lang);
+  _cachedLang = lang;
+  try {
+    localStorage.setItem("decoy_lang", lang);
+  } catch {
+    /* ignore storage errors */
+  }
 }
 
 function srcLabel(s, lang) {
@@ -2587,8 +2564,19 @@ Object.values(TEATRO_HARDWARE).forEach((item) => {
   item.manuals = extractDiagrams(item);
 });
 
+const CATALOG_MAP = new Map();
+
+function rebuildCatalogIndex() {
+  CATALOG_MAP.clear();
+  for (const item of CATALOG_ITEMS) {
+    CATALOG_MAP.set(item.id, item);
+  }
+}
+
+rebuildCatalogIndex();
+
 function getCatalogItem(id) {
-  return CATALOG_ITEMS.find((item) => item.id === id) || TEATRO_HARDWARE[id] || null;
+  return CATALOG_MAP.get(id) || TEATRO_HARDWARE[id] || null;
 }
 
 function itemDisplayName(item, lang = getLang()) {
@@ -2684,13 +2672,16 @@ const DECOY_STORE = (() => {
 
   function getSummary() {
     const entries = getItems();
+    let count = 0;
     let pricedTotal = 0;
     let hasUnpriced = false;
     entries.forEach(({ product, qty }) => {
-      if (typeof product.price === "number") pricedTotal += product.price * qty;
+      const n = qty || 1;
+      count += n;
+      if (typeof product.price === "number") pricedTotal += product.price * n;
       else hasUnpriced = true;
     });
-    return { entries, count: getCount(), pricedTotal, hasUnpriced };
+    return { entries, count, pricedTotal, hasUnpriced };
   }
 
   function queryProducts({
@@ -2778,14 +2769,14 @@ function renderCartDrawerHTML(lang = getLang(), productsHref = "#AUD/catalog", c
           ({ product, qty }) => `
         <li class="cart-item">
           <div class="cart-item-info">
-            <strong><a href="product.html?id=${product.id}${product.division && product.division !== "MRC" ? `&div=${product.division}` : ""}">${itemDisplayName(product, lang)}</a></strong>
-            <small>${product.brand} · ${product.serial} · ${DECOY_STORE.formatPrice(product, lang)}</small>
+            <strong><a href="product.html?id=${encodeURIComponent(product.id)}${product.division && product.division !== "MRC" ? `&div=${encodeURIComponent(product.division)}` : ""}">${escapeHtml(itemDisplayName(product, lang))}</a></strong>
+            <small>${escapeHtml(product.brand)} · ${escapeHtml(product.serial)} · ${escapeHtml(DECOY_STORE.formatPrice(product, lang))}</small>
           </div>
           <div class="cart-qty-ctrl">
-            <button type="button" class="pager-arrow" data-cart-dec="${product.id}" aria-label="−">−</button>
+            <button type="button" class="pager-arrow" data-cart-dec="${escapeHtml(product.id)}" aria-label="−">−</button>
             <span>${qty}</span>
-            <button type="button" class="pager-arrow" data-cart-inc="${product.id}" aria-label="+">+</button>
-            <button type="button" class="pager-arrow" data-cart-rm="${product.id}" aria-label="✕">✕</button>
+            <button type="button" class="pager-arrow" data-cart-inc="${escapeHtml(product.id)}" aria-label="+">+</button>
+            <button type="button" class="pager-arrow" data-cart-rm="${escapeHtml(product.id)}" aria-label="✕">✕</button>
           </div>
         </li>`
         )
@@ -2805,6 +2796,95 @@ function renderCartDrawerHTML(lang = getLang(), productsHref = "#AUD/catalog", c
     </div>
     <div id="cartCopyFeedback" class="brief-feedback" aria-live="polite"></div>
   `;
+}
+
+function setCartDrawerOpen(open, { toggleId, lang = getLang(), productsHref = "#AUD/catalog", closeNavAttr = "data-close-cart-nav" } = {}) {
+  const drawer = document.getElementById("cartDrawer");
+  if (!drawer) return;
+  if (open) {
+    const body = document.getElementById("cartDrawerBody");
+    if (body) body.innerHTML = renderCartDrawerHTML(lang, productsHref, closeNavAttr);
+  }
+  drawer.hidden = !open;
+  if (toggleId) document.getElementById(toggleId)?.setAttribute("aria-expanded", String(Boolean(open)));
+}
+
+function handleCartDrawerClick(e, { getLangFn = getLang, getDivisionFn = () => "AUD", onUpdate, onBrowseCatalog } = {}) {
+  const incBtn = e.target.closest("[data-cart-inc]");
+  if (incBtn) {
+    DECOY_STORE.updateQty(incBtn.getAttribute("data-cart-inc"), 1);
+    onUpdate?.({ pulse: true, refreshPage: false });
+    return true;
+  }
+  const decBtn = e.target.closest("[data-cart-dec]");
+  if (decBtn) {
+    DECOY_STORE.updateQty(decBtn.getAttribute("data-cart-dec"), -1);
+    onUpdate?.({ pulse: false, refreshPage: true });
+    return true;
+  }
+  const rmBtn = e.target.closest("[data-cart-rm]");
+  if (rmBtn) {
+    DECOY_STORE.removeItem(rmBtn.getAttribute("data-cart-rm"));
+    onUpdate?.({ pulse: false, refreshPage: true });
+    return true;
+  }
+  if (e.target.id === "clearCartBtn") {
+    DECOY_STORE.clear();
+    onUpdate?.({ pulse: false, refreshPage: true });
+    return true;
+  }
+  if (e.target.id === "copyCartBtn") {
+    const lang = getLangFn();
+    const summary = DECOY_STORE.getSummary();
+    const lines = summary.entries.map(
+      ({ product, qty }) => `- ${qty}× ${itemDisplayName(product, lang)} (${product.serial}) — ${DECOY_STORE.formatPrice(product, lang)}`
+    );
+    navigator.clipboard?.writeText(`DECØY ORDER / INQUIRY LIST\n${lines.join("\n")}`).catch(() => {});
+    const fb = document.getElementById("cartCopyFeedback");
+    if (fb) fb.textContent = I18N[lang].cart_copied;
+    return true;
+  }
+  if (e.target.id === "submitCartInquiryBtn") {
+    const lang = getLangFn();
+    const summary = DECOY_STORE.getSummary();
+    if (!summary.entries.length) return true;
+    const contact = document.getElementById("cartContactInput")?.value.trim() || "—";
+    const lines = summary.entries.map(
+      ({ product, qty }) => `- ${qty}× ${itemDisplayName(product, lang)} (${product.serial}) — ${DECOY_STORE.formatPrice(product, lang)}`
+    );
+    const items = summary.entries.map(({ product, qty }) => ({
+      id: product.id,
+      name: itemDisplayName(product, lang),
+      qty,
+    }));
+    const fb = document.getElementById("cartCopyFeedback");
+    if (typeof submitPublicInquiry === "function") {
+      submitPublicInquiry({
+        type: "decoy_order",
+        division: getDivisionFn() || "AUD",
+        contact,
+        summary: `${summary.count} ks (${summary.pricedTotal} Kč)`,
+        notes: lines.join("\n"),
+        items,
+      }).then((res) => {
+        if (res.ok) {
+          DECOY_STORE.clear();
+          onUpdate?.({ pulse: false, refreshPage: true });
+          const fb2 = document.getElementById("cartCopyFeedback");
+          if (fb2) fb2.textContent = `${I18N[lang].cart_sent} (${res.inquiry.id})`;
+        } else {
+          navigator.clipboard?.writeText(`DECØY ORDER\n${lines.join("\n")}`).catch(() => {});
+          if (fb) fb.textContent = I18N[lang].cart_copied;
+        }
+      });
+    }
+    return true;
+  }
+  if (onBrowseCatalog && e.target.closest("[data-close-cart-nav]")) {
+    onBrowseCatalog();
+    return true;
+  }
+  return false;
 }
 
 let SERVER_BLOG_POSTS = [];
@@ -2874,6 +2954,7 @@ function applyPublicServerState(state) {
   if (Array.isArray(state.blogPosts)) {
     SERVER_BLOG_POSTS = state.blogPosts;
   }
+  rebuildCatalogIndex();
   return true;
 }
 
@@ -2917,10 +2998,7 @@ async function submitPublicInquiry(payload) {
 /* =========================================================
    PATIČKA VOLNĚ INSPIROVANÁ SPODKEM MODULU (DECØY DEVICES)
    ========================================================= */
-function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serialRight = TS, brandText = "DECØY DEVICES") {
-  const motifClass = divKey === "LUX" ? "mf-motif-lux" : divKey === "VID" ? "mf-motif-vid" : "mf-motif-aud";
-
-  // Jemný minimalistický čárový akcent
+const { MF_BARCODE_RECTS, MF_BARCODE_WIDTH } = (() => {
   const weights = [3, 1.5, 5, 1.5, 2, 4, 1.5, 3, 5, 1.5, 3, 2, 4, 1.5, 3];
   let bx = 0;
   const rects = weights
@@ -2930,6 +3008,11 @@ function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serial
       return r;
     })
     .join("");
+  return { MF_BARCODE_RECTS: rects, MF_BARCODE_WIDTH: bx.toFixed(1) };
+})();
+
+function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serialRight = TS, brandText = "DECØY DEVICES") {
+  const motifClass = divKey === "LUX" ? "mf-motif-lux" : divKey === "VID" ? "mf-motif-vid" : "mf-motif-aud";
 
   return `
     <div class="mod-footer">
@@ -2951,8 +3034,8 @@ function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serial
         </div>
 
         <div class="mf-right-group">
-          <svg class="mf-barcode-svg" viewBox="0 0 ${bx.toFixed(1)} 10" height="10" aria-hidden="true">
-            ${rects}
+          <svg class="mf-barcode-svg" viewBox="0 0 ${MF_BARCODE_WIDTH} 10" height="10" aria-hidden="true">
+            ${MF_BARCODE_RECTS}
           </svg>
           <span class="mf-serial-right">${serialRight}</span>
           <span class="mf-reg">+</span>
@@ -2972,28 +3055,6 @@ function renderModuleFooterHTML(divKey = "AUD", serialLeft = "AUD // 01", serial
    TEATRO (TEATRO_AREAS) a obsah sekce SOFTWARE (SOFTWARE_CATALOG).
    Barevné profily jsou definovány v CSS proměnných (styles.css, [data-brand]).
    ========================================================= */
-const TS_SHORT = "T" + "\\".repeat(3) + "S";
-
-Object.assign(I18N.cs, {
-  sec_software: "SOFTWARE",
-  software_item_status: "STAV",
-  software_empty: "V této oblasti zatím nejsou zveřejněny žádné položky.",
-  software_intro_decoy: "DECØY SOFTWARE — samostatná sekce značky DECØY. Datová struktura je připravena pro firmware, editory, pluginy a podpůrné nástroje.",
-  software_intro_teatro: `${TS} SOFTWARE — samostatná sekce značky TEATRO. Datová struktura je připravena pro software, nástroje a technická řešení pro režii a produkci.`,
-  software_open: "OTEVŘÍT ↗",
-  brand_switch_to_decoy: "DECØY DEVICES ↗",
-  brand_switch_to_teatro: `${TS} ↗`,
-});
-Object.assign(I18N.en, {
-  sec_software: "SOFTWARE",
-  software_item_status: "STATUS",
-  software_empty: "No items have been published in this area yet.",
-  software_intro_decoy: "DECØY SOFTWARE — a standalone section of the DECØY brand. The data structure is ready for firmware, editors, plugins and supporting tools.",
-  software_intro_teatro: `${TS} SOFTWARE — a standalone section of the TEATRO brand. The data structure is ready for software, tools and technical solutions for stage direction and production.`,
-  software_open: "OPEN ↗",
-  brand_switch_to_decoy: "DECØY DEVICES ↗",
-  brand_switch_to_teatro: `${TS} ↗`,
-});
 
 /* Navigační podsekce definované odděleně pro každou značku.
    - labelKey / label / labelByDiv: popisek (i18n klíč, pevný text, nebo text podle oblasti)

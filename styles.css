@@ -129,7 +129,6 @@ a {
   pointer-events: auto;
 }
 
-.landing-brand .brand-name,
 .brand-switch-btn {
   display: inline-flex;
   align-items: center;
@@ -159,6 +158,9 @@ a {
   right: 28px;
   bottom: 20px;
   z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .nav-right {
@@ -208,16 +210,6 @@ a {
   background: rgba(12, 12, 14, 0.86);
   color: var(--silver-hasl);
   border-color: rgba(185, 190, 199, 0.45);
-}
-
-.btn-teatro-jump {
-  border-color: rgba(254, 80, 0, 0.6);
-}
-
-.btn-teatro-jump:hover {
-  background: var(--pantone-orange);
-  border-color: var(--pantone-orange);
-  color: var(--silk-black);
 }
 
 .btn-hud {
@@ -376,6 +368,8 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--bg-main);
+  color: var(--fg-main);
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
@@ -401,11 +395,6 @@ a {
   --fg-main: var(--silk-white);
   --fg-muted: #c8b8e8;
   --border-col: rgba(185, 190, 199, 0.26);
-}
-
-.division-view {
-  background: var(--bg-main);
-  color: var(--fg-main);
 }
 
 /* Sticky Navigation inside Division */
@@ -616,14 +605,6 @@ a {
   object-fit: contain;
 }
 
-.view-switcher {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  gap: 4px;
-}
-
 .view-pill {
   padding: 3px 7px;
   font-family: var(--font-mono);
@@ -677,14 +658,6 @@ a {
 /* =========================================================
    BLOK / ZÁPISNÍK (BLOG)
    ========================================================= */
-.blog-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
 .blog-editor {
   background: var(--bg-card);
   border: 1px solid var(--fg-main);
@@ -745,55 +718,8 @@ a {
 }
 
 /* =========================================================
-   TEATRO\\\SVJÖTLO (SEKCE AKCÍ, DESIGNU, RENTÁLU A ZAKÁZKOVÉ VÝROBY)
+   TEATRO CREW & MERCH
    ========================================================= */
-.teatro-view[hidden] {
-  display: none;
-}
-
-.teatro-view {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  --bg-main: #0b0b0e;
-  --bg-card: #131318;
-  --fg-main: var(--silk-white);
-  --fg-muted: var(--silver-hasl);
-  --border-col: rgba(185, 190, 199, 0.22);
-  background: var(--bg-main);
-  color: var(--fg-main);
-}
-
-.teatro-nav {
-  border-bottom: 2px solid var(--pantone-orange);
-}
-
-.teatro-nav-badge {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  padding: 5px 12px;
-  background: var(--pantone-orange);
-  color: var(--silk-black);
-}
-
-.teatro-view .sub-tab.active,
-.teatro-view .btn-outline:hover {
-  background: var(--pantone-orange);
-  border-color: var(--pantone-orange);
-  color: var(--silk-black);
-}
-
-.teatro-view .sec-head {
-  border-left: 4px solid var(--pantone-orange);
-  padding-left: 14px;
-}
-
-.teatro-card:hover {
-  border-color: var(--pantone-orange);
-}
-
 .teatro-crew-banner {
   background: var(--bg-card);
   border: 1px solid var(--border-col);
@@ -809,16 +735,6 @@ a {
   gap: 8px;
 }
 
-.teatro-view .person-initials {
-  border-color: var(--pantone-orange);
-}
-
-.teatro-view .mf-accent-strip,
-.teatro-view .mf-reg {
-  color: var(--pantone-orange);
-  opacity: 0.9;
-}
-
 .merch-art {
   width: 100%;
   min-height: 220px;
@@ -827,64 +743,6 @@ a {
   justify-content: center;
   background: rgba(0, 0, 0, 0.1);
   padding: 20px;
-}
-
-.merch-price {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-/* Footer */
-.pcb-footer {
-  margin-top: auto;
-  padding: 28px 0 36px;
-}
-
-.footer-hazard-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto 1fr 1fr;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.hazard-stripes {
-  height: 8px;
-  background: repeating-linear-gradient(
-    -45deg,
-    currentColor,
-    currentColor 4px,
-    transparent 4px,
-    transparent 9px
-  );
-  opacity: 0.45;
-}
-
-.silver-bar {
-  height: 4px;
-  background: currentColor;
-  opacity: 0.35;
-}
-
-.footer-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.76rem;
-  letter-spacing: 0.12em;
-  color: var(--fg-muted);
-}
-
-.footer-brand {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--fg-main);
 }
 
 /* Modal */
@@ -1017,7 +875,15 @@ a {
 }
 
 .product-page.theme-LUX,
-.modal.theme-LUX {
+.modal.theme-LUX,
+.product-page.mod-dmx-out,
+.modal.mod-dmx-out,
+.product-page.mod-patchbay-8ch,
+.modal.mod-patchbay-8ch,
+.product-page.mod-patchbay-16ch,
+.modal.mod-patchbay-16ch,
+.product-page.mod-lux-core,
+.modal.mod-lux-core {
   --prod-bg: radial-gradient(circle at 28% 24%, rgba(255, 112, 51, 0.14), rgba(220, 214, 202, 0.05) 42%, #111112 100%);
   --prod-bg-solid: #111112;
   --prod-nav-bg: rgba(17, 17, 18, 0.92);
@@ -1073,7 +939,10 @@ a {
 }
 
 .product-page[data-brand="teatro"].theme-LUX,
-.modal[data-brand="teatro"].theme-LUX {
+.modal[data-brand="teatro"].theme-LUX,
+.product-page[data-brand="teatro"].mod-3d-cube,
+.modal[data-brand="teatro"].mod-3d-cube,
+.mod-3d-cube {
   --prod-bg: radial-gradient(circle at 36% 28%, rgba(224, 141, 80, 0.18), rgba(168, 60, 16, 0.14) 44%, #110f0d 100%);
   --prod-bg-solid: #110f0d;
   --prod-nav-bg: rgba(17, 15, 13, 0.92);
@@ -1130,54 +999,18 @@ a {
 .product-page.mod-dmx-out,
 .modal.mod-dmx-out {
   --prod-bg: radial-gradient(circle at 28% 30%, rgba(255, 112, 51, 0.15), rgba(220, 214, 202, 0.05) 42%, #111112 100%);
-  --prod-bg-solid: #111112;
-  --prod-nav-bg: rgba(17, 17, 18, 0.92);
-  --prod-panel: linear-gradient(145deg, #18181a 0%, #202023 100%);
-  --prod-media-bg: #0c0c0d;
-  --prod-ink: #f0efe9;
-  --prod-muted: #b8b5ad;
-  --prod-border: rgba(220, 214, 202, 0.2);
-  --prod-accent: #ff7033;
-  --prod-accent-ink: #111112;
 }
 .product-page.mod-patchbay-8ch,
 .modal.mod-patchbay-8ch {
   --prod-bg: radial-gradient(circle at 68% 32%, rgba(255, 112, 51, 0.14), rgba(220, 214, 202, 0.05) 42%, #111112 100%);
-  --prod-bg-solid: #111112;
-  --prod-nav-bg: rgba(17, 17, 18, 0.92);
-  --prod-panel: linear-gradient(145deg, #18181a 0%, #202023 100%);
-  --prod-media-bg: #0c0c0d;
-  --prod-ink: #f0efe9;
-  --prod-muted: #b8b5ad;
-  --prod-border: rgba(220, 214, 202, 0.2);
-  --prod-accent: #ff7033;
-  --prod-accent-ink: #111112;
 }
 .product-page.mod-patchbay-16ch,
 .modal.mod-patchbay-16ch {
   --prod-bg: radial-gradient(circle at 36% 58%, rgba(255, 112, 51, 0.14), rgba(220, 214, 202, 0.05) 42%, #111112 100%);
-  --prod-bg-solid: #111112;
-  --prod-nav-bg: rgba(17, 17, 18, 0.92);
-  --prod-panel: linear-gradient(145deg, #18181a 0%, #202023 100%);
-  --prod-media-bg: #0c0c0d;
-  --prod-ink: #f0efe9;
-  --prod-muted: #b8b5ad;
-  --prod-border: rgba(220, 214, 202, 0.2);
-  --prod-accent: #ff7033;
-  --prod-accent-ink: #111112;
 }
 .product-page.mod-lux-core,
 .modal.mod-lux-core {
   --prod-bg: radial-gradient(circle at 64% 34%, rgba(255, 112, 51, 0.15), rgba(220, 214, 202, 0.05) 42%, #111112 100%);
-  --prod-bg-solid: #111112;
-  --prod-nav-bg: rgba(17, 17, 18, 0.92);
-  --prod-panel: linear-gradient(145deg, #18181a 0%, #202023 100%);
-  --prod-media-bg: #0c0c0d;
-  --prod-ink: #f0efe9;
-  --prod-muted: #b8b5ad;
-  --prod-border: rgba(220, 214, 202, 0.2);
-  --prod-accent: #ff7033;
-  --prod-accent-ink: #111112;
 }
 .product-page.mod-cue-frames,
 .modal.mod-cue-frames {
@@ -1256,20 +1089,6 @@ a {
   --prod-border: rgba(247, 109, 176, 0.24);
   --prod-accent: #f76db0;
   --prod-accent-ink: #110918;
-}
-.product-page[data-brand="teatro"].mod-3d-cube,
-.modal[data-brand="teatro"].mod-3d-cube,
-.mod-3d-cube {
-  --prod-bg: radial-gradient(circle at 36% 28%, rgba(224, 141, 80, 0.18), rgba(168, 60, 16, 0.14) 44%, #110f0d 100%);
-  --prod-bg-solid: #110f0d;
-  --prod-nav-bg: rgba(17, 15, 13, 0.92);
-  --prod-panel: linear-gradient(145deg, #191512 0%, #211c18 100%);
-  --prod-media-bg: #0c0a09;
-  --prod-ink: #f2ede6;
-  --prod-muted: #c2b6a8;
-  --prod-border: rgba(224, 141, 80, 0.24);
-  --prod-accent: #e08d50;
-  --prod-accent-ink: #110f0d;
 }
 
 .modal[class*="mod-"] .modal-backdrop {
@@ -1361,12 +1180,6 @@ a {
 /* =========================================================
    VIZUÁLNÍ MANUÁL & DIAGRAMY NA STRÁNCE PRODUKTU
    ========================================================= */
-.diagrams-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
 .diagram-card {
   margin: 0;
   background: var(--prod-panel, rgba(16, 18, 24, 0.85));
@@ -1654,17 +1467,27 @@ a {
    SAMOSTATNÁ STRÁNKA PRODUKTU (product.html)
    ========================================================= */
 .product-page {
+  position: relative;
+  z-index: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--prod-bg-solid, var(--pcb-black));
-  background-image: var(--prod-bg);
-  background-attachment: fixed;
   color: var(--prod-ink, var(--silk-white));
   --fg-main: var(--prod-ink, var(--silk-white));
   --bg-main: var(--prod-bg-solid, var(--pcb-black));
   --fg-muted: var(--prod-muted, var(--silver-hasl));
   --border-col: var(--prod-border, rgba(185, 190, 199, 0.24));
+}
+
+.product-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--prod-bg-solid, var(--pcb-black));
+  background-image: var(--prod-bg);
+  pointer-events: none;
 }
 
 .product-nav {
@@ -2337,12 +2160,6 @@ a {
 /* =========================================================
    NATIVE HUD CATALOG CONTROLS, COMMERCE STRIPS & CART DRAWER
    ========================================================= */
-
-.landing-bottombar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
 .cart-count-pill {
   font-family: var(--font-mono);

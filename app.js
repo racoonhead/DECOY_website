@@ -101,34 +101,19 @@ let hudFilter = {
   sort: "featured",
 };
 
-function textVal(val) {
-  if (!val) return "";
-  return typeof val === "string" ? val : val[currentLang] || val.cs || "";
-}
-
-function escapeHtml(str) {
-  return String(str || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
 /* ---------------------------------------------------- blog storage */
+function getLocalPosts(divKey) {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(`decoy_blog_v3_${divKey}`) || "null");
+    if (Array.isArray(parsed) && parsed.length) return parsed;
+  } catch {
+    /* ignore malformed localStorage */
+  }
+  return DEFAULT_NEWS_POSTS.filter((p) => p.division === divKey || !p.division);
+}
+
 function getPosts(divKey) {
-  let base = [];
-  const saved = localStorage.getItem(`decoy_blog_v3_${divKey}`);
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed)) base = parsed;
-    } catch {
-      base = [];
-    }
-  }
-  if (!base.length) {
-    base = DEFAULT_NEWS_POSTS.filter((p) => p.division === divKey || !p.division);
-  }
+  const base = getLocalPosts(divKey);
   const serverPosts = typeof SERVER_BLOG_POSTS !== "undefined" && Array.isArray(SERVER_BLOG_POSTS)
     ? SERVER_BLOG_POSTS.filter((p) => p.division === divKey)
     : [];
@@ -137,7 +122,7 @@ function getPosts(divKey) {
 }
 
 function savePost(divKey, title, body) {
-  const posts = [...getPosts(divKey)];
+  const posts = [...getLocalPosts(divKey)];
   posts.unshift({ id: `${divKey}-${Date.now()}`, division: divKey, date: new Date().toISOString().slice(0, 10), title, body });
   localStorage.setItem(`decoy_blog_v3_${divKey}`, JSON.stringify(posts));
 }
@@ -560,15 +545,15 @@ function renderBlog(divKey, dict) {
               (post) => `
             <article class="blog-post">
               <div class="blog-post-meta">
-                <span>${divKey} // LOG</span>
-                <span>${post.date}</span>
+                <span>${escapeHtml(divKey)} // LOG</span>
+                <span>${escapeHtml(post.date)}</span>
               </div>
-              <h3>${textVal(post.title)}</h3>
-              <p>${textVal(post.body)}</p>
+              <h3>${escapeHtml(textVal(post.title, currentLang))}</h3>
+              <p>${escapeHtml(textVal(post.body, currentLang))}</p>
               ${
                 post.links
                   ? `<div class="link-row">${post.links
-                      .map((l) => `<a class="btn-outline" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)
+                      .map((l) => `<a class="btn-outline" href="${escapeHtml(safeUrl(l.url))}" target="_blank" rel="noopener noreferrer">${escapeHtml(l.label)} ↗</a>`)
                       .join("")}</div>`
                   : ""
               }
@@ -1103,22 +1088,10 @@ function closeModal() {
 }
 
 /* ---------------------------------------------------- Cart Drawer */
-function renderCartDrawer() {
-  const body = document.getElementById("cartDrawerBody");
-  if (!body) return;
-  body.innerHTML = renderCartDrawerHTML(currentLang, "#AUD/catalog", "data-close-cart-nav");
-}
-
-function openCartDrawer() {
-  renderCartDrawer();
-  document.getElementById("cartDrawer").hidden = false;
-  document.getElementById("cartToggleDiv")?.setAttribute("aria-expanded", "true");
-}
-
-function closeCartDrawer() {
-  document.getElementById("cartDrawer").hidden = true;
-  document.getElementById("cartToggleDiv")?.setAttribute("aria-expanded", "false");
-}
+const CART_CFG = { toggleId: "cartToggleDiv", productsHref: "#AUD/catalog", closeNavAttr: "data-close-cart-nav" };
+const renderCartDrawer = () => setCartDrawerOpen(true, { ...CART_CFG, lang: currentLang });
+const openCartDrawer = () => setCartDrawerOpen(true, { ...CART_CFG, lang: currentLang });
+const closeCartDrawer = () => setCartDrawerOpen(false, CART_CFG);
 
 /* ---------------------------------------------------- events */
 function bindDivisionEvents() {
@@ -1217,17 +1190,24 @@ function bindDivisionEvents() {
 
   const hudSearch = document.getElementById("hudSearchInput");
   if (hudSearch) {
+    let searchTimer = null;
     hudSearch.addEventListener("input", (e) => {
-      hudFilter.q = e.target.value;
-      currentSecIdx = 0;
-      renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
-      const refocused = document.getElementById("hudSearchInput");
-      if (refocused) {
-        refocused.focus();
-        if (typeof refocused.setSelectionRange === "function") {
-          refocused.setSelectionRange(refocused.value.length, refocused.value.length);
+      const val = e.target.value;
+      const selStart = e.target.selectionStart ?? val.length;
+      const selEnd = e.target.selectionEnd ?? val.length;
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        hudFilter.q = val;
+        currentSecIdx = 0;
+        renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
+        const refocused = document.getElementById("hudSearchInput");
+        if (refocused) {
+          refocused.focus();
+          if (typeof refocused.setSelectionRange === "function") {
+            refocused.setSelectionRange(selStart, selEnd);
+          }
         }
-      }
+      }, 120);
     });
   }
 
@@ -1366,86 +1346,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const incBtn = e.target.closest("[data-cart-inc]");
-    if (incBtn) {
-      DECOY_STORE.updateQty(incBtn.getAttribute("data-cart-inc"), 1);
-      updateCartCountUI(true);
-      renderCartDrawer();
-      return;
-    }
-    const decBtn = e.target.closest("[data-cart-dec]");
-    if (decBtn) {
-      DECOY_STORE.updateQty(decBtn.getAttribute("data-cart-dec"), -1);
-      updateCartCountUI();
-      renderCartDrawer();
-      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
-      return;
-    }
-    const rmBtn = e.target.closest("[data-cart-rm]");
-    if (rmBtn) {
-      DECOY_STORE.removeItem(rmBtn.getAttribute("data-cart-rm"));
-      updateCartCountUI();
-      renderCartDrawer();
-      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
-      return;
-    }
-    if (e.target.id === "clearCartBtn") {
-      DECOY_STORE.clear();
-      updateCartCountUI();
-      renderCartDrawer();
-      if (currentDivision) renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
-      return;
-    }
-    if (e.target.id === "copyCartBtn") {
-      const summary = DECOY_STORE.getSummary();
-      const lines = summary.entries.map(
-        ({ product, qty }) => `- ${qty}× ${itemDisplayName(product, currentLang)} (${product.serial}) — ${DECOY_STORE.formatPrice(product, currentLang)}`
-      );
-      navigator.clipboard?.writeText(`DECØY ORDER / INQUIRY LIST\n${lines.join("\n")}`).catch(() => {});
-      const fb = document.getElementById("cartCopyFeedback");
-      if (fb) fb.textContent = I18N[currentLang].cart_copied;
-      return;
-    }
-    if (e.target.id === "submitCartInquiryBtn") {
-      const summary = DECOY_STORE.getSummary();
-      if (!summary.entries.length) return;
-      const contact = document.getElementById("cartContactInput")?.value.trim() || "—";
-      const lines = summary.entries.map(
-        ({ product, qty }) => `- ${qty}× ${itemDisplayName(product, currentLang)} (${product.serial}) — ${DECOY_STORE.formatPrice(product, currentLang)}`
-      );
-      const items = summary.entries.map(({ product, qty }) => ({
-        id: product.id,
-        name: itemDisplayName(product, currentLang),
-        qty,
-      }));
-      const fb = document.getElementById("cartCopyFeedback");
-      if (typeof submitPublicInquiry === "function") {
-        submitPublicInquiry({
-          type: "decoy_order",
-          division: currentDivision || "AUD",
-          contact,
-          summary: `${summary.count} ks (${summary.pricedTotal} Kč)`,
-          notes: lines.join("\n"),
-          items,
-        }).then((res) => {
-          if (res.ok) {
-            DECOY_STORE.clear();
-            updateCartCountUI();
-            renderCartDrawer();
-            const fb2 = document.getElementById("cartCopyFeedback");
-            if (fb2) fb2.textContent = `${I18N[currentLang].cart_sent} (${res.inquiry.id})`;
-          } else {
-            navigator.clipboard?.writeText(`DECØY ORDER\n${lines.join("\n")}`).catch(() => {});
-            if (fb) fb.textContent = I18N[currentLang].cart_copied;
-          }
-        });
-      }
-      return;
-    }
-    if (e.target.closest("[data-close-cart-nav]")) {
-      closeCartDrawer();
-      renderDivision(currentDivision || "AUD", "catalog");
-    }
+    handleCartDrawerClick(e, {
+      getLangFn: () => currentLang,
+      getDivisionFn: () => currentDivision || "AUD",
+      onUpdate: ({ pulse, refreshPage }) => {
+        updateCartCountUI(pulse);
+        renderCartDrawer();
+        if (refreshPage && currentDivision) {
+          renderDivision(currentDivision, currentTab, { preserveScroll: true, replaceHistory: true });
+        }
+      },
+      onBrowseCatalog: () => {
+        closeCartDrawer();
+        renderDivision(currentDivision || "AUD", "catalog");
+      },
+    });
   });
 
   document.addEventListener("keydown", (e) => {

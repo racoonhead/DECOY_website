@@ -4,13 +4,7 @@ let currentUser = null;
 let adminState = null;
 let activeAdminTab = "inquiries";
 
-function esc(str) {
-  return String(str ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
+const esc = escapeHtml;
 
 function setStatus(msg, isError = false) {
   const el = document.getElementById("adminStatusBar");
