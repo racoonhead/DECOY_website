@@ -1121,20 +1121,6 @@ a {
   --prod-accent-ink: #07120d;
 }
 
-.product-page.mod-psu-eurorack,
-.modal.mod-psu-eurorack {
-  --prod-bg: radial-gradient(circle at 34% 32%, rgba(224, 168, 78, 0.16), rgba(38, 42, 28, 0.34) 46%, #0d0f0c 100%);
-  --prod-bg-solid: #0d0f0c;
-  --prod-nav-bg: rgba(13, 15, 12, 0.92);
-  --prod-panel: linear-gradient(145deg, #161914 0%, #1f241b 100%);
-  --prod-media-bg: #080907;
-  --prod-ink: #f3f1ea;
-  --prod-muted: #b8baa9;
-  --prod-border: rgba(224, 168, 78, 0.24);
-  --prod-accent: #e0a84e;
-  --prod-accent-ink: #0d0f0c;
-}
-
 .modal[class*="mod-"] .modal-backdrop {
   background: var(--prod-bg);
 }

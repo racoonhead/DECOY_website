@@ -772,8 +772,6 @@ const PRODUCTS = {
     ],
     gallery: [
       { src: "assets/products/dmx-out/preview.png", cap: { cs: "Čelní panel — náhled", en: "Front panel — preview" } },
-      { src: "assets/products/dmx-out/frontpanel_3d.png", cap: { cs: "Panel — 3D render", en: "Panel — 3D render" } },
-      { src: "assets/products/dmx-out/pcb_render_hi.png", cap: { cs: "Osazená deska — 3D render", en: "Assembled PCB — 3D render" } },
       { src: "assets/diagrams/dmx-out-pipeline.svg?v=20261117g", cap: { cs: "Převod CV na DMX512-A", en: "CV-to-DMX512-A pipeline" } },
     ],
     related: ["patchbay-8ch", "cue-frames", "lux-core"],
@@ -865,9 +863,6 @@ const PRODUCTS = {
     ],
     gallery: [
       { src: "assets/products/patchbay-8ch/preview.png", cap: { cs: "Čelní panel 8 HP — náhled", en: "8 HP front panel — preview" } },
-      { src: "assets/products/patchbay-8ch/frontpanel_3d.png", cap: { cs: "Panel — 3D render (matná bílá / stříbrný HASL)", en: "Panel — 3D render (matte white / silver HASL)" } },
-      { src: "assets/products/patchbay-8ch/pcb_3d.png", cap: { cs: "Plošný spoj — horní strana (3D)", en: "PCB — top side (3D)" } },
-      { src: "assets/products/patchbay-8ch/pcb_3d_back.png", cap: { cs: "Plošný spoj — spodní strana SMD (3D)", en: "PCB — bottom SMD side (3D)" } },
     ],
     related: ["dmx-out", "patchbay-16ch", "lux-core", "cue-frames"],
   },
@@ -958,9 +953,6 @@ const PRODUCTS = {
     ],
     gallery: [
       { src: "assets/products/patchbay-16ch/preview.png", cap: { cs: "Čelní panel 12 HP — náhled", en: "12 HP front panel — preview" } },
-      { src: "assets/products/patchbay-16ch/frontpanel_3d.png", cap: { cs: "Panel — 3D render (matná bílá / stříbrný HASL)", en: "Panel — 3D render (matte white / silver HASL)" } },
-      { src: "assets/products/patchbay-16ch/pcb_3d.png", cap: { cs: "Rozpracovaná PCB — horní strana (3D)", en: "WIP PCB — top side (3D)" } },
-      { src: "assets/products/patchbay-16ch/pcb_3d_back.png", cap: { cs: "Rozpracovaná PCB — spodní SMD strana (3D)", en: "WIP PCB — bottom SMD side (3D)" } },
     ],
     related: ["patchbay-8ch", "dmx-out", "lux-core"],
   },
@@ -1598,7 +1590,6 @@ const PRODUCTS = {
     ],
     gallery: [
       { src: "assets/products/fvck-girl/preview.svg?v=20261119b", cap: { cs: "FVCK_GIRL — přesný layout čelního panelu 1:1 dle PCB (112,5 × 233,05 mm)", en: "FVCK_GIRL — exact 1:1 front panel layout from PCB (112.5 × 233.05 mm)" } },
-      { src: "assets/products/fvck-girl/pcb_render.png?v=20261119a", cap: { cs: "3D render univerzální hlavní PCB (AREA A: J_RPI vlevo, AREA B: J_FPGA vpravo)", en: "3D render of universal main PCB (AREA A: J_RPI left, AREA B: J_FPGA right)" } },
     ],
     related: ["fvck-boy", "cue-frames"],
   },
@@ -1613,7 +1604,7 @@ const PRODUCTS = {
       cs: "Revize STM32H562 + kompletní firmware & PCB popisy",
       en: "STM32H562 revision + complete firmware & PCB overlays",
     },
-    image: "assets/products/fvck-boy/01_ARENA_Resolume.png?v=20261120a",
+    image: null,
     tagline: {
       cs: "Hardwarová konzole pro Resolume Arena na STM32H562VIT6 s obousměrnou RGB LED maticí (10×5), 87 spínači, 45 analogy a 4 vestavěnými režimy přes jediný enkodér.",
       en: "Hardware Resolume Arena controller built on STM32H562VIT6 with a bidirectional 10×5 RGB LED grid, 87 switches, 45 analog controls, and 4 onboard modes via a single encoder.",
@@ -1731,13 +1722,7 @@ const PRODUCTS = {
       S("Režimy OS (ENC1 menu)", "OS Modes (ENC1 menu)", { cs: "1. AR Arena (hlavní) · 2. SQ Sequencer · 3. SM Sampler · 4. SY DSP Synth (48 kHz)", en: "1. AR Arena (primary) · 2. SQ Sequencer · 3. SM Sampler · 4. SY DSP Synth (48 kHz)" }, "doc", true),
       S("Testy firmware", "Firmware tests", { cs: "5 host testovacích sad (OS Menu, Resolume 12 scénářů, Seq, Sampler, Synth)", en: "5 host test suites (OS Menu, Resolume 12 scenarios, Seq, Sampler, Synth)" }, "doc"),
     ],
-    gallery: [
-      { src: "assets/products/fvck-boy/01_ARENA_Resolume.png?v=20261120a", cap: { cs: "AR — Resolume Arena Controller: popisky všech tlačítek, faderů & potů na PCB", en: "AR — Resolume Arena Controller: full PCB button, fader & pot map" } },
-      { src: "assets/products/fvck-boy/pcb_render.png?v=20261120a", cap: { cs: "3D top-down render revidované PCB (STM32H562VIT6, 9× MUX, 81× WS2812B)", en: "3D top-down render of STM32H562VIT6 PCB (9× MUX, 81× WS2812B)" } },
-      { src: "assets/products/fvck-boy/02_SEQUENCER_MIDI.png?v=20261120a", cap: { cs: "SQ — 5-Track Generative MIDI Sequencer: mapa prvků na PCB", en: "SQ — 5-Track Generative MIDI Sequencer: PCB control map" } },
-      { src: "assets/products/fvck-boy/03_SAMPLER_Drums.png?v=20261120a", cap: { cs: "SM — Sample Drum Machine (WAV, 10–50 kroků): mapa prvků na PCB", en: "SM — Sample Drum Machine (WAV, 10–50 steps): PCB control map" } },
-      { src: "assets/products/fvck-boy/04_SYNTH_Drums.png?v=20261120a", cap: { cs: "SY — Synth Drum Machine (DSP + DAC8552): mapa prvků na PCB", en: "SY — Synth Drum Machine (DSP + DAC8552): PCB control map" } },
-    ],
+    gallery: [],
     related: ["fvck-girl", "dmx-out", "cue-frames"],
   },
 
@@ -1820,8 +1805,6 @@ const PRODUCTS = {
     ],
     gallery: [
       { src: "assets/products/opl3-fm/preview.png?v=20261123g", cap: { cs: "Čelní panel 18 HP — RETRO smaragdová + ENIG zlato (retro_silicon)", en: "18 HP Front Panel — RETRO Emerald + ENIG Gold (retro_silicon)" } },
-      { src: "assets/products/opl3-fm/pcb_3d_top.png?v=20261123g", cap: { cs: "3D render PCB — přední THT strana (1:1 s panelem)", en: "3D PCB render — front THT side (1:1 panel alignment)" } },
-      { src: "assets/products/opl3-fm/pcb_3d_back.png?v=20261123g", cap: { cs: "3D render PCB — zadní SMD strana (YMF262-M, YAC512-M, STM32G0B1)", en: "3D PCB render — bottom SMD side (YMF262-M, YAC512-M, STM32G0B1)" } },
     ],
     related: ["triple-psg", "elements-v04", "cube-seq", "the-out"],
   },
@@ -1936,95 +1919,8 @@ const PRODUCTS = {
     ],
     gallery: [
       { src: "assets/products/triple-psg/preview.png?v=20261123g", cap: { cs: "Čelní panel 20 HP — RETRO smaragdová + ENIG zlato (retro_arcade)", en: "20 HP Front Panel — RETRO Emerald + ENIG Gold (retro_arcade)" } },
-      { src: "assets/products/triple-psg/pcb_3d_top.png?v=20261123g", cap: { cs: "3D render PCB — přední THT strana (1:1 s panelem)", en: "3D PCB render — front THT side (1:1 panel alignment)" } },
-      { src: "assets/products/triple-psg/pcb_3d_back.png?v=20261123g", cap: { cs: "3D render PCB — zadní strana (DIP-40 patice U6, STM32C071, TL074)", en: "3D PCB render — bottom side (DIP-40 U6 socket, STM32C071, TL074)" } },
     ],
     related: ["opl3-fm", "cube-seq", "elements-v04", "the-out"],
-  },
-
-  "psu-eurorack": {
-    division: "AUD",
-    divisions: ["AUD", "LUX"],
-    name: "PSU EURORACK v2.0",
-    hp: "INTERNAL PCB · 48 W",
-    serial: "DD-PS02 // 48W.±12V",
-    status: { cs: "Schéma + 4vrstvé PCB + BOM + Gerbery", en: "Schematic + 4-layer PCB + BOM + Gerbers" },
-    image: "assets/products/psu-eurorack/preview.png?v=20261123g",
-    tagline: {
-      cs: "Spínaný Eurorack napájecí zdroj 48 W (12 V DC → +12 V / 3 A & −12 V / 1 A) na 4vrstvém 2oz PCB.",
-      en: "48 W switching Eurorack PSU (12 V DC → +12 V / 3 A & −12 V / 1 A) on a 4-layer 2 oz PCB.",
-    },
-    short: {
-      cs: "Interní napájecí deska do kufru: vstup z jediného 12V/6A adaptéru, TI LM5175 (+12 V / 3 A @ 384,4 kHz CCM), TI TPS62933F (−12 V / 1 A @ 500 kHz FCCM bez přeskakování pulzů v audio pásmu), aktivní P-FET ochrana přepólování a 4× 16pin IDC výstup.",
-      en: "Internal skiff power board: single 12 V / 6 A brick input, TI LM5175 (+12 V / 3 A @ 384.4 kHz CCM), TI TPS62933F (−12 V / 1 A @ 500 kHz FCCM with zero audio-band pulse skipping), active P-FET reverse-polarity protection, and 4× 16-pin IDC headers.",
-    },
-    long: {
-      cs: [
-        "DVĚ DEDIKOVANÉ VĚTVE Z JEDINÉHO 12V ADAPTÉRU: PSU_eurorack v2.0 převádí běžný externí zdroj 12 V DC (doporučeno 12 V / 6 A Mean Well) na regulované symetrické napájení +12 V / 3 A (36 W) a −12 V / 1 A (12 W) s celkovým trvalým výkonem 48 W. Vychází z ověřených referenčních návrhů Texas Instruments PMP10624 a TIDA-050053 Rev A přepočítaných přesně pro Eurorack zátěž.",
-        "ČISTÝ PROVOZ V AUDIO PÁSMU (CCM & FCCM): Kladnou větev řídí 4-spínačový synchronní buck-boost kontroler LM5175PWPR (384,4 kHz, režim CCM + Hiccup bez rozptylového ditheringu). Zápornou větev řídí invertující buck-boost TPS62933FDRLR v pevném režimu 500 kHz FCCM (Forced Continuous Conduction Mode) — měnič nikdy nepřechází do úsporného PFM režimu a nevytváří slyšitelné zvlnění v audio pásmu ani při nízkém odběru.",
-        "OCHRANA VSTUPU & 4VRSTVÉ 2oz PCB: Vstupní svorkovnice MKDS 3/2 je jištěna 8A pomalou pojistkou, aktivní P-FET ochranou proti přepólování (SQJ409EP, jen 7 mΩ / ~0,16 W při plném odběru) a výkonovou TVS diodou SMCJ14A. Čtyřvrstvá deska s těžkou mědí 2 oz na vnějších vrstvách (2 oz / 1 oz / 1 oz / 2 oz, ENIG) rozvádí silové proudy s minimálním úbytkem a výborným chlazením.",
-        "DISTRIBUCE DO RACKU: Čtyři klíčované 16pinové Eurorack IDC konektory (J2–J5) doplňuje pomocná svorkovnice MKDS 3/3 (J6), trojice stavových LED (IN_OK, +12V_OK, -12V_OK) a 7 testovacích bodů (TP1–TP7) pro rychlé oživení a měření zvlnění. Piny +5 V jsou ponechány nezapojené (NC).",
-      ],
-      en: [
-        "DUAL REGULATED RAILS FROM ONE 12 V BRICK: PSU_eurorack v2.0 converts a single external 12 V DC brick (12 V / 6 A Mean Well recommended) into +12 V / 3 A (36 W) and −12 V / 1 A (12 W) Eurorack power rails (48 W continuous), adapted from TI PMP10624 and TIDA-050053 Rev A reference designs.",
-        "AUDIO-CLEAN CCM & FCCM OPERATION: The positive rail uses an LM5175PWPR 4-switch synchronous buck-boost controller at 384.4 kHz (CCM + Hiccup, dithering disabled). The negative rail runs a TPS62933FDRLR inverting buck-boost locked to 500 kHz FCCM—completely eliminating PFM pulse-skipping noise in the audio band even at light loads.",
-        "ROBUST INPUT PROTECTION & 4-LAYER 2 OZ STACKUP: Input J1 (MKDS 3/2) is protected by an 8 A time-lag fuse, an active 7 mΩ SQJ409EP reverse-polarity P-FET (~0.16 W loss at 4.7 A), and an SMCJ14A transient TVS clamp. The 4-layer 2 oz / 1 oz / 1 oz / 2 oz ENIG PCB provides low-impedance power planes and solid thermal spreading.",
-        "RACK DISTRIBUTION & BENCH DIAGNOSTICS: Four shrouded 16-pin Eurorack IDC headers (J2–J5, +5 V pins NC) are paired with an auxiliary 3-pin MKDS 3/3 terminal (J6), three status LEDs (IN_OK, +12V_OK, -12V_OK), and 7 test points (TP1–TP7). Verified with 0 ERC and 0 error-severity DRC violations in KiCad 10.",
-      ],
-    },
-    useCases: [
-      {
-        t: { cs: "Napájení přenosných Eurorack kufrů (104+ HP)", en: "Powering portable Eurorack skiffs (104+ HP)" },
-        d: {
-          cs: "Bezpečných 48 W (±12 V) z jediného externího 12V adaptéru bez nebezpečného síťového napětí 230 V uvnitř kufru.",
-          en: "Delivers 48 W (±12 V) from a single safe external 12 V brick—zero mains voltage inside your portable case.",
-        },
-      },
-      {
-        t: { cs: "Čisté napájení citlivých analogových i digitálních modulů", en: "Clean power for sensitive analog & DSP rigs" },
-        d: {
-          cs: "Režimy CCM a 500 kHz FCCM drží spínací frekvenci vysoko nad audio pásmem bez PFM cvakání při změně zátěže.",
-          en: "Fixed-frequency CCM and 500 kHz FCCM keep switching artifacts well above the audio band with zero PFM chatter.",
-        },
-      },
-      {
-        t: { cs: "DIY stavebnice & laboratorní testování", en: "DIY build & bench verification" },
-        d: {
-          cs: "Kompletní 10krokový testovací plán, 7 měřicích bodů TP1–TP7, jasně označená polarita −12 V kondenzátoru a dostupný BOM.",
-          en: "Includes a 10-step test procedure, TP1–TP7 test loops, clear −12 V bulk cap polarity silkscreen, and full KiCad 10 manufacturing files.",
-        },
-      },
-    ],
-    controls: {
-      cs: [
-        "J1 — silová svorkovnice MKDS 3/2 pro vstup 12 V DC (10,8–14,4 V, absolutní strop 16,0 V)",
-        "J2–J5 — 4× klíčovaný 16pinový Eurorack IDC konektor (+12 V, GND, −12 V; piny +5 V nezapojeny)",
-        "J6 — pomocný 3pinový výstup MKDS 3/3 (+12 V / GND / −12 V)",
-        "LED IN_OK, +12V_OK, -12V_OK + měřicí očka TP1–TP7",
-      ],
-      en: [
-        "J1 — MKDS 3/2 12 V DC input terminal block (10.8–14.4 V operating, 16.0 V strict max)",
-        "J2–J5 — 4× shrouded 16-pin Eurorack IDC headers (+12 V, GND, −12 V; +5 V pins NC)",
-        "J6 — auxiliary 3-pin MKDS 3/3 power output (+12 V / GND / −12 V)",
-        "IN_OK, +12V_OK, -12V_OK status LEDs + TP1–TP7 bench test loops",
-      ],
-    },
-    specs: [
-      S("Vstupní napětí", "Input voltage", "12 V DC nom. (10,8–14,4 V, max. 16,0 V · dop. 12 V / 6 A zdroj)", "doc", true),
-      S("Kladná větev (+12 V)", "Positive rail (+12 V)", "+12,00 V / 3,0 A (36 W) · TI LM5175PWPR @ 384,4 kHz CCM+Hiccup", "doc", true),
-      S("Záporná větev (−12 V)", "Negative rail (−12 V)", "−12,02 V / 1,0 A (12 W) · TI TPS62933FDRLR @ 500 kHz FCCM", "doc", true),
-      S("Celkový výkon", "Continuous power", "48 W (bez +5 V větve)", "doc", true),
-      S("Vstupní ochrana", "Input protection", "8 A Time-Lag pojistka + 7 mΩ P-FET SQJ409EP + TVS SMCJ14A", "doc", true),
-      S("Výstupní konektory", "Output headers", "4× 16pin shrouded IDC + 1× MKDS 3/3 (+5 V piny NC)", "doc", true),
-      S("Stackup PCB", "PCB stackup", "4 vrstvy (2 oz / 1 oz / 1 oz / 2 oz FR-4, ENIG)", "doc"),
-      S("Ověření návrhu", "Verification", "KiCad 10 ERC: 0 chyb · DRC: 0 errorů · 75 položek BOM", "doc"),
-    ],
-    gallery: [
-      { src: "assets/products/psu-eurorack/preview.png?v=20261123g", cap: { cs: "3D render 4vrstvého PCB — PSU_eurorack v2.0 (48 W)", en: "3D render of 4-layer PCB — PSU_eurorack v2.0 (48 W)" } },
-      { src: "assets/products/psu-eurorack/pcb_top.png?v=20261123g", cap: { cs: "Horní strana PCB (F.Cu 2 oz): LM5175, TPS62933F, 4× IDC", en: "PCB Top View (F.Cu 2 oz): LM5175, TPS62933F, 4× IDC" } },
-      { src: "assets/products/psu-eurorack/pcb_bot.png?v=20261123g", cap: { cs: "Spodní strana PCB (B.Cu 2 oz): zemní a proudové plochy", en: "PCB Bottom View (B.Cu 2 oz): return & thermal planes" } },
-    ],
-    related: ["the-in", "the-out", "dmx-out", "opl3-fm"],
   },
 
   "dmx-processor": {
@@ -2706,15 +2602,6 @@ const PRODUCT_CATALOG_META = {
     categories: ["audio"],
     subcategory: "synthesizers",
     subcategories: ["eurorack", "synthesizers", "midi-controllers"],
-    availability: "prototype",
-    featured: true,
-    isNew: true,
-  },
-  "psu-eurorack": {
-    category: "electronics",
-    categories: ["electronics", "audio", "light"],
-    subcategory: "diy-kits",
-    subcategories: ["eurorack", "diy-kits", "electronic-components"],
     availability: "prototype",
     featured: true,
     isNew: true,
