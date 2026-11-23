@@ -2572,6 +2572,8 @@ const TEATRO_HARDWARE = {
       { src: "assets/products/3d-cube/pcb_3d_top.png", cap: { cs: "3D pohled shora — rozložení kanálů J1–J8", en: "3D top view — J1–J8 channel layout" } },
       { src: "assets/products/3d-cube/pcb_3d_front.png", cap: { cs: "3D čelní pohled na pojistky, kondenzátory a Pico2", en: "3D front angle — fuseholders, bulk caps & Pico2" } },
       { src: "assets/products/3d-cube/pcb_3d_back.png", cap: { cs: "3D spodní strana — odkryté sběrnice V_LED a GND pro pocínování", en: "3D bottom view — exposed V_LED & GND tinning busbars" } },
+      { src: "assets/products/3d-cube/pcb_layout_top.svg", cap: { cs: "2D layout PCB — horní strana (F.Cu / F.Silkscreen)", en: "2D PCB layout — top side (F.Cu / F.Silkscreen)" } },
+      { src: "assets/products/3d-cube/pcb_layout_bottom.svg", cap: { cs: "2D layout PCB — spodní strana (B.Cu / B.Silkscreen)", en: "2D PCB layout — bottom side (B.Cu / B.Silkscreen)" } },
     ],
     related: [],
     warranty: {
