@@ -688,7 +688,7 @@ function renderProductPage(id, { fx = false, divKey = null, brand = null, fromTa
         )
         .join("")}
               </div>`
-      : `<div class="prod-panel-box"><p style="margin:0; color:var(--silver-hasl);">${dict.docs_empty}</p></div>`
+      : `<div class="prod-panel-box"><p style="margin:0; color:var(--prod-muted, var(--silver-hasl));">${dict.docs_empty}</p></div>`
     }
       </div>
     </section>
@@ -737,7 +737,7 @@ function renderProductPage(id, { fx = false, divKey = null, brand = null, fromTa
           </div>
         </div>
         <div class="prod-panel-box">
-          <p style="margin:0; color:var(--silver-hasl);">${escapeHtml(textVal(p.warranty) || dict.warranty_empty)}</p>
+          <p style="margin:0; color:var(--prod-muted, var(--silver-hasl));">${escapeHtml(textVal(p.warranty) || dict.warranty_empty)}</p>
         </div>
       </div>
     </section>

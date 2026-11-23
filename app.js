@@ -1075,7 +1075,7 @@ function openProductModal(id) {
                   </tbody>
                 </table>
               </div>`
-            : `<p style="color:var(--silver-hasl);">${escapeHtml(textVal(item.short))}</p>`
+            : `<p style="color:var(--prod-muted, var(--silver-hasl));">${escapeHtml(textVal(item.short))}</p>`
         }
         <div class="link-row" style="margin-top:18px;">
           <a class="btn-detail" style="margin-top:0;" href="product.html?id=${id}${divParam}">${dict.detail_btn}</a>
