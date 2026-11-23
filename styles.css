@@ -1068,6 +1068,12 @@ a {
   --prod-panel: linear-gradient(145deg, #150e1c 0%, #21122a 100%);
   --prod-accent: #ff1991;
 }
+.mod-3d-cube {
+  --prod-bg: radial-gradient(circle at 38% 36%, rgba(232, 155, 90, 0.24), rgba(115, 49, 8, 0.28) 44%, rgba(16, 13, 11, 0.98) 100%);
+  --prod-bg-solid: #120e0b;
+  --prod-panel: linear-gradient(145deg, #17120e 0%, #221a14 100%);
+  --prod-accent: #e89b5a;
+}
 
 .modal[class*="mod-"] .modal-backdrop {
   background: var(--prod-bg);
@@ -3509,6 +3515,149 @@ body[data-brand="teatro"] .fx-overlay.fx-mod {
   .landing-view[data-brand="teatro"] .split-panel + .split-panel {
     border-left: none;
     border-top: 1px solid rgba(234, 234, 228, 0.22);
+  }
+}
+
+/* ----- 5. TEATRO REALIZOVANÝ HARDWARE & KOMPLETNÍ README DOKUMENTACE ----- */
+.division-view[data-brand="teatro"] .teatro-hw-card .hud-card-media {
+  background: rgba(18, 15, 12, 0.88);
+  border-bottom: 1px solid var(--border-col);
+}
+
+.division-view[data-brand="teatro"] .teatro-hw-card .hud-badge-orig {
+  border-color: var(--tt-area-hi);
+  color: var(--tt-area-hi);
+}
+
+.division-view[data-brand="teatro"] .teatro-hw-card .btn-solid {
+  background: var(--tt-area-accent);
+  border-color: var(--tt-area-accent);
+  color: var(--tt-area-accent-ink);
+}
+
+.teatro-hw-subhead {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-col);
+}
+
+.product-page[data-brand="teatro"] .product-nav {
+  background: rgba(18, 14, 11, 0.9);
+  border-bottom: 2px solid var(--prod-accent, #e89b5a);
+}
+
+.product-page[data-brand="teatro"] .mf-accent-strip,
+.product-page[data-brand="teatro"] .mf-reg {
+  color: var(--prod-accent, #e89b5a);
+  opacity: 0.9;
+}
+
+.readme-panel {
+  padding: 28px 30px;
+}
+
+.readme-doc {
+  font-size: 0.9rem;
+  line-height: 1.66;
+  color: var(--silk-white);
+}
+
+.readme-doc h1 {
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  color: var(--prod-accent, var(--silk-white));
+  margin: 0 0 12px;
+}
+
+.readme-doc h2 {
+  font-size: 1.45rem;
+  color: var(--prod-accent, var(--silk-white));
+  margin: 24px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(185, 190, 199, 0.22);
+}
+
+.readme-doc h3 {
+  font-size: 1.12rem;
+  color: var(--silk-white);
+  margin: 18px 0 8px;
+}
+
+.readme-doc p {
+  margin: 0 0 12px;
+  color: rgba(234, 234, 228, 0.92);
+}
+
+.readme-doc hr {
+  border: none;
+  border-top: 1px solid rgba(185, 190, 199, 0.2);
+  margin: 20px 0;
+}
+
+.readme-doc ul {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+
+.readme-doc li {
+  margin-bottom: 6px;
+}
+
+.readme-doc li ul {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.readme-doc code {
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+  padding: 1px 6px;
+  border: 1px solid rgba(185, 190, 199, 0.26);
+  background: rgba(8, 10, 14, 0.72);
+  color: var(--prod-accent, #e89b5a);
+  border-radius: 2px;
+}
+
+.readme-doc .readme-table {
+  margin: 12px 0 18px;
+}
+
+.readme-doc .readme-table th,
+.readme-doc .readme-table td {
+  width: auto;
+  padding: 8px 10px;
+}
+
+.readme-doc .md-callout {
+  margin: 14px 0 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(185, 190, 199, 0.35);
+  border-left: 4px solid var(--prod-accent, #e89b5a);
+  background: rgba(12, 10, 10, 0.65);
+}
+
+.readme-doc .md-callout-caution,
+.readme-doc .md-callout-warning {
+  border-color: rgba(254, 80, 0, 0.55);
+  border-left-color: #fe5000;
+  background: rgba(254, 80, 0, 0.1);
+}
+
+.readme-doc .md-callout-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.14em;
+  color: #ff7a3d;
+  margin-bottom: 6px;
+}
+
+.readme-doc .md-callout p {
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .readme-panel {
+    padding: 18px 16px;
   }
 }
 

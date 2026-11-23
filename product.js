@@ -3,6 +3,8 @@
 let currentLang = getLang();
 let currentProdId = null;
 let currentDivCtx = null;
+let currentBrandCtx = null;
+let currentFromTab = null;
 let currentGalleryIdx = 0;
 
 const DIV_NAMES = {
@@ -23,6 +25,178 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function renderInlineMarkdown(raw) {
+  const codeTokens = [];
+  let text = escapeHtml(raw).replace(/`([^`]+)`/g, (_, code) => {
+    const idx = codeTokens.length;
+    codeTokens.push(`<code>${code}</code>`);
+    return `\u0000CODE${idx}\u0000`;
+  });
+  text = text
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[\s(])\*([^*]+)\*(?=[\s.,;:!?)]|$)/g, "$1<em>$2</em>");
+  return text.replace(/\u0000CODE(\d+)\u0000/g, (_, idx) => codeTokens[Number(idx)] || "");
+}
+
+function parseTableRow(line) {
+  return line
+    .trim()
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((c) => c.trim());
+}
+
+function isTableSeparatorRow(line) {
+  const trimmed = line.trim();
+  if (!trimmed.startsWith("|")) return false;
+  const cells = parseTableRow(trimmed);
+  return cells.length > 0 && cells.every((c) => /^:?-{3,}:?$/.test(c));
+}
+
+function tableColAlign(sepCell) {
+  const s = sepCell.trim();
+  if (s.startsWith(":") && s.endsWith(":")) return "center";
+  if (s.endsWith(":")) return "right";
+  return "left";
+}
+
+function renderMarkdown(md) {
+  if (!md) return "";
+  const lines = String(md).replace(/\r\n/g, "\n").split("\n");
+  const out = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    if (!trimmed) {
+      i += 1;
+      continue;
+    }
+
+    if (/^---+$/.test(trimmed)) {
+      out.push("<hr />");
+      i += 1;
+      continue;
+    }
+
+    const headingMatch = trimmed.match(/^(#{1,4})\s+(.*)$/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      out.push(`<h${level}>${renderInlineMarkdown(headingMatch[2])}</h${level}>`);
+      i += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith(">")) {
+      const quoteLines = [];
+      while (i < lines.length && lines[i].trim().startsWith(">")) {
+        quoteLines.push(lines[i].trim().replace(/^>\s?/, ""));
+        i += 1;
+      }
+      const alertMatch = quoteLines[0] && quoteLines[0].match(/^\[!(CAUTION|WARNING|NOTE|TIP|IMPORTANT)\]$/i);
+      if (alertMatch) {
+        const kind = alertMatch[1].toLowerCase();
+        const bodyLines = quoteLines.slice(1).filter((l) => l.length > 0);
+        out.push(
+          `<aside class="md-callout md-callout-${kind}" role="note">` +
+            `<div class="md-callout-title">${escapeHtml(alertMatch[1].toUpperCase())}</div>` +
+            `<p>${bodyLines.map(renderInlineMarkdown).join("<br />")}</p>` +
+          `</aside>`
+        );
+      } else {
+        out.push(`<blockquote><p>${quoteLines.map(renderInlineMarkdown).join("<br />")}</p></blockquote>`);
+      }
+      continue;
+    }
+
+    if (trimmed.startsWith("|") && i + 1 < lines.length && isTableSeparatorRow(lines[i + 1])) {
+      const headers = parseTableRow(trimmed);
+      const aligns = parseTableRow(lines[i + 1]).map(tableColAlign);
+      i += 2;
+      const rows = [];
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        rows.push(parseTableRow(lines[i]));
+        i += 1;
+      }
+      out.push(
+        `<div class="diff-table-wrap">` +
+          `<table class="spec-table readme-table">` +
+            `<thead><tr>${headers
+              .map((h, idx) => `<th style="text-align:${aligns[idx] || "left"};">${renderInlineMarkdown(h)}</th>`)
+              .join("")}</tr></thead>` +
+            `<tbody>${rows
+              .map(
+                (r) =>
+                  `<tr>${r
+                    .map((c, idx) => `<td style="text-align:${aligns[idx] || "left"};">${renderInlineMarkdown(c)}</td>`)
+                    .join("")}</tr>`
+              )
+              .join("")}</tbody>` +
+          `</table>` +
+        `</div>`
+      );
+      continue;
+    }
+
+    if (/^\s*-\s+/.test(line)) {
+      const listHtml = ["<ul>"];
+      let nestedOpen = false;
+      while (i < lines.length && /^\s*-\s+/.test(lines[i])) {
+        const cur = lines[i];
+        const isNested = /^\s{2,}-\s+/.test(cur);
+        const itemText = cur.replace(/^\s*-\s+/, "");
+        if (isNested) {
+          if (!nestedOpen) {
+            // Attach nested list inside the previous <li> when present
+            const last = listHtml[listHtml.length - 1];
+            if (last && last.endsWith("</li>")) {
+              listHtml[listHtml.length - 1] = last.slice(0, -5);
+            } else {
+              listHtml.push("<li>");
+            }
+            listHtml.push("<ul>");
+            nestedOpen = true;
+          }
+          listHtml.push(`<li>${renderInlineMarkdown(itemText)}</li>`);
+        } else {
+          if (nestedOpen) {
+            listHtml.push("</ul></li>");
+            nestedOpen = false;
+          }
+          listHtml.push(`<li>${renderInlineMarkdown(itemText)}</li>`);
+        }
+        i += 1;
+      }
+      if (nestedOpen) listHtml.push("</ul></li>");
+      listHtml.push("</ul>");
+      out.push(listHtml.join(""));
+      continue;
+    }
+
+    const paraLines = [];
+    while (
+      i < lines.length &&
+      lines[i].trim() !== "" &&
+      !/^---+$/.test(lines[i].trim()) &&
+      !/^#{1,4}\s+/.test(lines[i].trim()) &&
+      !lines[i].trim().startsWith(">") &&
+      !/^\s*-\s+/.test(lines[i]) &&
+      !(lines[i].trim().startsWith("|") && i + 1 < lines.length && isTableSeparatorRow(lines[i + 1]))
+    ) {
+      paraLines.push(lines[i].trim());
+      i += 1;
+    }
+    if (paraLines.length) {
+      out.push(`<p>${paraLines.map(renderInlineMarkdown).join(" ")}</p>`);
+    }
+  }
+
+  return out.join("\n");
 }
 
 function triggerProductFx() {
@@ -150,7 +324,7 @@ function closeCartDrawer() {
   document.getElementById("cartToggleProd")?.setAttribute("aria-expanded", "false");
 }
 
-function renderProductPage(id, { fx = false, divKey = null } = {}) {
+function renderProductPage(id, { fx = false, divKey = null, brand = null, fromTab = null } = {}) {
   const p = getCatalogItem(id);
   const dict = I18N[currentLang];
   const bodyEl = document.getElementById("productBody");
@@ -166,25 +340,38 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
     return;
   }
 
+  const params = new URLSearchParams(location.search);
+  const resolvedBrandParam = brand || currentBrandCtx || params.get("brand") || null;
+  const resolvedFromParam = fromTab || currentFromTab || params.get("from") || null;
+  const isTeatro = p.brandScope === "teatro" || resolvedBrandParam === "teatro";
+  const activeBrand = isTeatro ? "teatro" : "decoy";
+
   const activeDiv = divKey || currentDivCtx || p.division || "AUD";
   currentDivCtx = activeDiv;
+  currentBrandCtx = activeBrand;
+  currentFromTab = resolvedFromParam;
   currentProdId = id;
   currentGalleryIdx = 0;
   if (fx) triggerProductFx();
 
   const pName = itemDisplayName(p, currentLang);
-  document.title = `${pName} — DECØY DEVICES`;
+  document.title = `${pName} — ${isTeatro ? "TEATRO\\\\\\SVJÖTLO" : "DECØY DEVICES"}`;
   bodyEl.className = `product-page theme-${activeDiv} mod-${id}`;
+  bodyEl.setAttribute("data-brand", activeBrand);
+
+  const cartBtn = document.getElementById("cartToggleProd");
+  if (cartBtn) cartBtn.hidden = isTeatro;
 
   const divTitle = DIV_NAMES[activeDiv]?.[currentLang] || activeDiv;
   const backDiv = activeDiv === "MRC" ? "AUD" : activeDiv;
-  const backTab = p.kind === "merch" ? "merch" : p.kind === "concept" ? "pedals" : p.tab || "eurorack";
-  /* produkty patří značce DECØY (TEATRO nemá produktové kategorie) */
-  const backHref = `index.html?brand=decoy#${backDiv}/${backTab}`;
+  const backTab =
+    resolvedFromParam ||
+    (p.kind === "merch" ? "merch" : p.kind === "concept" ? "pedals" : p.tab || (isTeatro ? "hardware" : "eurorack"));
+  const backHref = `index.html?brand=${activeBrand}#${backDiv}/${backTab}`;
   backLink.href = backHref;
-  backLabel.textContent = `${dict.back_to} ${divTitle}`;
+  backLabel.textContent = isTeatro ? `${dict.back_to} ${TS} · ${divTitle}` : `${dict.back_to} ${divTitle}`;
 
-  const nav = PRODUCTS[id] ? getSectionProductNav(id, activeDiv) : null;
+  const nav = !isTeatro && PRODUCTS[id] ? getSectionProductNav(id, activeDiv) : null;
   if (nav) {
     topPagerEl.innerHTML = `
       <span class="pager-status">
@@ -197,7 +384,7 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
   } else {
     topPagerEl.innerHTML = `
       <span class="pager-status">
-        <a class="pager-crumb-link" href="${backHref}">${activeDiv} // ${escapeHtml(divTitle)}</a>
+        <a class="pager-crumb-link" href="${backHref}">${isTeatro ? `${TS_SHORT} · ` : ""}${activeDiv} // ${escapeHtml(divTitle)}</a>
         <span>·</span>
         <span>${escapeHtml(pName)}</span>
       </span>`;
@@ -231,15 +418,22 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
 
   const siteFooter = document.getElementById("siteFooter");
   if (siteFooter) {
-    siteFooter.innerHTML = renderModuleFooterHTML(activeDiv, `${activeDiv} // ${p.hp}`, "TEATRO\\\\\\SVJÖTLO");
+    siteFooter.innerHTML = isTeatro
+      ? renderModuleFooterHTML(activeDiv, `${TS_SHORT} · ${activeDiv} // ${p.hp}`, "DECØY DEVICES", TS)
+      : renderModuleFooterHTML(activeDiv, `${activeDiv} // ${p.hp}`, "TEATRO\\\\\\SVJÖTLO");
   }
 
   const gallery = getProductGallery(p, activeDiv);
   const related = (p.related || []).map((rid) => getCatalogItem(rid)).filter(Boolean);
-  const inCart = DECOY_STORE.getItems().some((e) => e.id === p.id);
+  const inCart = !isTeatro && DECOY_STORE.getItems().some((e) => e.id === p.id);
   const priceText = DECOY_STORE.formatPrice(p, currentLang);
   const availText = DECOY_STORE.availabilityLabel(p, currentLang);
   const manuals = p.manuals || [];
+  const badgeHtml = isTeatro
+    ? `<span class="modal-chip chip-accent">${dict.teatro_badge}</span>`
+    : p.isOriginal
+      ? `<span class="modal-chip chip-accent">${dict.original_badge}</span>`
+      : `<span class="modal-chip">${dict.partner_badge}</span>`;
 
   mainEl.innerHTML = `
     <!-- 1. GALERIE + 2. NÁZEV, VÝROBCE & CENA + 3. DOSTUPNOST & NÁKUP + 4. POPIS -->
@@ -275,20 +469,22 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
             <p class="prod-tagline">${escapeHtml(textVal(p.tagline))}</p>
 
             <div class="modal-meta-row">
-              ${p.isOriginal ? `<span class="modal-chip chip-accent">${dict.original_badge}</span>` : `<span class="modal-chip">${dict.partner_badge}</span>`}
+              ${badgeHtml}
               <span class="modal-chip">${activeDiv} // ${divTitle}</span>
               <span class="modal-chip">${escapeHtml(p.hp)}</span>
-              <span class="modal-chip">${escapeHtml(priceText)}</span>
+              ${!isTeatro ? `<span class="modal-chip">${escapeHtml(priceText)}</span>` : ""}
               <span class="modal-chip">${escapeHtml(availText)}</span>
             </div>
 
             <div class="prod-commerce-strip">
               <div class="link-row">
-                <button type="button" id="addToCartDetailBtn" class="btn-detail" style="margin-top:0; border:none; cursor:pointer;">
-                  ${inCart ? dict.cart_added : dict.cart_add}
-                </button>
+                ${
+                  isTeatro
+                    ? `<a class="btn-detail" style="margin-top:0;" href="index.html?brand=teatro#${activeDiv}/inquiry">${dict.teatro_inquire_cta}</a>`
+                    : `<button type="button" id="addToCartDetailBtn" class="btn-detail" style="margin-top:0; border:none; cursor:pointer;">${inCart ? dict.cart_added : dict.cart_add}</button>`
+                }
               </div>
-              <small>${dict.cart_notice}</small>
+              <small>${isTeatro ? dict.teatro_inquire_note : dict.cart_notice}</small>
             </div>
 
             <div class="prod-block">
@@ -440,6 +636,27 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
       : ""
     }
 
+    ${p.readme
+      ? `<section id="readme" class="prod-section">
+            <div class="container">
+              <div class="sec-head">
+                <div>
+                  <div class="sec-num">${dict.readme_num}</div>
+                  <h2>${dict.readme_heading}</h2>
+                </div>
+                <div class="link-row">
+                  <button type="button" id="copyReadmeBtn" class="btn-outline">${dict.readme_copy}</button>
+                  <span id="copyReadmeFeedback" class="sec-num" aria-live="polite"></span>
+                </div>
+              </div>
+              <div class="prod-panel-box readme-panel">
+                <article class="readme-doc">${renderMarkdown(p.readme)}</article>
+              </div>
+            </div>
+          </section>`
+      : ""
+    }
+
     <!-- DOKUMENTACE & MANUÁLY -->
     <section id="docs" class="prod-section">
       <div class="container">
@@ -553,6 +770,13 @@ function renderProductPage(id, { fx = false, divKey = null } = {}) {
 
   renderGalleryStage(p);
 
+  document.getElementById("copyReadmeBtn")?.addEventListener("click", () => {
+    if (!p.readme) return;
+    navigator.clipboard?.writeText(p.readme).catch(() => { });
+    const fb = document.getElementById("copyReadmeFeedback");
+    if (fb) fb.textContent = dict.readme_copied;
+  });
+
   document.getElementById("addToCartDetailBtn")?.addEventListener("click", () => {
     DECOY_STORE.addItem(p.id, 1);
     renderProductPage(p.id, { divKey: activeDiv });
@@ -607,12 +831,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(location.search);
   const initialId = params.get("id") || "the-in";
   const initialDiv = params.get("div") || null;
-  renderProductPage(initialId, { divKey: initialDiv });
+  const initialBrand = params.get("brand") || null;
+  const initialFrom = params.get("from") || null;
+  renderProductPage(initialId, { divKey: initialDiv, brand: initialBrand, fromTab: initialFrom });
 
   if (typeof syncPublicServerState === "function") {
     syncPublicServerState().then((synced) => {
       if (synced && currentProdId) {
-        renderProductPage(currentProdId, { divKey: currentDivCtx });
+        renderProductPage(currentProdId, { divKey: currentDivCtx, brand: currentBrandCtx, fromTab: currentFromTab });
       }
     });
   }
@@ -620,7 +846,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("langToggleProd")?.addEventListener("click", () => {
     currentLang = currentLang === "cs" ? "en" : "cs";
     setLang(currentLang);
-    if (currentProdId) renderProductPage(currentProdId, { divKey: currentDivCtx });
+    if (currentProdId) renderProductPage(currentProdId, { divKey: currentDivCtx, brand: currentBrandCtx, fromTab: currentFromTab });
     if (!document.getElementById("cartDrawer").hidden) renderCartDrawer();
   });
 
@@ -669,7 +895,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("popstate", () => {
     const p = new URLSearchParams(location.search);
-    renderProductPage(p.get("id") || "the-in", { divKey: p.get("div") || null });
+    renderProductPage(p.get("id") || "the-in", {
+      divKey: p.get("div") || null,
+      brand: p.get("brand") || null,
+      fromTab: p.get("from") || null,
+    });
   });
 
   document.getElementById("lightboxClose")?.addEventListener("click", closeLightbox);

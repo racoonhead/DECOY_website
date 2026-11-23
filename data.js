@@ -157,6 +157,16 @@ const I18N = {
     sec_num_catalog: "05 // KOMPLETNÍ KATALOG & ZNAČKY",
     list_btn: "SEZNAM",
     add_list_btn: "+ SEZNAM",
+    ts_tab_hardware: "HARDWARE",
+    ts_built_hardware: "REALIZOVANÝ HARDWARE",
+    ts_built_hardware_num: "// HARDWARE Z DÍLNY TEATRO",
+    teatro_badge: "T\\\\\\S",
+    teatro_inquire_cta: "POPTAT VÝROBU / AKCI →",
+    teatro_inquire_note: "Zakázkový hardware vyvíjený a nasazovaný přímo divizí TEATRO\\\\\\SVJÖTLO.",
+    readme_num: "04B // KOMPLETNÍ README.MD",
+    readme_heading: "KOMPLETNÍ DOKUMENTACE (README)",
+    readme_copy: "ZKOPÍROVAT README.MD",
+    readme_copied: "ZKOPÍROVÁNO",
   },
   en: {
     div_sound: "SOUND",
@@ -305,6 +315,16 @@ const I18N = {
     sec_num_catalog: "05 // FULL CATALOG & BRANDS",
     list_btn: "LIST",
     add_list_btn: "+ LIST",
+    ts_tab_hardware: "HARDWARE",
+    ts_built_hardware: "BUILT HARDWARE",
+    ts_built_hardware_num: "// TEATRO IN-HOUSE HARDWARE",
+    teatro_badge: "T\\\\\\S",
+    teatro_inquire_cta: "INQUIRE BUILD / EVENT →",
+    teatro_inquire_note: "Custom hardware engineered and deployed directly by TEATRO\\\\\\SVJÖTLO.",
+    readme_num: "04B // COMPLETE README.MD",
+    readme_heading: "COMPLETE DOCUMENTATION (README)",
+    readme_copy: "COPY README.MD",
+    readme_copied: "COPIED",
   },
 };
 
@@ -2444,8 +2464,131 @@ const CATALOG_ITEMS = (() => {
   return items;
 })();
 
+const TEATRO_HARDWARE = {
+  "3d-cube": {
+    id: "3d-cube",
+    kind: "hardware",
+    brandScope: "teatro",
+    brand: TS,
+    brandId: "teatro-svjotlo",
+    isOriginal: true,
+    division: "LUX",
+    tab: "hardware",
+    name: "3D CUBE",
+    hp: "266 × 98 mm PCB",
+    serial: "TS-LX01 // 8CH.WS2812B.DMX",
+    sku: "TS-LX01",
+    price: null,
+    currency: "CZK",
+    availability: "prototype",
+    status: { cs: "Schéma + PCB + BOM + výroba", en: "Schematic + PCB + BOM + fabrication" },
+    image: "assets/products/3d-cube/preview.png",
+    tagline: {
+      cs: "8kanálový DMX / Art-Net / sACN řadič digitálních LED na W6100-EVB-Pico2.",
+      en: "8-channel DMX / Art-Net / sACN addressable LED controller on W6100-EVB-Pico2.",
+    },
+    short: {
+      cs: "8kanálový řadič adresovatelných LED pásků (WS2812B / WS2815) s oddělenými 5V budiči 74AHCT125, jištěnými XLR3 výstupy (MINI pojistky) a pocínovatelnou silovou sběrnicí 5 V / 12 V.",
+      en: "8-channel addressable LED strip controller (WS2812B / WS2815) with isolated 5 V 74AHCT125 line drivers, MINI-fused XLR3 outputs, and tinnable 5 V / 12 V power busbars.",
+    },
+    long: {
+      cs: [
+        "3D CUBE je 8kanálový DMX / Art-Net / sACN řadič digitálních LED pásků (WS2812B / WS2815) navržený přímo pro scénické světelné instalace a prostorové LED objekty divize TEATRO\\\\\\SVJÖTLO. Srdcem desky je modul WIZnet W6100-EVB-Pico2 (RP2350 + W6100 Ethernet, USB-C), který přes GPIO2–GPIO9 budí osm samostatných datových větví.",
+        "Každý kanál je oddělen 5V logickým budičem SN74AHCT125D, sériovým tlumicím odporem 100 Ω a ESD ochranou PESD5V0S1BB před úhlovým konektorem Neutrik NC3FAAH (XLR3). Kladná větev V_LED (5 V nebo 12 V přes XT60PW-M či kabelová oka M5) je na každém kanálu samostatně jištěna automobilovou nožovou pojistkou typu MINI v držáku Keystone 3568 a chráněna TVS diodou SMBJ15CA.",
+        "Logika běží vždy na 5 V díky voliči JP1 (1–2 přímý bypass při 5 V; 2–3 přes LDO AMS1117-5.0 při 12 V) a Schottky diodě SS34 do VSYS. Dvouvrstvé 1oz PCB (266 × 98 mm) má na spodní straně souvisle odkryté silnoproudé sběrnice V_LED a GND připravené pro domácí pocínování nebo připájení měděného drátu 1,5–2,5 mm² při proudech nad 20–30 A.",
+      ],
+      en: [
+        "3D CUBE is an 8-channel DMX / Art-Net / sACN controller for addressable LED strips (WS2812B / WS2815) engineered for TEATRO\\\\\\SVJÖTLO stage lighting and 3D pixel installations. Powered by a WIZnet W6100-EVB-Pico2 (RP2350 + W6100 Ethernet, USB-C), GPIO2–GPIO9 drive eight independent output channels.",
+        "Each channel passes through a 5 V SN74AHCT125D buffer, a 100 Ω series damping resistor, and a PESD5V0S1BB ESD clamp into a horizontal Neutrik NC3FAAH XLR3 connector. The V_LED rail (5 V or 12 V via XT60PW-M or M5 ring lugs, SMBJ15CA TVS-protected) is individually fused per channel with a MINI blade fuse in a Keystone 3568 holder.",
+        "Logic always runs at 5 V via jumper JP1 (1–2 direct bypass for 5 V strips; 2–3 through the AMS1117-5.0 LDO for 12 V strips) and an SS34 Schottky diode into Pico VSYS. The 2-layer 1 oz PCB (266 × 98 mm) exposes continuous bottom-side V_LED and GND busbars for heavy solder tinning or copper wire reinforcement above 20–30 A.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "3D LED kostky a scénické objekty", en: "3D LED cubes & scenic objects" },
+        d: {
+          cs: "Osm samostatně jištěných XLR3 větví dovoluje čisté hvězdicové rozvedení dat i napájení po celé prostorové konstrukci.",
+          en: "Eight individually fused XLR3 outputs allow clean star wiring of both data and power across volumetric stage structures.",
+        },
+      },
+      {
+        t: { cs: "Art-Net / sACN pixel mapping", en: "Art-Net / sACN pixel mapping" },
+        d: {
+          cs: "Hardwarový Ethernet W6100 na RP2350 přijímá DMX přes síť z Resolume, TouchDesigneru či světelného pultu s nízkou latencí.",
+          en: "W6100 hardware Ethernet on RP2350 receives DMX over Ethernet from Resolume, TouchDesigner, or lighting consoles at low latency.",
+        },
+      },
+      {
+        t: { cs: "5 V i 12 V LED instalace", en: "5 V and 12 V LED installations" },
+        d: {
+          cs: "Jumper JP1 přepíná mezi přímým 5V bypassem a LDO AMS1117-5.0 pro 12V pásky (WS2815), bez potřeby externího USB zdroje.",
+          en: "Jumper JP1 switches between direct 5 V bypass and the AMS1117-5.0 LDO for 12 V strips (WS2815) with no external USB supply needed.",
+        },
+      },
+      {
+        t: { cs: "Koncertní a klubové nasazení", en: "Touring & club reliability" },
+        d: {
+          cs: "Značkové XLR3 Neutrik, dostupné autopojistky MINI, 7× 470 µF elektrolyty mezi kanály a XT60 + M5 silové svorky.",
+          en: "Rugged Neutrik XLR3 jacks, automotive MINI blade fuses, 7× 470 µF inter-channel bulk caps, and XT60 + M5 power lugs.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "J1–J8 — 8× XLR3 výstup (Pin 1: GND, Pin 2: jištěné V_LED, Pin 3: 5V DATA)",
+        "F1–F8 — 8× držák pojistky MINI (Keystone 3568, standardně 5 A, až 10–15 A)",
+        "J11 — XT60PW-M úhlový silový vstup (V_LED 5 V / 12 V, max. 15 V)",
+        "J9 / J10 — silová kabelová oka M5 (V_LED + / GND)",
+        "JP1 — 3pinový volič napájení logiky (1–2: 5 V bypass | 2–3: 12 V přes AMS1117-5.0)",
+        "A1 — modul WIZnet W6100-EVB-Pico2 (RJ45 Ethernet + USB-C pro firmware)",
+        "D11 — zelená LED indikace přítomnosti napětí +5 V",
+      ],
+      en: [
+        "J1–J8 — 8× XLR3 outputs (Pin 1: GND, Pin 2: fused V_LED, Pin 3: 5 V DATA)",
+        "F1–F8 — 8× MINI blade fuse holders (Keystone 3568, 5 A default, up to 10–15 A)",
+        "J11 — XT60PW-M horizontal power input (V_LED 5 V / 12 V, 15 V max)",
+        "J9 / J10 — M5 power lug pads (V_LED + / GND)",
+        "JP1 — 3-pin logic power selector (1–2: 5 V bypass | 2–3: 12 V via AMS1117-5.0)",
+        "A1 — WIZnet W6100-EVB-Pico2 module (RJ45 Ethernet + USB-C firmware port)",
+        "D11 — green +5 V power indicator LED",
+      ],
+    },
+    specs: [
+      S("Rozměry a vrstvy PCB", "PCB size & stackup", { cs: "266 × 98 mm, 2 vrstvy (F.Cu / B.Cu), 1 oz (35 µm)", en: "266 × 98 mm, 2-layer (F.Cu / B.Cu), 1 oz (35 µm)" }, "doc", true),
+      S("Řídicí modul (A1)", "Controller module (A1)", "WIZnet W6100-EVB-Pico2 (RP2350 + W6100 Ethernet, USB-C)", "doc", true),
+      S("Počet kanálů", "Output channels", { cs: "8× WS2812B / WS2815 (GPIO2–GPIO9)", en: "8× WS2812B / WS2815 (GPIO2–GPIO9)" }, "doc", true),
+      S("Výstupní konektory", "Output connectors", "8× Neutrik NC3FAAH (XLR3, Pin 1 GND / Pin 2 V_LED / Pin 3 DATA)", "doc", true),
+      S("Budiče dat & ochrana", "Line drivers & ESD", "2× SN74AHCT125D (5 V), 8× 100 Ω, 8× PESD5V0S1BB", "doc", true),
+      S("Napájení LED (V_LED)", "LED supply (V_LED)", { cs: "5 V nebo 12 V (max. 15 V, TVS SMBJ15CA)", en: "5 V or 12 V (15 V max, TVS SMBJ15CA)" }, "doc", true),
+      S("Silový vstup", "Power input", { cs: "XT60PW-M (J11) nebo M5 kabelová oka (J9 +, J10 GND)", en: "XT60PW-M (J11) or M5 ring lugs (J9 +, J10 GND)" }, "doc"),
+      S("Jištění kanálů", "Per-channel fusing", { cs: "8× pojistka MINI 5 A (Keystone 3568, až 10–15 A)", en: "8× 5 A MINI blade fuse (Keystone 3568, up to 10–15 A)" }, "doc", true),
+      S("Napájení logiky", "Logic power", { cs: "JP1 (1–2: 5 V bypass / 2–3: 12 V → AMS1117-5.0) + SS34", en: "JP1 (1–2: 5 V bypass / 2–3: 12 V → AMS1117-5.0) + SS34" }, "doc"),
+      S("Filtrace sběrnice", "Bus filtering", "7× 470 µF / 25 V Low-ESR + 10 µF / 22 µF / 100 nF SMD", "doc"),
+      S("Uchycení", "Mounting", "4× M3 (H1–H4, Ø 3,2 mm)", "doc"),
+      S("Odhad ceny BOM + PCB", "Est. BOM + PCB cost", { cs: "1 145 Kč / ks (5 ks) · 782 Kč / ks (50 ks) bez DPH", en: "1,145 CZK / pc (5 pcs) · 782 CZK / pc (50 pcs) excl. VAT" }, "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/3d-cube/preview.png", cap: { cs: "3D perspektivní render osazeného PCB", en: "3D perspective render of assembled PCB" } },
+      { src: "assets/products/3d-cube/pcb_3d_top.png", cap: { cs: "3D pohled shora — rozložení kanálů J1–J8", en: "3D top view — J1–J8 channel layout" } },
+      { src: "assets/products/3d-cube/pcb_3d_front.png", cap: { cs: "3D čelní pohled na pojistky, kondenzátory a Pico2", en: "3D front angle — fuseholders, bulk caps & Pico2" } },
+      { src: "assets/products/3d-cube/pcb_3d_back.png", cap: { cs: "3D spodní strana — odkryté sběrnice V_LED a GND pro pocínování", en: "3D bottom view — exposed V_LED & GND tinning busbars" } },
+      { src: "assets/products/3d-cube/schematic.svg", layer: true, cap: { cs: "Kompletní schéma zapojení (KiCad SVG)", en: "Full circuit schematic (KiCad SVG)" } },
+      { src: "assets/products/3d-cube/pcb_layout.svg", layer: true, cap: { cs: "2D layout PCB (F.Cu / B.Cu / Silkscreen)", en: "2D PCB layout (F.Cu / B.Cu / Silkscreen)" } },
+    ],
+    related: [],
+    warranty: {
+      cs: "Zakázkový hardware divize TEATRO\\\\\\SVJÖTLO. Technická podpora, úpravy firmware pro RP2350/W6100 a kusová výroba probíhají přímo přes tým TEATRO\\\\\\SVJÖTLO.",
+      en: "Custom hardware by TEATRO\\\\\\SVJÖTLO. Technical support, RP2350/W6100 firmware customization, and small-batch builds are handled directly by the TEATRO\\\\\\SVJÖTLO team.",
+    },
+    readme: "# Teatro Svjotlo — 3D Cube (8× WS2812B LED Controller)\n\n8kanálový DMX/Art-Net/sACN řadič digitálních LED pásků (`WS2812B` / `WS2815`) postavený na **WIZnet W6100-EVB-Pico2** s oddělenými budiči 5 V (`74AHCT125`), jištěnými XLR3 výstupy a 2vrstvým 1oz PCB navrženým pro domácí pocínování silnoproudých sběrnic.\n\n---\n\n## 1. Základní parametry desky\n- **Rozměry PCB**: `266 × 98 mm`, 2 vrstvy (`F.Cu` / `B.Cu`), standardní `1 oz` měď (`35 µm`).\n- **Uchycení**: 4× montážní otvor `M3` (`H1`–`H4`, `3,2 mm`).\n- **Řídicí modul (`A1`)**: **WIZnet W6100-EVB-Pico2** (`RP2350` + `W6100` Ethernet, `80 × 21 mm`, USB-C).\n- **Napájení LED (`V_LED`)**: `5 V` nebo `12 V` (max. `15 V` podle TVS `SMBJ15CA`) přes konektor `XT60PW-M` (`J11`) nebo kabelová oka `M5` (`J9` `+`, `J10` `GND`).\n\n---\n\n## 2. Pojistky a použitá pouzdra (držáky pojistek)\n\nNa každém z 8 výstupních kanálů (`F1`–`F8`) je samostatná **automobilová nožová pojistka typu MINI (ATM / APM)**:\n\n- **KiCad footprint**: `Fuse:Fuseholder_Blade_Mini_Keystone_3568`\n- **Doporučený držák**: **Keystone 3568** (PCB THT klips / držák pro MINI autopojistky)\n- **Rozměry footprintu**: 4 pájecí otvory ve 2 řadách, rozteč pinů `9,92 × 3,40 mm`, vrtání otvorů `Ø 1,78 mm`\n- **Hodnota pojistky**: `5 A` (standardní **MINI / ATM** autopojistka; lze osadit i nižší nebo vyšší hodnotu do `10–15 A` podle kabeláže a XLR konektorů)\n- **Zapojení**: jištěna je vždy kladná větev `V_LED` směřující na pin 2 příslušného XLR3 konektoru (`J1`–`J8`).\n\n---\n\n## 3. Volič napájení logiky (`JP1`) a LDO `AMS1117-5.0`\n\nLogická část desky (`74AHCT125` + `VSYS` modulu `W6100-EVB-Pico2`) běží vždy na `5 V`. O napájení Pica se stará hlavní deska přes Schottky diodu `D1` (`SS34`) na pin 39 (`VSYS`), takže po připojení hlavního zdroje není potřeba USB napájení a zároveň je Pico chráněno při současném zapojení USB-C kabelu.\n\n| Poloha jumperu `JP1` | Zdroj napájení (`V_LED`) | Způsob napájení `5V` sběrnice |\n| :--- | :--- | :--- |\n| **Propojka `1–2`** | **`5 V`** LED pásky / světla | Přímý bypass z `V_LED` bez úbytku napětí na LDO |\n| **Propojka `2–3`** | **`12 V`** LED pásky / světla | Přes lineární LDO regulátor `U3` (**`AMS1117-5.0`** v `SOT-223`) |\n\n> [!CAUTION]\n> Při napájení z **`12 V`** musí být jumper **`JP1` v poloze `2–3`**. Osazení propojky na `1–2` při 12V vstupu pustí `12 V` přímo do obvodů `74AHCT125` a `VSYS` Pica!\n\nPro lepší odvod tepla z `AMS1117-5.0` (`U3`) je k prostřednímu vývodu / chladicí plošce (`Tab`, pin 2) připojena samostatná měděná chladicí plocha na horní vrstvě (`F.Cu`).\n\n---\n\n## 4. Mapování GPIO a výstupů XLR3\n\n### W6100-EVB-Pico2 (`A1`)\n- **Interně obsazeno W6100 Ethernetem**: `GPIO16` (MISO), `GPIO17` (CSn), `GPIO18` (SCLK), `GPIO19` (MOSI), `GPIO20` (RSTn), `GPIO21` (INTn) — na PCB ponechány nezapojené (`NC`).\n- **8× WS2812B výstup**:\n  - `CH1` → `GPIO2` (`A1` pin 4) → `U1` (`74AHCT125`) → `R1` (`100R`) → `J1`\n  - `CH2` → `GPIO3` (`A1` pin 5) → `U1` (`74AHCT125`) → `R2` (`100R`) → `J2`\n  - `CH3` → `GPIO4` (`A1` pin 6) → `U1` (`74AHCT125`) → `R3` (`100R`) → `J3`\n  - `CH4` → `GPIO5` (`A1` pin 7) → `U1` (`74AHCT125`) → `R4` (`100R`) → `J4`\n  - `CH5` → `GPIO6` (`A1` pin 9) → `U2` (`74AHCT125`) → `R5` (`100R`) → `J5`\n  - `CH6` → `GPIO7` (`A1` pin 10) → `U2` (`74AHCT125`) → `R6` (`100R`) → `J6`\n  - `CH7` → `GPIO8` (`A1` pin 11) → `U2` (`74AHCT125`) → `R7` (`100R`) → `J7`\n  - `CH8` → `GPIO9` (`A1` pin 12) → `U2` (`74AHCT125`) → `R8` (`100R`) → `J8`\n\n### Zapojení konektorů XLR3 (`J1`–`J8`)\n- **Pin 1**: `GND`\n- **Pin 2**: `V_LED` (jištěno přes `F1`–`F8`)\n- **Pin 3**: `DATA` (5V úroveň z `74AHCT125` přes `100R` odpor + ESD ochrana `PESD5V0S1BB`)\n\n---\n\n## 5. Domácí pocínování silnoproudých cest\n\nAby deska zvládla vysoké proudy i na levné 2vrstvé `1 oz` výrobě:\n- **`V_LED` sběrnice** je na spodní straně (`B.Mask`, vpravo i `F.Mask`) souvisle odkrytá od `XT60` (`J11` pin 2) přes `M5` oko (`J9`), po pravém okraji nahoru za řadu konektorů `XLR3` (`J1`–`J8`) a odbočkami přímo až na piny pojistek `F1`–`F8` a dále na piny 2 XLR konektorů.\n- **`GND` sběrnice** je souvisle odkrytá (`B.Mask`) od `XT60` (`J11` pin 1) přes `M5` oko (`J10`) vodorovně pod pojistkami napříč všemi 8 kanály. Signálové spoje pod ní mají souvislou zemní plochu (`GND`), kterou napájení nikde nepřetíná.\n- **Tip pro osazení**: Odkryté cesty pocínuj hrubší vrstvou pájky, případně při proudech nad `20–30 A` podél odkryté mědi připájej odizolovaný měděný drát (`1,5–2,5 mm²`).\n\n---\n\n## 6. Přehled součástek (BOM a KiCad pouzdra)\n\n| Ref. | Počet | Hodnota / Popis | KiCad Footprint / Pouzdro |\n| :--- | :---: | :--- | :--- |\n| `A1` | 1 | `W6100-EVB-Pico2` | `Module:RaspberryPi_Pico_Common_THT` |\n| `U1`, `U2` | 2 | `SN74AHCT125D` (4kanálový 5V buffer) | `Package_SO:SOIC-14_3.9x8.7mm_P1.27mm` |\n| `U3` | 1 | `AMS1117-5.0` (5V LDO regulátor) | `Package_TO_SOT_SMD:SOT-223-3_TabPin2` |\n| `J1`–`J8` | 8 | `XLR3` (úhlový PCB konektor) | `Connector_Audio:Jack_XLR_Neutrik_NC3FAAH_Horizontal` |\n| `J9`, `J10` | 2 | `V_LED` / `GND` silové oko `M5` | `MountingHole:MountingHole_5.3mm_M5_Pad_Via` |\n| `J11` | 1 | `XT60PW-M` (úhlový silový vstup) | `Connector_AMASS:AMASS_XT60PW-M_1x02_P7.20mm_Horizontal` |\n| `JP1` | 1 | `PWR_SEL_5V_12V` (pinová lišta 1×3) | `Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical` |\n| `F1`–`F8` | 8 | Držák pojistky `5A MINI` (Keystone 3568) | `Fuse:Fuseholder_Blade_Mini_Keystone_3568` |\n| `D1` | 1 | `SS34` (Schottky dioda pro `VSYS`) | `Diode_SMD:D_SMA` |\n| `D2`–`D9` | 8 | `PESD5V0S1BB` (ESD ochrana dat) | `Diode_SMD:D_SOD-323` |\n| `D10` | 1 | `SMBJ15CA` (TVS přepěťová ochrana `V_LED`) | `Diode_SMD:D_SMB` |\n| `D11` | 1 | `PWR_5V_GRN` (zelená LED indikace `+5V`) | `LED_SMD:LED_0805_2012Metric` |\n| `R1`–`R8` | 8 | `100R` (sériový odpor na datech) | `Resistor_SMD:R_0805_2012Metric` |\n| `R9` | 1 | `1k` (předřadný odpor pro LED `D11`) | `Resistor_SMD:R_0805_2012Metric` |\n| `C1`, `C2`, `C16` | 3 | `100nF 16V` (blokování IC a `VSYS`) | `Capacitor_SMD:C_0805_2012Metric` |\n| `C3`–`C9` | 7 | `470uF 25V` (elektrolyt mezi kanály) | `Capacitor_THT:CP_Radial_D8.0mm_P3.50mm` |\n| `C10`, `C11` | 2 | `10uF 35V` (filtrace `V_LED` / vstup LDO) | `Capacitor_SMD:C_0805_2012Metric` |\n| `C12` | 1 | `22uF 16V` (výstupní kondenzátor pro stabilitu `AMS1117`) | `Capacitor_SMD:C_0805_2012Metric` |\n| `C13`, `C15` | 2 | `10uF 16V` (filtrace `+5V` a `PICO_VSYS`) | `Capacitor_SMD:C_0805_2012Metric` |\n| `H1`–`H4` | 4 | Montážní otvory `M3` | `MountingHole:MountingHole_3.2mm_M3_ISO7380` |\n\n---\n\n## 7. Odhad výrobní ceny za 1 ks (5 ks vs. 50 ks)\n\nOrientační ceny v **Kč bez DPH** (přepočet ~23 Kč/USD, ~25 Kč/EUR) při kombinaci výroby holého 2vrstvého 1oz PCB (`266 × 98 mm`) u **JLCPCB** a nákupu značkových komponent (`Neutrik`, `Keystone`, `TI`, `Panasonic`) přes **WIZnet EU / RPishop / Mouser / TME**. Nezahrnuje vlastní práci / osazení (PCBA), krabičku a hlavní napájecí zdroj.\n\n| Položka | Počet / deska | Cena / ks při **5 ks** | Cena / ks při **50 ks** |\n| :--- | :---: | :---: | :---: |\n| Holé 2vrstvé PCB 1oz (`266 × 98 mm`, JLCPCB) | 1 ks | 101 Kč | 44 Kč |\n| `A1` – `W6100-EVB-Pico2` | 1 ks | 272 Kč | 245 Kč |\n| `J1`–`J8` – `Neutrik NC3FAAH` (`XLR3`) | 8 ks | 280 Kč *(35 Kč/ks)* | 224 Kč *(28 Kč/ks)* |\n| `F1`–`F8` – Držák pojistky `Keystone 3568` (`MINI`) | 8 ks | 168 Kč *(21 Kč/ks)* | 132 Kč *(16,5 Kč/ks)* |\n| Pojistky `5A MINI` (ATM autopojistka) | 8 ks | 32 Kč *(4 Kč/ks)* | 16 Kč *(2 Kč/ks)* |\n| `C3`–`C9` – `470 µF / 25 V` Low-ESR (`Ø 8 mm`) | 7 ks | 63 Kč *(9 Kč/ks)* | 35 Kč *(5 Kč/ks)* |\n| `J11` – `AMASS XT60PW-M` | 1 ks | 16 Kč | 12 Kč |\n| `U1`, `U2` – `SN74AHCT125D` (`SOIC-14`) | 2 ks | 24 Kč *(12 Kč/ks)* | 14 Kč *(7 Kč/ks)* |\n| `U3` – `AMS1117-5.0` (`SOT-223`) | 1 ks | 6 Kč | 3 Kč |\n| Diody (`D1` `SS34`, `D10` `SMBJ15CA`, `D2`–`D9` ESD, `D11` LED) | 11 ks | 38 Kč | 19 Kč |\n| Ostatní pasiva & lišty (`R1`–`R9`, SMD `C`, `JP1`, 2×20p lišta) | sada | 35 Kč | 16 Kč |\n| **Mezisoučet materiál + PCB (bez DPH)** | | **1 035 Kč** | **760 Kč** |\n| Doprava (JLCPCB + distributoři, rozpočítáno na 1 ks) | | 110 Kč | 22 Kč |\n| **Celkem za 1 ks (bez DPH)** | | **1 145 Kč** *(~46 €)* | **782 Kč** *(~31 €)* |\n| **Celkem za 1 ks (vč. 21 % DPH)** | | **1 385 Kč** | **946 Kč** |\n| **Celková investice za sérii (bez DPH / s DPH)** | | **5 725 Kč / 6 927 Kč** | **39 100 Kč / 47 311 Kč** |\n\n- **Kde vzniká největší část ceny**: naprostou většinu ceny desky tvoří samotné konektory **`8× XLR3 (Neutrik NC3FAAH)`** a řídicí modul **`W6100-EVB-Pico2`** (dohromady přes ~55–60 % ceny materiálu při 5–50 ks). Držáky pojistek `Keystone 3568` jsou oproti tomu levnou položkou (navíc s levnými alternativami z LCSC), stejně jako zbývající logika a pasiva.\n- **Možná úspora u větší série**: u XLR konektorů se vyplatí zůstat u `Neutriku` kvůli mechanické výdrži; případná úspora u 50 ks je spíše v neznačkových pojistkových klipech či elektrolytech z LCSC (~100–150 Kč/ks navíc).\n",
+  },
+};
+Object.values(TEATRO_HARDWARE).forEach((item) => {
+  item.manuals = extractDiagrams(item);
+});
+
 function getCatalogItem(id) {
-  return CATALOG_ITEMS.find((item) => item.id === id) || null;
+  return CATALOG_ITEMS.find((item) => item.id === id) || TEATRO_HARDWARE[id] || null;
 }
 
 function itemDisplayName(item, lang = getLang()) {
@@ -2886,6 +3029,7 @@ const BRAND_CONFIG = {
       },
       { id: "rental", contentKey: "rentalCodes", labelKey: "ts_tab_rental" },
       { id: "custom", contentKey: "customCodes", labelKey: "ts_tab_custom" },
+      { id: "hardware", contentKey: "hardwareIds", labelKey: "ts_tab_hardware" },
       { id: "events", contentKey: "eventCodes", labelKey: "ts_tab_events" },
       { id: "software", labelKey: "sec_software" },
       { id: "inquiry", labelKey: "service_inquiry_btn" },
@@ -2894,7 +3038,7 @@ const BRAND_CONFIG = {
 };
 
 /* Obsah TEATRO rozdělený do oblastí ZVUK / SVĚTLO / VIDEO.
-   Odkazuje pouze na existující záznamy v TEATRO_DATA a PEOPLE (nic nového se nevymýšlí). */
+   Odkazuje pouze na existující záznamy v TEATRO_DATA, PEOPLE a TEATRO_HARDWARE. */
 const TEATRO_AREAS = {
   AUD: {
     code: `${TS} // AUD // 01 — SOUND DESIGN & PA`,
@@ -2907,6 +3051,7 @@ const TEATRO_AREAS = {
     pillarIdx: [2],
     rentalCodes: ["RENT // 02", "RENT // 04"],
     customCodes: ["FAB // 02"],
+    hardwareIds: [],
     eventCodes: ["LIVE // 02", "LIVE // 03"],
     peopleNames: ["Vojtěch Divoký", "Ladislav Mareš"],
     specialtyIdx: [1, 4],
@@ -2923,6 +3068,7 @@ const TEATRO_AREAS = {
     pillarIdx: [0, 1],
     rentalCodes: ["RENT // 01", "RENT // 04"],
     customCodes: ["FAB // 01", "FAB // 03"],
+    hardwareIds: ["3d-cube"],
     eventCodes: ["LIVE // 01", "LIVE // 03"],
     peopleNames: ["Adam Veit"],
     specialtyIdx: [0, 2],
@@ -2939,6 +3085,7 @@ const TEATRO_AREAS = {
     pillarIdx: [0],
     rentalCodes: ["RENT // 03", "RENT // 04"],
     customCodes: ["FAB // 02", "FAB // 03"],
+    hardwareIds: [],
     eventCodes: ["LIVE // 02", "LIVE // 03"],
     peopleNames: [],
     specialtyIdx: [3, 4],

@@ -636,6 +636,45 @@ function renderTeatroCard({ head, tag, title, desc, links = null }) {
     </article>`;
 }
 
+function renderTeatroHardwareCard(item, { idx = 0, total = 1, divKey = "LUX", fromTab = "hardware" } = {}) {
+  const dict = I18N[currentLang];
+  const imgSrc = (item.imageByDiv && item.imageByDiv[divKey]) || item.image;
+  const name = itemDisplayName(item, currentLang);
+  const availText = DECOY_STORE.availabilityLabel(item, currentLang);
+  const availClass = `avail-${item.availability || "prototype"}`;
+  const detailHref = `product.html?id=${item.id}&div=${divKey}&brand=teatro&from=${fromTab}`;
+
+  const mediaHtml = imgSrc
+    ? `<img src="${imgSrc}" alt="${escapeHtml(name)}" loading="lazy" />`
+    : `<div class="hud-card-wireframe"><span>${escapeHtml(item.serial)}</span><small>${escapeHtml(textVal(item.status))}</small></div>`;
+
+  return `
+    <article class="hud-card hud-card-click teatro-card teatro-hw-card" id="card-${item.id}" data-open-mod="${item.id}" tabindex="0" role="article" aria-label="${escapeHtml(name)}">
+      <div class="hud-card-head">
+        <span>${escapeHtml(item.serial)}</span>
+        <span class="hud-card-head-right">
+          <span class="hud-badge-orig">${dict.teatro_badge}</span>
+          <span>${idx + 1}/${total} · ${escapeHtml(item.hp)}</span>
+        </span>
+      </div>
+      <div class="hud-card-media">
+        ${mediaHtml}
+      </div>
+      <div class="hud-card-body">
+        <h3>${escapeHtml(name)}</h3>
+        <p>${escapeHtml(textVal(item.short))}</p>
+        <div class="hud-card-commerce">
+          <span class="hud-avail-meta"><i class="avail-dot ${availClass}" aria-hidden="true"></i>${escapeHtml(textVal(item.status))} · ${escapeHtml(availText)}</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn-outline" data-open-mod="${item.id}">${dict.specs_btn}</button>
+          <a class="btn-outline btn-solid" href="${detailHref}">${dict.detail_btn}</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 /* ---------------------------------------------------- TEATRO podsekce (ZVUK / SVĚTLO / VIDEO) */
 function renderTeatroTab(tab, divKey, dict) {
   const td = TEATRO_DATA;
@@ -659,9 +698,28 @@ function renderTeatroTab(tab, divKey, dict) {
       .join("")}</div>`;
   } else if (tab === "custom") {
     const items = td.custom.filter((c) => area.customCodes.includes(c.code));
-    content = `<div class="cards-grid-2">${items
-      .map((c) => renderTeatroCard({ head: c.code, tag: c.tag[lang], title: c.name[lang], desc: c.desc[lang] }))
-      .join("")}</div>`;
+    const hwItems = (area.hardwareIds || []).map((id) => getCatalogItem(id)).filter(Boolean);
+    content = `
+      <div class="cards-grid-2">${items
+        .map((c) => renderTeatroCard({ head: c.code, tag: c.tag[lang], title: c.name[lang], desc: c.desc[lang] }))
+        .join("")}</div>
+      ${
+        hwItems.length
+          ? `<div class="teatro-hw-subhead">
+              ${renderSecHead(dict.ts_built_hardware_num, dict.ts_built_hardware)}
+              <div class="cards-grid">${hwItems
+                .map((item, idx) => renderTeatroHardwareCard(item, { idx, total: hwItems.length, divKey, fromTab: "custom" }))
+                .join("")}</div>
+            </div>`
+          : ""
+      }`;
+  } else if (tab === "hardware") {
+    const hwItems = (area.hardwareIds || []).map((id) => getCatalogItem(id)).filter(Boolean);
+    content = hwItems.length
+      ? `<div class="cards-grid">${hwItems
+          .map((item, idx) => renderTeatroHardwareCard(item, { idx, total: hwItems.length, divKey, fromTab: "hardware" }))
+          .join("")}</div>`
+      : `<div class="hud-empty-box"><p>${dict.soon_badge}</p></div>`;
   } else if (tab === "events") {
     const events = td.events.filter((ev) => area.eventCodes.includes(ev.code));
     const specs = area.specialtyIdx.map((i) => td.specialties[i]).filter(Boolean);
@@ -941,15 +999,19 @@ function openProductModal(id) {
   currentModalId = id;
   const dict = I18N[currentLang];
   const activeDiv = currentDivision || item.division || "AUD";
-  const nav = PRODUCTS[id] ? getSectionProductNav(id, activeDiv) : null;
+  const isTeatroItem = item.brandScope === "teatro";
+  const nav = !isTeatroItem && PRODUCTS[id] ? getSectionProductNav(id, activeDiv) : null;
   triggerOverlayFx("fx-mod");
 
   const modal = document.getElementById("itemModal");
   modal.className = `modal theme-${activeDiv} mod-${id}`;
+  modal.setAttribute("data-brand", isTeatroItem ? "teatro" : "decoy");
   const keySpecs = (item.specs || []).filter((s) => s.key);
   const imgSrc = (item.imageByDiv && item.imageByDiv[activeDiv]) || item.image;
-  const divParam = `${item.kind === "hardware" ? `&div=${activeDiv}` : ""}&brand=decoy`;
-  const inCart = DECOY_STORE.getItems().some((e) => e.id === item.id);
+  const divParam = isTeatroItem
+    ? `&div=${activeDiv}&brand=teatro&from=${currentTab || "hardware"}`
+    : `${item.kind === "hardware" ? `&div=${activeDiv}` : ""}&brand=decoy`;
+  const inCart = !isTeatroItem && DECOY_STORE.getItems().some((e) => e.id === item.id);
 
   const prevArrow = document.getElementById("modalPrevArrow");
   const nextArrow = document.getElementById("modalNextArrow");
@@ -987,7 +1049,7 @@ function openProductModal(id) {
         <div class="modal-meta-row">
           <span class="modal-chip">${escapeHtml(item.brand)}</span>
           <span class="modal-chip">${escapeHtml(item.hp)}</span>
-          <span class="modal-chip">${escapeHtml(DECOY_STORE.formatPrice(item, currentLang))}</span>
+          ${!isTeatroItem ? `<span class="modal-chip">${escapeHtml(DECOY_STORE.formatPrice(item, currentLang))}</span>` : ""}
           <span class="modal-chip">${escapeHtml(DECOY_STORE.availabilityLabel(item, currentLang))}</span>
         </div>
         ${
@@ -1017,11 +1079,20 @@ function openProductModal(id) {
         }
         <div class="link-row" style="margin-top:18px;">
           <a class="btn-detail" style="margin-top:0;" href="product.html?id=${id}${divParam}">${dict.detail_btn}</a>
-          <button type="button" class="btn-outline" data-add-cart="${item.id}">${inCart ? dict.cart_added : dict.add_list_btn}</button>
+          ${
+            isTeatroItem
+              ? `<button type="button" class="btn-outline" data-teatro-inquire="${activeDiv}">${dict.teatro_inquire_cta}</button>`
+              : `<button type="button" class="btn-outline" data-add-cart="${item.id}">${inCart ? dict.cart_added : dict.add_list_btn}</button>`
+          }
         </div>
       </div>
     </div>
   `;
+
+  modal.querySelector("[data-teatro-inquire]")?.addEventListener("click", () => {
+    closeModal();
+    renderDivision(activeDiv, "inquiry", { fx: true, brand: "teatro" });
+  });
 
   modal.hidden = false;
 }
