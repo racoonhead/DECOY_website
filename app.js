@@ -10,7 +10,12 @@ const DIVISIONS = {
       cs: "Nástroje pro signálovou cestu do moduláru i ven, kytarové a experimentální pedály, zvukové poznámky a živá vystoupení.",
       en: "Instruments for getting sound in and out of the rack, experimental stompboxes, audio notes, and live performances.",
     },
-    eurorack: ["the-in", "the-out", "elements-v04", "opl3-fm", "triple-psg", "cue-frames", "cube-seq", "monobox"],
+    eurorack: [
+      "the-in", "the-out", "elements-v04",
+      "twin-peaks", "braids-v50", "bass-drum", "clouds", "rings", "warps",
+      "opl3-fm", "triple-psg", "trigger-sequencer", "cue-frames", "cube-seq",
+      "vca-1", "ssg", "monobox",
+    ],
     desktop: [],
     pedals: ["fuzz-01", "tape-glitch"],
   },

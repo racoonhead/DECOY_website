@@ -531,7 +531,7 @@ const PRODUCTS = {
       cs: [
         "ELEMENTS v0.4 je kompletní 34 HP fyzikálně-modelovací syntezátor na jedné společné desce s dvoubarevným čelním panelem (20 HP černá část Exciter a 14 HP bílá část Resonator). Na rozdíl od subtraktivních syntezátorů nevytváří zvuk klasickými oscilátory, ale fyzikální interakcí zdroje energie (Exciter) a rezonančního tělesa (Resonator). Každý parametr má vlastní CV vstup s atenuvertorem (±8 V) a 16bitovým snímáním bez kvantizačních schodů.",
         "EXCITER 1 — CLASSIC (tlačítko Exciter Model): nabízí trojici průběžných i perkusivních generátorů buzení. BOW generuje třecí stick-slip vlnu přes dvoupólový LP filtr (Bow Level, Timbre od temné po agresivní smyčcovou ostrost). BLOW modeluje turbulentní proudění vzduchu skenující dechová spektra od flétny po píšťalu (Blow Level, Flow, Timbre). STRIKE nabízí perkusivní úder přecházející přes paličky (Soft Felt, Hard Rubber, Wood Stick, Hammer, Brush), trsátka (Plectrum / Pluck) až po odrazové částice (Bouncy Particles) s vlastním Timbre LP filtrem. Společný CONTOUR volí mezi jednorázovou AD obálkou (< 12:00) a drženým smyčcem ASR (> 12:00), spolu se Strength CV a tlačítkem Play.",
-        "EXCITER 2 — INDUSTRIAL: přepíná všech 8 potenciometrů levé sekce na syrové průmyslové buzení. FRICTION vytváří kovové tření a drnčení hřebenového filtru (Level, Tone), BURST generuje digitální granulární a bit-crushed šumové shluky s nastavitelnou hustotou a filtrem (Level, Density, Filter) a SAMPLES spouští banku 9 surových průmyslových samplů hit_01–hit_09 s plynulým přelaďováním v rozsahu ±1 oktávy (Level, Sample Select, Pitch).",
+        "EXCITER 2 — INDUSTRIAL: přepíná všech 8 potenciometrů levé sekce na syrové průmyslové buzení bez použití jakýchkoli samplů (čisté DSP). FRICTION vytváří kovové tření a drnčení hřebenového filtru (Level, Tone), BURST generuje digitální granulární a bit-crushed šumové shluky s nastavitelnou hustotou a filtrem (Level, Density, Filter) a STRIKE nabízí 10 čistě syntetizovaných industriálních bicích a šumových enginů (HARDKICK, RUMBLE, ANVIL, CRUSHSNR, SHREDCLP, RAZORHAT, FMHAMMER, SUBZAP, GLITCH a INDNOISE s řízením Level, Model, Decay a Drive).",
         "RESONATOR 0–2 (tlačítko Resonator Model s LED indikací a pamětí): 0. Modal kombinuje 64 paralelních zero-delay feedback SVF filtrů (plynulý morf mezi strunou, trubicí, deskou, membránou a zvonem) spolu s 8 smyčcovými vlnovody a nelineární tabulkou BowTable. 1. String je 2048vzorkový disperzní vlnovod s 2-tap FIR DampingFilter a all-pass filtrem tuhosti StiffnessDelayLine. 2. Strings spojuje 5 paralelních sympatických vlnovodů s plynulým rozkladem intervalů přes knob Geometry (Unison → Oktávy → Kvinty → Trojzvuky).",
         "RESONATOR 3–4 (Sympatické akordy & Reverb struna): 3. Quantized Sympathetic Chords zamyká všech 5 sympatických strun přes parametr Geometry do 8 přesných půltónových akordových tabulek: Octave, Fifth, Sus4, Minor, Min7, Maj7, Maj9 a Fourths. 4. Dispersive String & Reverb posílá neharmonickou tuhou strunu přímo do vestavěného 4-tap all-pass algoritmického reverbu s nastavitelnou šířkou stereo dozvuku L/R.",
         "RESONATOR 5–7 & Easter Egg: 5. 2-Op FM Voice je dvouoperátorový sinusový FM hlas se zpětnou vazbou (−100 % až +100 %) a dvojitou obálkou doznění (Geometry = FM poměr, Brightness = modulační index). 6. Polyphonic String Synth vytváří 12hlasý ansámbl přes 3pásmový formantový filtr, stereo ensemble chorus a reverb. 7. Spectral Granulator je vícepásmová banka náhodně modulovaných rezonančních filtrů s fázově rozostřeným modálním reverbem. Skrytý Easter Egg Ominous Voice přidává duální 2op FM syntézu s 8× převzorkováním, FIR downsamplerem a Spatializerem.",
@@ -540,7 +540,7 @@ const PRODUCTS = {
       en: [
         "ELEMENTS v0.4 is a complete 34 HP physical-modeling synthesizer on a single motherboard with a two-tone front panel (20 HP black Exciter side and 14 HP white Resonator side). Rather than subtractive oscillators and filters, it models sound as a physical interaction between an energy source (Exciter) and a resonant body (Resonator). Every parameter features a dedicated CV input with attenuverter (±8 V) sampled by 16-bit SAR ADCs with zero stepping.",
         "EXCITER 1 — CLASSIC (Exciter Model button): provides three continuous and percussive excitation engines. BOW produces stick-slip friction routed through a 2-pole LP filter (Bow Level, Timbre from dark rosin to scratchy bow). BLOW scans turbulent airflow spectra from flute to whistle (Blow Level, Flow, Timbre). STRIKE morphs across soft felt mallets, rubber beaters, wooden sticks, hammers, brushes, plectrum plucks, and bouncy particles with a 2-pole LP filter. CONTOUR sweeps from one-shot AD pluck (< 12:00) to sustained ASR bow (> 12:00) alongside Strength CV and Play.",
-        "EXCITER 2 — INDUSTRIAL: remaps all 8 left-hand pots to raw industrial excitation. FRICTION generates metal-on-metal scrape and comb feedback (Level, Tone), BURST fires digital granular and bit-crushed noise bursts (Level, Density, Filter), and SAMPLES triggers an onboard bank of 9 raw industrial hits (hit_01–hit_09) with ±1 octave pitch control (Level, Sample Select, Pitch).",
+        "EXCITER 2 — INDUSTRIAL: remaps all 8 left-hand pots to raw pure-DSP industrial excitation with zero samples. FRICTION generates metal-on-metal scrape and comb feedback (Level, Tone), BURST fires digital granular and bit-crushed noise clusters (Level, Density, Filter), and STRIKE delivers 10 pure-DSP aggressive drum and noise engines (HARDKICK, RUMBLE, ANVIL, CRUSHSNR, SHREDCLP, RAZORHAT, FMHAMMER, SUBZAP, GLITCH, and INDNOISE).",
         "RESONATOR 0–2 (Resonator Model button with LED feedback & persistent memory): 0. Modal combines 64 parallel zero-delay feedback SVF band-pass filters (morphing seamlessly across string, tube, plate, membrane, and bell geometries) plus 8 bowed waveguides with nonlinear BowTable. 1. String implements a 2048-sample dispersive waveguide with 2-tap FIR DampingFilter and all-pass StiffnessDelayLine. 2. Strings stacks 5 parallel sympathetic waveguides with continuous Geometry chord spread.",
         "RESONATOR 3–4 (Quantized Chords & Reverb String): 3. Quantized Sympathetic Chords locks all 5 waveguide strings via Geometry across 8 semitone chord tables: Octave, Fifth, Sus4, Minor, Min7, Maj7, Maj9, and Fourths. 4. Dispersive String & Reverb feeds a stiff inharmonic waveguide straight into a 4-tap all-pass algorithmic stereo reverb with adjustable L/R width.",
         "RESONATOR 5–7 & Easter Egg: 5. 2-Op FM Voice builds a 2-operator sine FM carrier/modulator with −100% to +100% feedback and dual decay envelopes (Geometry = FM ratio, Brightness = mod index). 6. Polyphonic String Synth delivers a 12-voice ensemble through a 3-band formant filter, stereo chorus, and reverb. 7. Spectral Granulator runs a multiband randomly modulated resonant filter bank into a phase-smeared modal reverb. Hidden Easter Egg Ominous Voice adds a dual 2-op FM synth with 8× oversampling, FIR downsampler & Spatializer.",
@@ -558,8 +558,8 @@ const PRODUCTS = {
       {
         t: { cs: "Industriální kov & perkuse", en: "Industrial metal & percussion" },
         d: {
-          cs: "Přepni Exciter na Industrial (Friction / Burst / Samples) a rezonátor na Modal nebo FM Voice pro kovové údery, zvonky a surové textury.",
-          en: "Switch Exciter to Industrial (Friction / Burst / Samples) with Modal or FM Voice for metallic hits, bells, and raw textures.",
+          cs: "Přepni Exciter na Industrial (Friction / Burst / 10× pure-DSP bicí) a rezonátor na Modal nebo FM Voice pro agresivní kopáky, kovové údery a surový hluk.",
+          en: "Switch Exciter to Industrial (Friction / Burst / 10× pure-DSP drum engines) with Modal or FM Voice for hard kicks, metallic hits, and raw noise.",
         },
       },
       {
@@ -613,8 +613,8 @@ const PRODUCTS = {
       {
         f: { cs: "Exciter modely", en: "Exciter engines" },
         orig: { cs: "1 sada (Classic Bow / Blow / Strike)", en: "1 engine (Classic Bow / Blow / Strike)" },
-        v04: { cs: "2 sady: Classic + Industrial (Friction / Burst / Samples)", en: "2 engines: Classic + Industrial (Friction / Burst / Samples)" },
-        imp: { cs: "Od akustických smyčců a paliček až po kovové tření a industriální samply", en: "From acoustic strings and mallets to metallic friction and industrial samples" },
+        v04: { cs: "2 sady: Classic + Industrial (Friction / Burst / 10× Pure-DSP Drum)", en: "2 engines: Classic + Industrial (Friction / Burst / 10× Pure-DSP Drum)" },
+        imp: { cs: "Od akustických smyčců až po 9 industriálních bicích enginů a noise bez samplů", en: "From acoustic strings to 9 sample-free industrial drum engines & noise" },
       },
       {
         f: { cs: "Resonator algoritmy", en: "Resonator algorithms" },
@@ -2004,6 +2004,719 @@ const PRODUCTS = {
     ],
     related: ["dmx-out", "patchbay-8ch", "patchbay-16ch", "fvck-boy", "cue-frames"],
   },
+
+  /* ------------------------------------------------------- AUDIO_EURORACK NOVÉ MODULY */
+  "twin-peaks": {
+    division: "AUD",
+    name: "TWIN PEAKS",
+    hp: "8 + 8 HP",
+    serial: "DD-AU16A/B // TWIN-F303",
+    status: { cs: "Schéma + PCB + panely + FPU firmware", en: "Schematic + PCB + panels + FPU firmware" },
+    image: "assets/products/twin-peaks/preview.png?v=20261126a",
+    tagline: {
+      cs: "Duální ADSR/LFO/Drum procesor na STM32F303CC s diptychovým panelem Laura Palmer a 808/909 FPU bicími.",
+      en: "Dual ADSR/LFO/Drum processor on STM32F303CC with Laura Palmer diptych panels & FPU 808/909 drums.",
+    },
+    short: {
+      cs: "Dvojice 8 HP modulů (celkem 16 HP diptych TWIN + PEAKS): Cortex-M4F s FPU @ 72 MHz, 16bit DAC8552 @ 48 kHz/ch, ADSR obálky, LFO, Tap LFO a čtveřice FPU bicích enginů pro hutný 808/909 punch a industrial drive.",
+      en: "Pair of 8 HP modules (16 HP diptych TWIN + PEAKS): Cortex-M4F w/ FPU @ 72 MHz, dual 16-bit DAC8552 @ 48 kHz/ch, ADSR, LFO, Tap LFO & 4 FPU drum engines tuned for fat 808/909 punch and techno/industrial drive.",
+    },
+    long: {
+      cs: [
+        "DIPTYCH TWIN + PEAKS (2× 8 HP SAMOSTATNÉ MODULY): Každý modul má plnohodnotný 8 HP černý PCB frontpanel se 4 montážními otvory a logem DECØY DEVICES uprostřed. Po osazení vedle sebe vytvoří levý TWIN a pravý PEAKS souvislý nápis TWIN PEAKS a 35µm stříbřený měděný reliéf portrétu Laury Palmer.",
+        "HARDWARE UPGRADE NA STM32F303CCT6: Původní Cortex-M3 bez FPU byl v KiCadu nahrazen pin-kompatibilním čipem STM32F303CCT6 (72 MHz Cortex-M4F, 256 KB Flash, 40 KB SRAM + 8 KB CCMRAM) při zachování původní 2vrstvé desky i čistého 16bitového výstupu DAC8552 + OPA2171.",
+        "FPU BICÍ ENGINY (808/909 + INDUSTRIAL DRIVE): Všechny čtyři bicí generátory (BassDrum, SnareDrum, HighHat, FmDrum) byly od základu přepsány do jedno-přesné FPU aritmetiky s Cytomic/ZDF filtry, asymetrickou saturací AsymDrive a 2× oversamplingem (96 kHz) na hi-hatech a FM bubnech — od hlubokého 808 subu přes 909 klubový knock až po agresivní techno drive.",
+        "KLASICKÉ & SKRYTÉ REŽIMY: Kromě bicích nabízí duální ADSR/AR obálky, komplexní LFO, Tap-Tempo LFO, Mini Sequencer, Pulse Shaper, Pulse Randomizer a 2-operátorový FM Drum + Number Station v režimu Split i Twin.",
+      ],
+      en: [
+        "TWIN + PEAKS DIPTYCH (2× 8 HP STANDALONE MODULES): Each 8 HP Matte Black FR4 panel has 4 mounting holes and centered DECØY DEVICES branding. Placed side by side, TWIN and PEAKS form the complete TWIN PEAKS header and a continuous 35 µm silver-plated copper relief of Laura Palmer.",
+        "STM32F303CCT6 FPU HARDWARE UPGRADE: Replaced the original STM32F103C8/CB MCU with a pin-compatible STM32F303CCT6 (72 MHz Cortex-M4F, 256 KB Flash, 40 KB SRAM + 8 KB CCMRAM) while keeping the proven dual 16-bit DAC8552 and OPA2171 bipolar analog output stage.",
+        "FPU 808/909 + INDUSTRIAL DRUM ENGINES: All four drum models (BassDrum, SnareDrum, HighHat, FmDrum) are rewritten in single-precision FPU DSP using ZDF filters, asymmetric AsymDrive soft-clip/wavefold saturation, and 2× oversampling (96 kHz) for metal/FM drums.",
+        "FULL CLASSIC & EXPERT MODES: Dual independent or linked channels covering ADSR/AR envelopes, Multi-wave LFO, Tap LFO, 808/909 Drum, plus hidden Mini Sequencer, Pulse Shaper, Pulse Randomizer, 2-op FM Drum, and Number Station.",
+      ],
+    },
+    comparisonMeta: {
+      num: { cs: "// HARDWARE & DSP UPGRADE", en: "// HARDWARE & DSP UPGRADE" },
+      heading: { cs: "PEAKS v3.0 (F103) vs. TWIN PEAKS (STM32F303CC FPU)", en: "PEAKS v3.0 (F103) vs. TWIN PEAKS (STM32F303CC FPU)" },
+      col0: { cs: "OBLAST", en: "AREA" },
+      col1: { cs: "PŮVODNÍ PEAKS (F103)", en: "ORIGINAL PEAKS (F103)" },
+      col2: { cs: "TWIN PEAKS (F303CC FPU)", en: "TWIN PEAKS (F303CC FPU)" },
+      col3: { cs: "PŘÍNOS", en: "IMPACT" },
+    },
+    comparison: [
+      {
+        f: { cs: "Mikrokontrolér & FPU", en: "MCU & FPU" },
+        orig: { cs: "STM32F103CB (Cortex-M3, bez FPU, 128 KB)", en: "STM32F103CB (Cortex-M3, no FPU, 128 KB)" },
+        v04: { cs: "STM32F303CCT6 (Cortex-M4F FPU, 256 KB + 48 KB RAM)", en: "STM32F303CCT6 (Cortex-M4F FPU, 256 KB + 48 KB RAM)" },
+        imp: { cs: "ZDF filtry a nelineární saturace ve float bez kvantizace basů", en: "Float ZDF filters & nonlinear drive with zero low-end quantization" },
+      },
+      {
+        f: { cs: "Bicí DSP & Saturace", en: "Drum DSP & Drive" },
+        orig: { cs: "16bit fixed-point + tvrdé CLIP()", en: "16-bit fixed-point + hard CLIP()" },
+        v04: { cs: "ZdfSvf + AsymDrive + 96 kHz 2× OS na HH/FM", en: "ZdfSvf + AsymDrive + 96 kHz 2× OS on HH/FM" },
+        imp: { cs: "Hutný 808/909 punch, plynulý snare decay a průrazný industrial drive", en: "Fat 808/909 punch, smooth snare decay, aggressive industrial grit" },
+      },
+      {
+        f: { cs: "Čelní panely", en: "Front panels" },
+        orig: { cs: "Jednotný 8 HP hliníkový panel", en: "Single 8 HP aluminum panel" },
+        v04: { cs: "Diptych TWIN (8 HP) + PEAKS (8 HP) s reliéfem Laury Palmer", en: "TWIN (8 HP) + PEAKS (8 HP) diptych with Laura Palmer relief" },
+        imp: { cs: "Dva samostatné moduly tvořící jeden sjednocený 16 HP obrazec", en: "Two standalone 8 HP modules forming one unified 16 HP diptych" },
+      },
+    ],
+    useCases: [
+      {
+        t: { cs: "Techno & industrial bicí dvojice", en: "Techno & industrial drum pair" },
+        d: {
+          cs: "TWIN na kopák + basovou obálku nebo snare, PEAKS na 909 hi-haty a FM kovové údery — vše s analogově hřejivým drivem.",
+          en: "Run TWIN for 808/909 kick + snare and PEAKS for crisp 96 kHz hi-hats or metallic FM hits.",
+        },
+      },
+      {
+        t: { cs: "Duální ADSR & Tap-Sync modulace", en: "Dual ADSR & Tap-Sync modulation" },
+        d: {
+          cs: "Přesné 16bitové obálky a LFO synchronizovatelné externím clockem pro VCA-1, Warps i Elements.",
+          en: "Precise 16-bit envelopes and clock-synced LFOs to drive VCA-1, Warps, or Elements.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "4× tahový/otočný parametr P1–P4 (Twin / Split mapování podle aktivního režimu)",
+        "2× tlačítko režimu (Ch 1/2 Split & Expert Mode) + 4× LED indikace funkce a stavu",
+        "Vstupy: TRIG 1, TRIG 2 (s normalizací Trig 1 → 2)",
+        "Výstupy: OUT 1, OUT 2 (bipolární ±8 V / audio přes DAC8552 + OPA2171)",
+      ],
+      en: [
+        "4× parameter knobs P1–P4 (Twin / Split mode mapping)",
+        "Mode & Channel Split buttons with 4× function/trigger LEDs",
+        "Inputs: TRIG 1, TRIG 2 (Trig 1 normalized to Ch 2)",
+        "Outputs: OUT 1, OUT 2 (±8 V bipolar CV / audio via DAC8552 + OPA2171)",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "8 HP (40,30 × 128,50 mm) / 16 HP pár", "doc", true),
+      S("Mikrokontrolér", "MCU", "STM32F303CCT6 (Cortex-M4F FPU @ 72 MHz, 256 KB Flash)", "doc", true),
+      S("DAC & výstup", "DAC & output", "Dual 16-bit TI DAC8552 @ 48 kHz/ch + OPA2171", "doc", true),
+      S("Bicí DSP enginy", "Drum DSP engines", "BassDrum, SnareDrum, HighHat (96k OS), FmDrum (96k OS)", "doc", true),
+      S("Čelní panely", "Front panels", { cs: "Diptych TWIN + PEAKS (Matte Black FR4 + HASL reliéf Laury Palmer)", en: "TWIN + PEAKS Diptych (Matte Black FR4 + HASL Laura Palmer relief)" }, "doc"),
+      S("Odběr & cena stavby", "Draw & est. BOM", { cs: "±12 V · odhad ~$49.01 USD (1 127 Kč) / modul @ 5 ks", en: "±12 V · est. ~$49.01 USD (1,127 CZK) / unit @ 5 pcs" }, "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/twin-peaks/preview.png?v=20261126a", cap: { cs: "Diptych TWIN + PEAKS (16 HP celek — Laura Palmer HASL reliéf)", en: "TWIN + PEAKS Diptych (16 HP pair — Laura Palmer HASL relief)" } },
+      { src: "assets/products/twin-peaks/twin_preview.png?v=20261126a", cap: { cs: "Levý modul TWIN (8 HP)" , en: "Left Module TWIN (8 HP)" } },
+      { src: "assets/products/twin-peaks/peaks_preview.png?v=20261126a", cap: { cs: "Pravý modul PEAKS (8 HP)", en: "Right Module PEAKS (8 HP)" } },
+      { src: "assets/products/twin-peaks/twin_3d.png?v=20261126a", cap: { cs: "3D náhled panelu TWIN", en: "TWIN 3D Panel Render" } },
+      { src: "assets/products/twin-peaks/peaks_3d.png?v=20261126a", cap: { cs: "3D náhled panelu PEAKS", en: "PEAKS 3D Panel Render" } },
+    ],
+    related: ["braids-v50", "bass-drum", "trigger-sequencer", "vca-1"],
+  },
+
+  "braids-v50": {
+    division: "AUD",
+    name: "BRAIDS (STM32F303)",
+    hp: "12 HP",
+    serial: "DD-AU50 // BRAIDS",
+    status: { cs: "Schéma + PCB + panel + F3.0 FPU firmware", en: "Schematic + PCB + panel + F3.0 FPU firmware" },
+    image: "assets/products/braids-v50/preview.png?v=20261126a",
+    tagline: {
+      cs: "12 HP makro-oscilátor upgradovaný na STM32F303CCT6 s 8 FPU bicími enginy a menu efekty DRIV / PNCH.",
+      en: "12 HP macro oscillator upgraded to STM32F303CCT6 with 8 FPU drum engines & DRIV / PNCH display menu.",
+    },
+    short: {
+      cs: "STM32F303CC FPU port klasického makro-oscilátoru (96 kHz, 16bit DAC855X): všechny originální syntézy plus přepracované KICK/SNAR/CYMB, 5 nových bicích modelů (909K, CLAP, HHAT, FMDR, TOMS) a globální menu overdrive DRIV.",
+      en: "STM32F303CC FPU edition (96 kHz, 16-bit DAC855X): all classic macro oscillator algorithms plus upgraded KICK/SNAR/CYMB, 5 brand-new FPU drum models (909K, CLAP, HHAT, FMDR, TOMS), and global menu DRIV / PNCH / DRDC.",
+    },
+    long: {
+      cs: [
+        "HARDWAROVÝ PORT NA STM32F303CCT6: Srdcem přepracované 12 HP desky je Cortex-M4F mikrořadič STM32F303CCT6 (72 MHz, FPU, 256 KB Flash, 40 KB SRAM + 8 KB CCMRAM) se sjednocenými 0603 SMD pouzdry optimalizovanými pro levnou jednostrannou JLCPCB Economic PCBA výrobu.",
+        "5 NOVÝCH & 3 PŘEPRACOVANÉ FPU BICÍ MODELY: Kromě 45+ syntéz makro-oscilátoru obsahuje firmware vF3.0 vylepšené KICK, SNAR a CYMB a 5 nových bicích modelů běžících v single-precision FPU se ZDF filtry a saturací AsymDrive: 909K (909 kick + techno warehouse sub-rumble), CLAP (4-burst handclap), HHAT (closed/open hat s 96 kHz kovovým bankem), FMDR (2-op FM techno drum) a TOMS (1V/Oct tom přecházející do 808/909 rimshotu).",
+        "DISPLEJOVÉ MENU F3.0 (DRIV · PNCH · DRDC): V menu na 4znakovém LED displeji přibyly tři nové položky: DRIV (globální analogový AsymDrive overdrive přes všechny synth i bicí modely), PNCH (hloubka pitch-sweep obálky a beater clicku 0–15) a DRDC (globální škálování dozvuku bicích 0,35×–2,2×).",
+        "96 kHz AUDIO & 16BIT DAC + QPSK BOOTLOADER: Externí 12bit SPI ADC (MCP3204) čte 1V/Oct, Timbre, Color a FM bez kvantizačních schodů, zatímco 16bit DAC posílá čisté 96 kHz audio na výstup.",
+      ],
+      en: [
+        "STM32F303CCT6 HARDWARE UPGRADE: Replaced the F103 MCU with STM32F303CCT6 (72 MHz Cortex-M4F w/ FPU, 256 KB Flash, 40 KB SRAM + 8 KB CCMRAM) and unified 0603 passives for single-sided JLCPCB Economic PCBA assembly.",
+        "8 FPU DRUM MODELS (3 UPGRADED + 5 NEW): Retains the complete classic macro-oscillator bank while upgrading KICK, SNAR, and CYMB and adding 5 new FPU drum models with ZDF filters and AsymDrive: 909K (909 + warehouse sub-rumble), CLAP (4-burst handclap), HHAT (96 kHz 6-osc metallic hat), FMDR (2-op industrial FM drum), and TOMS (1V/Oct tom morphing into 808/909 rimshot).",
+        "DISPLAY MENU ADDITIONS (vF3.0): Three new user-configurable settings on the 4-character alphanumeric LED display—DRIV (global analog overdrive across every synth & drum engine), PNCH (0–15 attack transient punch), and DRDC (0–15 drum decay multiplier).",
+        "96 kHz AUDIO & 16-BIT DAC: Native F3 register drivers for 8-bit FRXTH SPI1 (MCP3204 CV ADC), 16-bit SPI2 (DAC855X @ 96 kHz), 2 KB Flash storage, and matching QPSK audio firmware bootloader.",
+      ],
+    },
+    comparisonMeta: {
+      num: { cs: "// STM32F303CC + DRUM EDITION", en: "// STM32F303CC + DRUM EDITION" },
+      heading: { cs: "BRAIDS F103 vs. DECØY BRAIDS F3.0 (FPU)", en: "ORIGINAL BRAIDS (F103) vs. DECØY BRAIDS F3.0 (FPU)" },
+      col0: { cs: "OBLAST", en: "AREA" },
+      col1: { cs: "PŮVODNÍ BRAIDS", en: "ORIGINAL BRAIDS" },
+      col2: { cs: "DECØY F3.0 (STM32F303CC)", en: "DECØY F3.0 (STM32F303CC)" },
+      col3: { cs: "PŘÍNOS", en: "IMPACT" },
+    },
+    comparison: [
+      {
+        f: { cs: "MCU & paměť", en: "MCU & Memory" },
+        orig: { cs: "STM32F103CB (128 KB / 20 KB, bez FPU)", en: "STM32F103CB (128 KB / 20 KB, no FPU)" },
+        v04: { cs: "STM32F303CCT6 (256 KB / 40+8 KB, FPU)", en: "STM32F303CCT6 (256 KB / 40+8 KB, FPU)" },
+        imp: { cs: "~120 KB volné Flash pro další enginy, plný FPU DSP výkon", en: "~120 KB free Flash headroom and hardware single-precision FPU" },
+      },
+      {
+        f: { cs: "Bicí modely", en: "Drum models" },
+        orig: { cs: "Základní KICK / SNAR / CYMB", en: "Basic KICK / SNAR / CYMB" },
+        v04: { cs: "Vylepšené KICK/SNAR/CYMB + 909K, CLAP, HHAT, FMDR, TOMS", en: "Upgraded KICK/SNAR/CYMB + 909K, CLAP, HHAT, FMDR, TOMS" },
+        imp: { cs: "Kompletní techno/industrial bicí sada včetně 909 rumblu", en: "Full 8-model techno/industrial drum kit including 909 rumble" },
+      },
+      {
+        f: { cs: "Displej menu", en: "Display menu" },
+        orig: { cs: "Klasické meta/VCA/quantizer menu", en: "Classic meta/VCA/quantizer menu" },
+        v04: { cs: "Přidány DRIV (OFF/1..3/FULL), PNCH (0..15), DRDC (0..15)", en: "Added DRIV (OFF/1..3/FULL), PNCH (0..15), DRDC (0..15)" },
+        imp: { cs: "Okamžitý analogový overdrive a globální punch přes všechny zvuky", en: "Instant global overdrive and transient punch across every timbre" },
+      },
+    ],
+    useCases: [
+      {
+        t: { cs: "Hlavní digitální hlas i bicí automat", en: "All-in-one macro voice & drum synth" },
+        d: {
+          cs: "Přepínej mezi wavetably, FM, chordy a osmici FPU bicích s interní obálkou na každý trigger.",
+          en: "Switch seamlessly between wavetables, FM, chords, and 8 self-enveloped FPU drum engines per trigger.",
+        },
+      },
+      {
+        t: { cs: "Modulace přes displejový overdrive DRIV", en: "Global DRIV saturation over harmonic algorithms" },
+        d: {
+          cs: "Globální AsymDrive dává i klasickým Braids modelům sytost analogového mixu bez nutnosti externího distortionu.",
+          en: "Engage global AsymDrive in the menu to add analog console warmth or industrial crunch to any model.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "Enkodér + 4× 14segmentový alfanumerický LED displej (výběr modelů & menu DRIV / PNCH / DRDC)",
+        "FINE, COARSE, FM ATTENUVERTER, TIMBRE, TIMBRE MOD, COLOR",
+        "Vstupy: TRIG, 1V/OCT, FM, TIMBRE CV, COLOR CV",
+        "Výstup: OUT (96 kHz / 16bit audio)",
+      ],
+      en: [
+        "Encoder + 4-character alphanumeric LED display (model select & DRIV / PNCH / DRDC menu)",
+        "FINE, COARSE, FM ATTENUVERTER, TIMBRE, TIMBRE MOD, COLOR",
+        "Inputs: TRIG, 1V/OCT, FM, TIMBRE CV, COLOR CV",
+        "Output: OUT (96 kHz / 16-bit audio)",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "12 HP (60,70 × 128,60 mm) / 3U", "doc", true),
+      S("Mikrokontrolér", "MCU", "STM32F303CCT6 (Cortex-M4F FPU @ 72 MHz, 256 KB Flash)", "doc", true),
+      S("Audio výstup", "Audio output", "16-bit DAC855X @ 96 kHz + TL072/TL074", "doc", true),
+      S("CV převodník", "CV ADC", "12-bit MCP3204 SPI1 (8-bit FRXTH) + interní ADC1_IN4", "doc", true),
+      S("Firmware verze", "Firmware release", "vF3.0 (8 FPU bicích + DRIV / PNCH / DRDC + QPSK bootloader)", "doc"),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$58.89 USD (1 354 Kč) / 1 ks při 5ks sérii", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/braids-v50/preview.png?v=20261126a", cap: { cs: "Čelní panel 12 HP — DECØY DEVICES AUDIO", en: "12 HP Front Panel — DECØY DEVICES AUDIO" } },
+      { src: "assets/products/braids-v50/panel_3d.png?v=20261126a", cap: { cs: "3D náhled panelu BRAIDS", en: "BRAIDS 3D Panel Render" } },
+    ],
+    related: ["twin-peaks", "elements-v04", "rings", "vca-1"],
+  },
+
+  "bass-drum": {
+    division: "AUD",
+    name: "SMAŽÁK (BASS DRUM)",
+    hp: "18 HP",
+    serial: "DD-AU14 // BD.01",
+    status: { cs: "Schéma + PCB + panel + 3D render", en: "Schematic + PCB + panel + 3D render" },
+    image: "assets/products/bass-drum/preview.png?v=20261126a",
+    tagline: {
+      cs: "100% analogový 18 HP kick & woodblock syntezátor postavený na duálních OTA LM13700.",
+      en: "All-analog 18 HP bass drum & woodblock percussion synthesizer driven by dual LM13700 OTAs.",
+    },
+    short: {
+      cs: "Masivní čistě analogový kopák bez digitálních kompromisů: 2× LM13700, 3× TL074, přesné reference 2× LM4040-10, ovladače IMPACT, SWEEP, WOOD/SHELL, DISTORTION, NOISE, DUCK a externí vstup EXT IN.",
+      en: "Pure analog kick & woodblock voice built around 2× LM13700 OTAs, 3× TL074, and dual LM4040-10 references with IMPACT, SWEEP, WOOD/SHELL tuning, distortion, noise transient, ducking control & EXT IN.",
+    },
+    long: {
+      cs: [
+        "100% ANALOGOVÁ ARCHITEKTURA BEZ MCU: SMAŽÁK (DD-AU14 // BD.01) spojuje klasický analogový kick oscilátor a dřevitou rezonanční složku Woodblock / Shell na dvou integrovaných obvodech LM13700 a trojici TL074 se dvěma precizními 10V referencemi LM4040.",
+        "TVAROVÁNÍ TĚLA, ÚDERU A SUB-SWEEPU: Potenciometry KICK PITCH, IMPACT, SWEEP a RANGE dovolují nastavit vše od kulatého sub-basového kopáku až po ostrý průrazný analogový punch s hlubokým přeladěním ataku.",
+        "WOOD / SHELL, NOISE & OVERDRIVE: Sekce WOOD a SHELL přimíchává dřevitý / plechový perkusivní transient, zatímco NOISE přidává vzdušný šumový náběh a DIST klampuje signál skrz křemíkové diody (1N4148) až do sytého analogového zkreslení.",
+        "EXT IN & DUCK AMT: Dedikovaný externí vstup EXT IN a atenuátor DUCK AMT rozšiřují využití modulu v patchi pro rytmické pumpování nebo zpracování cizího signálu přímo uvnitř perkusního jádra.",
+      ],
+      en: [
+        "100% ALL-ANALOG TOPOLOGY: SMAŽÁK (DD-AU14 // BD.01) uses pure discrete/OTA analog circuitry built around 2× LM13700 dual OTAs, 3× TL074 quad op-amps, 8× MMBT3904/3906 transistors, and 2× LM4040-10 voltage references with zero firmware or latency.",
+        "DEEP PITCH SWEEP & IMPACT CONTROL: Tune everything from sub-heavy rounded 808 thumps to hard-hitting analog kicks via PITCH, IMPACT, SWEEP, and RANGE controls plus dedicated PITCH CV input.",
+        "WOODBLOCK / SHELL, NOISE & DIODE DISTORTION: Sculpt wooden/metallic body resonance with WOOD and SHELL pots, inject a crisp transient burst via NOISE, and saturate into heavy harmonic grit with diode-clipped DIST.",
+        "EXT IN, DUCKING & MATTE BLACK PANEL: Includes external input, TRIG SENS adjustment, and DUCK AMT on a 18 HP Matte Black DECØY panel with twin_peaks silver HASL copper relief.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Analogový základ pro live techno set", en: "Zero-latency analog kick for live techno" },
+        d: {
+          cs: "Okamžitá fyzická odezva bez jakýchkoliv stránek v menu — každý parametr má svůj velký knob a CV jack.",
+          en: "Immediate hands-on sculpting with dedicated knobs and CV for pitch, sweep, impact, distortion, and ducking.",
+        },
+      },
+      {
+        t: { cs: "Woodblock & rezonanční analogové perkuse", en: "Woodblock & resonant analog toms" },
+        d: {
+          cs: "Vytočením WOOD / SHELL a stažením SWEEP získáš úderné perkusivní dřevěné a rezonanční zvuky pro sekvencer.",
+          en: "Dial up WOOD / SHELL with short decay for woody chimes, rim hits, and resonant analog toms.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "PITCH, IMPACT, SWEEP, RANGE, WOOD, SHELL, NOISE, DIST, TRIG SENS, DUCK AMT, VOL",
+        "Patch bay (všechny klíčové vstupy a CV): TRIG IN, PITCH CV, EXT IN a CV vstupy modulace",
+        "Výstup: Audio OUT (vysokoúrovňový analogový výstup)",
+      ],
+      en: [
+        "PITCH, IMPACT, SWEEP, RANGE, WOOD, SHELL, NOISE, DIST, TRIG SENS, DUCK AMT, VOL",
+        "Patch bay with TRIG IN, PITCH CV, EXT IN, and dedicated parameter CV jacks",
+        "Output: Hot Eurorack analog audio OUT",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "18 HP (91,10 × 128,50 mm) / 3U", "doc", true),
+      S("Topologie", "Circuit topology", "100% analog — 2× LM13700 OTA + 3× TL074 + 2× LM4040-10", "doc", true),
+      S("Rozměr PCB / osazení", "PCB & assembly", "90,5 × 111,1 mm (2 vrstvy) · 136 SMT + 42 THT", "doc", true),
+      S("Čelní panel", "Front panel", { cs: "Matte Black FR4 + HASL stříbrný reliéf twin_peaks", en: "Matte Black FR4 + silver HASL twin_peaks relief" }, "doc"),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$68.18 USD (1 568 Kč) / 1 ks při 5ks sérii", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/bass-drum/preview.png?v=20261126a", cap: { cs: "Čelní panel 18 HP — SMAŽÁK (DECØY DEVICES AUDIO)", en: "18 HP Front Panel — SMAŽÁK (DECØY DEVICES AUDIO)" } },
+      { src: "assets/products/bass-drum/panel_3d.png?v=20261126a", cap: { cs: "3D náhled panelu SMAŽÁK", en: "SMAŽÁK 3D Panel Render" } },
+      { src: "assets/products/bass-drum/render.png?v=20261126a", cap: { cs: "Kompletní 3D vizualizace osazeného modulu", en: "Full 3D Hardware Assembly Render" } },
+    ],
+    related: ["trigger-sequencer", "twin-peaks", "vca-1", "the-out"],
+  },
+
+  "clouds": {
+    division: "AUD",
+    name: "CLOUDS (STM32H7)",
+    hp: "18 HP",
+    serial: "DD-AU15 // CLOUDS-H7",
+    status: { cs: "Schéma + PCB + H7 firmware + panel", en: "Schematic + PCB + H7 firmware + panel" },
+    image: "assets/products/clouds/preview.png?v=20261126a",
+    tagline: {
+      cs: "18 HP granulární texturovací procesor přepracovaný na STM32H743 + 24bit kodek TI PCM3060.",
+      en: "18 HP granular texture synthesizer upgraded to STM32H743 + 24-bit TI PCM3060 codec.",
+    },
+    short: {
+      cs: "Klasický stereo granulární procesor, pitch-shifter, loop delay a spektrální procesor s novým jádrem STM32H743VIT6 (480 MHz, 1 MB RAM), zvukovým kodekem TI PCM3060 a op-ampy OPA1678 na 18 HP DECØY panelu.",
+      en: "Stereo granular synthesizer, delay looper, and spectral processor upgraded to STM32H743VIT6 (480 MHz, 1 MB SRAM), TI PCM3060 24-bit codec & OPA1678 analog stage behind an 18 HP DECØY panel.",
+    },
+    long: {
+      cs: [
+        "NOVÁ GENERACE HARDWARE (STM32H7 + PCM3060): Oproti původnímu STM32F4 / WM8731 používá DECØY CLOUDS-H7 procesor STM32H743VIT6 s 1 MB interní RAM pro delší delay/reverb buffery a moderní 24bitový kodek Texas Instruments PCM3060 s nízkošumovým analogovým stupněm OPA1678IDR.",
+        "GRANULÁRNÍ SYNTEZÁTOR & ZMRAZENÍ ČASU: Plynule vzorkuje stereo vstupní signál do kruhového bufferu a přehrává až desítky překrývajících se stereo zrn s řízením polohy (POSITION), délky (SIZE), výšky (PITCH s 1V/Oct), hustoty (DENSITY) a tvaru obálky / filtru (TEXTURE). Tlačítko či Gate FREEZE kdykoliv zamrazí zvukovou krajinu.",
+        "BLEND METER & 4 REŽIMY KVALITY: Multifunkční sekce BLEND sdružuje míchání Wet/Dry, stereo panoramu (PAN), zpětnou vazbu (FB) a interní reverb (VERB) s přesným 4-LED ukazatelem a tlačítkem LOAD / SAVE pro ukládání zmrazených bufferů.",
+        "MATTE BLACK PANEL & PCBA VÝROBA: 18 HP černý PCB panel s měděným reliéfem twin_peaks, jasně oddělenou patchovací sekcí ve spodní třetině a čistou 2vrstvou deskou (132 SMT + 37 THT součástek).",
+      ],
+      en: [
+        "NEXT-GEN STM32H743 + PCM3060 PLATFORM: Upgraded from legacy F4/WM8731 hardware to an STM32H743VIT6 Cortex-M7 @ 480 MHz with 1 MB internal SRAM and a 24-bit TI PCM3060 codec paired with OPA1678IDR low-noise op-amps.",
+        "REAL-TIME GRANULAR TEXTURES & FREEZE: Continuously captures stereo incoming audio and plays overlapping micro-sound grains with voltage control over buffer POSITION, grain SIZE, 1V/Oct PITCH, DENSITY, and grain envelope / filter TEXTURE. Hit or trigger FREEZE at any moment to lock textures.",
+        "QUAD BLEND MATRIX & MEMORY SLOTS: Cycle seamlessly across Wet/Dry Mix, Random Stereo Pan, Feedback, and Reverb amount with dedicated LED metering plus buffer LOAD/SAVE memory slots and 16-bit quality/playback mode selection.",
+        "DECØY 18 HP PANEL: Matte Black FR4 front panel with silver HASL copper relief and bottom-aligned jack bay keeping patch cables clear of all main performance knobs.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Okamžité ambientní plochy a granulární mraky", en: "Lush ambient clouds & frozen drones" },
+        d: {
+          cs: "Pošli krátký tón z Rings nebo OPL3 FM, zmraz buffer přes FREEZE a pomalu moduluj POSITION a TEXTURE.",
+          en: "Send a single plucked note from Rings or OPL3 FM, hit FREEZE, and drift across the spectrum with Position & Texture CV.",
+        },
+      },
+      {
+        t: { cs: "Stereo pitch-shifter & reverb za bicími", en: "Stereo reverb & glitch delay on drums" },
+        d: {
+          cs: "Vysoký headroom kodeku PCM3060 a OPA1678 zvládne i horké bicí smyčky ze SMAŽÁKU nebo TWIN PEAKS bez zahlcení.",
+          en: "High-headroom PCM3060 + OPA1678 analog I/O handles hot drum mixes from SMAŽÁK or TWIN PEAKS cleanly.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "POSITION, SIZE, PITCH, IN GAIN, DENSITY, TEXTURE, BLEND (Wet / Pan / Feedback / Reverb)",
+        "Tlačítka FREEZE, MODE (výběr Blend parametru), LOAD/SAVE (kvalita & paměť bufferů)",
+        "Vstupy: IN L / R, V/OCT, TRIG, FREEZE GATE, POS, DENS, TEXT, SIZE, BLEND CV",
+        "Výstupy: OUT L / OUT R (stereo 24 bit audio)",
+      ],
+      en: [
+        "POSITION, SIZE, PITCH, IN GAIN, DENSITY, TEXTURE, BLEND (Wet / Pan / Feedback / Reverb)",
+        "Buttons: FREEZE, MODE (Blend selector), LOAD/SAVE (quality mode & buffer presets)",
+        "Inputs: IN L / R, V/OCT, TRIG, FREEZE GATE, POS, DENS, TEXT, SIZE, BLEND CV",
+        "Outputs: OUT L / OUT R (24-bit stereo audio)",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "18 HP (91,30 × 128,50 mm) / 3U", "doc", true),
+      S("Mikrokontrolér", "MCU", "STM32H743VIT6 (Cortex-M7 @ 480 MHz, 1 MB SRAM)", "doc", true),
+      S("Audio kodek & analog", "Codec & analog", "TI PCM3060 (24 bit) + 2× TI OPA1678IDR", "doc", true),
+      S("PCB & osazení", "PCB & assembly", "89,1 × 106,2 mm (2 vrstvy) · 132 SMT + 37 THT", "doc", true),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$71.32 USD (1 640 Kč) / 1 ks při 5ks sérii", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/clouds/preview.png?v=20261126a", cap: { cs: "Čelní panel 18 HP — CLOUDS-H7 (DECØY DEVICES AUDIO)", en: "18 HP Front Panel — CLOUDS-H7 (DECØY DEVICES AUDIO)" } },
+      { src: "assets/products/clouds/panel_3d.png?v=20261126a", cap: { cs: "3D náhled panelu CLOUDS-H7", en: "CLOUDS-H7 3D Panel Render" } },
+    ],
+    related: ["rings", "elements-v04", "warps", "the-out"],
+  },
+
+  "rings": {
+    division: "AUD",
+    name: "RINGS",
+    hp: "14 HP",
+    serial: "DD-AU17 // RINGS-01",
+    status: { cs: "Schéma + PCB + panel + firmware", en: "Schematic + PCB + panel + firmware" },
+    image: "assets/products/rings/preview.png?v=20261126a",
+    tagline: {
+      cs: "14 HP polyfonní fyzikálně-modelovací rezonátor (Modal, Sympathetic Strings, Karplus-Strong).",
+      en: "14 HP polyphonic physical-modeling resonator (Modal, Sympathetic Strings & Modulated String).",
+    },
+    short: {
+      cs: "Kultovní fyzikální rezonátor na STM32F405RGT6 + 24bit WM8731 kodeku s polyfonií 1/2/4 hlasy, třemi rezonančními modely, interním excitátorem i audio vstupem IN a oddělenými výstupy ODD / EVEN.",
+      en: "Iconic 14 HP physical resonator built on STM32F405RGT6 + 24-bit WM8731 codec with 1/2/4-voice polyphony, three resonator models, internal strum exciter, external audio IN, and ODD/EVEN stereo outputs.",
+    },
+    long: {
+      cs: [
+        "TŘI FYZIKÁLNÍ REZONANČNÍ MODELY: Tlačítko MODEL přepíná mezi 1) Modal Resonator (64pásmová banka kmitů kovu, skla, dřeva i membrány), 2) Sympathetic Strings (svazek souznících vlnovodných strun s laděním akordů přes STRUCTURE) a 3) Modulated / Inharmonic String (Karplus-Strong struna s nelineární tuhostí).",
+        "POLYFONIE A STEREOPATIE (ODD / EVEN): Volič POLY střídá 1, 2 nebo 4 nezávislé hlasy s přirozeným dozněním předchozích tónů při každém úderu STRUM. Výstupy ODD a EVEN rozdělují liché a sudé harmonické / polyfonní hlasy pro široké stereo nebo samostatné zpracování.",
+        "INTERNÍ BUDIČ NEBO EXTERNÍ AUDIO VSTUP: Při odpojeném vstupu IN generuje modul vlastní interní úder (strum / noise burst / strike podle modelu). Po zapojení externího signálu z jiného modulu jej rozezvučí přímo skrz zvolené fyzikální těleso.",
+        "DECØY 14 HP PROVEDENÍ: Přehledný černý FR4 čelní panel s atenuvertory pro všech 5 parametrů (FREQUENCY, STRUCTURE, BRIGHTNESS, DAMPING, POSITION), přesnou referencí LM4040B10 a kompaktní 2vrstvou PCB.",
+      ],
+      en: [
+        "THREE PHYSICAL RESONATOR ENGINES: Step via MODEL between 1) Modal Resonator (bank of up to 64 harmonic/inharmonic bell, plate, and bar modes), 2) Sympathetic Strings (multi-string chord resonances tuned via STRUCTURE), and 3) Modulated / Inharmonic String.",
+        "1 / 2 / 4-VOICE POLYPHONY & ODD/EVEN STEREO: Cycle POLY across 1, 2, or 4 voices so notes ring out naturally across triggers. Dual ODD / EVEN outputs split partials and alternating voices cleanly for wide stereo imaging.",
+        "INTERNAL EXCITER OR EXTERNAL AUDIO IN: Unpatched IN engages the smart onboard exciter on each STRUM trigger or pitch change; patching audio or drums into IN uses external material to excite the resonator body.",
+        "PRECISION CV & DECØY PANEL: Built on STM32F405RGT6 + WM8731 + LM4040B10 behind a 14 HP Matte Black DECØY panel with bipolar attenuverters for Frequency, Structure, Brightness, Damping, and Position.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Krystalické drnkání, zvony a marimby", en: "Crystalline plucks, bells & marimbas" },
+        d: {
+          cs: "Okamžitě hudební tóny s přirozenou dynamikou a harmonickou hloubkou přes 4hlasou polyfonii.",
+          en: "Instant musical resonance with organic dynamics and rich overtones across 4-voice polyphony.",
+        },
+      },
+      {
+        t: { cs: "Fyzikální filtr pro externí signály", en: "Physical body processor for external audio" },
+        d: {
+          cs: "Zapoj šum, rytmus ze sekvenceru nebo oscilátor z Braids/Warps do vstupu IN pro unikátní rezonanční syntézu.",
+          en: "Feed triggers, noise, or Braids oscillators into IN to turn any source into a resonant acoustic sculpture.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "FREQUENCY (+ Fine/V/Oct), STRUCTURE, BRIGHTNESS, DAMPING, POSITION + 4× atenuvertor CV",
+        "Tlačítka POLY (1 / 2 / 4 hlasy s 2× dvoubarevnou LED) a MODEL (3 rezonanční modely)",
+        "Vstupy: STRUM, V/OCT, IN (audio exciter), FREQ, STRUCT, BRIGHT, DAMP, POS CV",
+        "Výstupy: ODD, EVEN (stereo / rozdělené harmonické složky)",
+      ],
+      en: [
+        "FREQUENCY (+ 1V/Oct), STRUCTURE, BRIGHTNESS, DAMPING, POSITION + bipolar CV attenuverters",
+        "Buttons: POLY (1 / 2 / 4 voices with LED indicator) and MODEL (Modal / Sympathetic / String)",
+        "Inputs: STRUM, V/OCT, IN (external exciter), FREQ, STRUCT, BRIGHT, DAMP, POS CV",
+        "Outputs: ODD, EVEN",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "14 HP (70,80 × 128,50 mm) / 3U", "doc", true),
+      S("Mikrokontrolér", "MCU", "STM32F405RGT6 (Cortex-M4F @ 168 MHz)", "doc", true),
+      S("Audio kodek & ref", "Codec & ref", "Wolfson WM8731 (24 bit / 48 kHz) + LM4040B10", "doc", true),
+      S("PCB & osazení", "PCB & assembly", "69,4 × 106,9 mm (2 vrstvy) · 116 SMT + 38 THT", "doc", true),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$67.68 USD (1 557 Kč) / 1 ks při 5ks sérii", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/rings/preview.png?v=20261126a", cap: { cs: "Čelní panel 14 HP — RINGS (DECØY DEVICES AUDIO)", en: "14 HP Front Panel — RINGS (DECØY DEVICES AUDIO)" } },
+      { src: "assets/products/rings/panel_3d.png?v=20261126a", cap: { cs: "3D náhled panelu RINGS", en: "RINGS 3D Panel Render" } },
+    ],
+    related: ["elements-v04", "clouds", "warps", "braids-v50"],
+  },
+
+  "warps": {
+    division: "AUD",
+    name: "WARPS",
+    hp: "10 HP",
+    serial: "DD-AU18 // WARPS-01",
+    status: { cs: "Schéma + PCB + panel + firmware", en: "Schematic + PCB + panel + firmware" },
+    image: "assets/products/warps/preview.png?v=20261126a",
+    tagline: {
+      cs: "10 HP digitální meta-modulátor signálů (Crossfold, Ring Mod, XOR, 20-Band Vocoder + interní oscilátor).",
+      en: "10 HP digital meta-modulator (Cross-folding, Ring Mod, XOR, 20-Band Vocoder + internal carrier oscillator).",
+    },
+    short: {
+      cs: "Kompaktní 10 HP modul kombinující dvě audio/CV cesty přes STM32F405RGT6 + WM8731 (96 kHz): Crossfade, West-Coast wavefolding, analog/digital ring mod, bitwise XOR a 20pásmový vocoder s interním VCO.",
+      en: "Compact 10 HP signal combinator powered by STM32F405RGT6 + WM8731 (96 kHz): smooth morphing across Crossfade, Cross-folding, Analog/Digital Ring Mod, Bitwise XOR, Comparator & 20-band Vocoder with internal carrier oscillator.",
+    },
+    long: {
+      cs: [
+        "MORFUJÍCÍ META-MODULÁTOR NA STM32F405 + WM8731: Velký hlavní knob ALGORITHM plynule prolíná mezi sedmi klasickými modulačními technikami — od čistého crossfadu, přes West-Coast cross-wavefolding a analogově modelovanou diodovou kruhovou modulaci až po tvrdé digitální XOR/AND bity a komparátor.",
+        "INTERNÍ NOSNÝ OSCILÁTOR (INT.OSC): Tlačítko INT.OSC zapíná vestavěný sinusový/trojúhelníkový/pilovitý oscilátor přímo na vstup 1 (s hrubým/1V-Oct řízením přes LEVEL 1 / IN 1). Warps tak funguje i jako samostatný komplexní FM/wavefolding VCO pouze s jediným externím modulačním signálem.",
+        "VESTAVĚNÝ 20PÁSMOVÝ VOCODER: Při maximálním nastavení ALGORITHM (nebo vyhrazeném rozsahu) pracuje modul jako 20pásmový analogově znějící vocoder s formantovým posunem a zmrazením spektra — modulovaný hlasem, bicími nebo šumem.",
+        "SAMOSTATNÝ VÝSTUP AUX & 10 HP PANEL: Výstup OUT nese zpracovaný modulovaný signál a AUX poskytuje součtový nebo přímý pomocný kanál; vše osazeno na úzkém 10 HP Matte Black DECØY panelu s 98 SMT díly.",
+      ],
+      en: [
+        "MORPHING META-MODULATOR ON STM32F405 + WM8731: The oversized ALGORITHM dial sweeps smoothly across Crossfade, Cross-folding, Diode Ring Modulation, Digital Ring Mod, Bitwise XOR, Track/Compare waveshaping, and Vocoder topologies.",
+        "INTERNAL CARRIER OSCILLATOR (INT.OSC): Press INT.OSC to disconnect IN 1 and feed a built-in low-aliasing carrier oscillator straight into the modulator—allowing standalone West-Coast folding, ring-mod bells, or vocoding with just one patch cable.",
+        "20-BAND VOCODER ENGINE: Morphing all the way clockwise turns Warps into a crisp 20-band digital vocoder with TIMBRE spectral tilt/shift and hold control.",
+        "DUAL OUTPUTS & 10 HP DECØY HARDWARE: Dedicated OUT and AUX outputs on a compact 10 HP Matte Black FR4 front panel built around STM32F405RGT6, Wolfson WM8731, MCP6004 & TL072.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Agresivní West-Coast wavefolding a XOR", en: "West-Coast cross-folding & bitwise grit" },
+        d: {
+          cs: "Spoj dva surové oscilátory z Braids a OPL3 FM a plynule procházej mezi kruhovou modulací a wavefolderem.",
+          en: "Patch raw waveforms from Braids and OPL3 FM and sweep between harmonic folds, ring-mod sidebands, and XOR grit.",
+        },
+      },
+      {
+        t: { cs: "20pásmový vocoder přímo v racku", en: "Rack-ready 20-band vocoder" },
+        d: {
+          cs: "Zapoj mikrofonní preamp z THE IN do modulátoru a interní oscilátor jako nosič pro okamžitý robotický vocoder.",
+          en: "Send vocals or drums from THE IN into the modulator input with the internal oscillator active for instant vocoding.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "ALGORITHM (plynulý výběr efektu + LED barva stavu), TIMBRE, LVL 1 / PITCH, LVL 2, tlačítko INT.OSC",
+        "Vstupy: IN 1, IN 2, ALGO CV, TIMB CV, LVL 1 CV, LVL 2 CV",
+        "Výstupy: OUT (hlavní modulovaný výstup), AUX (pomocný výstup)",
+      ],
+      en: [
+        "ALGORITHM (with color status LED), TIMBRE, LVL 1 / PITCH, LVL 2, INT.OSC toggle button",
+        "Inputs: IN 1, IN 2, ALGO CV, TIMB CV, LVL 1 CV, LVL 2 CV",
+        "Outputs: OUT (processed signal), AUX (raw carrier / sum output)",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "10 HP (50,60 × 128,50 mm) / 3U", "doc", true),
+      S("Mikrokontrolér", "MCU", "STM32F405RGT6 (Cortex-M4F @ 168 MHz)", "doc", true),
+      S("Audio kodek & I/O", "Codec & I/O", "Wolfson WM8731SEDS (96 kHz) + MCP6004 + TL072", "doc", true),
+      S("PCB & osazení", "PCB & assembly", "48,9 × 106,7 mm (2 vrstvy) · 98 SMT + 23 THT", "doc", true),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$51.85 USD (1 192 Kč) / 1 ks při 5ks sérii", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/warps/preview.png?v=20261126a", cap: { cs: "Čelní panel 10 HP — WARPS (DECØY DEVICES AUDIO)", en: "10 HP Front Panel — WARPS (DECØY DEVICES AUDIO)" } },
+      { src: "assets/products/warps/panel_3d.png?v=20261126a", cap: { cs: "3D náhled panelu WARPS", en: "WARPS 3D Panel Render" } },
+    ],
+    related: ["rings", "braids-v50", "the-in", "clouds"],
+  },
+
+  "trigger-sequencer": {
+    division: "AUD",
+    name: "NIGHT RIDER (TRIGGER SEQ)",
+    hp: "18 HP",
+    serial: "DD-NR01 // REV 1.0",
+    status: { cs: "Schéma + dual PCB + panel + 3D render", en: "Schematic + dual PCB + panel + 3D render" },
+    image: "assets/products/trigger-sequencer/preview.png?v=20261126a",
+    tagline: {
+      cs: "18 HP čistě analogově-logický 3×8 / 2×8 / 1×16 krokový trigger & gate sekvencer bez mikrokontroléru.",
+      en: "18 HP pure discrete/CMOS analog 3×8 / 2×8 / 1×16 step trigger & gate sequencer with zero MCU.",
+    },
+    short: {
+      cs: "Hardwarový bicí krokový sekvencer (BD / SD / HH, kroky 1/9 až 8/16): žádný firmware ani latence — 299 SMT součástek diskrétní diodovo-tranzistorové a CMOS logiky, interní TEMPO oscilátor, CLOCK/RESET a CV Swapping mezi řádky.",
+      en: "Tactile 3×8 / 1×16 trigger matrix (BD / SD / HH) built purely from CMOS & discrete diode-transistor logic (299 SMT + 62 THT parts, no MCU): onboard TEMPO clock, external CLOCK / RESET, and CV-controlled row SWAPPING.",
+    },
+    long: {
+      cs: [
+        "ČISTĚ HARDWAROVÝ RYTMIK BEZ SOFTWARU: NIGHT RIDER (DD-NR01) realizuje celý krokový sekvencer pouze pomocí rychlé CMOS a diskrétní diodovo-tranzistorové logiky (299 SMT součástek rozložených na dvoudeskový sendvič — Logická PCB 60,3 × 106,7 mm a Ovládací PCB 89,8 × 106,7 mm).",
+        "REŽIMY 3×8 / 2×8 NEBO 1×16 KROKŮ (BD · SD · HH): Tři nezávislé 8krokové stopy označené 1/9 až 8/16 (BD, SD, HH) lze provozovat buď paralelně pro kompletní bicí groove (Bass Drum, Snare, Hi-Hat), nebo přepnout řetězení do dlouhé 16krokové sekvence s okamžitou mechanickou vazbou přepínačů a 30 LED indikátorů.",
+        "INTERNÍ TEMPO + CLOCK / RESET & CV SWAPPING: Vestavěný hodinový generátor s potenciometrem TEMPO dovoluje okamžité hraní bez externího clocku. Vstupní sekce nabízí CLOCK, RESET a originální CV SWAPPING pro dynamické prohazování/řetězení banků řádků z externího CV nebo LFO.",
+        "INDUSTRIAL DESIGN & PANEL: 18 HP Matte Black frontpanel nese kompletní grafickou mřížku kroků, přepínače kroků na horní a střední části a bezpečně oddělenou patchovací zónu CLOCK / RESET / SWAPPING / OUTPUT dole.",
+      ],
+      en: [
+        "PURE HARDWARE LOGIC — ZERO LATENCY, ZERO MCU: NIGHT RIDER (DD-NR01) builds a rock-tight drum step sequencer entirely out of CMOS ICs and discrete diode-transistor switching (299 SMT components across stacked Logic & Control boards plus 62 THT switches/jacks).",
+        "FLEXIBLE 3×8 / 2×8 / 1×16 STEP ROUTING: Three tracks labeled 1/9 through 8/16 (BD, SD, HH) run independently across 8 steps or chain into a 16-step pattern with dedicated toggle switches and 30 real-time step/output LEDs.",
+        "INTERNAL TEMPO, CLOCK / RESET & CV SWAPPING: Run standalone from the onboard TEMPO knob or lock tightly to modular CLOCK and RESET pulses—plus patch external CV into the SWAPPING input for live rhythmic track swaps and fills.",
+        "18 HP INDUSTRIAL LAYOUT: Matte Black FR4 front panel with backlit step indicators and cleanly separated bottom patch bay for clock, swapping CV, and trigger outputs.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Okamžitý bicí mozek pro SMAŽÁK, TWIN PEAKS & BRAIDS", en: "Tactile drum brain for SMAŽÁK, TWIN PEAKS & BRAIDS" },
+        d: {
+          cs: "Zapoj výstupy BD, SD a HH přímo do bicích modulů a tvoř groovy přepínači kroků bez jediného kliknutí myší.",
+          en: "Patch BD, SD, and HH trigger outputs directly into your analog and FPU drum voices for immediate live pattern jamming.",
+        },
+      },
+      {
+        t: { cs: "CV-řízené variace a přechody (SWAPPING)", en: "CV-driven pattern fills via SWAPPING" },
+        d: {
+          cs: "Pošli pomalé LFO nebo hradlo z Cue_frames do vstupu SWAPPING a sekvencer bude automaticky střídat banky kroků.",
+          en: "Send a slow LFO or gate into SWAPPING CV so patterns invert or swap rows automatically every few bars.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "3×8 (24×) páčkový/krokový přepínač kroků BD (1/9–8/16), SD (1/9–8/16), HH (1/9–8/16) + 30× LED",
+        "Knob TEMPO + přepínače režimu (2×8 / 1×16 & aux směr) + SNARE // CH 2 přepínač",
+        "Vstupy: CLOCK IN, RESET IN, SWAPPING CV",
+        "Výstupy: BD OUT, SD OUT, HH OUT (samostatné trigger/gate výstupy)",
+      ],
+      en: [
+        "3×8 (24×) step switches for BD (1/9–8/16), SD (1/9–8/16), HH (1/9–8/16) + 30× LEDs",
+        "TEMPO rate dial + mode switches (1×16 chaining / CH 2 routing)",
+        "Inputs: CLOCK IN, RESET IN, SWAPPING CV",
+        "Outputs: BD OUT, SD OUT, HH OUT trigger/gate jacks",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "18 HP (91,20 × 128,60 mm) / 3U", "doc", true),
+      S("Architektura", "Architecture", "Čistě hardwarová CMOS + diskrétní logika (bez MCU)", "doc", true),
+      S("PCB & osazení", "PCB & assembly", "Logická (60,3×106,7 mm) + Ovládací (89,8×106,7 mm) · 299 SMT + 62 THT", "doc", true),
+      S("Kroky / stopy", "Tracks & steps", "3×8 paralelní (BD/SD/HH) nebo 1×16 řetězeně", "doc", true),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$74.31 USD (1 709 Kč) / 1 ks při 5ks sérii", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/trigger-sequencer/preview.png?v=20261126a", cap: { cs: "Čelní panel 18 HP — NIGHT RIDER (DECØY DEVICES AUDIO)", en: "18 HP Front Panel — NIGHT RIDER (DECØY DEVICES AUDIO)" } },
+      { src: "assets/products/trigger-sequencer/panel_3d.png?v=20261126a", cap: { cs: "3D náhled přední strany panelu", en: "Front 3D Panel Render" } },
+      { src: "assets/products/trigger-sequencer/panel_3d_back.png?v=20261126a", cap: { cs: "3D náhled zadní strany se sítotiskem", en: "Back 3D Panel Render" } },
+    ],
+    related: ["bass-drum", "twin-peaks", "braids-v50", "cue-frames"],
+  },
+
+  "vca-1": {
+    division: "AUD",
+    name: "VCA-1 (LM13700)",
+    hp: "12 HP",
+    serial: "DD-AU13 // VCA-01",
+    status: { cs: "Schéma + 4vrstvá PCB + SPICE + panel", en: "Schematic + 4-layer PCB + SPICE + panel" },
+    image: "assets/products/vca-1/preview.png?v=20261126a",
+    tagline: {
+      cs: "12 HP duální hi-fi audio VCA na LM13700 + OPA1656 s přepínáním křivek LIN / EXP.",
+      en: "12 HP dual low-distortion audio VCA on LM13700 + OPA1656 with switchable LIN / EXP response.",
+    },
+    short: {
+      cs: "Moderní přepracování klasického OTA VCA Thomase Henryho do Euroracku: plný duální kanál CH A & CH B (LM13700M + precizní op-ampy OPA1656 na 4vrstvé PCB), THD < 0,1 %, normalizace +5 V pro manuální zisk a spřažené stereo řízení CV A → CV B.",
+      en: "Dual low-distortion LM13700M OTA VCA paired with TI OPA1656 precision op-amps on a 4-layer PCB (THD < 0.1% verified in ngspice): independent CH A/B with LIN/EXP curve switch, +5 V normalling & CV A → CV B stereo tracking.",
+    },
+    long: {
+      cs: [
+        "DUÁLNÍ OTA LM13700 + OPA1656 (THD < 0,1 %): VCA-1 využívá oba kanály obvodu LM13700M s aktivní diodovou linearizací (I_D = 1,0 mA), ultra-nízkošumovými FET operáky TI OPA1656 na vstupu i transimpedančním výstupu a kompletně oddělenou analogovou zemí na 4vrstvé PCB.",
+        "PŘEPÍNATELNÁ KŘIVKA LINEAR / EXPONENTIAL: Každý z kanálů (CH A i CH B) má nezávislý přepínač CURVE (LIN / EXP). Lineární režim je ideální pro čisté CV modulace a tremolo, exponenciální poskytuje přirozenou hlasitostní odezvu pro obálky a audio.",
+        "CHYTRÁ NORMALIZACE +5 V A STEREO SLEDOVÁNÍ: Při vytaženém CV kabelu je vstup automaticky předepjat přes přesnou +5V referenci, takže potenciometr GAIN funguje jako čistý manuální atenuátor. Vstup CV B je normován ze vstupu CV A — jediná obálka tak dokáže řídit oba stereo kanály najednou.",
+        "SPICE OVĚŘENÍ & KOMPAKTNÍ 12 HP FORMÁT: Zkreslení, frekvenční odezva i citlivost tolerance součástek byly simulovány v ngspice a uloženy na čistém 12 HP DECØY panelu s měděným reliéfem.",
+      ],
+      en: [
+        "DUAL LM13700 + OPA1656 HI-FI STAGE (THD < 0.1%): Uses both OTA cores inside LM13700M with linearized diode bias (I_D = 1.0 mA), ultra-low-noise TI OPA1656 op-amps for input scaling & I-to-V conversion, and a star-grounded 4-layer PCB.",
+        "SWITCHABLE LIN / EXP RESPONSE: Independent CURVE toggle switches per channel allow either linear modulation (CV scaling / ring-style AM) or natural logarithmic/exponential audio loudness sweeps.",
+        "NORMALLED +5 V & STEREO CV TRACKING: Unpatched CV A defaults to a regulated +5 V offset so GAIN acts as a smooth manual level knob; CV B normals to CV A so a single envelope shapes both channels in stereo.",
+        "SPICE VERIFIED & DECØY 12 HP PANEL: Verified in ngspice for low distortion and headroom behind a 12 HP Matte Black FR4 front panel with silver HASL twin_peaks relief.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Čisté stereo VCA pro oscilátory a efekty", en: "Clean stereo VCA for oscillators & FX" },
+        d: {
+          cs: "Díky normalizaci CV A → CV B otevře jediná obálka z TWIN PEAKS oba kanály stereo syntezátoru najednou.",
+          en: "Patch stereo L/R audio into CH A & CH B and modulate both symmetrically from one CV A envelope.",
+        },
+      },
+      {
+        t: { cs: "Lineární CV atenuátor & dynamický mix", en: "Linear CV depth control & tremolo" },
+        d: {
+          cs: "Přepni na LIN pro bezchybnou regulaci hloubky modulace LFO před posláním do FM nebo filtrů.",
+          en: "Flip CURVE to LIN for rock-steady voltage control over LFO depth or fast audio-rate amplitude modulation.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "Kanál CH A & CH B: GAIN, CV AMT, přepínač CURVE (EXP / LIN)",
+        "Vstupy: IN A, CV A (norm +5 V), IN B, CV B (norm CV A)",
+        "Výstupy: OUT A, OUT B",
+      ],
+      en: [
+        "CH A & CH B: GAIN, CV AMT, CURVE toggle switch (EXP / LIN)",
+        "Inputs: IN A, CV A (normalled +5 V), IN B, CV B (normalled CV A)",
+        "Outputs: OUT A, OUT B",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "12 HP (60,60 × 128,50 mm) / 3U", "doc", true),
+      S("VCA jádro & op-ampy", "VCA core & op-amps", "LM13700M (dual OTA) + TI OPA1656", "doc", true),
+      S("Zkreslení (ngspice)", "Distortion (ngspice)", "THD < 0,1 % (aktivní diodová linearizace I_D = 1,0 mA)", "doc", true),
+      S("PCB & osazení", "PCB & assembly", "60,6 × 109,8 mm (4 vrstvy) · 124 SMT + 20 THT", "doc", true),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$77.10 USD (1 773 Kč) / 1 ks při 5ks sérii", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/vca-1/preview.png?v=20261126a", cap: { cs: "Čelní panel 12 HP — VCA-1 (DECØY DEVICES AUDIO)", en: "12 HP Front Panel — VCA-1 (DECØY DEVICES AUDIO)" } },
+      { src: "assets/products/vca-1/panel_3d.png?v=20261126a", cap: { cs: "3D náhled panelu VCA-1", en: "VCA-1 3D Panel Render" } },
+    ],
+    related: ["twin-peaks", "braids-v50", "the-out", "ssg"],
+  },
+
+  "ssg": {
+    division: "AUD",
+    name: "SSG (SMOOTH & STEPPED)",
+    hp: "12 HP",
+    serial: "DD-AU07 // SSG-01",
+    status: { cs: "Schéma + THT dual PCB + panel + BOM", en: "Schematic + THT dual PCB + panel + BOM" },
+    image: "assets/products/ssg/preview.png?v=20261126a",
+    tagline: {
+      cs: "12 HP analogový generátor Serge Smooth & Stepped (CGS92 // Norton LM3900 + LM13700) — 100% THT.",
+      en: "12 HP analog Serge Smooth & Stepped Generator (CGS92 // Norton LM3900 + LM13700) — 100% THT build.",
+    },
+    short: {
+      cs: "Legendární univerzální analogový modul z rodiny Serge / Ken Stone CGS92 upravený na ±12 V Eurorack (2× LM3900 + LM13700N + TL072): slew limiter, VC LFO/VCO, VC nízkofrekvenční filtr, Sample & Hold, schodový dělič i analogový coupler.",
+      en: "Classic CGS92 Serge Smooth & Stepped Generator revised for ±12 V Eurorack (2× LM3900 Norton op-amps + LM13700N + TL072) on a 100% through-hole dual board: slew, VC-LFO/VCO, S&H, staircase divider, and analog coupler.",
+    },
+    long: {
+      cs: [
+        "KLASICKÝ PATCHOVACÍ ŠVÝCARSKÝ NŮŽ (SERGE / CGS92): Smooth & Stepped Generator je jedním z nejvšestrannějších analogových stavebních bloků moduláru. V horní sekci SMOOTH poskytuje napětím řízený slew limiter / portamento, nízkoprůchodový filtr, obálku nebo cyklický trojúhelníkový LFO/VCO (při zapojení Cycle do vstupu).",
+        "KROKOVANÁ SEKCE STEPPED (S&H / TRACK & HOLD / STAIRCASE): Spodní polovina pracuje jako vzorkovací paměť Sample & Hold, Track & Hold, napětím řízený krokový generátor nebo subharmonický dělič kmitočtu a interní analogový komparátor Coupler hlásící překřížení obou větví.",
+        "MODERNIZOVANÁ VERZE ±12 V NA LM13700N (100% THT): Původní vyřazené CA3080 byly nahrazeny běžně dostupným obvodem LM13700N s přizpůsobenými bias rezistory (150 kΩ) a S&H kondenzátorem 2n2, doplněny ochrannými Schottky diodami na ±12 V Eurorack liště a bipolárními LED drivery TL072.",
+        "ČISTĚ THT KONSTRUKCE IDEÁLNÍ PRO DIY: Celý modul je postaven ze dvou prověřených THT desek (60,7 × 111,9 mm) s paticemi pro IO bez jediné SMD součástky a za mimořádně nízkou cenu stavby.",
+      ],
+      en: [
+        "CLASSIC SERGE CGS92 ANALOG SWISS-ARMY KNIFE: Combining two complementary Norton-amplifier (LM3900) processors, the SMOOTH section delivers voltage-controlled slew/glide, envelope shaping, VCF filtering, or triangle/ramp VC-LFO/VCO oscillation.",
+        "STEPPED SECTION & COUPLER LOGIC: The lower STEPPED core functions as a Sample & Hold, Track & Hold, staircase quantizer, or sub-harmonic frequency divider, linked via the internal COUPLER pulse comparator.",
+        "UPDATED ±12 V EURORACK LM13700N REVISION: Replaces obsolete CA3080 chips with an accessible LM13700N (with recalibrated 150 kΩ −12 V bias and 2n2 hold capacitor), Eurorack 2×5 IDC power w/ Schottky reverse protection, and TL072 bipolar status LED drivers.",
+        "100% THROUGH-HOLE BUILD: Dual 2-layer THT boards (60.7 × 111.9 mm) with zero SMD components, socketed ICs, and a 12 HP Matte Black DECØY panel.",
+      ],
+    },
+    useCases: [
+      {
+        t: { cs: "Generativní melodie & Sample & Hold", en: "Generative melodies & stepped CV" },
+        d: {
+          cs: "Spoj cyklický výstup Smooth a šum / LFO pro neustále se vyvíjející stupňovité melodie do Rings nebo Braids.",
+          en: "Patch Smooth cycling output with external LFO/noise to feed evolving stepped voltages into Rings or Braids.",
+        },
+      },
+      {
+        t: { cs: "Lineární / exponenciální glide & VC LFO", en: "Linear/exp portamento & tracking VC-LFO" },
+        d: {
+          cs: "Okamžitý portamento procesor před 1V/Oct vstupem nebo kmitočtově modulovaný trojúhelníkový LFO / audio VCO.",
+          en: "Use as a CV-controllable slew limiter ahead of 1V/Oct inputs or self-patch into a wide-range VC LFO.",
+        },
+      },
+    ],
+    controls: {
+      cs: [
+        "SMOOTH sekce: RATE, LEVEL / CV ovladače, IN, RATE CV, HOLD/CYCLE patch body & výstupy",
+        "STEPPED sekce: STEP RATE / HOLD, COUPLER výstup & komparátor pro cross-patching",
+        "Bipolární stavové LED indikující polaritu napětí obou větví + trimr RV1 kalibrace maximální frekvence",
+      ],
+      en: [
+        "SMOOTH section: RATE, LEVEL/CV pots, input, CV, CYCLE & OUT jacks",
+        "STEPPED section: rate/hold control, S&H/T&H inputs, COUPLER & STEPPED OUT jacks",
+        "Dual bipolar status LEDs + internal RV1 frequency calibration trimpot",
+      ],
+    },
+    specs: [
+      S("Šířka / výška", "Width / height", "12 HP (60,70 × 128,50 mm) / 3U", "doc", true),
+      S("Aktivní obvody", "Active ICs", "2× LM3900 (Norton) + LM13700N + 2× TL072", "doc", true),
+      S("Konstrukce PCB", "PCB construction", "100% THT dvoudesková (hlavní + ovládací 60,7 × 111,9 mm)", "doc", true),
+      S("Napájení", "Power supply", "±12 V Eurorack (Schottky ochrana přepólování)", "doc", true),
+      S("Odhadovaná cena stavby", "Est. BOM @ 5 pcs", "~$34.54 USD (794 Kč) / 1 ks (bez PCBA)", "doc"),
+    ],
+    gallery: [
+      { src: "assets/products/ssg/preview.png?v=20261126a", cap: { cs: "Čelní panel 12 HP — SSG (DECØY DEVICES AUDIO)", en: "12 HP Front Panel — SSG (DECØY DEVICES AUDIO)" } },
+      { src: "assets/products/ssg/panel_3d.png?v=20261126a", cap: { cs: "3D náhled panelu SSG", en: "SSG 3D Panel Render" } },
+    ],
+    related: ["vca-1", "rings", "cue-frames", "braids-v50"],
+  },
 };
 
 const TEATRO_DATA = {
@@ -2613,6 +3326,87 @@ const PRODUCT_CATALOG_META = {
     subcategories: ["lighting-controllers", "dmx-equipment", "stage-lighting"],
     availability: "in_development",
     featured: true,
+    isNew: true,
+  },
+  "twin-peaks": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "braids-v50": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "bass-drum": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  clouds: {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "effects-pedals",
+    subcategories: ["eurorack", "effects-pedals"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  rings: {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  warps: {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "effects-pedals",
+    subcategories: ["eurorack", "effects-pedals"],
+    availability: "prototype",
+    featured: false,
+    isNew: true,
+  },
+  "trigger-sequencer": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "samplers-sequencers",
+    subcategories: ["eurorack", "samplers-sequencers"],
+    availability: "prototype",
+    featured: true,
+    isNew: true,
+  },
+  "vca-1": {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "studio-equipment",
+    subcategories: ["eurorack", "studio-equipment"],
+    availability: "prototype",
+    featured: false,
+    isNew: true,
+  },
+  ssg: {
+    category: "audio",
+    categories: ["audio"],
+    subcategory: "synthesizers",
+    subcategories: ["eurorack", "synthesizers"],
+    availability: "prototype",
+    featured: false,
     isNew: true,
   },
 };
